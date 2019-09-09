@@ -69,11 +69,11 @@ public class AppActivity extends Cocos2dxActivity {
     private RelativeLayout mBtnCountTime;
     private TextView mTvCount;
     private Runnable mRunnableCountTime;
-    private int mCountTime = 10;
+    private int mCountTime = 3;
     public  int progress = 0;
     private static View loadPage;
     private static TextView textView;
-    private com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
+    private static com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -462,11 +462,10 @@ public class AppActivity extends Cocos2dxActivity {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
-                if (f>=1.0){
-                    showToast("f"+f);
-                    mViewStartPage.setVisibility(View.GONE);
-                }
+//                roundCornerProgressBar.setProgress(f);
+//                if (roundCornerProgressBar.getProgress()>=1.0){
+//                    mViewStartPage.setVisibility(View.GONE);
+//                }
             }
         });
 
@@ -476,6 +475,7 @@ public class AppActivity extends Cocos2dxActivity {
     // 热跟新进度控制
     public static void getUpdateProgressRate(float f){
         Log.d(TAG, "getUpdateProgressRate: "+f);
+        roundCornerProgressBar.setProgress(f);
 
     }
     // 显示更新失败弹窗
