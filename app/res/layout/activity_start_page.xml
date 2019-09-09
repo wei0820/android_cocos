@@ -51,12 +51,9 @@
             android:id="@+id/progress"
             android:layout_height="8dp"
             android:layout_width="960dp"
-            app:rcProgress="9.0"
             app:rcSecondaryProgress="1.0"
-            app:rcMax="10"
             app:rcRadius="10dp"
             app:rcProgressColor="#FFF8B71B"
-            app:rcSecondaryProgressColor="#ff00ff"
             app:rcBackgroundColor="#63FFFFFF" />
         <TextView
             android:layout_marginBottom="28dp"

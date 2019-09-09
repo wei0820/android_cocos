@@ -69,7 +69,8 @@ public class AppActivity extends Cocos2dxActivity {
     private RelativeLayout mBtnCountTime;
     private TextView mTvCount;
     private Runnable mRunnableCountTime;
-    private int mCountTime = 3;
+    private int mCountTime = 10;
+    public  int progress = 0;
     private static View loadPage;
     private static TextView textView;
     private com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
@@ -94,14 +95,14 @@ public class AppActivity extends Cocos2dxActivity {
             @Override
             public void run() {
                 mTvCount.setText("跳过 " + mCountTime + "s ");
-
                 if (mCountTime <= -1) {
                     gotoMain();
                     return;
                 }
-
+                roundCornerProgressBar.setProgress(progress);
                 mHandler.postDelayed(mRunnableCountTime, 1200);
                 mCountTime--;
+                progress = progress +10 ;
             }
         };
 
@@ -117,8 +118,9 @@ public class AppActivity extends Cocos2dxActivity {
         mTvCount = (TextView) mViewStartPage.findViewById(R.id.tv_count);
         textView = (TextView) mViewStartPage.findViewById(R.id.text);
         roundCornerProgressBar = mViewStartPage.findViewById(R.id.progress);
-        mFrameLayout.addView(mViewStartPage);
 
+        roundCornerProgressBar.setMax(100);
+        mFrameLayout.addView(mViewStartPage);
 
         // 添加加载图
         /*ImageView imageView = new ImageView(getContext());
@@ -482,7 +484,7 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
     private void  showRoundCornerProgressBar(){
-        
+
     }
 }
 
