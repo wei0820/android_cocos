@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_centerInParent="true"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="360dp"
+        android:layout_height="264dp"
         android:background="@mipmap/dilogbg">
         <TextView
             android:layout_above="@+id/btn"
