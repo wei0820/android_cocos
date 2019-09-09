@@ -45,6 +45,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -467,7 +469,13 @@ public class AppActivity extends Cocos2dxActivity {
                 // 設定模組與 Dialog 的風格
                 dialog = new Dialog(getContext(), R.style.selectorDialog);
                 dialog.setContentView(R.layout.layout_alertdialog);
-
+                ImageButton button = dialog.findViewById(R.id.btn);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(),"test",Toast.LENGTH_SHORT).show();
+                    }
+                });
                 // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
                 WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
                 lp.dimAmount=0.2f;
