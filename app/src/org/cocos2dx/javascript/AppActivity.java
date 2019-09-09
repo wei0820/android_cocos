@@ -467,22 +467,6 @@ public class AppActivity extends Cocos2dxActivity {
             @Override
             public void run() {
                 // 設定模組與 Dialog 的風格
-                dialog = new Dialog(getContext(), R.style.selectorDialog);
-                dialog.setContentView(R.layout.layout_alertdialog);
-                ImageButton button = dialog.findViewById(R.id.btn);
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(getContext(),"test",Toast.LENGTH_SHORT).show();
-                    }
-                });
-                // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
-                WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
-                lp.dimAmount=0.2f;
-                dialog.getWindow().setAttributes(lp);
-
-                dialog.show();
-
                 roundCornerProgressBar.setProgress(f);
 //                if (roundCornerProgressBar.getProgress()>=1.0){
 //                    mViewStartPage.setVisibility(View.GONE);
@@ -515,8 +499,24 @@ public class AppActivity extends Cocos2dxActivity {
 
     }
 
-    private void  showRoundCornerProgressBar(){
+    private void  showDialog(String s){
+        dialog = new Dialog(getContext(), R.style.selectorDialog);
+        dialog.setContentView(R.layout.layout_alertdialog);
+        ImageButton button = dialog.findViewById(R.id.btn);
+        TextView textView = dialog.findViewById(R.id.text);
+        textView.setText(s);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"test",Toast.LENGTH_SHORT).show();
+            }
+        });
+        // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
+        WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
+        lp.dimAmount=0.2f;
+        dialog.getWindow().setAttributes(lp);
 
+        dialog.show();
     }
 }
 
