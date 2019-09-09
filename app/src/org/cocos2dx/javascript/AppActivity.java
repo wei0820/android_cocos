@@ -72,7 +72,8 @@ public class AppActivity extends Cocos2dxActivity {
     private int mCountTime = 3;
     private static View loadPage;
     private static TextView textView;
-
+    private com.liulishuo.magicprogresswidget.MagicProgressCircle magicProgressCircle;
+    private com.liulishuo.magicprogresswidget.MagicProgressBar magicProgressBar ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +117,6 @@ public class AppActivity extends Cocos2dxActivity {
         mBtnCountTime = (RelativeLayout) mViewStartPage.findViewById(R.id.box_count_time);
         mTvCount = (TextView) mViewStartPage.findViewById(R.id.tv_count);
         textView = (TextView) mViewStartPage.findViewById(R.id.text);
-        textView.setText("111");
         mFrameLayout.addView(mViewStartPage);
 
 
