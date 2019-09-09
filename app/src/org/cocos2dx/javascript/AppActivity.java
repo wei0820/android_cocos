@@ -57,22 +57,26 @@ import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
 
 public class AppActivity extends Cocos2dxActivity {
+    private static AppActivity app = null;
 
     private static final int REQUEST_CODE = 12;
     private static Handler mHandler = new Handler();
     private static ClipboardManager mClipboardManager;
     private RelativeLayout mLayout;
-    private View mViewStartPage;
+    private static View mViewStartPage;
     private Cocos2dxGLSurfaceView mGLSurfaceView;
     private ImageView mImgStartPage;
     private RelativeLayout mBtnCountTime;
     private TextView mTvCount;
     private Runnable mRunnableCountTime;
     private int mCountTime = 3;
+    private static View loadPage;
+    private static TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        app = this ;
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
             // Android launched another instance of the root activity into an existing task
@@ -111,8 +115,10 @@ public class AppActivity extends Cocos2dxActivity {
         mImgStartPage = (ImageView) mViewStartPage.findViewById(R.id.img_start_page);
         mBtnCountTime = (RelativeLayout) mViewStartPage.findViewById(R.id.box_count_time);
         mTvCount = (TextView) mViewStartPage.findViewById(R.id.tv_count);
-
+        textView = (TextView) mViewStartPage.findViewById(R.id.text);
+        textView.setText("111");
         mFrameLayout.addView(mViewStartPage);
+
 
         // 添加加载图
         /*ImageView imageView = new ImageView(getContext());
@@ -282,6 +288,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     }
 
+    private static final String TAG = "AppActivity";
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == REQUEST_CODE) {
@@ -298,7 +305,7 @@ public class AppActivity extends Cocos2dxActivity {
                 boolean hasPermissions = false;
                 for (int i = 0; i < thePermissions.length; i++) {
                     int hasWriteStoragePermission = ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                    //LogUtils.out(permissions[i] + "  =  " + hasWriteStoragePermission);
+                    Log.d(TAG, "onRequestPermissionsResult: "+permissions[i] + "  =  " + hasWriteStoragePermission);
                     if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
                         hasPermissions = false;
                         break;
@@ -343,7 +350,10 @@ public class AppActivity extends Cocos2dxActivity {
 
     private void gotoMain() {
         mHandler.removeCallbacks(mRunnableCountTime);
-        mViewStartPage.setVisibility(View.GONE);
+        mTvCount.setVisibility(View.GONE);
+        mImgStartPage.setImageResource(R.mipmap.bg);
+
+
     }
 
     // 供JS调用
@@ -436,4 +446,40 @@ public class AppActivity extends Cocos2dxActivity {
         Utils.log("JSGotoMain");
         Bus.getDefault().post(new GotoMainEvent());
     }
+
+
+    public static float showProgress(float i ) {
+        Log.d("showProgress",i+"");
+        return i ;
+
+
+    }
+    // 加载资源进度控制
+    public static void getLoadngingProgressRate(float f){
+        Log.d(TAG, "getLoadngingProgressRate: "+f);
+        app.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                if (f>=1.0){
+                    showToast("f"+f);
+                    mViewStartPage.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
+    }
+{    }
+    // 热跟新进度控制
+    public static void getUpdateProgressRate(float f){
+        Log.d(TAG, "getUpdateProgressRate: "+f);
+
+    }
+    // 显示更新失败弹窗
+    public static void showUpdateFailedDialog(){
+
+    }
 }
+
+

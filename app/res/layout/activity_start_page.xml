@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/box_start_page"
+<RelativeLayout android:id="@+id/box_start_page"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <ImageView
         android:id="@+id/img_start_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/bg_load"/>
-
+        android:background="@mipmap/bg_load" />
 
     <RelativeLayout
 
@@ -39,4 +39,31 @@
             android:textSize="14sp"
             tools:text="跳过 1s"/>
     </RelativeLayout>
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="11111"
+        android:textSize="28dp"
+        ></TextView>
+    <com.liulishuo.magicprogresswidget.MagicProgressCircle
+        android:id="@+id/demo_mpc"
+        android:layout_width="@dimen/mpc_size"
+        android:layout_height="@dimen/mpc_size"
+        app:mpc_percent="0.8"
+        app:mpc_start_color="@color/mpc_start_color"
+        app:mpc_end_color="@color/mpc_end_color"
+        app:mpc_stroke_width="@dimen/mpc_stroke_width"
+        app:mpc_default_color="@color/mpc_default_color"/>
+
+    <com.liulishuo.magicprogresswidget.MagicProgressBar
+        android:id="@+id/demo_2_mpb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mpb_height"
+        app:mpb_fill_color="@color/mpb_color"
+        app:mpb_background_color="@color/mpb_default_color"
+        app:mpb_flat="true"/>
 </RelativeLayout>

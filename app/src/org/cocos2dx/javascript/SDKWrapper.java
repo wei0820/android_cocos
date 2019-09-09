@@ -31,8 +31,11 @@ import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+
 import org.cocos2dx.javascript.service.SDKClass;
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
