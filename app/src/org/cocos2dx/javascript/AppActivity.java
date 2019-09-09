@@ -72,8 +72,7 @@ public class AppActivity extends Cocos2dxActivity {
     private int mCountTime = 3;
     private static View loadPage;
     private static TextView textView;
-    private com.liulishuo.magicprogresswidget.MagicProgressCircle magicProgressCircle;
-    private com.liulishuo.magicprogresswidget.MagicProgressBar magicProgressBar ;
+    private com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +116,7 @@ public class AppActivity extends Cocos2dxActivity {
         mBtnCountTime = (RelativeLayout) mViewStartPage.findViewById(R.id.box_count_time);
         mTvCount = (TextView) mViewStartPage.findViewById(R.id.tv_count);
         textView = (TextView) mViewStartPage.findViewById(R.id.text);
+        roundCornerProgressBar = mViewStartPage.findViewById(R.id.progress);
         mFrameLayout.addView(mViewStartPage);
 
 
@@ -479,6 +479,10 @@ public class AppActivity extends Cocos2dxActivity {
     // 显示更新失败弹窗
     public static void showUpdateFailedDialog(){
 
+    }
+
+    private void  showRoundCornerProgressBar(){
+        
     }
 }
 
