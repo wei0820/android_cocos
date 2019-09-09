@@ -68,7 +68,7 @@ public class AppActivity extends Cocos2dxActivity {
     private ImageView mImgStartPage;
     private RelativeLayout mBtnCountTime;
     private TextView mTvCount;
-    private Runnable mRunnableCountTime;
+    private static  Runnable mRunnableCountTime;
     private int mCountTime = 3;
     public  int progress = 0;
     private static View loadPage;
@@ -460,30 +460,32 @@ public class AppActivity extends Cocos2dxActivity {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+
                 roundCornerProgressBar.setProgress(f);
-//                roundCornerProgressBar.setProgress(f);
 //                if (roundCornerProgressBar.getProgress()>=1.0){
 //                    mViewStartPage.setVisibility(View.GONE);
+//
 //                }
             }
         });
 
+        }
 
-    }
-{    }
+
+
+
     // 热跟新进度控制
     public static void getUpdateProgressRate(float f){
         Log.d(TAG, "getUpdateProgressRate: "+f);
-        app.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-//                roundCornerProgressBar.setProgress(f);
-//                roundCornerProgressBar.setProgress(f);
-//                if (roundCornerProgressBar.getProgress()>=1.0){
-//                    mViewStartPage.setVisibility(View.GONE);
-//                }
-            }
-        });
+        if (f>=1.0){
+            app.runOnGLThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(TAG, "getUpdateProgressRate: "+"in");
+                    Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate()");
+                }
+            });
+        }
 
     }
     // 显示更新失败弹窗
