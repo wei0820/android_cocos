@@ -99,10 +99,8 @@ public class AppActivity extends Cocos2dxActivity {
                     gotoMain();
                     return;
                 }
-                roundCornerProgressBar.setProgress(progress);
                 mHandler.postDelayed(mRunnableCountTime, 1200);
                 mCountTime--;
-                progress = progress +10 ;
             }
         };
 
@@ -119,7 +117,7 @@ public class AppActivity extends Cocos2dxActivity {
         textView = (TextView) mViewStartPage.findViewById(R.id.text);
         roundCornerProgressBar = mViewStartPage.findViewById(R.id.progress);
 
-        roundCornerProgressBar.setMax(100);
+        roundCornerProgressBar.setMax(1);
         mFrameLayout.addView(mViewStartPage);
 
         // 添加加载图
@@ -462,6 +460,7 @@ public class AppActivity extends Cocos2dxActivity {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                roundCornerProgressBar.setProgress(f);
 //                roundCornerProgressBar.setProgress(f);
 //                if (roundCornerProgressBar.getProgress()>=1.0){
 //                    mViewStartPage.setVisibility(View.GONE);
@@ -475,7 +474,16 @@ public class AppActivity extends Cocos2dxActivity {
     // 热跟新进度控制
     public static void getUpdateProgressRate(float f){
         Log.d(TAG, "getUpdateProgressRate: "+f);
-        roundCornerProgressBar.setProgress(f);
+        app.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+//                roundCornerProgressBar.setProgress(f);
+//                roundCornerProgressBar.setProgress(f);
+//                if (roundCornerProgressBar.getProgress()>=1.0){
+//                    mViewStartPage.setVisibility(View.GONE);
+//                }
+            }
+        });
 
     }
     // 显示更新失败弹窗
