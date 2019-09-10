@@ -53,6 +53,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.app.game.v0812.R;
+import com.fm.openinstall.OpenInstall;
+import com.fm.openinstall.listener.AppWakeUpAdapter;
+import com.fm.openinstall.model.AppData;
 import com.mcxiaoke.bus.Bus;
 import com.mcxiaoke.bus.annotation.BusReceiver;
 
@@ -168,8 +171,20 @@ public class AppActivity extends Cocos2dxActivity {
         });
 
         checkPermission();
+        OpenInstall.getWakeUp(getIntent(), wakeUpAdapter);
+
     }
-    
+    AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {
+        @Override
+        public void onWakeUp(AppData appData) {
+            //获取渠道数据
+            String channelCode = appData.getChannel();
+            //获取绑定数据
+            String bindData = appData.getData();
+            Log.d("OpenInstall", "getWakeUp : wakeupData = " + appData.toString());
+        }
+    };
+
     @Override
     public Cocos2dxGLSurfaceView onCreateView() {
         mGLSurfaceView = new Cocos2dxGLSurfaceView(this);
@@ -195,6 +210,8 @@ public class AppActivity extends Cocos2dxActivity {
         super.onDestroy();
         SDKWrapper.getInstance().onDestroy();
         mHandler.removeCallbacks(mRunnableCountTime);
+        wakeUpAdapter = null;
+
     }
 
     @Override
@@ -207,6 +224,8 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         SDKWrapper.getInstance().onNewIntent(intent);
+        OpenInstall.getWakeUp(intent, wakeUpAdapter);
+
     }
 
     @Override
