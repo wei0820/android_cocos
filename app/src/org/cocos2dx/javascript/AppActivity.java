@@ -264,7 +264,6 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onSaveInstanceState(Bundle outState) {
         SDKWrapper.getInstance().onSaveInstanceState(outState);
         super.onSaveInstanceState(outState);
-        Utils.log("onSaveInstanceState");
     }
 
     @Override
