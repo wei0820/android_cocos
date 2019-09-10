@@ -65,6 +65,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     private static final int REQUEST_CODE = 12;
     private static Handler mHandler = new Handler();
+    private static Handler mArrayHandler = new Handler();
     private static ClipboardManager mClipboardManager;
     private RelativeLayout mLayout;
     private static View mViewStartPage;
@@ -73,7 +74,9 @@ public class AppActivity extends Cocos2dxActivity {
     private RelativeLayout mBtnCountTime;
     private TextView mTvCount;
     private static  Runnable mRunnableCountTime;
+    private static  Runnable mRunnableArraryString;
     private int mCountTime = 1;
+    private int i = 0;
     public  int progress = 0;
     private static View loadPage;
     private static TextView textView;
@@ -102,6 +105,16 @@ public class AppActivity extends Cocos2dxActivity {
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.getInstance().init(this);
 
+        mRunnableArraryString = new Runnable() {
+            @Override
+            public void run() {
+                textView.setText(array[i]);
+                mArrayHandler.postDelayed(mRunnableArraryString,1500);
+                i =  (int)(Math.random()* array.length);
+                Log.d(TAG, "run: "+i);
+
+            }
+        };
 
 
         mRunnableCountTime = new Runnable() {
@@ -116,7 +129,7 @@ public class AppActivity extends Cocos2dxActivity {
                 mCountTime--;
             }
         };
-        
+
 
         mClipboardManager = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
 
@@ -147,7 +160,7 @@ public class AppActivity extends Cocos2dxActivity {
 
 
         mHandler.post(mRunnableCountTime);
-
+        mArrayHandler.post(mRunnableArraryString);
         mBtnCountTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -478,7 +491,8 @@ public class AppActivity extends Cocos2dxActivity {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress()>=1.0){
-                    showDialog();                }
+//                    showDialog();
+                }
             }
         });
 
@@ -524,7 +538,7 @@ public class AppActivity extends Cocos2dxActivity {
                         app.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                mViewStartPage.setVisibility(View.GONE);
+//                                mViewStartPage.setVisibility(View.GONE);
                             }
                         });
 
