@@ -253,7 +253,7 @@ public class AppActivity extends Cocos2dxActivity {
         SDKWrapper.getInstance().onStart();
         super.onStart();
         Bus.getDefault().register(this);
-        
+
     }
 
     private void checkPermission() {

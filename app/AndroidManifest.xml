@@ -32,6 +32,10 @@
             android:name="android.app.lib_name"
             android:value="cocos2djs"/>
 
+        <meta-data
+            android:name="com.openinstall.APP_KEY"
+            android:value="ihjwn8"/>
+
         <activity
             android:name="org.cocos2dx.javascript.AppActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
