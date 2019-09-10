@@ -73,7 +73,7 @@ public class AppActivity extends Cocos2dxActivity {
     private RelativeLayout mBtnCountTime;
     private TextView mTvCount;
     private static  Runnable mRunnableCountTime;
-    private int mCountTime = 3;
+    private int mCountTime = 1;
     public  int progress = 0;
     private static View loadPage;
     private static TextView textView;
@@ -124,6 +124,7 @@ public class AppActivity extends Cocos2dxActivity {
         roundCornerProgressBar = mViewStartPage.findViewById(R.id.progress);
 
         roundCornerProgressBar.setMax(1);
+        roundCornerProgressBar.setVisibility(View.GONE);
         mFrameLayout.addView(mViewStartPage);
 
         // 添加加载图
@@ -358,6 +359,7 @@ public class AppActivity extends Cocos2dxActivity {
         mHandler.removeCallbacks(mRunnableCountTime);
         mTvCount.setVisibility(View.GONE);
         mImgStartPage.setImageResource(R.mipmap.bg);
+        roundCornerProgressBar.setVisibility(View.VISIBLE);
 
 
     }
@@ -468,10 +470,9 @@ public class AppActivity extends Cocos2dxActivity {
             public void run() {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
-//                if (roundCornerProgressBar.getProgress()>=1.0){
+                if (roundCornerProgressBar.getProgress()>=1.0){
 //                    mViewStartPage.setVisibility(View.GONE);
-//
-//                }
+                }
             }
         });
 
@@ -483,39 +484,45 @@ public class AppActivity extends Cocos2dxActivity {
     // 热跟新进度控制
     public static void getUpdateProgressRate(float f){
         Log.d(TAG, "getUpdateProgressRate: "+f);
-        if (f>=1.0){
-            app.runOnGLThread(new Runnable() {
-                @Override
-                public void run() {
-                    Log.d(TAG, "getUpdateProgressRate: "+"in");
-                    Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate()");
+        app.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // 設定模組與 Dialog 的風格
+                roundCornerProgressBar.setProgress(f);
+                if (roundCornerProgressBar.getProgress()>=1.0){
+//                    mViewStartPage.setVisibility(View.GONE);
                 }
-            });
-        }
+            }
+        });
 
     }
     // 显示更新失败弹窗
     public static void showUpdateFailedDialog(){
+        showDialog();
 
     }
 
-    private void  showDialog(String s){
+    private static  void  showDialog(){
         dialog = new Dialog(getContext(), R.style.selectorDialog);
         dialog.setContentView(R.layout.layout_alertdialog);
         ImageButton button = dialog.findViewById(R.id.btn);
         TextView textView = dialog.findViewById(R.id.text);
-        textView.setText(s);
+        textView.setText("更新失败！请检查网络后重试。");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"test",Toast.LENGTH_SHORT).show();
+                app.runOnGLThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate()");
+                    }
+                });
             }
         });
         // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
         WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
         lp.dimAmount=0.2f;
         dialog.getWindow().setAttributes(lp);
-
         dialog.show();
     }
 }
