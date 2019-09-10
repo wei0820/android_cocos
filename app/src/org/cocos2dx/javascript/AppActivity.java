@@ -176,22 +176,18 @@ public class AppActivity extends Cocos2dxActivity {
         // TestCpp should create stencil buffer
         mGLSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
         SDKWrapper.getInstance().setGLSurfaceView(mGLSurfaceView, this);
-        Utils.log("onCreateView");
         return mGLSurfaceView;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        SDKWrapper.getInstance().onResume();
-        Utils.log("onResume");
-    }
+        SDKWrapper.getInstance().onResume(); }
 
     @Override
     protected void onPause() {
         super.onPause();
         SDKWrapper.getInstance().onPause();
-        Utils.log("onPause");
     }
 
     @Override
@@ -199,28 +195,24 @@ public class AppActivity extends Cocos2dxActivity {
         super.onDestroy();
         SDKWrapper.getInstance().onDestroy();
         mHandler.removeCallbacks(mRunnableCountTime);
-        Utils.log("onDestroy");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         SDKWrapper.getInstance().onActivityResult(requestCode, resultCode, data);
-        Utils.log("onActivityResult");
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         SDKWrapper.getInstance().onNewIntent(intent);
-        Utils.log("onNewIntent");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         SDKWrapper.getInstance().onRestart();
-        Utils.log("onRestart");
     }
 
     @Override
@@ -228,7 +220,6 @@ public class AppActivity extends Cocos2dxActivity {
         super.onStop();
         SDKWrapper.getInstance().onStop();
         Bus.getDefault().unregister(this);
-        Utils.log("onStop");
     }
 
     @Override
@@ -241,14 +232,13 @@ public class AppActivity extends Cocos2dxActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         SDKWrapper.getInstance().onConfigurationChanged(newConfig);
         super.onConfigurationChanged(newConfig);
-        Utils.log("onConfigurationChanged");
+
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         SDKWrapper.getInstance().onRestoreInstanceState(savedInstanceState);
         super.onRestoreInstanceState(savedInstanceState);
-        Utils.log("onRestoreInstanceState");
     }
 
     @Override
@@ -263,7 +253,7 @@ public class AppActivity extends Cocos2dxActivity {
         SDKWrapper.getInstance().onStart();
         super.onStart();
         Bus.getDefault().register(this);
-        Utils.log("onStart");
+        
     }
 
     private void checkPermission() {
