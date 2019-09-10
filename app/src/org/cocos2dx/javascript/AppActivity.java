@@ -79,7 +79,14 @@ public class AppActivity extends Cocos2dxActivity {
     private static TextView textView;
     private static com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
     private static Dialog dialog;
-
+    private static String[] array = new String[]{"赢了不吱声，说明城府深；输了不投降，竞争意识强" ,
+            "看准下重注，超越拆迁户",
+            "想要打牌手气好，心理素质加技巧" ,
+            "吃吃喝喝都是赔，唯有打牌有来回" ,
+            "邀请好友来扫码，每天稳赢几十把" ,
+            "打牌打得好，说明有头脑" ,
+            "打牌不怕炸，说明胆子大" ,
+            "打牌打得精，说明思路清"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +116,7 @@ public class AppActivity extends Cocos2dxActivity {
                 mCountTime--;
             }
         };
-
+        
 
         mClipboardManager = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
 
@@ -471,8 +478,7 @@ public class AppActivity extends Cocos2dxActivity {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress()>=1.0){
-//                    mViewStartPage.setVisibility(View.GONE);
-                }
+                    showDialog();                }
             }
         });
 
@@ -515,6 +521,14 @@ public class AppActivity extends Cocos2dxActivity {
                     @Override
                     public void run() {
                         Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate()");
+                        app.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mViewStartPage.setVisibility(View.GONE);
+                            }
+                        });
+
+                        dialog.dismiss();
                     }
                 });
             }
