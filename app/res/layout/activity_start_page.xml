@@ -64,7 +64,7 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="正在加载资源…"
+            android:text="正在检查版本…"
             android:textSize="16dp"
             ></TextView>
     </RelativeLayout>
