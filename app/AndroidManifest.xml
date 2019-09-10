@@ -32,6 +32,10 @@
             android:name="android.app.lib_name"
             android:value="cocos2djs"/>
 
+        <meta-data
+            android:name="com.openinstall.APP_KEY"
+            android:value="ihjwn8"/>
+
         <activity
             android:name="org.cocos2dx.javascript.AppActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -47,6 +51,13 @@
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="ihjwn8"/>
             </intent-filter>
         </activity>
         <activity
