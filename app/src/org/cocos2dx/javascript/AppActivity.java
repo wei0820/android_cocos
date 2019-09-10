@@ -102,7 +102,6 @@ public class AppActivity extends Cocos2dxActivity {
             // Don't need to finish it again since it's finished in super.onCreate .
             return;
         }
-        debugModel();
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.getInstance().init(this);
 
@@ -169,8 +168,6 @@ public class AppActivity extends Cocos2dxActivity {
         });
 
         checkPermission();
-        Utils.log("onCreate");
-        showDialog();
     }
     
     @Override
