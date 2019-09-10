@@ -16,6 +16,7 @@ public class App extends Application {
         super.onCreate();
         CrashReport.initCrashReport(getApplicationContext(), "b93156a620", false);
         closeAndroidPDialog();
+
     }
 
     private void closeAndroidPDialog() {

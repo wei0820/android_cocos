@@ -102,6 +102,7 @@ public class AppActivity extends Cocos2dxActivity {
             // Don't need to finish it again since it's finished in super.onCreate .
             return;
         }
+        debugModel();
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.getInstance().init(this);
 
@@ -111,7 +112,6 @@ public class AppActivity extends Cocos2dxActivity {
                 textView.setText(array[i]);
                 mArrayHandler.postDelayed(mRunnableArraryString,1500);
                 i =  (int)(Math.random()* array.length);
-                Log.d(TAG, "run: "+i);
 
             }
         };
@@ -170,7 +170,7 @@ public class AppActivity extends Cocos2dxActivity {
 
         checkPermission();
         Utils.log("onCreate");
-
+        showDialog();
     }
     
     @Override
@@ -491,7 +491,10 @@ public class AppActivity extends Cocos2dxActivity {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress()>=1.0){
-//                    showDialog();
+                    mViewStartPage.setVisibility(View.GONE);
+
+
+
                 }
             }
         });
@@ -510,7 +513,8 @@ public class AppActivity extends Cocos2dxActivity {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress()>=1.0){
-//                    mViewStartPage.setVisibility(View.GONE);
+                    mArrayHandler.removeCallbacks(mRunnableArraryString);
+                    textView.setText("更新完毕，将为您重启应用，祝您游戏愉快");
                 }
             }
         });
@@ -518,6 +522,7 @@ public class AppActivity extends Cocos2dxActivity {
     }
     // 显示更新失败弹窗
     public static void showUpdateFailedDialog(){
+        Log.d(TAG, "showUpdateFailedDialog: "+"in");
         showDialog();
 
     }
@@ -535,13 +540,6 @@ public class AppActivity extends Cocos2dxActivity {
                     @Override
                     public void run() {
                         Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate()");
-                        app.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-//                                mViewStartPage.setVisibility(View.GONE);
-                            }
-                        });
-
                         dialog.dismiss();
                     }
                 });
@@ -553,6 +551,14 @@ public class AppActivity extends Cocos2dxActivity {
         dialog.getWindow().setAttributes(lp);
         dialog.show();
     }
+    private void debugModel(){
+        DataCleanManager.cleanInternalCache(this);
+        DataCleanManager.cleanFiles(this);
+        DataCleanManager.cleanDatabases(this);
+        DataCleanManager.cleanExternalCache(this);
+
+    }
+
 }
 
 
