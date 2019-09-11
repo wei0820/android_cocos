@@ -84,7 +84,6 @@ public class AppActivity extends Cocos2dxActivity {
     private static View loadPage;
     private static TextView textView;
     private static com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
-    private static Dialog dialog;
     private static String[] array = new String[]{"赢了不吱声，说明城府深；输了不投降，竞争意识强" ,
             "看准下重注，超越拆迁户",
             "想要打牌手气好，心理素质加技巧" ,
@@ -97,6 +96,7 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = this ;
+//        debugModel();
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
             // Android launched another instance of the root activity into an existing task
@@ -357,25 +357,25 @@ public class AppActivity extends Cocos2dxActivity {
                     return;
                 }
             }
-            // TODO: 2019/6/15 去适配MIUI
-            if (Build.MANUFACTURER.equals("Xiaomi")) {
-                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    // 弹出对话框，让用户去设置权限
-                    AlertDialog dialog = new AlertDialog.Builder(this)
-                            .setMessage("我们需要您同意我们获取读写文件权限")
-                            .setPositiveButton("前往授权", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                    // 根据包名打开对应的设置界面
-                                    intent.setData(Uri.parse("package:" + getPackageName()));
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("取消授权", null).create();
-                    dialog.show();
-                }
-            }
+//            // TODO: 2019/6/15 去适配MIUI
+//            if (Build.MANUFACTURER.equals("Xiaomi")) {
+//                if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+//                    // 弹出对话框，让用户去设置权限
+//                    AlertDialog dialog = new AlertDialog.Builder(this)
+//                            .setMessage("我们需要您同意我们获取读写文件权限")
+//                            .setPositiveButton("前往授权", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+//                                    // 根据包名打开对应的设置界面
+//                                    intent.setData(Uri.parse("package:" + getPackageName()));
+//                                    startActivity(intent);
+//                                }
+//                            })
+//                            .setNegativeButton("取消授权", null).create();
+//                    dialog.show();
+//                }
+//            }
 
         }
     }
@@ -527,41 +527,44 @@ public class AppActivity extends Cocos2dxActivity {
     }
     // 显示更新失败弹窗
     public static void showUpdateFailedDialog(){
+
         Log.d(TAG, "showUpdateFailedDialog: "+"in");
         showDialog();
 
     }
 
     private static  void  showDialog(){
-        dialog = new Dialog(getContext(), R.style.selectorDialog);
-        dialog.setContentView(R.layout.layout_alertdialog);
-        ImageButton button = dialog.findViewById(R.id.btn);
-        TextView textView = dialog.findViewById(R.id.text);
-        textView.setText("更新失败！请检查网络后重试。");
-        button.setOnClickListener(new View.OnClickListener() {
+        app.runOnUiThread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                app.runOnGLThread(new Runnable() {
+            public void run() {
+                Dialog   dialog = new Dialog(getContext(), R.style.selectorDialog);
+                dialog.setContentView(R.layout.layout_alertdialog);
+                ImageButton button = dialog.findViewById(R.id.btn);
+                TextView textView = dialog.findViewById(R.id.text);
+                textView.setText("更新失败！请检查网络后重试。");
+                button.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate()");
-                        dialog.dismiss();
+                    public void onClick(View view) {
+                        app.runOnGLThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate()");
+                                dialog.dismiss();
+                            }
+                        });
                     }
                 });
+                // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
+                WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
+                lp.dimAmount=0.2f;
+                dialog.getWindow().setAttributes(lp);
+                dialog.show();
+
             }
         });
-        // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
-        WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
-        lp.dimAmount=0.2f;
-        dialog.getWindow().setAttributes(lp);
-        dialog.show();
     }
     private void debugModel(){
         DataCleanManager.cleanInternalCache(this);
-        DataCleanManager.cleanFiles(this);
-        DataCleanManager.cleanDatabases(this);
-        DataCleanManager.cleanExternalCache(this);
-
     }
 
 }
