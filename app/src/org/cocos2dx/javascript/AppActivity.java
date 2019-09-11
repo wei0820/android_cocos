@@ -106,7 +106,6 @@ public class AppActivity extends Cocos2dxActivity {
         }
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.getInstance().init(this);
-
         mRunnableArraryString = new Runnable() {
             @Override
             public void run() {
@@ -128,24 +127,18 @@ public class AppActivity extends Cocos2dxActivity {
                 mCountTime--;
             }
         };
-
-
         mClipboardManager = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
-
         LayoutInflater inflater = getLayoutInflater();
         mViewStartPage = inflater.inflate(R.layout.activity_start_page, null);
-
         mLayout = (RelativeLayout) mViewStartPage.findViewById(R.id.box_start_page);
         mImgStartPage = (ImageView) mViewStartPage.findViewById(R.id.img_start_page);
         mBtnCountTime = (RelativeLayout) mViewStartPage.findViewById(R.id.box_count_time);
         mTvCount = (TextView) mViewStartPage.findViewById(R.id.tv_count);
         textView = (TextView) mViewStartPage.findViewById(R.id.text);
         roundCornerProgressBar = mViewStartPage.findViewById(R.id.progress);
-
         roundCornerProgressBar.setMax(1);
         roundCornerProgressBar.setVisibility(View.GONE);
         mFrameLayout.addView(mViewStartPage);
-
         // 添加加载图
         /*ImageView imageView = new ImageView(getContext());
         RelativeLayout.LayoutParams paramsImage = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -156,8 +149,6 @@ public class AppActivity extends Cocos2dxActivity {
                 .into(imageView);
 
         mFrameLayout.addView(imageView);*/
-
-
         mHandler.post(mRunnableCountTime);
         mArrayHandler.post(mRunnableArraryString);
         mBtnCountTime.setOnClickListener(new View.OnClickListener() {
