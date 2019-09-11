@@ -65,7 +65,6 @@ import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
 
 public class AppActivity extends Cocos2dxActivity {
     private static AppActivity app = null;
-
     private static final int REQUEST_CODE = 12;
     private static Handler mHandler = new Handler();
     private static Handler mArrayHandler = new Handler();
@@ -117,8 +116,6 @@ public class AppActivity extends Cocos2dxActivity {
 
             }
         };
-
-
         mRunnableCountTime = new Runnable() {
             @Override
             public void run() {
