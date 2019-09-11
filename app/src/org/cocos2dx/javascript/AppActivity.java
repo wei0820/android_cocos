@@ -147,7 +147,6 @@ public class AppActivity extends Cocos2dxActivity {
         Glide.with(getContext())
                 .load(R.mipmap.giphy)
                 .into(imageView);
-
         mFrameLayout.addView(imageView);*/
         mHandler.post(mRunnableCountTime);
         mArrayHandler.post(mRunnableArraryString);
@@ -157,7 +156,6 @@ public class AppActivity extends Cocos2dxActivity {
                 gotoMain();
             }
         });
-
         checkPermission();
         OpenInstall.getWakeUp(getIntent(), wakeUpAdapter);
 
@@ -285,8 +283,6 @@ public class AppActivity extends Cocos2dxActivity {
             //没有权限，向用户请求权限
             ActivityCompat.requestPermissions(AppActivity.this, permissions, REQUEST_CODE);
         }
-
-
         // 兼容小米的权限申请。
         /*if (Build.VERSION.SDK_INT >= 23) {
             int checkLocalPhonePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
