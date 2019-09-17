@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "superWinNum_0",
+    "texture": "143fd7be9",
+    "rect": [
+      2,
+      67,
+      471,
+      60
+    ],
+    "offset": [
+      1.5,
+      2.5
+    ],
+    "originalSize": [
+      480,
+      65
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

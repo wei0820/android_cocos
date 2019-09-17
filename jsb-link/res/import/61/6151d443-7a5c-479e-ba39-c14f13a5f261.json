@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "game-Select",
+    "texture": "12b39ca49",
+    "rect": [
+      290,
+      225,
+      152,
+      60
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      152,
+      60
+    ],
+    "capInsets": [
+      31,
+      17,
+      34,
+      16
+    ]
+  }
+}

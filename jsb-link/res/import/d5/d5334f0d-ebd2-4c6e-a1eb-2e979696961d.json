@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "nqct_sg_00005",
+    "texture": "1ebf43d6b",
+    "rect": [
+      288,
+      710,
+      93,
+      69
+    ],
+    "offset": [
+      4,
+      11.5
+    ],
+    "originalSize": [
+      109,
+      96
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

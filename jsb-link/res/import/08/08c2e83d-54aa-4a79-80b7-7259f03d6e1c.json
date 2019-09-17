@@ -1,0 +1,32 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "selfLightBg": {
+      "__uuid__": "4ejlF7KfdPq6/4tjI7IZZ9"
+    },
+    "bgCommon": {
+      "__uuid__": "5866DbcPJG54mzw7vPhY5C"
+    },
+    "selfLightBorder": {
+      "__uuid__": "78WfQgl99NLru1WEwQZE/d"
+    },
+    "commonBorder": {
+      "__uuid__": "b8FwWtLIlBsb55Z95i3bgc"
+    },
+    "golden": {
+      "__uuid__": "24dIL1vCZEh4kT4kETtzqs"
+    },
+    "selfGoldIcon": {
+      "__uuid__": "c5o8Tx/gRPDJNxQb9+Ynuo"
+    },
+    "champion": {
+      "__uuid__": "22zEf9yJpJxKHzV8+pAoMO"
+    },
+    "thirdWinner": {
+      "__uuid__": "96V1Yu3JlEF4b998z6t+Pw"
+    },
+    "secondWinner": {
+      "__uuid__": "cfYOGQJD5Lboep6xkAND3l"
+    }
+  }
+}

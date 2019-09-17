@@ -1,0 +1,698 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "setPassword",
+    "data": {
+      "__id__": 1
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "setPassword",
+    "_children": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 4
+      },
+      {
+        "__id__": 7
+      },
+      {
+        "__id__": 9
+      },
+      {
+        "__id__": 11
+      },
+      {
+        "__id__": 12
+      },
+      {
+        "__id__": 14
+      },
+      {
+        "__id__": 15
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "5b04fqfRRlGWYmDgJwOGpVa",
+        "node": {
+          "__id__": 1
+        },
+        "clickAudio": {
+          "__uuid__": "ecfWSodf1HdqrJvyOKGSj4"
+        },
+        "mainNodeWidth": "688",
+        "mainNodeHight": "432",
+        "titleTxt": "设置密码",
+        "layerMsgPf": {
+          "__uuid__": "f3VdTrKC5C87rvRCtQR6qK"
+        },
+        "hintBg": {
+          "__id__": 2
+        },
+        "txtNewPassword1": {
+          "__id__": 8
+        },
+        "txtNewPassword2": {
+          "__id__": 10
+        },
+        "txtConfirm": {
+          "__id__": 6
+        },
+        "ebNewPassword1": {
+          "__id__": 13
+        },
+        "ebNewPassword2": {
+          "__id__": 16
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "95eRaqHXdGOLEoztNUTK/0"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 688,
+      "height": 432
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "y": 24
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "hintBg",
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [
+      {
+        "__id__": 3
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 2
+        },
+        "_spriteFrame": {
+          "__uuid__": "41+YC/OuJJYbSmXAquBVJx"
+        },
+        "_type": 1,
+        "_sizeMode": 0
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "02xIgza85AlIaTFaZuXNag"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 609,
+      "height": 54
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "y": 97
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "hint",
+    "_parent": {
+      "__id__": 2
+    },
+    "_components": [
+      {
+        "__type__": "cc.Label",
+        "node": {
+          "__id__": 3
+        },
+        "_useOriginalSize": false,
+        "_string": "首次使用银行功能，请先设置安全密码，以保障资金安全。",
+        "_N$string": "首次使用银行功能，请先设置安全密码，以保障资金安全。",
+        "_fontSize": 20,
+        "_lineHeight": 58,
+        "_N$file": {
+          "__uuid__": "f282P+0sVPqqrZwiub4W4d"
+        },
+        "_isSystemFontUsed": false,
+        "_N$horizontalAlign": 1,
+        "_N$verticalAlign": 1
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "c6/zmgArlKMKtepwqWBTPD"
+    },
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 201,
+      "g": 94,
+      "b": 29
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 520,
+      "height": 58
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": -274.5
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "btConfirm",
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [
+      {
+        "__id__": 5
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 4
+        },
+        "_spriteFrame": {
+          "__uuid__": "44NhSl3n5NQ4oVLTJRFMVo"
+        },
+        "_type": 1,
+        "_sizeMode": 0
+      },
+      {
+        "__type__": "cc.Button",
+        "node": {
+          "__id__": 4
+        },
+        "clickEvents": [
+          {
+            "__type__": "cc.ClickEvent",
+            "target": {
+              "__id__": 1
+            },
+            "component": "setPassword",
+            "handler": "btnEvent",
+            "customEventData": "confirmPassword"
+          }
+        ],
+        "_N$normalColor": {
+          "__type__": "cc.Color",
+          "r": 255,
+          "g": 255,
+          "b": 255
+        },
+        "_N$pressedColor": {
+          "__type__": "cc.Color",
+          "r": 255,
+          "g": 255,
+          "b": 255
+        },
+        "pressedColor": {
+          "__type__": "cc.Color",
+          "r": 255,
+          "g": 255,
+          "b": 255
+        },
+        "_N$disabledColor": {
+          "__type__": "cc.Color",
+          "r": 255,
+          "g": 255,
+          "b": 255
+        },
+        "_N$normalSprite": {
+          "__uuid__": "f0BIwQ8D5Ml7nTNQbh1YlS"
+        },
+        "_N$pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$disabledSprite": {
+          "__uuid__": "29FYIk+N1GYaeWH/q1NxQO"
+        },
+        "_N$target": {
+          "__id__": 4
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "98u/HnI9NK5L8s2QfggZfX"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 201,
+      "height": 69
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": -0.5,
+      "y": -135.5
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Label",
+    "_parent": {
+      "__id__": 4
+    },
+    "_components": [
+      {
+        "__id__": 6
+      },
+      {
+        "__type__": "cc.LabelOutline",
+        "node": {
+          "__id__": 5
+        },
+        "_color": {
+          "__type__": "cc.Color",
+          "r": 156,
+          "g": 45,
+          "b": 8
+        },
+        "_width": 2
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "2dqFKGHydI0a2zvxKoM63z"
+    },
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 253,
+      "g": 255,
+      "b": 254
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 64,
+      "height": 35
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "y": 5
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Label",
+    "node": {
+      "__id__": 5
+    },
+    "_useOriginalSize": false,
+    "_string": "确定",
+    "_N$string": "确定",
+    "_fontSize": 30,
+    "_lineHeight": 35,
+    "_N$file": {
+      "__uuid__": "f282P+0sVPqqrZwiub4W4d"
+    },
+    "_isSystemFontUsed": false,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "txtPassword1",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__id__": 8
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "797Z0/+9FB9I+K2JAs3Qil"
+    },
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 102,
+      "g": 73,
+      "b": 61
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 72,
+      "height": 28
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": -290,
+      "y": 22
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Label",
+    "node": {
+      "__id__": 7
+    },
+    "_useOriginalSize": false,
+    "_string": "新密码",
+    "_N$string": "新密码",
+    "_fontSize": 24,
+    "_lineHeight": 28,
+    "_N$file": {
+      "__uuid__": "f282P+0sVPqqrZwiub4W4d"
+    },
+    "_isSystemFontUsed": false,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "txtPassword2",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__id__": 10
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "bex0NHZOlOoZ96Sch5RojX"
+    },
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 102,
+      "g": 73,
+      "b": 61
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 96,
+      "height": 28
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": -290,
+      "y": -54
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Label",
+    "node": {
+      "__id__": 9
+    },
+    "_useOriginalSize": false,
+    "_string": "确认密码",
+    "_N$string": "确认密码",
+    "_fontSize": 24,
+    "_lineHeight": 28,
+    "_N$file": {
+      "__uuid__": "f282P+0sVPqqrZwiub4W4d"
+    },
+    "_isSystemFontUsed": false,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "inputBg",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 11
+        },
+        "_spriteFrame": {
+          "__uuid__": "b55ADG8OxJz68J7ssQZEl0"
+        },
+        "_type": 1,
+        "_sizeMode": 0
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "27T9ksAzFAYJDRRTzpsNf4"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 442,
+      "height": 56
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 67,
+      "y": 22
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "eb1",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__id__": 13
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "f45bvRU31Gs5hO4h8zmGie"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 422,
+      "height": 56
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 67,
+      "y": 22
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.EditBox",
+    "node": {
+      "__id__": 12
+    },
+    "_useOriginalSize": false,
+    "_N$inputFlag": 0,
+    "_N$inputMode": 6,
+    "_N$fontSize": 24,
+    "_N$fontColor": {
+      "__type__": "cc.Color",
+      "r": 145,
+      "g": 85,
+      "b": 56
+    },
+    "_N$placeholderFontSize": 24,
+    "_N$placeholderFontColor": {
+      "__type__": "cc.Color",
+      "r": 183,
+      "g": 159,
+      "b": 147
+    },
+    "_N$maxLength": 16
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "inputBg",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 14
+        },
+        "_spriteFrame": {
+          "__uuid__": "b55ADG8OxJz68J7ssQZEl0"
+        },
+        "_type": 1,
+        "_sizeMode": 0
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "53cK4mHllC44oe1OqZ7TTw"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 442,
+      "height": 56
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 67,
+      "y": -54
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "eb2",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__id__": 16
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "6cUgX6EWxDy6335v/QPNEH"
+      },
+      "fileId": "21DmhWS+FCT7xN62GZcTF9"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 422,
+      "height": 56
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 67,
+      "y": -54
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.EditBox",
+    "node": {
+      "__id__": 15
+    },
+    "_useOriginalSize": false,
+    "_N$inputFlag": 0,
+    "_N$inputMode": 6,
+    "_N$fontSize": 24,
+    "_N$fontColor": {
+      "__type__": "cc.Color",
+      "r": 145,
+      "g": 85,
+      "b": 56
+    },
+    "_N$placeholderFontSize": 24,
+    "_N$placeholderFontColor": {
+      "__type__": "cc.Color",
+      "r": 183,
+      "g": 159,
+      "b": 147
+    },
+    "_N$maxLength": 16
+  }
+]

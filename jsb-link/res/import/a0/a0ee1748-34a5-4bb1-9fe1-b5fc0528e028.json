@@ -1,0 +1,95 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "game_help_title_bg": {
+      "__uuid__": "eblWXeustNtYbW6a2nlUot"
+    },
+    "noticeBg2": {
+      "__uuid__": "efIsafSmlP5ailsDlqIk1G"
+    },
+    "noticeBg1": {
+      "__uuid__": "c4oWvjpERCBK7FzcBxeL8p"
+    },
+    "requestErr": {
+      "__uuid__": "beOQ9HItlAr4oZjM+uy9pm"
+    },
+    "yellowBtn": {
+      "__uuid__": "17cDUwQvhBWp1gr1gdf6iV"
+    },
+    "line": {
+      "__uuid__": "b64o5Ca+BBu5JQclLmxB5C"
+    },
+    "progressBarBg": {
+      "__uuid__": "f4HpeXtMJPeL+FkawWEytB"
+    },
+    "progressBar": {
+      "__uuid__": "566XL/w/JLpZWjYGapuR4H"
+    },
+    "show": {
+      "__uuid__": "c6sf2jK65NTabBcAVu4sxQ"
+    },
+    "lock": {
+      "__uuid__": "c2Y0povkRLcoczZBpgpgVR"
+    },
+    "hide": {
+      "__uuid__": "4aXZAlASJE+ZuIJ0G3aTIv"
+    },
+    "colorLump": {
+      "__uuid__": "10fU2BmSZOvoM706TtIfbx"
+    },
+    "toast_bg": {
+      "__uuid__": "a3cWOM3aVPaaf3EOYPONVP"
+    },
+    "newBlueBtn": {
+      "__uuid__": "2b+/eyLuVOnJO8VvLn/wdE"
+    },
+    "dialogPanelBg": {
+      "__uuid__": "24EMY/JZFJULQ2p63xB8z6"
+    },
+    "clouds": {
+      "__uuid__": "08Hi0Fl39NZ5XPZu3pPgks"
+    },
+    "setting_botton": {
+      "__uuid__": "059FxamLVNwpQsEl9OLnQ7"
+    },
+    "register": {
+      "__uuid__": "b7SNhvfDJFer12npeIs1NG"
+    },
+    "del": {
+      "__uuid__": "edrKkgnVhAKa2gO1N0c8mt"
+    },
+    "refresh": {
+      "__uuid__": "14XvhrNfZJr4Wmcs4dfPwG"
+    },
+    "newGreenBtn": {
+      "__uuid__": "3a3OS96D1NXq8a1RiTPzUn"
+    },
+    "toastBtnRight": {
+      "__uuid__": "44NhSl3n5NQ4oVLTJRFMVo"
+    },
+    "grayBtn": {
+      "__uuid__": "c2zDYL4G5LvIfZJ+DmQrU+"
+    },
+    "toastBtnLeft": {
+      "__uuid__": "a7X+g4ieBAraTYdWj/xBkc"
+    },
+    "greenBtn": {
+      "__uuid__": "e6rfhRS01EnICEtIkE3B/Z"
+    },
+    "toast_right_bg": {
+      "__uuid__": "0eVfp/JKBF5KJdxSFD0dII"
+    },
+    "newYellowBtn": {
+      "__uuid__": "91iEis1ypEe7ex2zgQUkn4"
+    },
+    "exchangeHintBg": {
+      "__uuid__": "41+YC/OuJJYbSmXAquBVJx"
+    },
+    "toast_close": {
+      "__uuid__": "00MzybZutEyZH8nW4SKKdW"
+    },
+    "toast_main_bg": {
+      "__uuid__": "a4h4e4EhtDvpp/l4cAmGZT"
+    }
+  }
+}

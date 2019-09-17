@@ -1,0 +1,30 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "payIcon.plist",
+  "_spriteFrames": {
+    "alipay_mobile": {
+      "__uuid__": "aeIjGhyTpJw72hw5Gd0Vwm"
+    },
+    "card": {
+      "__uuid__": "e5r81V5XFG3p+jo8ezwzZa"
+    },
+    "forthPay": {
+      "__uuid__": "c2ptYJ2ixJga205DABfvwV"
+    },
+    "jd": {
+      "__uuid__": "42Dx5AJ/ZJxKnzdHM9VHhX"
+    },
+    "qq_mobile": {
+      "__uuid__": "abhFGd5qhJiZlEwo4504On"
+    },
+    "wechat_mobile": {
+      "__uuid__": "3e3VK5yQ9M87cLbdb2TkPP"
+    },
+    "yinShang": {
+      "__uuid__": "adCge+YGBGb5+VsGSaZRbk"
+    },
+    "yunshanfu": {
+      "__uuid__": "59ubCMqQFFeJPVYCgfGrVZ"
+    }
+  }
+}

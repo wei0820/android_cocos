@@ -1,0 +1,95 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "glow_1": {
+      "__uuid__": "96ijIk4gxGQr9hINSKwOs4"
+    },
+    "zd_6": {
+      "__uuid__": "bfPGkRp3NIpIUmD9ZE7PSe"
+    },
+    "glow_2": {
+      "__uuid__": "e1U81WhyRCPIxae6L4lmga"
+    },
+    "qi2_00004": {
+      "__uuid__": "5bMjDdvWFJvKzK6Uig87wq"
+    },
+    "zd_1": {
+      "__uuid__": "d8pSNcXABKXJlwFSEpw+Qr"
+    },
+    "qi2_00010": {
+      "__uuid__": "60Z5t8O4FPEIv2aQDeL/pF"
+    },
+    "qi2_00011": {
+      "__uuid__": "61Z5iVIwJHALVCEQeHmoWg"
+    },
+    "wsds_sg_00011": {
+      "__uuid__": "5b3vMw1oJEZIBkqCNUPgVx"
+    },
+    "qi2_00009": {
+      "__uuid__": "62TOiDfvtMUI/85z7cmLZo"
+    },
+    "wsds_sg_00010": {
+      "__uuid__": "84vTyMbApJkYsZZBLSAMaz"
+    },
+    "ws_zi": {
+      "__uuid__": "71txIlB+hOnphzbsihPoUk"
+    },
+    "qi2_00008": {
+      "__uuid__": "82cJvLwKtDIYlEPh9oVZpe"
+    },
+    "qi2_00006": {
+      "__uuid__": "928ZNiArFCOqedctMgXWsT"
+    },
+    "qi2_00007": {
+      "__uuid__": "9bTNSwi+JIsISHIANf1cqb"
+    },
+    "wsds_sg_00002": {
+      "__uuid__": "6aHZvdDaxEppSpkzZ8gHBa"
+    },
+    "bz_bs2": {
+      "__uuid__": "a3fWOnEIVEnq3dhoItPqU+"
+    },
+    "qi2_00005": {
+      "__uuid__": "4abUhKMQNMnaQNAx+JIamY"
+    },
+    "qi2_00003": {
+      "__uuid__": "d43I9poxFOvp00o7TIn7sp"
+    },
+    "qi2_00002": {
+      "__uuid__": "e6n+aCba5MO5PAS5I95iYk"
+    },
+    "qi2_00001": {
+      "__uuid__": "edicS10PBG2br7wYBBCY94"
+    },
+    "qi2_00000": {
+      "__uuid__": "5eCABP1w1Es59JTzsJeRfa"
+    },
+    "ws_3": {
+      "__uuid__": "60j7tmH8xMVput1cPcQzWp"
+    },
+    "wsds_sg_00009": {
+      "__uuid__": "35dljL/uND3rRwSwS0tZlQ"
+    },
+    "wsds_sg_00006": {
+      "__uuid__": "8dWj28fdNAd7ThBkjBf3mm"
+    },
+    "wsds_sg_00007": {
+      "__uuid__": "02D/x8P3tGx7SHrX09GG85"
+    },
+    "ws_0": {
+      "__uuid__": "bcNcEnLHdA+bOr91TpfjcH"
+    },
+    "wsds_sg_00005": {
+      "__uuid__": "e306ufVQVEgJ4d+GAnIWJh"
+    },
+    "wsds_sg_00004": {
+      "__uuid__": "d2l6mPfAtJC5zUuDIJp7n5"
+    },
+    "wsds_sg_00008": {
+      "__uuid__": "f5kDn//DFA2KsJ2ZKKEcgq"
+    },
+    "wsds_sg_00003": {
+      "__uuid__": "78n8z2p+lBJpb0i0+dJwS9"
+    }
+  }
+}

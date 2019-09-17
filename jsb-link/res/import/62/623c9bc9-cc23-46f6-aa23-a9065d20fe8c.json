@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bankTipBg",
+    "texture": "1b1599f9d",
+    "rect": [
+      365,
+      201,
+      44,
+      38
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      44,
+      38
+    ],
+    "capInsets": [
+      8,
+      7,
+      8,
+      9
+    ]
+  }
+}

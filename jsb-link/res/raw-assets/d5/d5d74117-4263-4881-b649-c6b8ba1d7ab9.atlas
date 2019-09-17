@@ -1,0 +1,111 @@
+
+kansanzhang.png
+size: 456,265
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+biyan1
+  rotate: false
+  xy: 422, 78
+  size: 25, 19
+  orig: 25, 19
+  offset: 0, 0
+  index: -1
+biyan2
+  rotate: false
+  xy: 410, 3
+  size: 17, 11
+  orig: 17, 11
+  offset: 0, 0
+  index: -1
+bj
+  rotate: true
+  xy: 2, 3
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+erduo1
+  rotate: true
+  xy: 422, 165
+  size: 44, 32
+  orig: 44, 32
+  offset: 0, 0
+  index: -1
+erduo2
+  rotate: false
+  xy: 422, 99
+  size: 32, 24
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+jiao1
+  rotate: false
+  xy: 422, 125
+  size: 32, 38
+  orig: 32, 38
+  offset: 0, 0
+  index: -1
+jiao2
+  rotate: false
+  xy: 410, 16
+  size: 44, 45
+  orig: 44, 45
+  offset: 0, 0
+  index: -1
+meimao
+  rotate: false
+  xy: 218, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: false
+  xy: 218, 144
+  size: 151, 119
+  orig: 151, 119
+  offset: 0, 0
+  index: -1
+tou
+  rotate: true
+  xy: 218, 20
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: -1
+toufa
+  rotate: false
+  xy: 341, 2
+  size: 67, 59
+  orig: 67, 59
+  offset: 0, 0
+  index: -1
+yan2
+  rotate: true
+  xy: 341, 109
+  size: 33, 25
+  orig: 33, 25
+  offset: 0, 0
+  index: -1
+yanjing1
+  rotate: true
+  xy: 341, 76
+  size: 31, 26
+  orig: 31, 26
+  offset: 0, 0
+  index: -1
+zi
+  rotate: true
+  xy: 371, 63
+  size: 200, 49
+  orig: 200, 49
+  offset: 0, 0
+  index: -1
+zui
+  rotate: true
+  xy: 422, 211
+  size: 52, 30
+  orig: 52, 30
+  offset: 0, 0
+  index: -1

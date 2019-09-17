@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "qiangzhuangniuniu",
+    "texture": "5eJs7x2hFM6qOMiGVp9Axk",
+    "rect": [
+      2,
+      20,
+      508,
+      488
+    ],
+    "offset": [
+      0,
+      -8
+    ],
+    "originalSize": [
+      512,
+      512
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

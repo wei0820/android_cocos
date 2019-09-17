@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hallOfferPkIcon",
+    "texture": "12b39ca49",
+    "rect": [
+      241,
+      975,
+      166,
+      43
+    ],
+    "offset": [
+      -45,
+      -2
+    ],
+    "originalSize": [
+      272,
+      89
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

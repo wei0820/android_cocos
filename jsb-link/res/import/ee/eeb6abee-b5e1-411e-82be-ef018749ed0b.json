@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "filterMenuBg",
+    "texture": "1e7e44b4e",
+    "rect": [
+      502,
+      792,
+      50,
+      48
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      50,
+      48
+    ],
+    "rotated": 1,
+    "capInsets": [
+      10,
+      9,
+      8,
+      9
+    ]
+  }
+}

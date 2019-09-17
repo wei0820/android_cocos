@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "accountBg",
+    "texture": "164c1e618",
+    "rect": [
+      984,
+      311,
+      184,
+      36
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      184,
+      36
+    ],
+    "rotated": 1,
+    "capInsets": [
+      3,
+      4,
+      3,
+      4
+    ]
+  }
+}

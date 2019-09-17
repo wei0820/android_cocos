@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "t-glow",
+    "texture": "163c3e4e0",
+    "rect": [
+      349,
+      222,
+      187,
+      193
+    ],
+    "offset": [
+      -4.5,
+      -1.5
+    ],
+    "originalSize": [
+      256,
+      256
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "help_list_nav_bg",
+    "texture": "1fa163690",
+    "rect": [
+      4,
+      752,
+      256,
+      53
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      256,
+      53
+    ],
+    "rotated": 1,
+    "capInsets": [
+      12,
+      11,
+      11,
+      11
+    ]
+  }
+}

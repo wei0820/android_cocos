@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "timerFrame",
+    "texture": "12939da53",
+    "rect": [
+      630,
+      2,
+      126,
+      173
+    ],
+    "offset": [
+      -0.5,
+      0.5
+    ],
+    "originalSize": [
+      135,
+      184
+    ],
+    "rotated": 1,
+    "capInsets": [
+      12,
+      13,
+      12,
+      15
+    ]
+  }
+}

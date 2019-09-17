@@ -1,0 +1,23 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "eanringsNum_0": {
+      "__uuid__": "e5LahNJzZM/b1eYMnEuqtf"
+    },
+    "superWinNum_0": {
+      "__uuid__": "f24Duk7PNBvKorsaBtWE2S"
+    },
+    "betChipNum_0": {
+      "__uuid__": "76Aj01rUJFNKegMcAtj+jn"
+    },
+    "loseChipNum_0": {
+      "__uuid__": "c19H5B/KlF2LD+4TnQUpGR"
+    },
+    "multiNum_0": {
+      "__uuid__": "57r34KLjZN7YS81R42ZXV+"
+    },
+    "winChipNum_0": {
+      "__uuid__": "f1hV6QBrBIfZt8coBcZJCq"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "toast_right_bg",
+    "texture": "1e81cd8e3",
+    "rect": [
+      481,
+      480,
+      116,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      116,
+      74
+    ],
+    "capInsets": [
+      16,
+      17,
+      16,
+      20
+    ]
+  }
+}

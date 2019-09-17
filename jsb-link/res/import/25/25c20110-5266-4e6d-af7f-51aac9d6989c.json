@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "mrjqj-bg",
+    "texture": "1ac2ba1fe",
+    "rect": [
+      3,
+      3,
+      704,
+      538
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      704,
+      538
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

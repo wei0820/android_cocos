@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "guideWatchPlayerCardBg",
+    "texture": "12939da53",
+    "rect": [
+      701,
+      132,
+      86,
+      110
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      86,
+      110
+    ],
+    "capInsets": [
+      24,
+      0,
+      57,
+      0
+    ]
+  }
+}

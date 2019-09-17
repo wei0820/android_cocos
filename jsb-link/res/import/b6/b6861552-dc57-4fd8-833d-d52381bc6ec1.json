@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "tabBg",
+    "texture": "1e7e44b4e",
+    "rect": [
+      196,
+      794,
+      240,
+      59
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      240,
+      59
+    ],
+    "capInsets": [
+      5,
+      0,
+      6,
+      18
+    ]
+  }
+}

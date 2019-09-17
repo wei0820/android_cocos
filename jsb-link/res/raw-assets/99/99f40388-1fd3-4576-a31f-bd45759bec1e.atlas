@@ -1,0 +1,111 @@
+
+erbagang.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2tong
+  rotate: false
+  xy: 2, 158
+  size: 105, 133
+  orig: 105, 133
+  offset: 0, 0
+  index: -1
+8tong
+  rotate: false
+  xy: 109, 198
+  size: 77, 93
+  orig: 77, 93
+  offset: 0, 0
+  index: -1
+baiban
+  rotate: true
+  xy: 264, 293
+  size: 55, 60
+  orig: 55, 60
+  offset: 0, 0
+  index: -1
+bj
+  rotate: false
+  xy: 2, 293
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+hua1
+  rotate: false
+  xy: 394, 457
+  size: 76, 50
+  orig: 76, 50
+  offset: 0, 0
+  index: -1
+hua2
+  rotate: false
+  xy: 394, 410
+  size: 40, 45
+  orig: 40, 45
+  offset: 0, 0
+  index: -1
+hua3
+  rotate: false
+  xy: 109, 164
+  size: 35, 32
+  orig: 35, 32
+  offset: 0, 0
+  index: -1
+hua4
+  rotate: true
+  xy: 2, 2
+  size: 30, 40
+  orig: 30, 40
+  offset: 0, 0
+  index: -1
+hua5
+  rotate: true
+  xy: 62, 87
+  size: 69, 44
+  orig: 69, 44
+  offset: 0, 0
+  index: -1
+hua6
+  rotate: false
+  xy: 264, 350
+  size: 102, 50
+  orig: 102, 50
+  offset: 0, 0
+  index: -1
+huaban
+  rotate: false
+  xy: 472, 480
+  size: 32, 27
+  orig: 32, 27
+  offset: 0, 0
+  index: -1
+shaizi_you
+  rotate: false
+  xy: 188, 233
+  size: 60, 58
+  orig: 60, 58
+  offset: 0, 0
+  index: -1
+shaizi_zuo
+  rotate: false
+  xy: 250, 249
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+yezi
+  rotate: false
+  xy: 264, 402
+  size: 128, 105
+  orig: 128, 105
+  offset: 0, 0
+  index: -1
+zi
+  rotate: true
+  xy: 2, 34
+  size: 122, 58
+  orig: 122, 58
+  offset: 0, 0
+  index: -1

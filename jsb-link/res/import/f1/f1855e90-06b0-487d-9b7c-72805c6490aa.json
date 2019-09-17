@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "winChipNum_0",
+    "texture": "143fd7be9",
+    "rect": [
+      81,
+      131,
+      236,
+      114
+    ],
+    "offset": [
+      -10,
+      7
+    ],
+    "originalSize": [
+      256,
+      128
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

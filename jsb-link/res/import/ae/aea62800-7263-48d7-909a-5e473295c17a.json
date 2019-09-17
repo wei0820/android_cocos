@@ -1,0 +1,234 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "notice",
+    "data": {
+      "__id__": 1
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "notice",
+    "_children": [
+      {
+        "__id__": 2
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 1
+        },
+        "_spriteFrame": {
+          "__uuid__": "c4oWvjpERCBK7FzcBxeL8p"
+        }
+      },
+      {
+        "__type__": "a63b8PS5Q5H35QhYdDOLE+z",
+        "node": {
+          "__id__": 1
+        },
+        "txt": {
+          "__id__": 5
+        },
+        "bg": [
+          {
+            "__uuid__": "efIsafSmlP5ailsDlqIk1G"
+          },
+          {
+            "__uuid__": "c4oWvjpERCBK7FzcBxeL8p"
+          }
+        ],
+        "txtNotice": [
+          {
+            "__id__": 5
+          },
+          {
+            "__id__": 7
+          }
+        ]
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "aepigAcmNI15CaXkcylcF6"
+      },
+      "fileId": "6dRMeu/JFJZZK/nME1eXTK"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 562,
+      "height": 36
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "mask",
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [
+      {
+        "__id__": 3
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.Mask",
+        "node": {
+          "__id__": 2
+        },
+        "_N$alphaThreshold": 1
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "aepigAcmNI15CaXkcylcF6"
+      },
+      "fileId": "e4urws3HxO/ZgNLMZd5Cgo"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 444,
+      "height": 36
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "carousel",
+    "_parent": {
+      "__id__": 2
+    },
+    "_children": [
+      {
+        "__id__": 4
+      },
+      {
+        "__id__": 6
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "aepigAcmNI15CaXkcylcF6"
+      },
+      "fileId": "36GSSuUcxP77lE22bergIh"
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 222
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "txt",
+    "_parent": {
+      "__id__": 3
+    },
+    "_components": [
+      {
+        "__id__": 5
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "aepigAcmNI15CaXkcylcF6"
+      },
+      "fileId": "bfZc9+jylD965Nr60hKHcJ"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "height": 25
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "y": 0.5
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Label",
+    "node": {
+      "__id__": 4
+    },
+    "_useOriginalSize": false,
+    "_fontSize": 22,
+    "_lineHeight": 25,
+    "_N$file": {
+      "__uuid__": "f282P+0sVPqqrZwiub4W4d"
+    },
+    "_isSystemFontUsed": false,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "txt",
+    "_parent": {
+      "__id__": 3
+    },
+    "_components": [
+      {
+        "__id__": 7
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "aepigAcmNI15CaXkcylcF6"
+      },
+      "fileId": "49Wq5qtjBOSJEo3+eKkhg+"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "height": 25
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "y": 0.5
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Label",
+    "node": {
+      "__id__": 6
+    },
+    "_useOriginalSize": false,
+    "_fontSize": 22,
+    "_lineHeight": 25,
+    "_N$file": {
+      "__uuid__": "f282P+0sVPqqrZwiub4W4d"
+    },
+    "_isSystemFontUsed": false,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1
+  }
+]

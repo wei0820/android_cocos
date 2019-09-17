@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "level_table_header",
+    "texture": "164c1e618",
+    "rect": [
+      974,
+      503,
+      45,
+      52
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      45,
+      52
+    ],
+    "capInsets": [
+      9,
+      9,
+      8,
+      4
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "colorLump",
+    "texture": "1e81cd8e3",
+    "rect": [
+      217,
+      998,
+      10,
+      10
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      10,
+      10
+    ],
+    "capInsets": [
+      2,
+      2,
+      2,
+      2
+    ]
+  }
+}

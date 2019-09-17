@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "achievementRuleBg",
+    "texture": "164c1e618",
+    "rect": [
+      4,
+      4,
+      440,
+      251
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      440,
+      251
+    ],
+    "capInsets": [
+      52,
+      39,
+      21,
+      26
+    ]
+  }
+}

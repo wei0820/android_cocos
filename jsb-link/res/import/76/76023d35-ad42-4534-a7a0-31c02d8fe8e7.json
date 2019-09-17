@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "betChipNum_0",
+    "texture": "143fd7be9",
+    "rect": [
+      2,
+      131,
+      375,
+      36
+    ],
+    "offset": [
+      -46.5,
+      2
+    ],
+    "originalSize": [
+      470,
+      40
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

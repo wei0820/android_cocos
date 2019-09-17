@@ -1,0 +1,299 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "systemNotice",
+    "data": {
+      "__id__": 1
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "systemNotice",
+    "_children": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 4
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "3dcc7/dXEtGGrQhpXwEKaDe",
+        "node": {
+          "__id__": 1
+        },
+        "clickAudio": {
+          "__uuid__": "ecfWSodf1HdqrJvyOKGSj4"
+        },
+        "isNeedCloseBtn": 0,
+        "mainNodeWidth": "550",
+        "mainNodeHight": "402",
+        "titleTxt": "系统公告",
+        "txtContent": {
+          "__id__": 3
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "97ycJth2dP+7naMJYyqhBD"
+      },
+      "fileId": "6eriS7j+hI8JmvP8j2yOhQ"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 550,
+      "height": 402
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "y": 24
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "content",
+    "_parent": {
+      "__id__": 1
+    },
+    "_components": [
+      {
+        "__id__": 3
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "97ycJth2dP+7naMJYyqhBD"
+      },
+      "fileId": "33BKMWTqRGFYf4a3c81lJ6"
+    },
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 102,
+      "g": 73,
+      "b": 61
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 384,
+      "height": 126
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 1
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "y": 80
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Label",
+    "node": {
+      "__id__": 2
+    },
+    "_useOriginalSize": false,
+    "_string": "抱歉，服务器正在维护中，预计恢复\n时间为XXXX-X-XX XX:XX，\n感谢您的理解与支持！",
+    "_N$string": "抱歉，服务器正在维护中，预计恢复\n时间为XXXX-X-XX XX:XX，\n感谢您的理解与支持！",
+    "_fontSize": 24,
+    "_lineHeight": 42,
+    "_N$file": {
+      "__uuid__": "f282P+0sVPqqrZwiub4W4d"
+    },
+    "_isSystemFontUsed": false,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$overflow": 3
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "btService",
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [
+      {
+        "__id__": 5
+      }
+    ],
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 4
+        },
+        "_spriteFrame": {
+          "__uuid__": "44NhSl3n5NQ4oVLTJRFMVo"
+        },
+        "_type": 1,
+        "_sizeMode": 0
+      },
+      {
+        "__type__": "cc.Button",
+        "node": {
+          "__id__": 4
+        },
+        "zoomScale": 0.9,
+        "clickEvents": [
+          {
+            "__type__": "cc.ClickEvent",
+            "target": {
+              "__id__": 1
+            },
+            "component": "systemNotice",
+            "handler": "btnEvent",
+            "customEventData": "service"
+          }
+        ],
+        "_N$transition": 3,
+        "transition": 3,
+        "_N$normalColor": {
+          "__type__": "cc.Color",
+          "r": 255,
+          "g": 255,
+          "b": 255
+        },
+        "_N$pressedColor": {
+          "__type__": "cc.Color",
+          "r": 255,
+          "g": 255,
+          "b": 255
+        },
+        "pressedColor": {
+          "__type__": "cc.Color",
+          "r": 255,
+          "g": 255,
+          "b": 255
+        },
+        "_N$disabledColor": {
+          "__type__": "cc.Color",
+          "r": 255,
+          "g": 255,
+          "b": 255
+        },
+        "_N$normalSprite": {
+          "__uuid__": "f0BIwQ8D5Ml7nTNQbh1YlS"
+        },
+        "_N$pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$disabledSprite": {
+          "__uuid__": "29FYIk+N1GYaeWH/q1NxQO"
+        },
+        "_N$target": {
+          "__id__": 4
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "97ycJth2dP+7naMJYyqhBD"
+      },
+      "fileId": "906HHEHX1Dk4P7AGytRgsU"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 201,
+      "height": 69
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "y": -119.5
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Label",
+    "_parent": {
+      "__id__": 4
+    },
+    "_components": [
+      {
+        "__type__": "cc.Label",
+        "node": {
+          "__id__": 5
+        },
+        "_useOriginalSize": false,
+        "_string": "联系客服",
+        "_N$string": "联系客服",
+        "_fontSize": 29,
+        "_lineHeight": 35,
+        "_N$file": {
+          "__uuid__": "f282P+0sVPqqrZwiub4W4d"
+        },
+        "_isSystemFontUsed": false,
+        "_N$horizontalAlign": 1,
+        "_N$verticalAlign": 1
+      },
+      {
+        "__type__": "cc.LabelOutline",
+        "node": {
+          "__id__": 5
+        },
+        "_color": {
+          "__type__": "cc.Color",
+          "r": 156,
+          "g": 45,
+          "b": 8
+        },
+        "_width": 2
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__uuid__": "97ycJth2dP+7naMJYyqhBD"
+      },
+      "fileId": "ff9s4k0pNO976xdKD8sbTF"
+    },
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 253,
+      "g": 255,
+      "b": 254
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 120,
+      "height": 35
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "y": 5.5
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  }
+]

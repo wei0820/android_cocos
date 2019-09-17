@@ -1,0 +1,98 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "glow_1": {
+      "__uuid__": "efbGEMn45Gtoc/+TXBwbAf"
+    },
+    "xy_1": {
+      "__uuid__": "e3hVHgLbBBKpLvDOnf+23i"
+    },
+    "x": {
+      "__uuid__": "79hjQnoKJMOa7R/JSXkgpS"
+    },
+    "glow_2": {
+      "__uuid__": "62aibKOCdEGJY6HyamQ1YV"
+    },
+    "qi1_00001": {
+      "__uuid__": "88ey2SbnlJKYmwepiQUrMl"
+    },
+    "qi1_00004": {
+      "__uuid__": "a3g2W9sYlF8rMSX0Z+vuQL"
+    },
+    "qi1_00008": {
+      "__uuid__": "14WZmxBFdOmKmpn8gZVtGc"
+    },
+    "xy_zi": {
+      "__uuid__": "e41PFMZL1Fjakjy+G3mHqZ"
+    },
+    "bz_sg_00001": {
+      "__uuid__": "ec3Q4X8OdGCagRUo7EB0z6"
+    },
+    "bz_sg_00008": {
+      "__uuid__": "08nPWVUh9JQrb6jOeLna97"
+    },
+    "qi1_00010": {
+      "__uuid__": "27drfMmPdLup6Nnb6G7HCG"
+    },
+    "bz_sg_00007": {
+      "__uuid__": "d9PwSwFPJDUYEUCdhF0lLE"
+    },
+    "qi1_00007": {
+      "__uuid__": "2c6walFvlDq4lJgDnkBXvO"
+    },
+    "qi1_00009": {
+      "__uuid__": "5bNoclDjpBH474pn1zOnr8"
+    },
+    "qi1_00006": {
+      "__uuid__": "cdCwvMhLVB1qkuXhtdcuFO"
+    },
+    "bz_sg_00006": {
+      "__uuid__": "40V81Mt5VOO6s8NGD8xG4Z"
+    },
+    "bz_sg_00009": {
+      "__uuid__": "42VoDKDxpC6Z8Ox/aDfU4H"
+    },
+    "bz_1": {
+      "__uuid__": "b7FWqyWBlMQIWzrbaSPA4u"
+    },
+    "bz_sg_00010": {
+      "__uuid__": "6e6yGRN/1D7bYWdzRa1aM0"
+    },
+    "bz_sg_00005": {
+      "__uuid__": "55etutl49EQb0BMlH3MVwn"
+    },
+    "qi1_00003": {
+      "__uuid__": "0d4CdviStI6qZLfXJo0Xd6"
+    },
+    "bz_sg_00004": {
+      "__uuid__": "dda1IPtL9DBKIMIbWdfVq3"
+    },
+    "bz_sg_00003": {
+      "__uuid__": "54qQbPamNBdpNGWYMRhIIu"
+    },
+    "bz_sg_00011": {
+      "__uuid__": "38AqpvoqpB75Km3NNRu/c3"
+    },
+    "bz_sg_00002": {
+      "__uuid__": "1dP7MAXDpMCLhpaoutMhUo"
+    },
+    "qi1_00011": {
+      "__uuid__": "23ohsgOptGqJivt5d/XHRf"
+    },
+    "bz_bs2": {
+      "__uuid__": "a7ThzCID9FY76fNA4sRK+4"
+    },
+    "qi1_00005": {
+      "__uuid__": "9e//uwdT9P05f6+Ghrt2K2"
+    },
+    "qi1_00002": {
+      "__uuid__": "a3Vvenpx5GuLQdJYgm4Pch"
+    },
+    "qi1_00000": {
+      "__uuid__": "c9qREaA55C6qEtr8Sh5oeH"
+    },
+    "xy_2": {
+      "__uuid__": "57DSDUlG9N27IlZ9rh/bXE"
+    }
+  }
+}

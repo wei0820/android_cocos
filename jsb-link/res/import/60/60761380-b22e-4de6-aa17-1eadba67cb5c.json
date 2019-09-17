@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "lightBg",
+    "texture": "164c1e618",
+    "rect": [
+      132,
+      683,
+      36,
+      30
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      36,
+      30
+    ],
+    "rotated": 1,
+    "capInsets": [
+      8,
+      7,
+      8,
+      8
+    ]
+  }
+}

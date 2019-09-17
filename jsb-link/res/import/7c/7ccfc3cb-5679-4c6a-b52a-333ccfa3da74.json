@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "warmTip",
+    "texture": "1b1599f9d",
+    "rect": [
+      397,
+      259,
+      92,
+      76
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      92,
+      76
+    ],
+    "capInsets": [
+      11,
+      13,
+      11,
+      15
+    ]
+  }
+}

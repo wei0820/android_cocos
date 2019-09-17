@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "roomNumBg",
+    "texture": "1b929670a",
+    "rect": [
+      799,
+      314,
+      263,
+      56
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      263,
+      56
+    ],
+    "rotated": 1,
+    "capInsets": [
+      96,
+      0,
+      107,
+      0
+    ]
+  }
+}

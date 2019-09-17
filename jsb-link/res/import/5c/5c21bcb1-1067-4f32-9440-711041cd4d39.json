@@ -1,0 +1,46 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "gameState",
+    "data": {
+      "__id__": 1
+    },
+    "asyncLoadAssets": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "gameState",
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 1
+        },
+        "_spriteFrame": {
+          "__uuid__": "25SJdUTCNEYYy9HO8B84CY"
+        }
+      }
+    ],
+    "_prefab": {
+      "__type__": "cc.PrefabInfo",
+      "root": {
+        "__id__": 1
+      },
+      "asset": {
+        "__id__": 0
+      },
+      "fileId": "f5NEg3rThCmq5/raycNg/7"
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 44,
+      "height": 81
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "y": 191
+    },
+    "_scaleX": 1,
+    "_scaleY": 1
+  }
+]

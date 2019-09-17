@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hallPlay",
+    "texture": "12939da53",
+    "rect": [
+      855,
+      401,
+      38,
+      40
+    ],
+    "offset": [
+      -2,
+      0
+    ],
+    "originalSize": [
+      88,
+      78
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

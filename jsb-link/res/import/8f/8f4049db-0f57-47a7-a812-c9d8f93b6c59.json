@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "game_nav_l",
+    "texture": "1fa163690",
+    "rect": [
+      101,
+      232,
+      204,
+      66
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      204,
+      66
+    ],
+    "rotated": 1,
+    "capInsets": [
+      34,
+      34,
+      0,
+      32
+    ]
+  }
+}

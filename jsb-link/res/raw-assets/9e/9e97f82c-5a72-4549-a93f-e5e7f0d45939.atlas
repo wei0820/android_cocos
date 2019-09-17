@@ -1,0 +1,48 @@
+
+qiangzhuangpaijiu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bj
+  rotate: false
+  xy: 2, 296
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+hei1
+  rotate: false
+  xy: 2, 2
+  size: 89, 131
+  orig: 89, 131
+  offset: 0, 0
+  index: -1
+hei2
+  rotate: false
+  xy: 2, 135
+  size: 134, 159
+  orig: 134, 159
+  offset: 0, 0
+  index: -1
+shaizi_you
+  rotate: false
+  xy: 138, 240
+  size: 48, 54
+  orig: 48, 54
+  offset: 0, 0
+  index: -1
+shaizi_zuo
+  rotate: false
+  xy: 93, 101
+  size: 38, 32
+  orig: 38, 32
+  offset: 0, 0
+  index: -1
+zi
+  rotate: false
+  xy: 264, 458
+  size: 152, 52
+  orig: 152, 52
+  offset: 0, 0
+  index: -1

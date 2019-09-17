@@ -1,0 +1,140 @@
+{
+  "__type__": "cc.JsonAsset",
+  "_name": "help03",
+  "json": {
+    "topHelpKind": [
+      "基本玩法",
+      "牌型算法",
+      "牌型大小"
+    ],
+    "content0": [
+      {
+        "str": "发牌：开局后系统向每名玩家发三张牌，玩家抢庄、下注完成后，系统发出剩余两张牌。",
+        "componentType": "label"
+      },
+      {
+        "str": "定庄：抢庄倍数最高的玩家为本局庄家，抢庄倍数相同或所有人都不抢，随机选一位成为庄家。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "下注：定庄后，所有闲家开始选择下注倍数。携带游戏币越多，最大可下注倍数越大。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "拼牌：玩家拿到五张手牌后即开始拼牌。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "比牌：拼牌完成后，所有玩家亮出手牌。闲家只与庄家互比，闲家与闲家之间不互比。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "结算公式：",
+        "color": "#ca662f",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "A：房间底注\nM：庄家牌型对应的倍数\nN：闲家牌型对应的倍数\nX：庄家抢庄倍数\nY：闲家下注倍数\n庄家胜利所赢游戏币=A*M*X*Y\n庄家失败所输游戏币=A*N*X*Y\n闲家胜利所赢游戏币=A*N*X*Y\n闲家失败所输游戏币=A*M*X*Y",
+        "color": "#6a5142",
+        "componentType": "label",
+        "spacing": 0
+      },
+      {
+        "str": "防以小博大机制：",
+        "color": "#ca662f",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "本局带入多少游戏币，本局最多输赢多少游戏币。\n比如您本局带入80，计算时你理论应得200。但假如您本局输了最多只输80，为了公平起见，您本局最多也只能赢80，而不是200。",
+        "color": "#6a5142",
+        "componentType": "label",
+        "spacing": 0
+      },
+      {
+        "str": "特殊情况：如果出现庄家不够输的情况，按照各闲家理论盈利比例结算输赢。\n比如庄家有100，一次性输完，A理论应该赢200，B理论应该赢200，C理论应该赢400。由于庄家钱不够输，按照ABC理论盈利占比",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "最终得出：",
+        "color": "#ca662f",
+        "componentType": "label",
+        "spacing": 0
+      },
+      {
+        "str": "A实际盈利=200/（200+200+400）*100=25\nB实际盈利=200/（200+200+400）*100=25\nC实际盈利=400/（200+200+400）*100=50",
+        "color": "#6a5142",
+        "componentType": "label",
+        "spacing": 0
+      }
+    ],
+    "content1": [
+      {
+        "str": "牌面：10、J、Q、K的点数都算作10，其他牌均按牌面数字计算。",
+        "componentType": "label"
+      },
+      {
+        "str": "无牛：5张牌中任意3张牌的点数之和都不为10的整数倍。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "有牛：5张牌中有3张牌的点数之和为10的整数倍，另外2张牌的牌面值之和不为10的整数倍，则这2张点数之和的个位数即为牛几。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "牛牛：5张牌中有3张牌的点数之和为10的整数倍，且另外2张牌的点数相加也为10的整数倍。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "四花牛：5张牌中有4张牌为花牌（J、Q、K）中的任意牌，且第5张牌为10。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "五花牛：5张牌为花牌（J、Q、K）中的任意牌。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "炸弹：5张牌中有4张牌牌面相同，第5张随意。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "五小牛：5张牌的点数都小于5，且点数之和小于等于10。",
+        "componentType": "label",
+        "spacing": 20
+      }
+    ],
+    "content2": [
+      {
+        "str": "牌型大小比较：五小牛>炸弹>五花牛>四花牛>牛牛>牛九>牛八>牛七 >牛六>牛五>牛四>牛三>牛二>牛一>无牛。",
+        "componentType": "label"
+      },
+      {
+        "str": "炸弹之间大小比较：比较炸弹的大小。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "其他同牌型之间的大小：比最大牌的点数（K>Q>J>10>9>8\n>7>6>5>4>3>2>A）；最大牌的点数相同时，比较最大牌的花色（黑桃>红桃>梅花>方块）。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "无牛—牛六        1倍\n牛七—牛九        2倍\n牛牛                   3倍\n四花牛                4倍\n五花牛                4倍\n炸弹                   4倍\n五小牛                4倍",
+        "componentType": "label",
+        "spacing": 25
+      }
+    ]
+  }
+}

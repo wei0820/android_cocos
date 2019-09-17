@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "jbtm_sg_00007",
+    "texture": "1435238e1",
+    "rect": [
+      222,
+      188,
+      78,
+      68
+    ],
+    "offset": [
+      9,
+      0.5
+    ],
+    "originalSize": [
+      100,
+      83
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

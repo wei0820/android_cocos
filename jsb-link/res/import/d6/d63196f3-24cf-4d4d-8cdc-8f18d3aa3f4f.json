@@ -1,0 +1,26 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "glow3": {
+      "__uuid__": "e23Pw6bDpK3YZeb1KXtsUz"
+    },
+    "zc_bt": {
+      "__uuid__": "65im7MWZhDg7nC8rLNAjBI"
+    },
+    "glow_1": {
+      "__uuid__": "78yKYOL8ROV5TfwjRBYK/d"
+    },
+    "x": {
+      "__uuid__": "25eeGMilxFdoqoIfNf0Uq6"
+    },
+    "zc_anniu": {
+      "__uuid__": "a6bccs1sxMaqE/m0aiRNWP"
+    },
+    "glow_2": {
+      "__uuid__": "f2zVBJP/VLEZoordI2QAHX"
+    },
+    "glod": {
+      "__uuid__": "87U2iBDxNNQK+DqahCOfpO"
+    }
+  }
+}

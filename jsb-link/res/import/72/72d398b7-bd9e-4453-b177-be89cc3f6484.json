@@ -1,0 +1,30 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "xuanfang.plist",
+  "_spriteFrames": {
+    "0": {
+      "__uuid__": "770B0bob9HJbFp9LEfw7WE"
+    },
+    "1": {
+      "__uuid__": "40z106gRNAorBP4jcFZ3Od"
+    },
+    "2": {
+      "__uuid__": "71cyqUfWVPOZkgL3r2yrNg"
+    },
+    "3": {
+      "__uuid__": "06VUQZK0VB1aCFBNdqSsEE"
+    },
+    "4": {
+      "__uuid__": "e7Qp7CuFtIx5P0sXnN0O8D"
+    },
+    "5": {
+      "__uuid__": "ecZAnHQR9P1rOoBFPuJDr8"
+    },
+    "antes": {
+      "__uuid__": "692A45U2pFU5kjPMLKlW3y"
+    },
+    "arrow": {
+      "__uuid__": "a4nFCTOj9EUIOy05KUg4jp"
+    }
+  }
+}

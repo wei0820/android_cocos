@@ -1,0 +1,68 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "glow_1": {
+      "__uuid__": "b0WzG4W8VIdLUzj1FViVv5"
+    },
+    "df_3": {
+      "__uuid__": "75cRKhqSxKdr/r6EWqWVUA"
+    },
+    "x": {
+      "__uuid__": "88e0TsK7VJubNDfeQ4FBdb"
+    },
+    "glow_2": {
+      "__uuid__": "d01KvUeEhIxZAwJF+PPS44"
+    },
+    "df_1": {
+      "__uuid__": "03mDI97tlFzaudS8SKqR+2"
+    },
+    "df_2": {
+      "__uuid__": "36793F6AVP6ZKeKGp3Wj9W"
+    },
+    "qi2_00004": {
+      "__uuid__": "00ILnSU2VBo4CkNuo+lJMu"
+    },
+    "zd_1": {
+      "__uuid__": "c0RHysSGtO0ZdvfbvdNKnB"
+    },
+    "df_zi": {
+      "__uuid__": "57tkt8xBxCuqQTGNcwLtX4"
+    },
+    "bz_bs2": {
+      "__uuid__": "dfNLbZN0dHyYA0/dQKsYlW"
+    },
+    "qi2_00006": {
+      "__uuid__": "19a156n51IOL1JTwKN5x5Q"
+    },
+    "qi2_00009": {
+      "__uuid__": "28+EwEgRxJ8rJ6sE60MVeD"
+    },
+    "qi2_00011": {
+      "__uuid__": "62g/o9TllFFpYuO4ImIn5i"
+    },
+    "qi2_00007": {
+      "__uuid__": "95cReV6ydA2rYJD1XpHJFN"
+    },
+    "qi2_00010": {
+      "__uuid__": "a30C4uCQVJEpt1LhTZcXdK"
+    },
+    "qi2_00008": {
+      "__uuid__": "ddUQbZ9bhK5YWiLcD3Xo80"
+    },
+    "qi2_00003": {
+      "__uuid__": "43RvhFex9PjqrXXKvqjsLV"
+    },
+    "qi2_00002": {
+      "__uuid__": "75c6j0kJZB3KtzlRJqApOr"
+    },
+    "qi2_00001": {
+      "__uuid__": "99IX5i6SFETJEqDosFPsBX"
+    },
+    "qi2_00005": {
+      "__uuid__": "ea4xdCioZN3qXHQ0dMDRyT"
+    },
+    "qi2_00000": {
+      "__uuid__": "b01UUOXQNMyrYEJEccJG+m"
+    }
+  }
+}

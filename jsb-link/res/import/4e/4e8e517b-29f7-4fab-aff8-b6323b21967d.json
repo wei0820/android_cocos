@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "selfLightBg",
+    "texture": "127ffe3ab",
+    "rect": [
+      3,
+      3,
+      612,
+      88
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      612,
+      88
+    ],
+    "capInsets": [
+      14,
+      11,
+      13,
+      17
+    ]
+  }
+}

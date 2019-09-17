@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "game_setting_bar_bg",
+    "texture": "1fa163690",
+    "rect": [
+      65,
+      964,
+      386,
+      25
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      386,
+      25
+    ],
+    "capInsets": [
+      12,
+      0,
+      12,
+      0
+    ]
+  }
+}

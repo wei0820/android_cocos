@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "cardTypeBg",
+    "texture": "1fa163690",
+    "rect": [
+      101,
+      444,
+      97,
+      74
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      97,
+      74
+    ],
+    "rotated": 1,
+    "capInsets": [
+      9,
+      9,
+      9,
+      9
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "__type__": "cc.JsonAsset",
+  "_name": "help10",
+  "json": {
+    "topHelpKind": [
+      "基本玩法",
+      "牌型说明"
+    ],
+    "content0": [
+      {
+        "str": "简介：游戏共有40张牌，用的是麻将中的筒子牌（一筒到九筒，每种4张，共36张），加上4张白板；每局游戏分为五轮，必须玩满五轮才可以退出或者重新匹配下一局游戏；每轮都从剩余牌中随机抽出8张发给玩家（每人2张）。",
+        "componentType": "label"
+      },
+      {
+        "str": "玩家：游戏人数固定为4人，每轮分为一位庄家三位闲家，缺少一位玩家则该牌桌解散。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "牌型比较：先比较牌型，牌型相同则比较单牌中的点数，点数大的获胜。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "定庄：开局后玩家可以通过选择抢庄倍数进行抢庄，所有选择抢庄的玩家均有可能坐庄，抢庄倍数越高，坐庄几率越大；抢庄倍数是指玩家本轮能承受的最大赔付金额是底注的多少倍。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "下注：定庄后，所有闲家开始选择下注倍数；下注倍数是指玩家本轮实际下注金额是底注的多少倍。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "发牌：所有玩家下注后，系统投掷两颗骰子，根据骰子点数之和顺时针从庄家开始数，数到最后决定先向谁发牌，然后系统按逆时针向每位玩家发两张牌。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "比牌：当系统发完牌之后，玩家可以点击摊牌按钮亮出自己的手牌。",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "结算公式：\nA：房间底注\nY：闲家下注倍数\n庄家胜利所赢游戏币=A*Y\n庄家失败所输游戏币= A*Y\n闲家胜利所赢游戏币=A*Y\n闲家失败所输游戏币= A*Y",
+        "componentType": "label",
+        "spacing": 20
+      },
+      {
+        "str": "赔付：赔率1:1，闲家赢则由庄家赔付，庄家获胜则收下闲家的下注金额 。",
+        "componentType": "label",
+        "spacing": 20
+      }
+    ],
+    "content1": [
+      {
+        "propertyName": "erbagang",
+        "componentType": "sprite",
+        "width": 644,
+        "height": 720,
+        "sizeMode": 0
+      }
+    ]
+  }
+}

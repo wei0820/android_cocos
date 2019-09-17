@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "exchangeHintBg",
+    "texture": "1e81cd8e3",
+    "rect": [
+      295,
+      602,
+      96,
+      86
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      96,
+      86
+    ],
+    "rotated": 1,
+    "capInsets": [
+      38,
+      0,
+      40,
+      0
+    ]
+  }
+}

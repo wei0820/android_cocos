@@ -1,0 +1,97 @@
+
+jisuzhajinhua.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+A1
+  rotate: false
+  xy: 264, 383
+  size: 126, 120
+  orig: 126, 120
+  offset: 0, 0
+  index: -1
+A2
+  rotate: false
+  xy: 392, 383
+  size: 98, 120
+  orig: 98, 120
+  offset: 0, 0
+  index: -1
+A3
+  rotate: false
+  xy: 2, 59
+  size: 112, 120
+  orig: 112, 120
+  offset: 0, 0
+  index: -1
+bj
+  rotate: false
+  xy: 2, 289
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+fire (1)
+  rotate: true
+  xy: 382, 284
+  size: 42, 54
+  orig: 73, 73
+  offset: 15, 12
+  index: -1
+fire (2)
+  rotate: true
+  xy: 264, 284
+  size: 42, 59
+  orig: 73, 73
+  offset: 15, 13
+  index: -1
+fire (3)
+  rotate: false
+  xy: 2, 2
+  size: 50, 55
+  orig: 73, 73
+  offset: 8, 11
+  index: -1
+fire (4)
+  rotate: true
+  xy: 325, 279
+  size: 47, 55
+  orig: 73, 73
+  offset: 11, 12
+  index: -1
+fire (5)
+  rotate: true
+  xy: 54, 14
+  size: 43, 61
+  orig: 73, 73
+  offset: 15, 6
+  index: -1
+yuan
+  rotate: false
+  xy: 2, 181
+  size: 145, 106
+  orig: 145, 106
+  offset: 0, 0
+  index: -1
+zhadan_zuo
+  rotate: false
+  xy: 432, 330
+  size: 54, 51
+  orig: 54, 51
+  offset: 0, 0
+  index: -1
+zhadna_you
+  rotate: false
+  xy: 149, 207
+  size: 86, 80
+  orig: 86, 80
+  offset: 0, 0
+  index: -1
+zi
+  rotate: false
+  xy: 264, 328
+  size: 166, 53
+  orig: 166, 53
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "layerTip_bg",
+    "texture": "34Zcp8G/1NLbi4sSwZwu3B",
+    "rect": [
+      0,
+      0,
+      76,
+      82
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      76,
+      82
+    ],
+    "capInsets": [
+      18,
+      18,
+      22,
+      27
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "antes",
+    "texture": "a6HmmCTyhHA5dMuIhUDr3y",
+    "rect": [
+      41,
+      0,
+      101,
+      59
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      101,
+      59
+    ],
+    "capInsets": [
+      13,
+      9,
+      11,
+      12
+    ]
+  }
+}

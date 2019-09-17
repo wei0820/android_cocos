@@ -1,0 +1,68 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "dog": {
+      "__uuid__": "f8Bw9LAuBDCoRJyi9iwv+6"
+    },
+    "toastBg": {
+      "__uuid__": "dbZzM+9mFHNbMn07/BMKIg"
+    },
+    "j3": {
+      "__uuid__": "a2issMo11AM6MEuhMXCG8L"
+    },
+    "hd1": {
+      "__uuid__": "1dsz3J0htMGbZOwllBkP7L"
+    },
+    "sy5": {
+      "__uuid__": "76OVlqJjJNa6DhIb9MplXD"
+    },
+    "sy4": {
+      "__uuid__": "b6PRYrcw5DYKcbfhpwut3A"
+    },
+    "p1": {
+      "__uuid__": "c04EPX54dOrplYxAr4VuDB"
+    },
+    "j2": {
+      "__uuid__": "aa23v57B5Be5h/I2xCtxxK"
+    },
+    "j6": {
+      "__uuid__": "77P4A/GZBAIICW4RaxMGlV"
+    },
+    "sy3": {
+      "__uuid__": "92rg21wKpI5ZpHID5KGfSP"
+    },
+    "j1": {
+      "__uuid__": "64FBpX2hZGbJsz98NMU0yJ"
+    },
+    "j5": {
+      "__uuid__": "77kCSF3htEMp/dcdWNkYfK"
+    },
+    "sy1": {
+      "__uuid__": "3e1nvn0DFObq1uPxATOwFI"
+    },
+    "j4": {
+      "__uuid__": "0aId2WSNhJ+4fPEbOoHHjZ"
+    },
+    "p2": {
+      "__uuid__": "988qhTfLJNCrdNt80sCQJP"
+    },
+    "service": {
+      "__uuid__": "37eItR7HRMVoxz5VXMciyc"
+    },
+    "sy2": {
+      "__uuid__": "746JAhgI1GIpv1wXo5L1l+"
+    },
+    "downloadApp": {
+      "__uuid__": "e8Xav0gxpCbL/ZGzyyH9LF"
+    },
+    "sy6": {
+      "__uuid__": "96s7E9nZpLUJ2SzftTx0fd"
+    },
+    "hd3": {
+      "__uuid__": "4blxlXo7JG2Iq1eZ6XVECt"
+    },
+    "hd2": {
+      "__uuid__": "8aidsF6k9Dcpv7vlwBmkCU"
+    }
+  }
+}

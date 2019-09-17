@@ -1,0 +1,60 @@
+{
+  "__type__": "cc.BitmapFont",
+  "_name": "multiNum",
+  "spriteFrame": {
+    "__uuid__": "57r34KLjZN7YS81R42ZXV+"
+  },
+  "fontSize": 32,
+  "_fntConfig": {
+    "commonHeight": 32,
+    "fontSize": 32,
+    "atlasName": "multiNum_0.png",
+    "fontDefDictionary": {
+      "49": {
+        "rect": {
+          "x": 0,
+          "y": 27,
+          "width": 12,
+          "height": 26
+        },
+        "xOffset": 0,
+        "yOffset": 0,
+        "xAdvance": 12
+      },
+      "50": {
+        "rect": {
+          "x": 22,
+          "y": 0,
+          "width": 19,
+          "height": 26
+        },
+        "xOffset": 0,
+        "yOffset": 0,
+        "xAdvance": 19
+      },
+      "52": {
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 21,
+          "height": 26
+        },
+        "xOffset": 0,
+        "yOffset": 0,
+        "xAdvance": 21
+      },
+      "56": {
+        "rect": {
+          "x": 42,
+          "y": 0,
+          "width": 19,
+          "height": 26
+        },
+        "xOffset": 0,
+        "yOffset": 0,
+        "xAdvance": 19
+      }
+    },
+    "kerningDict": {}
+  }
+}

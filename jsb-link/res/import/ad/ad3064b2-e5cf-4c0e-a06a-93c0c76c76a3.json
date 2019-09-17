@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "jiazai04",
+    "texture": "1b16ef4c0",
+    "rect": [
+      2,
+      199,
+      82,
+      84
+    ],
+    "offset": [
+      0.5,
+      0.5
+    ],
+    "originalSize": [
+      91,
+      91
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

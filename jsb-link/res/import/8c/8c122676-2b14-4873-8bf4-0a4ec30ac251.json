@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "greenBtnBg",
+    "texture": "12939da53",
+    "rect": [
+      791,
+      204,
+      133,
+      66
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      133,
+      66
+    ],
+    "capInsets": [
+      28,
+      0,
+      29,
+      0
+    ]
+  }
+}

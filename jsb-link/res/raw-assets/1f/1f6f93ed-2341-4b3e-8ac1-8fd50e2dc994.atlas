@@ -1,0 +1,111 @@
+
+tongbiniuniu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bihuan
+  rotate: false
+  xy: 179, 141
+  size: 62, 29
+  orig: 62, 29
+  offset: 0, 0
+  index: -1
+bj
+  rotate: false
+  xy: 2, 282
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+er1
+  rotate: false
+  xy: 97, 44
+  size: 28, 23
+  orig: 28, 23
+  offset: 0, 0
+  index: -1
+er2
+  rotate: true
+  xy: 151, 84
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+meimao1
+  rotate: false
+  xy: 264, 344
+  size: 34, 28
+  orig: 34, 28
+  offset: 0, 0
+  index: -1
+meimao2
+  rotate: false
+  xy: 326, 412
+  size: 34, 28
+  orig: 34, 28
+  offset: 0, 0
+  index: -1
+shou
+  rotate: false
+  xy: 2, 14
+  size: 93, 100
+  orig: 93, 100
+  offset: 0, 0
+  index: -1
+shou2
+  rotate: false
+  xy: 97, 69
+  size: 52, 45
+  orig: 52, 45
+  offset: 0, 0
+  index: -1
+st
+  rotate: true
+  xy: 179, 172
+  size: 108, 68
+  orig: 108, 68
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 2, 116
+  size: 175, 164
+  orig: 175, 164
+  offset: 0, 0
+  index: -1
+toufa
+  rotate: false
+  xy: 264, 374
+  size: 60, 66
+  orig: 60, 66
+  offset: 0, 0
+  index: -1
+yanzhu1
+  rotate: false
+  xy: 2, 2
+  size: 51, 10
+  orig: 51, 10
+  offset: 0, 0
+  index: -1
+yanzhu2
+  rotate: false
+  xy: 249, 270
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+zi
+  rotate: false
+  xy: 264, 442
+  size: 148, 54
+  orig: 148, 54
+  offset: 0, 0
+  index: -1
+zui
+  rotate: false
+  xy: 414, 462
+  size: 82, 34
+  orig: 82, 34
+  offset: 0, 0
+  index: -1

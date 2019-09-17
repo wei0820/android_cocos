@@ -1,0 +1,199 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "xuanfang",
+  "_duration": 3.2,
+  "sample": 15,
+  "wrapMode": "2",
+  "curveData": {
+    "paths": {
+      "zjh_xf_sg_1": {
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0,
+                "value": {
+                  "__uuid__": "1b3Y/L4hNLAL5tfBNsyuMb"
+                }
+              },
+              {
+                "frame": 0.06666666666666667,
+                "value": {
+                  "__uuid__": "a0LPzhHmtPn4vSaAkOfWGh"
+                }
+              },
+              {
+                "frame": 0.13333333333333333,
+                "value": {
+                  "__uuid__": "8cVDiJH7dL84pEFvvSmL99"
+                }
+              },
+              {
+                "frame": 0.2,
+                "value": {
+                  "__uuid__": "98cWoaFlJADbuHpZFTc9LJ"
+                }
+              },
+              {
+                "frame": 0.26666666666666666,
+                "value": {
+                  "__uuid__": "21bhK4ODdBtb1ecRSvI8yz"
+                }
+              },
+              {
+                "frame": 0.3333333333333333,
+                "value": {
+                  "__uuid__": "c7gFSYx+NJ7YSwbKlaDBMR"
+                }
+              },
+              {
+                "frame": 0.4,
+                "value": {
+                  "__uuid__": "8f63RiJrpDx4B4DKKtVXgt"
+                }
+              },
+              {
+                "frame": 0.4666666666666667,
+                "value": {
+                  "__uuid__": "52IUM7BU1AAYYPOX3k3FJT"
+                }
+              },
+              {
+                "frame": 0.5333333333333333,
+                "value": {
+                  "__uuid__": "56sOQOhstM3542O5PFRqfI"
+                }
+              },
+              {
+                "frame": 0.6,
+                "value": {
+                  "__uuid__": "1bSrXCfipDio//V6jrLCr6"
+                }
+              },
+              {
+                "frame": 0.6666666666666666,
+                "value": {
+                  "__uuid__": "5c+WnzpL9PTIjOC0wA+8Wl"
+                }
+              },
+              {
+                "frame": 0.7333333333333333,
+                "value": {
+                  "__uuid__": "f1RstXE9NIKob9bYQ7RvdG"
+                }
+              },
+              {
+                "frame": 0.8,
+                "value": {
+                  "__uuid__": "9ca7igsNNLq632IB07o2pt"
+                }
+              },
+              {
+                "frame": 0.8666666666666667,
+                "value": {
+                  "__uuid__": "e44SjQzY5JwrbPWCr1pKSs"
+                }
+              },
+              {
+                "frame": 0.9333333333333333,
+                "value": {
+                  "__uuid__": "dfjM39xYpBI6bjgSQm+Uwq"
+                }
+              },
+              {
+                "frame": 1,
+                "value": {
+                  "__uuid__": "0fugPs/9NFLrdoxLAiRu2a"
+                }
+              },
+              {
+                "frame": 1.0666666666666667,
+                "value": {
+                  "__uuid__": "84RpqpO4tAOY6Gp4HGAazt"
+                }
+              },
+              {
+                "frame": 1.1333333333333333,
+                "value": {
+                  "__uuid__": "bdzoja9y9KAqQmMRssR3Ki"
+                }
+              },
+              {
+                "frame": 1.2,
+                "value": {
+                  "__uuid__": "1bUGB1bWZG36Pf097Of7mh"
+                }
+              },
+              {
+                "frame": 1.2666666666666666,
+                "value": {
+                  "__uuid__": "33pajqANJPNKHWkOboI1TU"
+                }
+              },
+              {
+                "frame": 1.3333333333333333,
+                "value": {
+                  "__uuid__": "bcOvZgnFJOq58kB/BPiMAl"
+                }
+              },
+              {
+                "frame": 1.4,
+                "value": {
+                  "__uuid__": "d73g9eSmZNz5X2UQG8WE6O"
+                }
+              },
+              {
+                "frame": 1.4666666666666666,
+                "value": {
+                  "__uuid__": "62rGInHjFCTqL/xMeb3+RR"
+                }
+              },
+              {
+                "frame": 1.5333333333333334,
+                "value": {
+                  "__uuid__": "89mDU/ZOdHULeN6Md5aqxC"
+                }
+              },
+              {
+                "frame": 1.6,
+                "value": {
+                  "__uuid__": "50VBQoH2hO5I7HRIHGtCyl"
+                }
+              },
+              {
+                "frame": 1.6666666666666667,
+                "value": {
+                  "__uuid__": "55y7H4l6hGk5uyeoySNTho"
+                }
+              },
+              {
+                "frame": 1.7333333333333334,
+                "value": {
+                  "__uuid__": "ean8fYS7ZFo5VY8agLgBKi"
+                }
+              },
+              {
+                "frame": 1.8,
+                "value": {
+                  "__uuid__": "e95wEPLldHyoK2CV4f5V1B"
+                }
+              },
+              {
+                "frame": 1.8666666666666667,
+                "value": {
+                  "__uuid__": "8cNm1qcqFIapIiXG8AkNdK"
+                }
+              },
+              {
+                "frame": 3.1333333333333333,
+                "value": {
+                  "__uuid__": "8cNm1qcqFIapIiXG8AkNdK"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

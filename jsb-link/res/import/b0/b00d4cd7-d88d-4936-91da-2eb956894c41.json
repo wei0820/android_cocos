@@ -1,0 +1,115 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "jiazai",
+  "_duration": 2.0833333333333335,
+  "sample": 24,
+  "speed": 0.7,
+  "wrapMode": "2",
+  "curveData": {
+    "paths": {
+      "jiazai05": {
+        "comps": {},
+        "props": {
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 2.0833333333333335,
+              "value": 720
+            }
+          ]
+        }
+      },
+      "jiazai01": {
+        "props": {
+          "scaleX": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 0.25,
+              "value": 0.5
+            },
+            {
+              "frame": 0.4166666666666667,
+              "value": 0.5
+            },
+            {
+              "frame": 0.5416666666666666,
+              "value": 0
+            },
+            {
+              "frame": 0.7916666666666666,
+              "value": 0.5
+            },
+            {
+              "frame": 0.9166666666666666,
+              "value": 0.5
+            },
+            {
+              "frame": 1.0416666666666667,
+              "value": 0
+            },
+            {
+              "frame": 1.2916666666666667,
+              "value": 0.5
+            },
+            {
+              "frame": 1.4583333333333333,
+              "value": 0.5
+            },
+            {
+              "frame": 1.5833333333333333,
+              "value": 0
+            },
+            {
+              "frame": 1.7916666666666667,
+              "value": 0.5
+            },
+            {
+              "frame": 1.9583333333333333,
+              "value": 0.5
+            },
+            {
+              "frame": 2.0833333333333335,
+              "value": 0
+            }
+          ]
+        },
+        "comps": {
+          "cc.Sprite": {
+            "spriteFrame": [
+              {
+                "frame": 0.5,
+                "value": {
+                  "__uuid__": "bcKKfPojNHkoUrR/1flJbx"
+                }
+              },
+              {
+                "frame": 0.5416666666666666,
+                "value": {
+                  "__uuid__": "efhJxu+uRGmIRRE387WO1j"
+                }
+              },
+              {
+                "frame": 1.0416666666666667,
+                "value": {
+                  "__uuid__": "4327u1WXlE/IROjejSAf9E"
+                }
+              },
+              {
+                "frame": 1.5833333333333333,
+                "value": {
+                  "__uuid__": "adMGSy5c9MDqBqk8DHbHaj"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

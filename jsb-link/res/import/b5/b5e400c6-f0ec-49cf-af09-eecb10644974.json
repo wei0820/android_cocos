@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "inputBg",
+    "texture": "93WPalGXBLxrzDqgxi/z6Y",
+    "rect": [
+      0,
+      0,
+      56,
+      56
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      56,
+      56
+    ],
+    "capInsets": [
+      12,
+      14,
+      13,
+      14
+    ]
+  }
+}

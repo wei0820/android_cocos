@@ -1,0 +1,89 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "shadow": {
+      "__uuid__": "c4bYOSrPlCN43dbfaqZ/SU"
+    },
+    "nullData": {
+      "__uuid__": "e8aP7ArkhFyJ1XzQQUH5hV"
+    },
+    "game_help_tab_act": {
+      "__uuid__": "e7r1srZhhLErqCySfm7t3c"
+    },
+    "game_help_tab": {
+      "__uuid__": "a7S6bsBOdHgJNo3KRaCsUS"
+    },
+    "help_list_nav_bg": {
+      "__uuid__": "a4DK31f9pEqJurBZGW7gza"
+    },
+    "game_nav_r": {
+      "__uuid__": "82ctfhkVJJPLjNJ/xVtniz"
+    },
+    "game_setting_bar_bg": {
+      "__uuid__": "3b+4KRr29Lg5X3mVxPGHOq"
+    },
+    "game_setting_bar": {
+      "__uuid__": "aftg5V22NIopJ/zt6rDiZ0"
+    },
+    "icon_toggle_selected": {
+      "__uuid__": "67iu5FSNtObrWnutBlrlTS"
+    },
+    "game_nav_l": {
+      "__uuid__": "8fQEnbD1dHp6gSydj5O2xZ"
+    },
+    "game_nav_r_act": {
+      "__uuid__": "53TAiGpBtCtbXYDTgWZCpD"
+    },
+    "game_nav_l_act": {
+      "__uuid__": "9eUxUsi/1L27Ka9KDmc4Zt"
+    },
+    "carryBtnBg": {
+      "__uuid__": "d1OAEWYXVJf6lHo+wD76Kh"
+    },
+    "cardTypeBg": {
+      "__uuid__": "c1hynsb1FLLIPk43jcxUkF"
+    },
+    "guan": {
+      "__uuid__": "097Wrr4x5Mpa7CR3KT55mU"
+    },
+    "kai": {
+      "__uuid__": "86ilRwxBxDo610YBnHj6wG"
+    },
+    "game_nav_center_act": {
+      "__uuid__": "8fvV48nu9Is6ArLkEVox9u"
+    },
+    "icon-_toggle_unSelect": {
+      "__uuid__": "e4IL6DuBVE3474RyGJMEJ8"
+    },
+    "carryChipNumTxt": {
+      "__uuid__": "9dxqgYMrRLrJCQs/gudKAA"
+    },
+    "game_nav_center": {
+      "__uuid__": "ceEtI0Ha1Hco3Fe9xi6krU"
+    },
+    "record_tit_bg": {
+      "__uuid__": "eeYm36nM1IK7g6/neb7mDf"
+    },
+    "record_content": {
+      "__uuid__": "2afilBlthJYb1V+3zV0McK"
+    },
+    "effectOpenIcon": {
+      "__uuid__": "45jypvocNOXI4EsQGXTJi1"
+    },
+    "effectCloseIcon": {
+      "__uuid__": "c7mv+rvO1MVqIiqjEMOnal"
+    },
+    "musicOpenIcon": {
+      "__uuid__": "d1rzYWwbtHG5c8Z3UpONWA"
+    },
+    "musicCloseIcon": {
+      "__uuid__": "edKYNtF71GEryzS0boCO4u"
+    },
+    "setting_btn": {
+      "__uuid__": "42AW66RlFH6qtb+6fN/31y"
+    },
+    "loadIcon": {
+      "__uuid__": "21DsG5BaxOcp2FIgMLSWla"
+    }
+  }
+}

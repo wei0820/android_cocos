@@ -1,0 +1,95 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "glow_1": {
+      "__uuid__": "e0fF6qGspPgb6Z5YibeYhE"
+    },
+    "zd_6": {
+      "__uuid__": "b9NwSyCQhKcI+xvJx24/q5"
+    },
+    "glow_2": {
+      "__uuid__": "2biF+j4rxCroJY6rmxCtpI"
+    },
+    "nq_3": {
+      "__uuid__": "152vr870xOybIOCQRHeqYs"
+    },
+    "qi2_00004": {
+      "__uuid__": "78VbMTXOBHQZ81/enzrwmY"
+    },
+    "zd_1": {
+      "__uuid__": "cbBi4W/otCgLaZN2DaRcAO"
+    },
+    "qi2_00006": {
+      "__uuid__": "12M8y3ISdDR4Y8+oL1Gwx8"
+    },
+    "nq_zi": {
+      "__uuid__": "f9zUzft3ZAdK/EDwJYppEg"
+    },
+    "nqct_sg_00002": {
+      "__uuid__": "d3fc4pb9pFebeUHBEJs658"
+    },
+    "qi2_00011": {
+      "__uuid__": "1fZbps8XhEZ5G5S5GWF1VR"
+    },
+    "bz_bs2": {
+      "__uuid__": "7aTgS4OedBZrZSBoOHjrgC"
+    },
+    "qi2_00009": {
+      "__uuid__": "29ctAyOFRGPaRx/JrgZUZR"
+    },
+    "nqct_sg_00009": {
+      "__uuid__": "e9yCZ2eWFOxL9i1GcYs3ZB"
+    },
+    "nq_2": {
+      "__uuid__": "74VmcM2VNF9pvhodqVk9FY"
+    },
+    "qi2_00010": {
+      "__uuid__": "2alM40d0BKVZgxMPHBg+xk"
+    },
+    "qi2_00007": {
+      "__uuid__": "e65FG+FShEVLQD1YjwVwv6"
+    },
+    "qi2_00008": {
+      "__uuid__": "edHrB5zMZHJrMauijgjOIx"
+    },
+    "qi2_00003": {
+      "__uuid__": "50HD1BKb1Jf7Pq0qudjY1R"
+    },
+    "nqct_sg_00010": {
+      "__uuid__": "144RZoxbRPhIV6aLpSUrvP"
+    },
+    "nqct_sg_00001": {
+      "__uuid__": "33w/WtyytHUr2KbT9Sx/CK"
+    },
+    "qi2_00002": {
+      "__uuid__": "9adwgVHypNfaFpvenfzmTN"
+    },
+    "qi2_00001": {
+      "__uuid__": "d5DDXQOO9AIZok2v+6XqE7"
+    },
+    "qi2_00005": {
+      "__uuid__": "f9Di4F9PJAQLL7xUBepczv"
+    },
+    "nqct_sg_00003": {
+      "__uuid__": "79l8SbafxKn4Itd7HSMFE0"
+    },
+    "qi2_00000": {
+      "__uuid__": "61/zZPAJZJgKELEgIr+OKN"
+    },
+    "nqct_sg_00006": {
+      "__uuid__": "d3b202JVJBZqhyJDU4n/Tw"
+    },
+    "nqct_sg_00005": {
+      "__uuid__": "d5M08N69JMbqHrLpeWlpYd"
+    },
+    "nqct_sg_00007": {
+      "__uuid__": "0cazMOaEFHm7L3SIFJFGFZ"
+    },
+    "nqct_sg_00004": {
+      "__uuid__": "1f9w41jhNP6LZn1FhjpVmF"
+    },
+    "nqct_sg_00008": {
+      "__uuid__": "78O08Q/+5E4b2N7oNlckG2"
+    }
+  }
+}

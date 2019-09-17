@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "progress_bg",
+    "texture": "164c1e618",
+    "rect": [
+      4,
+      683,
+      62,
+      32
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      62,
+      32
+    ],
+    "capInsets": [
+      13,
+      0,
+      15,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "cur_progress",
+    "texture": "164c1e618",
+    "rect": [
+      668,
+      184,
+      50,
+      28
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      50,
+      28
+    ],
+    "rotated": 1,
+    "capInsets": [
+      15,
+      1,
+      19,
+      0
+    ]
+  }
+}

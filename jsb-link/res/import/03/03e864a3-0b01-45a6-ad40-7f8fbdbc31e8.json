@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "rechargeBg",
+    "texture": "12b39ca49",
+    "rect": [
+      949,
+      3,
+      290,
+      50
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      290,
+      50
+    ],
+    "rotated": 1,
+    "capInsets": [
+      23,
+      0,
+      23,
+      0
+    ]
+  }
+}

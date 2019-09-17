@@ -1,0 +1,89 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "glow_1": {
+      "__uuid__": "a4F6IfuTpEioOEiTkfwZRA"
+    },
+    "jb_2": {
+      "__uuid__": "56e/UWa3pOk6L5g8PUKbHd"
+    },
+    "glow_2": {
+      "__uuid__": "a3YXVFxI9KY4KWOVKrZhTF"
+    },
+    "qi2_00004": {
+      "__uuid__": "34weamMwxNK7qkamES8yTz"
+    },
+    "zd_1": {
+      "__uuid__": "80q3mveKVBjp2Dq+D4EnLr"
+    },
+    "qi2_00010": {
+      "__uuid__": "0aUPVjUSJILphu8iblusjy"
+    },
+    "qi2_00009": {
+      "__uuid__": "6ddHYouVZM/70dsU6Ay8cP"
+    },
+    "bz_bs2": {
+      "__uuid__": "27c72mN+9CMq6iSU+CdPLG"
+    },
+    "qi2_00007": {
+      "__uuid__": "ac7/wo011IMZ9YlmZ4fwOX"
+    },
+    "jbtm_sg_00002": {
+      "__uuid__": "e5QVoXftBMSofmG49em3VH"
+    },
+    "jb_zi": {
+      "__uuid__": "e4wRS/dMFJnIxGcFlBwEZs"
+    },
+    "qi2_00008": {
+      "__uuid__": "bfcUTXTjxGWrSdsNs+luVG"
+    },
+    "qi2_00006": {
+      "__uuid__": "d0lmcDOXBB0oyC7ZGTC8dZ"
+    },
+    "qi2_00011": {
+      "__uuid__": "f0RA41TAlKcJV+bDoLDtpi"
+    },
+    "jbtm_sg_00001": {
+      "__uuid__": "8d0dZnsNxLy5qVY/iPmaRy"
+    },
+    "qi2_00001": {
+      "__uuid__": "43BpwzQ39Jubd+mNKem208"
+    },
+    "qi2_00005": {
+      "__uuid__": "6aVBdIzq1EE4zby2jEsrro"
+    },
+    "jbtm_sg_00010": {
+      "__uuid__": "e0bLRCnQhHT6OEDpvETwmL"
+    },
+    "qi2_00002": {
+      "__uuid__": "e2mvqv7gNGLLHbX9ljPM2b"
+    },
+    "qi2_00003": {
+      "__uuid__": "f6oX8SK/lIOq0tujjKKvy7"
+    },
+    "qi2_00000": {
+      "__uuid__": "9fh3jxNL5CBYIYgaa3UEMr"
+    },
+    "jbtm_sg_00005": {
+      "__uuid__": "3bV6eAtfxIqZBhzENAEGof"
+    },
+    "jbtm_sg_00007": {
+      "__uuid__": "efNFyGzwFCv5jd8mUiSbi4"
+    },
+    "jbtm_sg_00003": {
+      "__uuid__": "68J+2PkY5CCIu+GypKLvxk"
+    },
+    "jbtm_sg_00006": {
+      "__uuid__": "2ca4zdH6NNYIUz06cEJEC2"
+    },
+    "jbtm_sg_00008": {
+      "__uuid__": "7bA97h0fhDSKvySfP4SPIh"
+    },
+    "jbtm_sg_00004": {
+      "__uuid__": "f83zGa2DlHpJHmTVJp6FoY"
+    },
+    "jbtm_sg_00009": {
+      "__uuid__": "8fiPJFUzxKLYEktfJ1Ff5j"
+    }
+  }
+}

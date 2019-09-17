@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "wsds_sg_00011",
+    "texture": "1919debdb",
+    "rect": [
+      66,
+      751,
+      20,
+      14
+    ],
+    "offset": [
+      28,
+      -25.5
+    ],
+    "originalSize": [
+      78,
+      73
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hy-sg_00010",
+    "texture": "12b39ca49",
+    "rect": [
+      294,
+      97,
+      122,
+      88
+    ],
+    "offset": [
+      103.5,
+      0
+    ],
+    "originalSize": [
+      329,
+      88
+    ],
+    "rotated": 1,
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

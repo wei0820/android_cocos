@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "spreadCodeImg",
+    "texture": "1e7e44b4e",
+    "rect": [
+      312,
+      728,
+      123,
+      48
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      123,
+      48
+    ],
+    "capInsets": [
+      36,
+      0,
+      34,
+      0
+    ]
+  }
+}

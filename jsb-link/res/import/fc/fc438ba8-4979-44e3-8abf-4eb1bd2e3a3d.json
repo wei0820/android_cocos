@@ -1,0 +1,128 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "1": {
+      "__uuid__": "ceQ1mb/ytCf6JQvHWGaWKl"
+    },
+    "2": {
+      "__uuid__": "b7mOdN78FAJ7CmTSK4rDVj"
+    },
+    "3": {
+      "__uuid__": "756EVZFRZEvZ7QFYTL9WDh"
+    },
+    "4": {
+      "__uuid__": "3cAT2FfxNDA4LlA7mVoEr9"
+    },
+    "5": {
+      "__uuid__": "f35jz1EUBA9b8x+HKGVz55"
+    },
+    "6": {
+      "__uuid__": "8cZpxnKMxId5eqIU6xXkHA"
+    },
+    "7": {
+      "__uuid__": "c1LGCg2gdNLJ/CbOAkw4zl"
+    },
+    "8": {
+      "__uuid__": "bflUo/uMFOoIM7MuKdquW5"
+    },
+    "9": {
+      "__uuid__": "8ed4M2W61Fp7U87eGVdzQz"
+    },
+    "10": {
+      "__uuid__": "06EdF9Sd5MPo3MdRrgomJo"
+    },
+    "11": {
+      "__uuid__": "42ZV4TIuFInKmHVoTAolw/"
+    },
+    "12": {
+      "__uuid__": "addBQbz0NG9ajC+9bKCuQa"
+    },
+    "13": {
+      "__uuid__": "c4gIRfYqhHL4iZynrj5JAy"
+    },
+    "14": {
+      "__uuid__": "36xoka7k5Jbp8A5bmyVWYr"
+    },
+    "15": {
+      "__uuid__": "14bnweI05DwoqSbsGow0A/"
+    },
+    "achievementRuleBg": {
+      "__uuid__": "577FKgBwZArKa0Hc8lxfV/"
+    },
+    "achievementBoxBg": {
+      "__uuid__": "74CMtyxVhHR7a6HrRlwiN8"
+    },
+    "panel": {
+      "__uuid__": "c82qfMvU9BW6qx78+otMhd"
+    },
+    "pointer": {
+      "__uuid__": "d4J/7h6/FKkarkop5CtPia"
+    },
+    "line": {
+      "__uuid__": "832+cwab1Az57eMuWS6C1c"
+    },
+    "title_icon": {
+      "__uuid__": "9egwO8+cFFgKbFrHR9j+aP"
+    },
+    "male": {
+      "__uuid__": "01jGuA0WRCl6G2v8GBO+Sf"
+    },
+    "exclamationMark": {
+      "__uuid__": "f9EZt0NaVBDKASJY/UPkZv"
+    },
+    "accountBg": {
+      "__uuid__": "8cQ/qFUyJACrLojjcloxdr"
+    },
+    "ava_sel_bg": {
+      "__uuid__": "624vfHAhNNILn+e22CeH52"
+    },
+    "cur_progress": {
+      "__uuid__": "9bCkHkzsJLlbysBljHs8xP"
+    },
+    "level_icon": {
+      "__uuid__": "7agO9s1Y9KmbsbL9MCkieZ"
+    },
+    "copyAccount": {
+      "__uuid__": "caaD8+SlhCcad+dlDES8cv"
+    },
+    "score_icon": {
+      "__uuid__": "321b3P+QlHwqOREi93l0lQ"
+    },
+    "female": {
+      "__uuid__": "5bxrflG9lGv6W3folDvkum"
+    },
+    "level_table_header": {
+      "__uuid__": "e4GuEqsQBMsL2pYeHXgiYS"
+    },
+    "level_button": {
+      "__uuid__": "27qxb/hrxIopEobmpXsn1g"
+    },
+    "avatar_border": {
+      "__uuid__": "47fbHcIONJPLA9/lS7ju55"
+    },
+    "progress_bg": {
+      "__uuid__": "38EZ8WSepA3pJWyxZna1/k"
+    },
+    "ava_unsel_bg": {
+      "__uuid__": "57JwKsG4lPoZWQZdKgk0Sd"
+    },
+    "lightBg": {
+      "__uuid__": "60dhOAsi5N5qoXHq26Z8tc"
+    },
+    "show": {
+      "__uuid__": "5fZXemt0dF5plR9cRLIsNI"
+    },
+    "progress_num_tip": {
+      "__uuid__": "7d/ABDOYROeLddwHbzEohu"
+    },
+    "edit_bg": {
+      "__uuid__": "b5Ic+hmyVLc41dFnlTxNTi"
+    },
+    "level_bottom_bg": {
+      "__uuid__": "81mESDLoBKWKVu2nDggBXy"
+    },
+    "lock": {
+      "__uuid__": "83nbCMyZFGTYlSFYXcMEnh"
+    }
+  }
+}

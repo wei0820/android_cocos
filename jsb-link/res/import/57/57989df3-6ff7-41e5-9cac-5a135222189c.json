@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "miniGameCard",
+    "texture": "ebagM0OM9IWI3Uo+BCXyku",
+    "rect": [
+      0,
+      0,
+      788,
+      1317
+    ],
+    "offset": [
+      0,
+      2
+    ],
+    "originalSize": [
+      788,
+      1321
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

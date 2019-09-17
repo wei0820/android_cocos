@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "tutorialPic",
+    "texture": "50TkPMxJhJHr/WEGA2/mxz",
+    "rect": [
+      0,
+      0,
+      1044,
+      616
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1044,
+      616
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

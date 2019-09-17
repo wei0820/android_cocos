@@ -1,0 +1,230 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "bxg_qu",
+  "_duration": 3.9583333333333335,
+  "sample": 24,
+  "wrapMode": "2",
+  "curveData": {
+    "paths": {
+      "qu-glow": {
+        "props": {
+          "opacity": []
+        }
+      },
+      "qu-glow-1": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 50
+            },
+            {
+              "frame": 1.6666666666666667,
+              "value": 10
+            },
+            {
+              "frame": 3.125,
+              "value": 50
+            }
+          ]
+        }
+      },
+      "qu-bi": {
+        "props": {
+          "rotation": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 1.6666666666666667,
+              "value": 25
+            },
+            {
+              "frame": 3.9583333333333335,
+              "value": 0
+            }
+          ],
+          "x": [
+            {
+              "frame": 0,
+              "value": 36
+            },
+            {
+              "frame": 1.6666666666666667,
+              "value": 39
+            },
+            {
+              "frame": 3.9583333333333335,
+              "value": 36
+            }
+          ]
+        }
+      },
+      "qu-xx": {
+        "props": {
+          "scale": [
+            {
+              "frame": 0.4166666666666667,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 0.625,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.2,
+                "y": 0.2
+              }
+            },
+            {
+              "frame": 0.8333333333333334,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 1.0416666666666667,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.5,
+                "y": 0.5
+              }
+            },
+            {
+              "frame": 1.25,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            }
+          ]
+        }
+      },
+      "qu-xx-1": {
+        "props": {
+          "scale": [
+            {
+              "frame": 2.5,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.8,
+                "y": 0.8
+              }
+            },
+            {
+              "frame": 2.7083333333333335,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.3,
+                "y": 0.3
+              }
+            },
+            {
+              "frame": 2.9166666666666665,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.8,
+                "y": 0.8
+              }
+            },
+            {
+              "frame": 3.125,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.3,
+                "y": 0.3
+              }
+            },
+            {
+              "frame": 3.3333333333333335,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.8,
+                "y": 0.8
+              }
+            }
+          ]
+        }
+      },
+      "qu-bi/qu-bi-1": {
+        "props": {
+          "opacity": [
+            {
+              "frame": 0,
+              "value": 0
+            },
+            {
+              "frame": 2.0833333333333335,
+              "value": 50
+            },
+            {
+              "frame": 3.9583333333333335,
+              "value": 0
+            }
+          ]
+        }
+      },
+      "qu-xiang": {
+        "props": {
+          "scale": [
+            {
+              "frame": 0,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 0.5416666666666666,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.98,
+                "y": 1.02
+              }
+            },
+            {
+              "frame": 1.2916666666666667,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1.02,
+                "y": 0.98
+              }
+            },
+            {
+              "frame": 2,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 0.98,
+                "y": 1.02
+              }
+            },
+            {
+              "frame": 2.75,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1.02,
+                "y": 0.98
+              }
+            },
+            {
+              "frame": 3.375,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

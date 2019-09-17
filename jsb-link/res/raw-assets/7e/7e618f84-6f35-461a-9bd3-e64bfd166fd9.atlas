@@ -1,0 +1,90 @@
+
+wangzherongyao.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bj
+  rotate: false
+  xy: 2, 296
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+hudie
+  rotate: false
+  xy: 416, 459
+  size: 52, 51
+  orig: 52, 51
+  offset: 0, 0
+  index: -1
+lingzii
+  rotate: false
+  xy: 62, 105
+  size: 30, 59
+  orig: 30, 59
+  offset: 0, 0
+  index: -1
+shou
+  rotate: false
+  xy: 189, 202
+  size: 55, 92
+  orig: 55, 92
+  offset: 0, 0
+  index: -1
+st
+  rotate: false
+  xy: 2, 166
+  size: 185, 128
+  orig: 185, 128
+  offset: 0, 0
+  index: -1
+tooufa
+  rotate: false
+  xy: 264, 376
+  size: 150, 134
+  orig: 150, 134
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 264, 305
+  size: 56, 69
+  orig: 56, 69
+  offset: 0, 0
+  index: -1
+toufa1
+  rotate: false
+  xy: 246, 277
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+toufa2
+  rotate: false
+  xy: 322, 318
+  size: 26, 56
+  orig: 26, 56
+  offset: 0, 0
+  index: -1
+toufa3
+  rotate: true
+  xy: 189, 178
+  size: 22, 47
+  orig: 22, 47
+  offset: 0, 0
+  index: -1
+yanjing
+  rotate: false
+  xy: 416, 440
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+zi
+  rotate: true
+  xy: 2, 2
+  size: 162, 58
+  orig: 162, 58
+  offset: 0, 0
+  index: -1

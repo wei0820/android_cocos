@@ -1,0 +1,27 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "spCodeBoxBg",
+    "texture": "3f/A4P/FZPk48FK3xwh40j",
+    "rect": [
+      0,
+      0,
+      1032,
+      470
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      1032,
+      470
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

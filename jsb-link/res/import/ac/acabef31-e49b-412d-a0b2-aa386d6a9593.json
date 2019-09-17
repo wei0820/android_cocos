@@ -1,0 +1,60 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_name": "miniGameCard.plist",
+  "_spriteFrames": {
+    "10": {
+      "__uuid__": "58Px+fOhRArYEnDu33UHlv"
+    },
+    "11": {
+      "__uuid__": "c5N5F89LFOybX29Y1YDwEn"
+    },
+    "12": {
+      "__uuid__": "05yu5/ordFN7ElB0vF19I+"
+    },
+    "14": {
+      "__uuid__": "c0whxibE5OirAwHU8OHQD5"
+    },
+    "15": {
+      "__uuid__": "e6TUeqsvVDeKQKyJaGVLSg"
+    },
+    "16": {
+      "__uuid__": "9d5sGCeUJGaL7stvJyM/lm"
+    },
+    "19": {
+      "__uuid__": "84qoZBX+lK+L0m/r4fTvj4"
+    },
+    "21": {
+      "__uuid__": "2bCl5A3iBPIqZdiJUPCwZo"
+    },
+    "00": {
+      "__uuid__": "e7xV1RHW5DZI/uI8So2yBq"
+    },
+    "01": {
+      "__uuid__": "73CP25GExEBbHKmml+ZLvy"
+    },
+    "02": {
+      "__uuid__": "8ahoV10P9LKIzjCTTLMffq"
+    },
+    "03": {
+      "__uuid__": "ccp0ky8cFGtLDFpnRBkARY"
+    },
+    "04": {
+      "__uuid__": "fdM4Ap5E1A2JxyHyVnaXln"
+    },
+    "05": {
+      "__uuid__": "edRicvhH1Go51xDS5Kcg/c"
+    },
+    "06": {
+      "__uuid__": "58Xll6rklNAp9MuWBOAR31"
+    },
+    "07": {
+      "__uuid__": "89w9rnk+1IjbJMQ/6m+ezW"
+    },
+    "08": {
+      "__uuid__": "22SxGrKKJIk52HnTQiogLs"
+    },
+    "09": {
+      "__uuid__": "9b+a8tpuBN97V8jZ5vTCpq"
+    }
+  }
+}
