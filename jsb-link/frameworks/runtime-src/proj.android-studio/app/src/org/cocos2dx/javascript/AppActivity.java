@@ -546,9 +546,7 @@ public class AppActivity extends Cocos2dxActivity {
     private static  void  showDialog(){
 
     }
-    private void debugModel(){
-        DataCleanManager.cleanInternalCache(this);
-    }
+
 
 }
 
