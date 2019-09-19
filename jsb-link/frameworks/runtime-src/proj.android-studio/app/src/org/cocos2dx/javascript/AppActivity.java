@@ -96,6 +96,10 @@ public class AppActivity extends Cocos2dxActivity {
         super.onCreate(savedInstanceState);
         app = this ;
 //        debugModel();
+        //获取唤醒参数
+
+        //用户注册成功后调用
+//        OpenInstall.reportRegister();
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
             // Android launched another instance of the root activity into an existing task
@@ -158,6 +162,8 @@ public class AppActivity extends Cocos2dxActivity {
         });
         checkPermission();
         OpenInstall.getWakeUp(getIntent(), wakeUpAdapter);
+
+
 //        mViewStartPage.setVisibility(View.GONE);
     }
     AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {

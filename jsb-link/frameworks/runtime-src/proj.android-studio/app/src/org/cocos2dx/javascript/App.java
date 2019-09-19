@@ -22,7 +22,6 @@ public class App extends Application {
 
         try {
             Log.d(TAG, "onCreate: "+   DataCleanManager.getTotalCacheSize(getApplicationContext()));
-
             DataCleanManager.clearAllCache(getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,8 +56,8 @@ public class App extends Application {
                 e.printStackTrace();
             }
         }
-
     }
+
 
     public boolean isMainProcess() {
         int pid = android.os.Process.myPid();
