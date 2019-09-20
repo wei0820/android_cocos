@@ -161,8 +161,6 @@ public class AppActivity extends Cocos2dxActivity {
             }
         });
         checkPermission();
-        OpenInstall.getWakeUp(getIntent(), wakeUpAdapter);
-
 
 //        mViewStartPage.setVisibility(View.GONE);
     }
