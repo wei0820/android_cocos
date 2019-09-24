@@ -5,19 +5,19 @@
 
     <uses-feature android:glEsVersion="0x00020000" />
 
-    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.NFC" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="com.qiku.widget3d.permission.WIDGET_ADVERT"/>
-    <uses-permission android:name="com.android.launcher.permission.RECEIVE_LAUNCH_BROADCASTS"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.qiku.widget3d.permission.WIDGET_ADVERT" />
+    <uses-permission android:name="com.android.launcher.permission.RECEIVE_LAUNCH_BROADCASTS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
         android:name="org.cocos2dx.javascript.App"
@@ -30,11 +30,11 @@
         <!-- Tell Cocos2dxActivity the name of our .so -->
         <meta-data
             android:name="android.app.lib_name"
-            android:value="cocos2djs"/>
+            android:value="cocos2djs" />
 
         <meta-data
             android:name="com.openinstall.APP_KEY"
-            android:value="ihjwn8"/>
+            android:value="ihjwn8" />
 
         <activity
             android:name="org.cocos2dx.javascript.AppActivity"
@@ -45,27 +45,34 @@
             android:taskAffinity=""
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:usesCleartextTraffic="true"
-            android:windowSoftInputMode="adjustNothing"
-            >
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="ihjwn8"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="ihjwn8" />
             </intent-filter>
         </activity>
         <activity
             android:name="org.cocos2dx.javascript.VerifyPopupActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:theme="@style/dialog">
-        </activity>
+            android:theme="@style/dialog"></activity>
+
+        <receiver android:name="org.cocos2dx.javascript.service.NetWorkStateReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
