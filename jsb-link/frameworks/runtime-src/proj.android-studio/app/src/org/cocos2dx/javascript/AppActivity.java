@@ -160,8 +160,6 @@ public class AppActivity extends Cocos2dxActivity {
             }
         });
         checkPermission();
-
-//        mViewStartPage.setVisibility(View.GONE);
     }
     AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {
         @Override
@@ -269,7 +267,6 @@ public class AppActivity extends Cocos2dxActivity {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.MANAGE_DOCUMENTS
-
         };
 
 
@@ -370,8 +367,6 @@ public class AppActivity extends Cocos2dxActivity {
         mTvCount.setVisibility(View.GONE);
         mImgStartPage.setImageResource(R.mipmap.bg);
         roundCornerProgressBar.setVisibility(View.VISIBLE);
-
-
     }
 
     // 供JS调用
