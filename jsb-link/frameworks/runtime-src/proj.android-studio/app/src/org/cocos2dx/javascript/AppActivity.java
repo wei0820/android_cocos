@@ -45,7 +45,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -277,7 +276,6 @@ public class AppActivity extends Cocos2dxActivity {
         boolean hasPermissions = false;
         for (int i = 0; i < permissions.length; i++) {
             int hasWriteStoragePermission = ContextCompat.checkSelfPermission(AppActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            Log.e("Test Game ", permissions[i] + "  =  " + hasWriteStoragePermission);
             if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
                 hasPermissions = false;
                 break;
@@ -325,7 +323,6 @@ public class AppActivity extends Cocos2dxActivity {
                 boolean hasPermissions = false;
                 for (int i = 0; i < thePermissions.length; i++) {
                     int hasWriteStoragePermission = ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                    Log.d(TAG, "onRequestPermissionsResult: "+permissions[i] + "  =  " + hasWriteStoragePermission);
                     if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
                         hasPermissions = false;
                         break;
@@ -403,7 +400,6 @@ public class AppActivity extends Cocos2dxActivity {
     @BusReceiver
     public void onSomeEvent(MessageEvent event) {
         String jsUrl = event.getJsUrl();
-        Log.e("url=", jsUrl);
         Intent it = new Intent(getContext(), VerifyPopupActivity.class);
         it.putExtra("jsurl", jsUrl);
         startActivityForResult(it, 1);
@@ -424,8 +420,6 @@ public class AppActivity extends Cocos2dxActivity {
             status = "0";
         }
         sendJSCaptcha(status, ticket);
-        Log.e("Test", msg);
-        //Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     public void sendJSCaptcha(final String status, final String ticket) {
@@ -464,20 +458,17 @@ public class AppActivity extends Cocos2dxActivity {
 
     // 直接结束倒计时
     public static void JSGotoMain(String value) {
-        Utils.log("JSGotoMain");
         Bus.getDefault().post(new GotoMainEvent());
     }
 
 
     public static float showProgress(float i ) {
-        Log.d("showProgress",i+"");
         return i ;
 
 
     }
     // 加载资源进度控制
     public static void getLoadngingProgressRate(float f){
-        Log.d(TAG, "getLoadngingProgressRate: "+f);
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -485,21 +476,14 @@ public class AppActivity extends Cocos2dxActivity {
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress()>=1.0){
                     mViewStartPage.setVisibility(View.GONE);
-
-
-
                 }
             }
         });
 
         }
 
-
-
-
     // 热跟新进度控制
     public static void getUpdateProgressRate(float f){
-        Log.d(TAG, "getUpdateProgressRate: "+f);
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -515,8 +499,6 @@ public class AppActivity extends Cocos2dxActivity {
     }
     // 显示更新失败弹窗
     public static void showUpdateFailedDialog(){
-
-        Log.d(TAG, "showUpdateFailedDialog: "+"in");
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -546,12 +528,6 @@ public class AppActivity extends Cocos2dxActivity {
             }
         });
     }
-
-    private static  void  showDialog(){
-
-    }
-
-
 }
 
 
