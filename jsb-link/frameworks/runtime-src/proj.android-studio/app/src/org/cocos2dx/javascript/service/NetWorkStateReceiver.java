@@ -1,13 +1,23 @@
 package org.cocos2dx.javascript.service;
 
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.app.game.v0812.R;
+
+import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
+
 public class NetWorkStateReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,13 +35,18 @@ public class NetWorkStateReceiver extends BroadcastReceiver {
             //获取移动数据连接的信息
             NetworkInfo dataNetworkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
             if (wifiNetworkInfo.isConnected() && dataNetworkInfo.isConnected()) {
-                Toast.makeText(context, "WIFI已连接,移动数据已连接", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "WIFI已连接,移动数据已连接", Toast.LENGTH_SHORT).show();
+                showDialog(context);
             } else if (wifiNetworkInfo.isConnected() && !dataNetworkInfo.isConnected()) {
-                Toast.makeText(context, "WIFI已连接,移动数据已断开", Toast.LENGTH_SHORT).show();
+
+//                Toast.makeText(context, "WIFI已连接,移动数据已断开", Toast.LENGTH_SHORT).show();
+                showDialog(context);
             } else if (!wifiNetworkInfo.isConnected() && dataNetworkInfo.isConnected()) {
-                Toast.makeText(context, "WIFI已断开,移动数据已连接", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "WIFI已断开,移动数据已连接", Toast.LENGTH_SHORT).show();
+                showDialog(context);
             } else {
-                Toast.makeText(context, "WIFI已断开,移动数据已断开", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "WIFI已断开,移动数据已断开", Toast.LENGTH_SHORT).show();
+                showDialog(context);
             }
         }else {
             //这里的就不写了，前面有写，大同小异
@@ -51,5 +66,25 @@ public class NetWorkStateReceiver extends BroadcastReceiver {
             }
             Toast.makeText(context, sb.toString(),Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static void showDialog(Context context){
+        Dialog dialog = new Dialog(context, R.style.selectorDialog);
+        dialog.setContentView(R.layout.layout_alertdialog);
+        ImageButton button = dialog.findViewById(R.id.btn);
+        TextView textView = dialog.findViewById(R.id.text);
+        textView.setText("更新失败！请检查网络后重试。");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
+        WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
+        lp.dimAmount=0.2f;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+
     }
 }

@@ -32,8 +32,10 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -58,6 +60,7 @@ import com.fm.openinstall.model.AppData;
 import com.mcxiaoke.bus.Bus;
 import com.mcxiaoke.bus.annotation.BusReceiver;
 
+import org.cocos2dx.javascript.service.NetWorkStateReceiver;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
@@ -90,6 +93,8 @@ public class AppActivity extends Cocos2dxActivity {
             "打牌打得好，说明有头脑" ,
             "打牌不怕炸，说明胆子大" ,
             "打牌打得精，说明思路清"};
+    NetWorkStateReceiver netWorkStateReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,7 +189,14 @@ public class AppActivity extends Cocos2dxActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SDKWrapper.getInstance().onResume(); }
+        SDKWrapper.getInstance().onResume();
+        if (netWorkStateReceiver == null) {
+            netWorkStateReceiver = new NetWorkStateReceiver();
+        }
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(netWorkStateReceiver, filter);
+    }
 
     @Override
     protected void onPause() {
