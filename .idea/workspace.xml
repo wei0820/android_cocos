@@ -12,10 +12,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="329" />
-    <option name="y" value="91" />
-    <option name="width" value="1400" />
-    <option name="height" value="962" />
+    <option name="x" value="42" />
+    <option name="y" value="17" />
+    <option name="width" value="1895" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -23,7 +23,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -36,10 +35,54 @@
               <item name="android_cocos" type="462c0819:PsiDirectoryNode" />
               <item name="jsb-link" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="android_cocos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android_cocos" type="462c0819:PsiDirectoryNode" />
+              <item name="jsb-link" type="462c0819:PsiDirectoryNode" />
+              <item name="frameworks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android_cocos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android_cocos" type="462c0819:PsiDirectoryNode" />
+              <item name="jsb-link" type="462c0819:PsiDirectoryNode" />
+              <item name="frameworks" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android_cocos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android_cocos" type="462c0819:PsiDirectoryNode" />
+              <item name="jsb-link" type="462c0819:PsiDirectoryNode" />
+              <item name="frameworks" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
+              <item name="proj.android-studio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android_cocos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android_cocos" type="462c0819:PsiDirectoryNode" />
+              <item name="jsb-link" type="462c0819:PsiDirectoryNode" />
+              <item name="frameworks" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime-src" type="462c0819:PsiDirectoryNode" />
+              <item name="proj.android-studio" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android_cocos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android_cocos" type="462c0819:PsiDirectoryNode" />
+              <item name="jsb-link" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="android_cocos" type="b2602c69:ProjectViewProjectNode" />
+              <item name="android_cocos" type="462c0819:PsiDirectoryNode" />
+              <item name="jsb-link" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -74,9 +117,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.33706668" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.35253334" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />

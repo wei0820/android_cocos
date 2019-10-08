@@ -1,27 +1,27 @@
 /****************************************************************************
-Copyright (c) 2015-2016 Chukong Technologies Inc.
-Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
-http://www.cocos2d-x.org
+ Copyright (c) 2015-2016 Chukong Technologies Inc.
+ Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ http://www.cocos2d-x.org
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-****************************************************************************/
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
 package org.cocos2dx.javascript;
 
 import android.Manifest;
@@ -30,6 +30,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -77,28 +78,28 @@ public class AppActivity extends Cocos2dxActivity {
     private ImageView mImgStartPage;
     private RelativeLayout mBtnCountTime;
     private TextView mTvCount;
-    private static  Runnable mRunnableCountTime;
-    private static  Runnable mRunnableArraryString;
+    private static Runnable mRunnableCountTime;
+    private static Runnable mRunnableArraryString;
     private int mCountTime = 1;
     private int i = 0;
-    public  int progress = 0;
+    public int progress = 0;
     private static View loadPage;
     private static TextView textView;
     private static com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
-    private static String[] array = new String[]{"赢了不吱声，说明城府深；输了不投降，竞争意识强" ,
+    private static String[] array = new String[]{"赢了不吱声，说明城府深；输了不投降，竞争意识强",
             "看准下重注，超越拆迁户",
-            "想要打牌手气好，心理素质加技巧" ,
-            "吃吃喝喝都是赔，唯有打牌有来回" ,
-            "邀请好友来扫码，每天稳赢几十把" ,
-            "打牌打得好，说明有头脑" ,
-            "打牌不怕炸，说明胆子大" ,
+            "想要打牌手气好，心理素质加技巧",
+            "吃吃喝喝都是赔，唯有打牌有来回",
+            "邀请好友来扫码，每天稳赢几十把",
+            "打牌打得好，说明有头脑",
+            "打牌不怕炸，说明胆子大",
             "打牌打得精，说明思路清"};
     NetWorkStateReceiver netWorkStateReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        app = this ;
+        app = this;
 //        debugModel();
         //获取唤醒参数
 
@@ -118,8 +119,8 @@ public class AppActivity extends Cocos2dxActivity {
             @Override
             public void run() {
                 textView.setText(array[i]);
-                mArrayHandler.postDelayed(mRunnableArraryString,1500);
-                i =  (int)(Math.random()* array.length);
+                mArrayHandler.postDelayed(mRunnableArraryString, 1500);
+                i = (int) (Math.random() * array.length);
 
             }
         };
@@ -166,6 +167,7 @@ public class AppActivity extends Cocos2dxActivity {
         });
         checkPermission();
     }
+
     AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {
         @Override
         public void onWakeUp(AppData appData) {
@@ -196,12 +198,14 @@ public class AppActivity extends Cocos2dxActivity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(netWorkStateReceiver, filter);
+//        checkNetWork(getApplicationContext());
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         SDKWrapper.getInstance().onPause();
+        unregisterReceiver(netWorkStateReceiver);
     }
 
     @Override
@@ -248,8 +252,13 @@ public class AppActivity extends Cocos2dxActivity {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        SDKWrapper.getInstance().onConfigurationChanged(newConfig);
         super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // 什麼都不用寫
+        } else {
+            // 什麼都不用寫
+        }
+        SDKWrapper.getInstance().onConfigurationChanged(newConfig);
 
     }
 
@@ -316,6 +325,7 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
     private static final String TAG = "AppActivity";
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == REQUEST_CODE) {
@@ -462,54 +472,53 @@ public class AppActivity extends Cocos2dxActivity {
         return true;
     }
 
-
     // 直接结束倒计时
     public static void JSGotoMain(String value) {
         Bus.getDefault().post(new GotoMainEvent());
     }
 
 
-    public static float showProgress(float i ) {
-        return i ;
+    public static float showProgress(float i) {
+        return i;
 
 
     }
+
     // 加载资源进度控制
-    public static void getLoadngingProgressRate(float f){
+    public static void getLoadngingProgressRate(float f) {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
-                if (roundCornerProgressBar.getProgress()>=1.0){
+                if (roundCornerProgressBar.getProgress() >= 1.0) {
                     mViewStartPage.setVisibility(View.GONE);
                 }
             }
         });
-
-        }
+    }
 
     // 热跟新进度控制
-    public static void getUpdateProgressRate(float f){
+    public static void getUpdateProgressRate(float f) {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
-                if (roundCornerProgressBar.getProgress()>=1.0){
+                if (roundCornerProgressBar.getProgress() >= 1.0) {
                     mArrayHandler.removeCallbacks(mRunnableArraryString);
                     textView.setText("更新完毕，将为您重启应用，祝您游戏愉快");
                 }
             }
         });
-
     }
+
     // 显示更新失败弹窗
-    public static void showUpdateFailedDialog(){
+    public static void showUpdateFailedDialog() {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Dialog   dialog = new Dialog(getContext(), R.style.selectorDialog);
+                Dialog dialog = new Dialog(getContext(), R.style.selectorDialog);
                 dialog.setContentView(R.layout.layout_alertdialog);
                 ImageButton button = dialog.findViewById(R.id.btn);
                 TextView textView = dialog.findViewById(R.id.text);
@@ -527,14 +536,49 @@ public class AppActivity extends Cocos2dxActivity {
                     }
                 });
                 // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
-                WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
-                lp.dimAmount=0.2f;
+                WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+                lp.dimAmount = 0.2f;
                 dialog.getWindow().setAttributes(lp);
                 dialog.show();
 
             }
         });
     }
+
+    private void checkNetWork(Context context) {
+        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        Log.d(TAG, "checkNetWork: " + wifi.isConnected());
+        Log.d(TAG, "checkNetWork: " + mobile.isConnected());
+
+        if (wifi.isAvailable() || mobile.isAvailable()) {
+
+        } else {
+            showDialog(context);
+        }
+    }
+
+    public static void showDialog(Context context) {
+        Dialog dialog = new Dialog(context, R.style.selectorDialog);
+        dialog.setContentView(R.layout.layout_alertdialog);
+        ImageButton button = dialog.findViewById(R.id.btn);
+        TextView textView = dialog.findViewById(R.id.text);
+        textView.setText("更新失败！请检查网络后重试。");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.dimAmount = 0.2f;
+        dialog.getWindow().setAttributes(lp);
+        dialog.show();
+
+    }
+
 }
 
 
