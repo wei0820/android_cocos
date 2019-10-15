@@ -102,7 +102,6 @@ public class AppActivity extends Cocos2dxActivity {
         app = this;
 //        debugModel();
         //获取唤醒参数
-
         //用户注册成功后调用
 //        OpenInstall.reportRegister();
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
@@ -549,9 +548,6 @@ public class AppActivity extends Cocos2dxActivity {
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        Log.d(TAG, "checkNetWork: " + wifi.isConnected());
-        Log.d(TAG, "checkNetWork: " + mobile.isConnected());
-
         if (wifi.isAvailable() || mobile.isAvailable()) {
 
         } else {
@@ -576,7 +572,6 @@ public class AppActivity extends Cocos2dxActivity {
         lp.dimAmount = 0.2f;
         dialog.getWindow().setAttributes(lp);
         dialog.show();
-
     }
 
 }
