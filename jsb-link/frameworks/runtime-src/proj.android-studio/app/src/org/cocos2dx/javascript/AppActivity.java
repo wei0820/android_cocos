@@ -151,7 +151,6 @@ public class AppActivity extends Cocos2dxActivity {
         /*ImageView imageView = new ImageView(getContext());
         RelativeLayout.LayoutParams paramsImage = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         paramsImage.addRule(RelativeLayout.CENTER_IN_PARENT);
-
         Glide.with(getContext())
                 .load(R.mipmap.giphy)
                 .into(imageView);
@@ -166,7 +165,6 @@ public class AppActivity extends Cocos2dxActivity {
         });
         checkPermission();
     }
-
     AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {
         @Override
         public void onWakeUp(AppData appData) {
@@ -177,7 +175,6 @@ public class AppActivity extends Cocos2dxActivity {
             Log.d("OpenInstall", "getWakeUp : wakeupData = " + appData.toString());
         }
     };
-
     @Override
     public Cocos2dxGLSurfaceView onCreateView() {
         mGLSurfaceView = new Cocos2dxGLSurfaceView(this);
