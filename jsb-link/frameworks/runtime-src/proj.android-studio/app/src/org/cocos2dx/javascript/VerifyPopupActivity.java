@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -25,7 +26,7 @@ public class VerifyPopupActivity extends Activity {
     private ProgressBar mProgressBar;
     private float mDensity;
     private float mScale = 0.8f; //默认弹框验证码宽度是屏幕宽度*0.7
-    private final float F_DEFAULT_POPUP_IFRAME_WIDTH = 17f * 10;
+    private final float F_DEFAULT_POPUP_IFRAME_WIDTH = 15f * 10;
     private final int F_MAX_IFRAME_WIDTH_SCALE = 2;
     private final int F_CAP_TYPE_CLICK_CHAR_ZH = 4;//图中点字(中文)
     private final int F_CAP_TYPE_CLICK_CHAR_EN = 6;//图中点字(英文)
@@ -67,7 +68,7 @@ public class VerifyPopupActivity extends Activity {
         }
 
     };
-
+    private static final String TAG = "VerifyPopupActivity";
     public Resources getResources() {
         Resources res = super.getResources();
         Configuration config = new Configuration();

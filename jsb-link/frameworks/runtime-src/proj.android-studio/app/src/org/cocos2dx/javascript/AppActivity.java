@@ -203,6 +203,8 @@ public class AppActivity extends Cocos2dxActivity {
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(netWorkStateReceiver, filter);
 //        checkNetWork(getApplicationContext());
+        getOpneData();
+
     }
 
     @Override
@@ -393,9 +395,10 @@ public class AppActivity extends Cocos2dxActivity {
         mTvCount.setVisibility(View.GONE);
         mImgStartPage.setImageResource(R.mipmap.bg);
         roundCornerProgressBar.setVisibility(View.VISIBLE);
-        getOpneData();
 
     }
+
+
 
     private void getOpneData(){
         // 一定要等到数据界面已经刷新采取做处理。
