@@ -162,15 +162,33 @@ window.__require = function e(t, n, r) {
     "use strict";
     cc._RF.push(module, "d93acqaxZRLlrYuEEee1u5k", "BRCattleHall");
     "use strict";
+    var _isTenfold = false;
     cc.Class({
       extends: require("selectRoomSceneBase"),
-      properties: {},
+      properties: {
+        bg: cc.Sprite,
+        acTenfoldBRCattle: {
+          default: null,
+          type: cc.AudioClip
+        },
+        acBRCattle: {
+          default: null,
+          type: cc.AudioClip
+        }
+      },
       onLoad: function onLoad() {
-        this.baseInit(constant.GameId.BRCattle);
+        this.bg.spriteFrame = new cc.SpriteFrame(resMgr.bgTexture);
+        _isTenfold = dataLogic.curGameId == constant.GameId.TenfoldBRCattle;
+        this.bgAudio = _isTenfold ? this.acTenfoldBRCattle : this.acBRCattle;
+        this.baseInit(dataLogic.curGameId);
         if (BRCattleDataLogic.isKickedOut) {
           this.showKickedOut();
           BRCattleDataLogic.setKickedOut(false);
         }
+      },
+      setGameNameSf: function setGameNameSf() {
+        this.gameNameIcon.getComponent(cc.Sprite).spriteFrame = new cc.SpriteFrame(resMgr.gameNameTexture);
+        this.sFGameName = this.gameNameIcon.getComponent(cc.Sprite).spriteFrame;
       },
       showKickedOut: function showKickedOut() {
         var arg = {
@@ -185,7 +203,7 @@ window.__require = function e(t, n, r) {
       },
       preloadRes: function preloadRes() {
         cc.log("\u9884\u52a0\u8f7d\u8d44\u6e90");
-        var list = [ "BRCattle/miniPng/UI/arrow", "BRCattle/miniPng/effect/cm1", "BRCattle/table", "BRCattle/bg" ];
+        var list = [ "BRCattle/miniPng/UI/arrow", "BRCattle/miniPng/effect/cm1" ];
         for (var i = 0; i < list.length; i++) cc.loader.loadRes(list[i], function(err, res) {
           if (err) {
             cc.error("\u52a0\u8f7d\u8d44\u6e90\u9519\u8bef", err);
@@ -203,6 +221,7 @@ window.__require = function e(t, n, r) {
     cc._RF.push(module, "68485/HaaxKMJ7lmi47tzNq", "BRCattle");
     "use strict";
     var clientEvent = kf.require("basic.clientEvent");
+    var _isTenfold = false;
     var trendItemStartX = -95;
     var trendItemSpace = 24;
     var trendItemY = [ 25, 1, -23, -47, -71 ];
@@ -247,7 +266,10 @@ window.__require = function e(t, n, r) {
         txtSelfBetAmount: [ cc.Label ],
         txtSettlementAmount: cc.Label,
         txtCountPlayer: cc.Label,
+        spGameBg: cc.Sprite,
         spHead: cc.Sprite,
+        spTable: cc.Sprite,
+        spTenfoldTable: cc.Sprite,
         sfTrenIcon: [ cc.SpriteFrame ],
         pfTrenItem: cc.Prefab,
         pfRankingItem: cc.Prefab,
@@ -313,6 +335,14 @@ window.__require = function e(t, n, r) {
         audioAlarmClock: {
           default: null,
           type: cc.AudioClip
+        },
+        acTenfoldBRCattle: {
+          default: null,
+          type: cc.AudioClip
+        },
+        acBRCattle: {
+          default: null,
+          type: cc.AudioClip
         }
       },
       registerEvent: function registerEvent() {
@@ -324,9 +354,22 @@ window.__require = function e(t, n, r) {
       },
       onLoad: function onLoad() {
         var _this = this;
+        _isTenfold = dataLogic.curGameId == constant.GameId.TenfoldBRCattle;
+        this.bgAudio = _isTenfold ? this.acTenfoldBRCattle : this.acBRCattle;
+        this.spGameBg.spriteFrame = new cc.SpriteFrame(resMgr.bgTexture);
         isMaintaining = false;
-        this.baseInit(constant.GameId.BRCattle);
+        this.baseInit(dataLogic.curGameId);
         this.registerEvent();
+        var path = _isTenfold ? "tenfoldBRCattle/" : "BRCattle/miniPng/UI/";
+        var dir = "";
+        var _loop = function _loop(i) {
+          dir = 0 == i || 3 == i ? path + "betArea1" : path + "betArea2";
+          resMgr.loadSingleRes(dir, function(sf) {
+            _this.betArea[i].getChildByName("halo").getComponent(cc.Sprite).spriteFrame = sf;
+          }, cc.SpriteFrame);
+        };
+        for (var i = 0; i < 4; i++) _loop(i);
+        _isTenfold ? this.spTenfoldTable.spriteFrame = new cc.SpriteFrame(resMgr.tableTexture) : this.spTable.spriteFrame = new cc.SpriteFrame(resMgr.tableTexture);
         this.card = [];
         for (var i = 0; i < 25; i++) {
           this.card[i] = cc.instantiate(this.pfBackCard);
@@ -389,7 +432,7 @@ window.__require = function e(t, n, r) {
           }
         }
         var pos = this.spHead.node.parent.position;
-        var _loop = function _loop(_i2) {
+        var _loop2 = function _loop2(_i2) {
           chipRandomPos[_i2] = {};
           chipRandomPos[_i2].x = _this2.betArea[_i2].getWorldMatrix(cc.mat4()).m12 - 85 + canvasPosOff.x;
           chipRandomPos[_i2].y = _this2.betArea[_i2].getWorldMatrix(cc.mat4()).m13 - 85 + canvasPosOff.y;
@@ -415,7 +458,7 @@ window.__require = function e(t, n, r) {
               var _arg = {
                 type: constant.ToastType.RequestError,
                 extend: {
-                  hintStr: "\u4e0b\u6ce8\u5931\u8d25\uff0c\u4e0b\u6ce8\u603b\u989d\u4e0d\u80fd\u8d85\u8fc7\u4f59\u989d\u76841/4"
+                  hintStr: "\u4e0b\u6ce8\u5931\u8d25\uff0c\u4e0b\u6ce8\u603b\u989d\u4e0d\u80fd\u8d85\u8fc7\u4f59\u989d\u76841/" + (_isTenfold ? "10" : "4")
                 }
               };
               kf.getObj(constant.PoolId.ToastRequestError, this.toastLayer[4], this.toastRequestErrorPf, _arg);
@@ -449,7 +492,7 @@ window.__require = function e(t, n, r) {
             http.post(reqArg, "betCb", localCbArg);
           }.bind(_this2, _i2, pos));
         };
-        for (var _i2 = 0; _i2 < 4; _i2++) _loop(_i2);
+        for (var _i2 = 0; _i2 < 4; _i2++) _loop2(_i2);
         this.initRanking();
         this.cardType = [];
         var cardType = void 0;
@@ -707,7 +750,7 @@ window.__require = function e(t, n, r) {
           settlementAmount = msg.endData.split(",")[0];
           balance = Number(msg.endData.split(",")[1]);
         } else balance = msg.balance;
-        cutTimesLimitBetNum = balance.divide(4);
+        cutTimesLimitBetNum = _isTenfold ? balance.divide(10) : balance.divide(4);
         BRCattleDataLogic.setSettlementAmount(settlementAmount);
         if (isOpenCard) {
           receivedOpenCardMsg = true;
@@ -827,7 +870,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case BRCattle.Satge.Bet:
-          cutTimesLimitBetNum = dataLogic.userBalance / 4;
+          cutTimesLimitBetNum = _isTenfold ? dataLogic.userBalance / 10 : dataLogic.userBalance / 4;
           stopBetAnimFinished = false;
           this.animStart.node.opacity = 255;
           this.animStart.play();
@@ -1242,7 +1285,8 @@ window.__require = function e(t, n, r) {
         }
       },
       showCardType: function showCardType(key, niuNum) {
-        var cowPic = this.isNiuAtlas.getSpriteFrame(niuNum);
+        var cowPic = null;
+        cowPic = _isTenfold && niuNum > 1 ? this.isNiuAtlas.getSpriteFrame("tenfold" + niuNum) : this.isNiuAtlas.getSpriteFrame(niuNum);
         var cowAnim = this.cardType[key];
         if (0 == niuNum) {
           cowAnim.children[2].active = true;
@@ -1324,7 +1368,7 @@ window.__require = function e(t, n, r) {
 
          case "recordBtn":
           var record = kf.getObj(constant.PoolId.Record, this.toastLayer[0], this.recordPf, "record");
-          record.getComponent("record").recordMainShow(constant.GameId.BRCattle);
+          record.getComponent("record").recordMainShow(dataLogic.curGameId);
           break;
 
          case "Setting":
@@ -1340,7 +1384,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "setRankingView":
@@ -2267,6 +2311,7 @@ window.__require = function e(t, n, r) {
         this.setSatge(curStage);
         dataLogic.setReqRecoverState(false);
         dataLogic.setDeskId(msg.deskId);
+        dataLogic.setMsgId(msg.msgId);
         curStage == LongHuConstant.Satge.Bet || this.simulateOnLinePlayerNum(msg.count);
         LongHuDataLogic.setOtherPlayerInfo();
         this.setBetToggleConfig(msg.betConfig);
@@ -2418,7 +2463,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "setRankingView":
@@ -2436,17 +2481,7 @@ window.__require = function e(t, n, r) {
           this.ranking.runAction(cc.moveTo(.2, endPos));
         }
       },
-      resetOpenCards: function resetOpenCards() {
-        this.twoCards[2].stopAllActions();
-        this.twoCards[3].stopAllActions();
-        for (var i = 0; i < 4; i++) {
-          this.twoCards[i].opacity = i > 1 ? 255 : 0;
-          this.twoCards[i].y = backCardPosY;
-          this.twoCards[i].rotation = 0;
-          this.twoCards[i].scale = 1;
-          this.twoCards[i].getComponent(cc.Sprite).spriteFrame = kf.getSFByImgName(this.cardAtlas, "backCard");
-        }
-      },
+      resetOpenCards: function resetOpenCards() {},
       resetDragonAndTigerEffect: function resetDragonAndTigerEffect() {
         for (var i = 0; i < this.lhAnim.childrenCount; i++) {
           this.lhAnim.children[i].getComponent(cc.Animation).stop();
@@ -3559,7 +3594,7 @@ window.__require = function e(t, n, r) {
             checkEventHandler.target = this.node;
             checkEventHandler.component = "activityCenter";
             checkEventHandler.handler = "toggleActivity";
-            checkEventHandler.customEventData = this.activityData[i].Name;
+            checkEventHandler.customEventData = [ this.activityData[i].Name, this.activityData[i].Type ];
             var toggleComponent = newNode.getComponent(cc.Button);
             newNode.y = i * (5 - newNode.height) - newNode.height / 2;
             newNode.x = -125;
@@ -3629,7 +3664,7 @@ window.__require = function e(t, n, r) {
           2 == this.curActivityData.Type && (this.userBetData[2].string = this.userBetData[1].string);
         }
       },
-      toggleActivity: function toggleActivity(event, activityName) {
+      toggleActivity: function toggleActivity(event, customData) {
         http.abortAllReq();
         audioMgr.playEffect(this.clickAudio);
         this.otherIntroImg.node.active = false;
@@ -3646,7 +3681,7 @@ window.__require = function e(t, n, r) {
         event.target.getChildByName("txt").getComponent(cc.LabelOutline).enabled = true;
         event.target.getChildByName("txt").color = new cc.Color(255, 255, 255);
         event.target.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBgArr[1];
-        for (var _i = 0; _i < this.activityData.length; _i++) if (this.activityData[_i].Name == activityName) {
+        for (var _i = 0; _i < this.activityData.length; _i++) if (this.activityData[_i].Name == customData[0] && this.activityData[_i].Type == customData[1]) {
           this.curActivityData = this.activityData[_i];
           this.checkRenderWhichPanel();
         }
@@ -5434,6 +5469,7 @@ window.__require = function e(t, n, r) {
       if (null != info) {
         var audio = JSON.parse(info);
         cc.audioEngine.setEffectsVolume(audio.effectVolume);
+        cc.audioEngine.setMusicVolume(audio.musicVolume);
         _effectVolume = audio.effectVolume;
         _musicVolume = audio.musicVolume;
         _isOpenEffect = audio.isOpenEffect;
@@ -5475,6 +5511,7 @@ window.__require = function e(t, n, r) {
       if (_isOpenEffect) {
         cc.log("\u64ad\u653e\u97f3\u6548");
         var id = cc.audioEngine.playEffect(audioClip, isLoop);
+        cc.log("id+++", id);
         _effectIdList.push(id);
         return id;
       }
@@ -5516,7 +5553,9 @@ window.__require = function e(t, n, r) {
       var isLoop = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
       cc.log("\u64ad\u653e\u97f3\u4e50", _isOpenMusic, dataLogic.isHide);
       if (_isOpenMusic) {
-        cc.audioEngine.playEffect(_falseAudioClip, false);
+        var id = cc.audioEngine.playEffect(_falseAudioClip, false);
+        cc.log("id+++", id);
+        cc.audioEngine.stopEffect(id);
         cc.audioEngine.playMusic(audioClip, isLoop);
       }
     };
@@ -5530,6 +5569,1423 @@ window.__require = function e(t, n, r) {
     audioMgr.init();
     cc._RF.pop();
   }, {} ],
+  baiJiaLeConstant: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "979636AIWJDh7Vfv2xisxzH", "baiJiaLeConstant");
+    "use strict";
+    window.baiJiaLeConstant = window.baiJiaLeConstant || {};
+    var n = 0;
+    n = 0;
+    baiJiaLeConstant.Satge = {
+      Bet: n++,
+      StopBet: n++,
+      OpenCard: n++,
+      PieAward: n++
+    };
+    baiJiaLeConstant.SatgeTxt = [];
+    baiJiaLeConstant.SatgeTxt[baiJiaLeConstant.Satge.Bet] = "\u8bf7\u4e0b\u6ce8...";
+    baiJiaLeConstant.SatgeTxt[baiJiaLeConstant.Satge.StopBet] = "\u505c\u6b62\u4e0b\u6ce8...";
+    baiJiaLeConstant.SatgeTxt[baiJiaLeConstant.Satge.OpenCard] = "\u5f00\u5956\u4e2d...";
+    baiJiaLeConstant.SatgeTxt[baiJiaLeConstant.Satge.PieAward] = "\u6d3e\u5956\u4e2d...";
+    baiJiaLeConstant.StageBeginTime = [ 0, 15, 17, 25 ];
+    var _action = "DoPlay";
+    baiJiaLeConstant.PostBet = {
+      action: _action,
+      eventName: "bet"
+    };
+    baiJiaLeConstant.PostOnLinePlayerCount = {
+      action: _action,
+      eventName: "getCount"
+    };
+    cc._RF.pop();
+  }, {} ],
+  baiJiaLeDataLogic: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "626e29Wf4pPYqXtAfxAXyvv", "baiJiaLeDataLogic");
+    "use strict";
+    window.baiJiaLeDataLogic = {
+      init: function init() {
+        this.betBtnConfig = [ 1, 2, 3, 4, 5 ];
+        this.resetData();
+        this.continuousNotBetInning = 0;
+        this.isKickedOut = false;
+        this.curSatge = null;
+        this.otherPlayers = [];
+        this.trend = [];
+        this.latelyPlayIds = [];
+        this.curRound = 0;
+      },
+      resetData: function resetData() {
+        this.areaBetNum = [ 0, 0, 0, 0, 0 ];
+        this.areaMyBetNum = [ 0, 0, 0, 0, 0 ];
+        this.cardData = [];
+        this.settlementAmount = 0;
+      },
+      setBetBtnConfig: function setBetBtnConfig(data) {
+        this.betBtnConfig = kf.clone(data);
+      },
+      setCardData: function setCardData(data) {
+        this.cardData = kf.clone(data);
+      },
+      setTrend: function setTrend(data) {
+        this.trend = kf.clone(data);
+      },
+      setSettlementAmount: function setSettlementAmount(num) {
+        this.settlementAmount = num;
+      },
+      getTotalBetNum: function getTotalBetNum() {
+        var total = 0;
+        for (var i = 0; i < this.areaBetNum.length; i++) total += this.areaBetNum[i];
+        return total;
+      },
+      setAreaBetNum: function setAreaBetNum(key, num) {
+        this.areaBetNum[key] = num;
+      },
+      setAreaMyBetNum: function setAreaMyBetNum(key, num) {
+        this.areaMyBetNum[key] = num;
+      },
+      getAreaMyTotalBetNum: function getAreaMyTotalBetNum() {
+        var count = 0;
+        for (var i = 0; i < this.areaMyBetNum.length; i++) count += this.areaMyBetNum[i];
+        return count;
+      },
+      addContinuousNotBetInning: function addContinuousNotBetInning() {
+        this.continuousNotBetInning++;
+      },
+      setContinuousNotBetInning: function setContinuousNotBetInning(num) {
+        this.continuousNotBetInning = num;
+      },
+      setOtherPlayerInfo: function setOtherPlayerInfo(data) {
+        this.otherPlayers = kf.clone(data);
+      },
+      setKickedOut: function setKickedOut(isKickedOut) {
+        this.isKickedOut = isKickedOut;
+      },
+      setCurStage: function setCurStage(stage) {
+        this.curSatge = stage;
+      },
+      getCurStage: function getCurStage(curTime) {
+        var time = Math.floor((curTime - dataLogic.timeOff) / 1e3) % 30;
+        return time < baiJiaLeConstant.StageBeginTime[1] ? baiJiaLeConstant.Satge.Bet : time < baiJiaLeConstant.StageBeginTime[2] ? baiJiaLeConstant.Satge.StopBet : time < baiJiaLeConstant.StageBeginTime[3] ? baiJiaLeConstant.Satge.OpenCard : baiJiaLeConstant.Satge.PieAward;
+      },
+      getDistanceNextStageTime: function getDistanceNextStageTime(curTime, curStage) {
+        var time = Math.floor((curTime - dataLogic.timeOff) / 1e3) % 30;
+        var nextStageBeginTime = baiJiaLeConstant.StageBeginTime[this.getNextStage(curStage)];
+        var distanceNextStageTime = nextStageBeginTime - time;
+        distanceNextStageTime < 0 && (distanceNextStageTime = 30 - time);
+        return distanceNextStageTime;
+      },
+      getNextStage: function getNextStage(curStage) {
+        return (curStage + 1) % 4;
+      },
+      playIdDiffValue: function playIdDiffValue(playId1, playId2) {
+        var v1 = Number(playId1.substr(-4));
+        var v2 = Number(playId2.substr(-4));
+        return v2 - v1;
+      },
+      pushPlayId: function pushPlayId(playId) {
+        this.latelyPlayIds.length > 1 && this.latelyPlayIds.shift();
+        this.latelyPlayIds.push(playId);
+      },
+      getCardValue: function getCardValue(cardKey) {
+        if (0 == cardKey % 13) return 1;
+        return cardKey % 13 + 1;
+      }
+    };
+    baiJiaLeDataLogic.init();
+    cc._RF.pop();
+  }, {} ],
+  baiJiaLeHall: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "9969cv3cwRAiqtkdzzdb7Ns", "baiJiaLeHall");
+    "use strict";
+    cc.Class({
+      extends: require("selectRoomSceneBase"),
+      properties: {},
+      onLoad: function onLoad() {
+        this.baseInit(constant.GameId.BaiJiaLe);
+        if (baiJiaLeDataLogic.isKickedOut) {
+          this.showKickedOut();
+          baiJiaLeDataLogic.setKickedOut(false);
+        }
+      },
+      showKickedOut: function showKickedOut() {
+        var arg = {
+          type: constant.ToastType.Hint,
+          extend: {
+            contentTxt: "\u60a8\u5df2\u8fde\u7eed5\u5c40\u672a\u4e0b\u6ce8\uff0c\u88ab\u8bf7\u79bb\u4e86\u724c\u684c",
+            btnEventName: [ null, "toastClose" ],
+            btnTxt: [ null, "\u786e\u5b9a" ]
+          }
+        };
+        kf.getObj(constant.PoolId.ToastHint, this.toastLayer[3], this.pfToastHint, arg);
+      },
+      preloadRes: function preloadRes() {
+        cc.log("\u9884\u52a0\u8f7d\u8d44\u6e90");
+        var list = [ "BaiJiaLe/UI/01", "BaiJiaLe/table", "BaiJiaLe/bg" ];
+        for (var i = 0; i < list.length; i++) cc.loader.loadRes(list[i], function(err, res) {
+          if (err) {
+            cc.error("\u52a0\u8f7d\u8d44\u6e90\u9519\u8bef", err);
+            return;
+          }
+        });
+      }
+    });
+    cc._RF.pop();
+  }, {
+    selectRoomSceneBase: "selectRoomSceneBase"
+  } ],
+  baiJiaLe: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "bfcea//G9ROT5xv3EtDwrLI", "baiJiaLe");
+    "use strict";
+    var _cc$Class;
+    function _defineProperty(obj, key, value) {
+      key in obj ? Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      }) : obj[key] = value;
+      return obj;
+    }
+    var clientEvent = kf.require("basic.clientEvent");
+    var trendItemStartX = -111;
+    var trendItemSpace = 31.75;
+    var trendItemY = [ 28, -4, -38 ];
+    var rankingItemStartY = -38;
+    var rankingItemSpace = -73;
+    var playerWorldPos = cc.v2();
+    var chipMoveSpeed = 8e-4;
+    var bankerWorldPos = cc.v2();
+    var chipRandomPos = [];
+    var stopBetAnimFinished = false;
+    var canvasPosOff = {};
+    var otherPlayerYMin = 0;
+    var otherPlayerYMax = 0;
+    var gameHidePlayId = "";
+    var gameHideStage = "";
+    var curPlayId = "";
+    var cutTimesLimitBetNum = 0;
+    var isMaintaining = false;
+    var curTimesHaveBet = false;
+    var maxTableChipNum = 50;
+    var chipTxtColor = [ new cc.Color(75, 179, 139), new cc.Color(73, 176, 159), new cc.Color(73, 147, 183), new cc.Color(80, 120, 185), new cc.Color(164, 111, 224) ];
+    var receivedOpenCardMsg = false;
+    cc.Class((_cc$Class = {
+      extends: require("gameSceneBase"),
+      properties: {
+        reciprocal: cc.Node,
+        roomNum: cc.Node,
+        trendBg: cc.Node,
+        ranking: cc.Node,
+        rankingContent: cc.Node,
+        rankingArrow: cc.Node,
+        betArea: [ cc.Node ],
+        chipLayer: cc.Node,
+        banker: cc.Node,
+        txtNickname: cc.Label,
+        txtBalance: cc.Label,
+        txtStage: cc.Label,
+        txtTotalBetAmount: [ cc.Label ],
+        txtSelfBetAmount: [ cc.Label ],
+        txtSettlementAmount: cc.Label,
+        txtCountPlayer: cc.Label,
+        spHead: cc.Sprite,
+        sfTrenIcon: [ cc.SpriteFrame ],
+        pfTrenItem: cc.Prefab,
+        pfRankingItem: cc.Prefab,
+        pfChip: cc.Prefab,
+        winChipNumFont: cc.Font,
+        loseChipNumFont: cc.Font,
+        cardAtlas: cc.SpriteAtlas,
+        choiceBet: [ cc.Node ],
+        animStart: cc.Animation,
+        animStop: cc.Animation,
+        animHeadWin: cc.Animation,
+        cardsArr: [ cc.Node ],
+        cardPointArr: [ cc.Node ],
+        pointPicArr: [ cc.SpriteFrame ],
+        finalAnim: cc.Animation,
+        finalResultSprite: [ cc.SpriteFrame ],
+        heAnim: cc.Animation,
+        clickAudio: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioWin: {
+          default: null,
+          type: cc.AudioClip
+        },
+        aduioLose: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioStartBet: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioStopBet: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioChip: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioClearingChip: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioSomeChip: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioAlarmClock: {
+          default: null,
+          type: cc.AudioClip
+        },
+        malePointAudio: {
+          default: [],
+          type: cc.AudioClip
+        },
+        femalePointAudio: {
+          default: [],
+          type: cc.AudioClip
+        },
+        xianDealer_Audio: {
+          default: [],
+          type: cc.AudioClip
+        },
+        zhuangDealer_Audio: {
+          default: [],
+          type: cc.AudioClip
+        },
+        xian_bupai_Audio: {
+          default: [],
+          type: cc.AudioClip
+        },
+        zhuang_bupai_Audio: {
+          default: [],
+          type: cc.AudioClip
+        },
+        xianWin_Audio: {
+          default: [],
+          type: cc.AudioClip
+        },
+        zhuangWin_Audio: {
+          default: [],
+          type: cc.AudioClip
+        },
+        heWin_Audio: {
+          default: [],
+          type: cc.AudioClip
+        },
+        dealCardAudio: {
+          default: null,
+          type: cc.AudioClip
+        },
+        turnCardAudio: {
+          default: null,
+          type: cc.AudioClip
+        }
+      },
+      registerEvent: function registerEvent() {
+        this.registerHandler = [ [ "gameShow", this.gameShow.bind(this) ], [ "gameHide", this.gameHide.bind(this) ], [ "onOpen", this.onOpen.bind(this) ], [ "onBet", this.onBet.bind(this) ], [ "betCb", this.betCb.bind(this) ], [ "gameRecoverCb", this.gameRecoverCb.bind(this) ], [ "updateBalanceCb", this.updateBalanceCb.bind(this) ], [ "syncServerTimeCb", this.syncServerTimeCb.bind(this) ], [ "exitRoom", this.exitRoom.bind(this) ], [ "reqOnLinePlayerCountCb", this.reqOnLinePlayerCountCb.bind(this) ] ];
+        for (var i = 0; i < this.registerHandler.length; i++) {
+          var handler = this.registerHandler[i];
+          clientEvent.registerEvent(handler[0], handler[1]);
+        }
+      },
+      onLoad: function onLoad() {
+        var _this2 = this;
+        this.baseInit(constant.GameId.BaiJiaLe);
+        this.registerEvent();
+        isMaintaining = false;
+        this.setSelfUI();
+        dataLogic.setReqRecoverState(true);
+        http.post(constant.PostRecover, "gameRecoverCb", true);
+        var arg = {
+          type: constant.ToastType.Loading
+        };
+        this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+        this.ranking.x = -cc.winSize.width / 2 - 234;
+        this.isShowRanking = false;
+        this.curChoiceBetKey = 0;
+        kf.createPool(constant.PoolId.Chip, 500, this.pfChip);
+        this.chipNode = [];
+        for (var i = 0; i < this.betArea.length; i++) this.chipNode[i] = [];
+        this.leisureChip = [];
+        this.node.on(cc.Node.EventType.TOUCH_END, function() {
+          _this2.packUpRankingView();
+        });
+        this.posArr = [ cc.v2(-52, 0), cc.v2(52, 0), cc.v2(-133, 0), cc.v2(133, 0), cc.v2(-230, -16), cc.v2(232, -16) ];
+      },
+      start: function start() {
+        var _this3 = this;
+        otherPlayerYMin = cc.winSize.height / 2 - 150;
+        otherPlayerYMax = cc.winSize.height / 2 + 150;
+        canvasPosOff.x = cc.winSize.width / 2 - this.node.x;
+        canvasPosOff.y = cc.winSize.height / 2 - this.node.y;
+        playerWorldPos.x = this.spHead.node.getWorldMatrix(cc.mat4()).m12 + canvasPosOff.x;
+        playerWorldPos.y = this.spHead.node.getWorldMatrix(cc.mat4()).m13;
+        bankerWorldPos.x = this.banker.getWorldMatrix(cc.mat4()).m12 + canvasPosOff.x;
+        bankerWorldPos.y = this.banker.getWorldMatrix(cc.mat4()).m13 + canvasPosOff.y;
+        this.getWorldPos(this.chipLayer);
+        this.trenItem = [];
+        for (var i = 0; i < 3; i++) for (var j = 0; j < 8; j++) {
+          var item = cc.instantiate(this.pfTrenItem);
+          item.parent = this.trendBg;
+          item.x = trendItemSpace * j + trendItemStartX;
+          item.y = trendItemY[i];
+          item.opacity = 0;
+          this.trenItem.push(item);
+        }
+        var pos = this.spHead.node.parent.position;
+        var _loop = function _loop(_i) {
+          chipRandomPos[_i] = {};
+          chipRandomPos[_i].x = _this3.betArea[_i].getWorldMatrix(cc.mat4()).m12 - 85 + canvasPosOff.x;
+          chipRandomPos[_i].y = _this3.betArea[_i].getWorldMatrix(cc.mat4()).m13 - 85 + canvasPosOff.y;
+          var betNum = 0;
+          var totalBet = 0;
+          var areaBet = 0;
+          _this3.betArea[_i].on(cc.Node.EventType.TOUCH_END, function(i, pos, event) {
+            this.packUpRankingView();
+            betNum = baiJiaLeDataLogic.betBtnConfig[this.curChoiceBetKey];
+            totalBet = baiJiaLeDataLogic.getAreaMyTotalBetNum().add(betNum);
+            areaBet = baiJiaLeDataLogic.areaMyBetNum[i].add(betNum);
+            if (baiJiaLeDataLogic.curSatge != baiJiaLeConstant.Satge.Bet) {
+              var arg = {
+                type: constant.ToastType.RequestError,
+                extend: {
+                  hintStr: "\u975e\u4e0b\u6ce8\u72b6\u6001\uff0c\u8bf7\u7a0d\u7b49~"
+                }
+              };
+              kf.getObj(constant.PoolId.ToastRequestError, this.toastLayer[4], this.toastRequestErrorPf, arg);
+              return;
+            }
+            if (areaBet > 100 * baiJiaLeDataLogic.betBtnConfig[0]) {
+              var _arg = {
+                type: constant.ToastType.RequestError,
+                extend: {
+                  hintStr: "\u4e0b\u6ce8\u5931\u8d25\uff0c\u8be5\u4e0b\u6ce8\u70b9\u9650\u7ea2" + baiJiaLeDataLogic.betBtnConfig[0] + "~" + 100 * baiJiaLeDataLogic.betBtnConfig[0]
+                }
+              };
+              kf.getObj(constant.PoolId.ToastRequestError, this.toastLayer[4], this.toastRequestErrorPf, _arg);
+              return;
+            }
+            if (0 == i && baiJiaLeDataLogic.areaMyBetNum[1] || 1 == i && baiJiaLeDataLogic.areaMyBetNum[0]) {
+              this.showLayerTip("\u60a8\u4e0d\u80fd\u540c\u65f6\u5728\u5e84\u95f2\u4f4d\u7f6e\u4e0b\u6ce8\u54e6");
+              return;
+            }
+            if (betNum > dataLogic.userBalance) {
+              this.showLayerTip("\u60a8\u7684\u4f59\u989d\u4e0d\u8db3\uff0c\u65e0\u6cd5\u4e0b\u6ce8");
+              return;
+            }
+            audioMgr.playEffect(this.audioChip);
+            this.spHead.node.parent.stopAllActions();
+            this.spHead.node.parent.runAction(cc.jumpTo(.05, pos, 10, 1));
+            this.setPlayerBalance(dataLogic.userBalance.minus(betNum));
+            this.bet(playerWorldPos, this.randomChipPos(i), betNum, i, true);
+            var reqArg = {
+              action: "DoPlay",
+              eventName: "bet",
+              betArea: i,
+              betNum: betNum
+            };
+            var localCbArg = {
+              betArea: i,
+              betNum: betNum
+            };
+            http.post(reqArg, "betCb", localCbArg);
+          }.bind(_this3, _i, pos));
+        };
+        for (var _i = 0; _i < this.betArea.length; _i++) _loop(_i);
+        this.initRanking();
+      },
+      choiceBetNumEvent: function choiceBetNumEvent(event, key) {
+        "" != event && audioMgr.playEffect(this.clickAudio);
+        this.packUpRankingView();
+        key = Number(key);
+        this.curChoiceBetKey = key;
+      },
+      bet: function bet(startPos, endPos, chipNum, betBlock, isSelf) {
+        var txt = void 0;
+        if (isSelf) {
+          txt = this.betArea[betBlock].getChildByName("txtSelfBetNum").getComponent(cc.Label);
+          txt.string = Number(txt.string).add(chipNum);
+          baiJiaLeDataLogic.setAreaMyBetNum(betBlock, Number(baiJiaLeDataLogic.areaMyBetNum[betBlock]).add(chipNum));
+        }
+        baiJiaLeDataLogic.setAreaBetNum(betBlock, Number(baiJiaLeDataLogic.areaBetNum[betBlock]).add(chipNum));
+        txt = this.betArea[betBlock].getChildByName("txtTotalBetNum").getComponent(cc.Label);
+        txt.string = Number(txt.string).add(chipNum);
+        this.chipMoveToTable(startPos, endPos, chipNum, betBlock);
+      },
+      chipMoveToTable: function chipMoveToTable(startPos, endPos, chipNum, betBlock) {
+        var chip = this.genChip(chipNum, startPos);
+        this.chipAction(startPos, endPos, chip, false, betBlock, null, true);
+      },
+      getWorldPos: function getWorldPos(node) {
+        var pos = node.position;
+        do {
+          node = node.parent;
+          pos.x += node.x;
+          pos.y += node.y;
+        } while ("Canvas" != node.name);
+        return pos;
+      },
+      gameRecoverCb: function gameRecoverCb(msg, isInit) {
+        kf.killObj(this.recoverLoad);
+        if (constant.HttpCode.Succeed != msg.Code) {
+          this.doneGameRecover = true;
+          this.killAllToast();
+          dataLogic.gameEnd();
+          isMaintaining = true;
+          constant.HttpCode.error == msg.Code && this.showMaintainingToast(msg.StrCode);
+          return;
+        }
+        var curTime = new Date().getTime();
+        var curStage = baiJiaLeDataLogic.getCurStage(curTime);
+        cc.log("\u65ad\u7ebf\u91cd\u8fde\u5904\u4e8e\u4ec0\u4e48\u9636\u6bb5", curStage);
+        var reReq = false;
+        1 != msg.Data.state || curStage != baiJiaLeConstant.Satge.StopBet && curStage != baiJiaLeConstant.Satge.OpenCard && curStage != baiJiaLeConstant.Satge.PieAward ? 2 == msg.Data.state && curStage == baiJiaLeConstant.Satge.Bet && (reReq = true) : reReq = true;
+        if (reReq) {
+          cc.log("\u91cd\u65b0\u8bf7\u6c42\u6570\u636e\u6062\u590dmsg.state", msg.Data.state, "\u670d\u52a1\u5668\u65f6\u95f4", (curTime - dataLogic.timeOff) / 1e3, "curStage", curStage);
+          dataLogic.setReqRecoverState(true);
+          http.post(constant.PostRecover, "gameRecoverCb", isInit);
+          var arg = {
+            type: constant.ToastType.Loading
+          };
+          this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+          return;
+        }
+        var isOpenCard = true;
+        1 != msg.Data.state && curStage != baiJiaLeConstant.Satge.Bet || (isOpenCard = false);
+        this.onGameRecover(msg.Data, isInit, curTime, curStage, isOpenCard);
+      },
+      betUpcomingStopHint: function betUpcomingStopHint() {
+        var _this4 = this;
+        this.alarmClockAudioId = audioMgr.playEffect(this.audioAlarmClock);
+        this.reciprocal.rotation = -10;
+        var seq = cc.sequence(cc.rotateTo(.05, 10), cc.rotateTo(.05, -10));
+        var repeat = cc.repeat(seq, 2.8 / .1);
+        this.reciprocal.runAction(cc.sequence(repeat, cc.callFunc(function() {
+          _this4.reciprocal.rotation = 0;
+        })));
+      },
+      countDown: function countDown(stage, time, overCb) {
+        var timeTxt = this.reciprocal.getChildByName("Label").getComponent(cc.Label);
+        timeTxt.string = time;
+        audioMgr.stopEffect(this.alarmClockAudioId);
+        this.reciprocal.stopAllActions();
+        this.reciprocal.rotation = 0;
+        stage == baiJiaLeConstant.Satge.Bet && time < 4 && this.betUpcomingStopHint();
+        this.callback = function() {
+          stage == baiJiaLeConstant.Satge.Bet && 4 == time && this.betUpcomingStopHint();
+          time--;
+          timeTxt.string = time;
+          if (time <= 0) {
+            audioMgr.stopEffect(this.alarmClockAudioId);
+            this.reciprocal.stopAllActions();
+            this.reciprocal.rotation = 0;
+            time = 0;
+            this.unschedule(this.callback);
+            this.intoNewStage(baiJiaLeDataLogic.getNextStage(stage));
+            overCb && overCb();
+          }
+        };
+        this.schedule(this.callback, 1);
+      },
+      showNotBetWarning: function showNotBetWarning() {
+        var arg = {
+          type: constant.ToastType.Hint,
+          extend: {
+            contentTxt: "\u60a8\u5df2\u7ecf3\u5c40\u6ca1\u6709\u8fdb\u884c\u4e0b\u6ce8\uff0c\u8d85\u8fc75\u5c40\u5c06\u88ab\u8bf7\u51fa\u623f\u95f4",
+            btnEventName: [ null, "toastClose" ],
+            btnTxt: [ null, "\u786e\u5b9a" ]
+          }
+        };
+        kf.getObj(constant.PoolId.ToastHint, this.toastLayer[3], this.pfToastHint, arg);
+      },
+      setCardIndex: function setCardIndex(index) {
+        var cardIndex;
+        0 == index ? cardIndex = baiJiaLeDataLogic.cardData[0][0] : 1 == index ? cardIndex = baiJiaLeDataLogic.cardData[1][0] : 2 == index ? cardIndex = baiJiaLeDataLogic.cardData[0][1] : 3 == index ? cardIndex = baiJiaLeDataLogic.cardData[1][1] : 4 == index ? cardIndex = baiJiaLeDataLogic.cardData[0][2] : 5 == index && (cardIndex = baiJiaLeDataLogic.cardData[1][2]);
+        return cardIndex;
+      },
+      cardRunAction: function cardRunAction(index) {
+        var _this5 = this;
+        this.cardsArr[index].runAction(cc.sequence(cc.callFunc(function() {
+          _this5.cardsArr[index].opacity = 255;
+          audioMgr.playEffect(_this5.dealCardAudio);
+        }), cc.spawn(cc.scaleTo(.2, 4, 4), cc.moveTo(.2, this.posArr[index])), cc.delayTime(.2), cc.callFunc(function() {
+          if (3 == index) _this5.flopCard(0); else {
+            index++;
+            _this5.cardRunAction(index);
+          }
+        })));
+      },
+      deal_and_flopCard: function deal_and_flopCard(index) {
+        var _this6 = this;
+        var role = -1 != [ 0, 2, 4 ].indexOf(index) ? "xian" : "zhuang";
+        cc.log(index, "dealllllllllll");
+        this.cardsArr[index].runAction(cc.sequence(cc.callFunc(function() {
+          _this6.cardsArr[index].opacity = 255;
+          var sex = dataLogic.userSex - 1;
+          4 == index || 5 == index ? audioMgr.playEffect("xian" == role ? _this6.xian_bupai_Audio[sex] : _this6.zhuang_bupai_Audio[sex]) : audioMgr.playEffect(_this6.dealCardAudio);
+        }), cc.spawn(cc.scaleTo(.15, 4, 4), cc.moveTo(.15, this.posArr[index])), cc.delayTime(.3), cc.scaleTo(.2, 0, 4), cc.callFunc(function() {
+          var cardIndex = _this6.setCardIndex(index);
+          _this6.cardsArr[index].getComponent(cc.Sprite).spriteFrame = kf.getSFByImgName(_this6.cardAtlas, cardIndex);
+        }, this), cc.scaleTo(.2, 4, 4), cc.callFunc(function() {
+          var openTimes = _this6.getOpenTimes();
+          if (index >= openTimes - 1) _this6.showPoint(); else if (index < openTimes - 1) {
+            index++;
+            _this6.deal_and_flopCard(index);
+          }
+        })));
+      },
+      flopCard: function flopCard(index) {
+        var _this7 = this;
+        var flopCardIndex = [ 0, 2, 1, 3 ][index];
+        this.cardsArr[flopCardIndex].runAction(cc.sequence(cc.scaleTo(.2, 0, 4), cc.callFunc(function() {
+          var cardIndex = _this7.setCardIndex(flopCardIndex);
+          _this7.cardsArr[flopCardIndex].getComponent(cc.Sprite).spriteFrame = kf.getSFByImgName(_this7.cardAtlas, cardIndex);
+          audioMgr.playEffect(_this7.turnCardAudio);
+        }, this), cc.scaleTo(.2, 4, 4), cc.delayTime(.2), cc.callFunc(function() {
+          if (3 != index) {
+            cc.log(index, "\u7ffb\u76d8");
+            index++;
+            _this7.flopCard(index);
+          } else {
+            var openTimes = _this7.getOpenTimes();
+            cc.log(openTimes, "\u8865\u724c");
+            if (4 == openTimes) _this7.showPoint(); else if (5 == openTimes) {
+              var xian_or_zhuang_bupai = -1 != baiJiaLeDataLogic.cardData[0][2] ? "xian" : "zhuang";
+              _this7.deal_and_flopCard("xian" == xian_or_zhuang_bupai ? 4 : 5);
+            } else _this7.deal_and_flopCard(4);
+          }
+        })));
+      },
+      showPoint: function showPoint() {
+        var _this8 = this;
+        var xianPoint = this.sumCardValue(baiJiaLeDataLogic.cardData[0]);
+        var zhuangPoint = this.sumCardValue(baiJiaLeDataLogic.cardData[1]);
+        this.cardPointArr[0].getChildByName("point").getComponent(cc.Sprite).spriteFrame = this.pointPicArr[xianPoint];
+        this.cardPointArr[1].getChildByName("point").getComponent(cc.Sprite).spriteFrame = this.pointPicArr[zhuangPoint];
+        this.cardPointArr[0].opacity = 255;
+        this.cardPointArr[1].opacity = 255;
+        var sex = dataLogic.userSex - 1;
+        this.node.runAction(cc.sequence(cc.delayTime(.2), cc.callFunc(function() {
+          audioMgr.playEffect(_this8.xianDealer_Audio[sex]);
+        }), cc.delayTime(.5), cc.callFunc(function() {
+          audioMgr.playEffect(0 == sex ? _this8.malePointAudio[xianPoint] : _this8.femalePointAudio[xianPoint]);
+        }), cc.delayTime(1), cc.callFunc(function() {
+          audioMgr.playEffect(_this8.zhuangDealer_Audio[sex]);
+        }), cc.delayTime(.5), cc.callFunc(function() {
+          audioMgr.playEffect(0 == sex ? _this8.malePointAudio[zhuangPoint] : _this8.femalePointAudio[zhuangPoint]);
+        }), cc.delayTime(1), cc.callFunc(function() {
+          var lastestResult = baiJiaLeDataLogic.trend[baiJiaLeDataLogic.trend.length - 1];
+          var endKey = [ 0, 1, 3 ][lastestResult[0]];
+          var sex = dataLogic.userSex - 1;
+          if (0 == endKey) {
+            audioMgr.playEffect(_this8.xianWin_Audio[sex]);
+            _this8.finalAnim.node.getChildByName("xY_0000s_0000").getComponent(cc.Sprite).spriteFrame = _this8.finalResultSprite[0];
+            _this8.finalAnim.node.x = 0;
+            _this8.finalAnim.play();
+          } else if (1 == endKey) {
+            audioMgr.playEffect(_this8.zhuangWin_Audio[sex]);
+            _this8.finalAnim.node.getChildByName("xY_0000s_0000").getComponent(cc.Sprite).spriteFrame = _this8.finalResultSprite[1];
+            _this8.finalAnim.node.x = 0;
+            _this8.finalAnim.play();
+          } else {
+            audioMgr.playEffect(_this8.heWin_Audio[sex]);
+            _this8.heAnim.node.x = 0;
+            _this8.heAnim.play();
+          }
+        })));
+      },
+      sumCardValue: function sumCardValue(cardsArr) {
+        var sum = 0;
+        for (var i = 0; i < cardsArr.length; i++) {
+          var cardValue = dataLogic.getCardValue(cardsArr[i]);
+          cardValue = cardValue >= 10 ? 14 == cardValue ? 1 : 0 : cardValue;
+          -1 != cardsArr[i] && (sum += cardValue);
+        }
+        return sum % 10;
+      },
+      getOpenTimes: function getOpenTimes() {
+        var openTimes;
+        openTimes = -1 == baiJiaLeDataLogic.cardData[0][2] && -1 == baiJiaLeDataLogic.cardData[1][2] ? 4 : -1 == baiJiaLeDataLogic.cardData[0][2] || -1 == baiJiaLeDataLogic.cardData[1][2] ? 5 : 6;
+        return openTimes;
+      },
+      openCardStage: function openCardStage(timeRemaining) {
+        var openTime;
+        openTime = this.getOpenTimes();
+        if (!timeRemaining || timeRemaining > openTime) this.cardRunAction(0); else if (timeRemaining > 3) {
+          var pastTime = openTime - timeRemaining;
+          cc.log(pastTime, "555555555555555555555");
+          for (var i = 0; i < pastTime; i++) {
+            cc.log(i);
+            this.cardsArr[i].opacity = 255;
+            this.cardsArr[i].position = this.posArr[i];
+            this.cardsArr[i].scaleX = 4;
+            this.cardsArr[i].scaleY = 4;
+            var cardIndex = this.setCardIndex(i);
+            this.cardsArr[i].getComponent(cc.Sprite).spriteFrame = kf.getSFByImgName(this.cardAtlas, cardIndex);
+          }
+          this.cardRunAction(pastTime);
+        } else {
+          var index = 0;
+          for (var _i2 = 0; _i2 < 2; _i2++) for (var j = 0; j < 3; j++) {
+            var a = this.setCardIndex(index);
+            if (-1 != a) {
+              this.cardsArr[index].opacity = 255;
+              this.cardsArr[index].position = this.posArr[index];
+              this.cardsArr[index].scaleX = 4;
+              this.cardsArr[index].scaleY = 4;
+              var cardIndex = this.setCardIndex(index);
+              this.cardsArr[index].getComponent(cc.Sprite).spriteFrame = kf.getSFByImgName(this.cardAtlas, cardIndex);
+            }
+            index++;
+          }
+          var xianPoint = this.sumCardValue(baiJiaLeDataLogic.cardData[0]);
+          var zhuangPoint = this.sumCardValue(baiJiaLeDataLogic.cardData[1]);
+          this.cardPointArr[0].getChildByName("point").getComponent(cc.Sprite).spriteFrame = this.pointPicArr[xianPoint];
+          this.cardPointArr[1].getChildByName("point").getComponent(cc.Sprite).spriteFrame = this.pointPicArr[zhuangPoint];
+          this.cardPointArr[0].opacity = 255;
+          this.cardPointArr[1].opacity = 255;
+        }
+      },
+      intoNewStage: function intoNewStage(stage) {
+        var curTime = new Date().getTime();
+        var timeRemaining = baiJiaLeDataLogic.getDistanceNextStageTime(curTime, stage);
+        this.countDown(stage, timeRemaining);
+        cc.log("--intoNewStage ", baiJiaLeConstant.SatgeTxt[stage], timeRemaining);
+        this.animHeadWin.stop();
+        this.animHeadWin.node.opacity = 0;
+        switch (stage) {
+         case baiJiaLeConstant.Satge.Bet:
+          curTimesHaveBet = false;
+          baiJiaLeDataLogic.resetData();
+          receivedOpenCardMsg = false;
+          this.txtSettlementAmount.node.opacity = 0;
+          3 == baiJiaLeDataLogic.continuousNotBetInning && this.showNotBetWarning();
+          this.setPlayId(dataLogic.playId);
+          stopBetAnimFinished = false;
+          this.resetOpenCards();
+          this.cleanBetAmount();
+          this.killAllChip();
+          baiJiaLeDataLogic.curRound = Number(baiJiaLeDataLogic.curRound) + 1;
+          for (var i = 0; i < this.betArea.length; i++) this.betArea[i].getChildByName("halo").opacity = 0;
+          cutTimesLimitBetNum = dataLogic.userBalance / 4;
+          stopBetAnimFinished = false;
+          this.animStart.node.opacity = 255;
+          this.animStart.play();
+          this.finalAnim.node.x = -1e4;
+          this.finalAnim.stop();
+          this.heAnim.node.x = -1e4;
+          this.heAnim.stop();
+          audioMgr.playEffect(this.audioStartBet);
+          break;
+
+         case baiJiaLeConstant.Satge.StopBet:
+          audioMgr.playEffect(this.audioStopBet);
+          this.resetOpenCards();
+          stopBetAnimFinished = false;
+          this.animStop.node.opacity = 255;
+          this.animStop.on("finished", this.openCard, this);
+          this.animStop.play();
+          break;
+
+         case baiJiaLeConstant.Satge.OpenCard:
+          cc.log("\u5f00\u724c\u5566\uff01\uff01\uff01\uff01\uff01\uff01\uff01\uff01\uff01\uff01\uff01\uff01\uff01");
+          break;
+
+         case baiJiaLeConstant.Satge.PieAward:
+          cc.log("\u6d3e\u5956\u4e2d\u5566!!!!!!!!");
+          this.clearing();
+          this.setPlayerBalance(dataLogic.userBalance);
+          this.updateTrendUI(baiJiaLeDataLogic.trend, true);
+          if (baiJiaLeDataLogic.continuousNotBetInning > 4) {
+            baiJiaLeDataLogic.setKickedOut(true);
+            this.exitRoom();
+          } else if (isMaintaining) {
+            this.unscheduleAllCallbacks();
+            this.showMaintainingToast();
+          }
+        }
+        this.setSatge(stage);
+      },
+      cleanBetAmount: function cleanBetAmount() {
+        for (var i = 0; i < this.betArea.length; i++) {
+          this.setBetAmount(i, true, 0);
+          this.setBetAmount(i, false, 0);
+        }
+      },
+      clearing: function clearing() {
+        var _this9 = this;
+        var selfWin = [], allPlayerWin = [];
+        var areaMyBetNum = kf.clone(baiJiaLeDataLogic.areaMyBetNum);
+        var lastestResult = baiJiaLeDataLogic.trend[baiJiaLeDataLogic.trend.length - 1];
+        var endKey = [ 0, 1, 3 ][lastestResult[0]];
+        var xianIsPair = lastestResult[1];
+        var zhuangIsPair = lastestResult[2];
+        var openResult = [ endKey ];
+        zhuangIsPair && openResult.push(4);
+        xianIsPair && openResult.push(2);
+        for (var i = 0; i < this.betArea.length; i++) if (i == endKey && areaMyBetNum[endKey] || zhuangIsPair && areaMyBetNum[4] || xianIsPair && areaMyBetNum[2]) {
+          selfWin[i] = areaMyBetNum[i];
+          selfWin[i] = null == selfWin[i] ? 0 : selfWin[i];
+          allPlayerWin[i] = baiJiaLeDataLogic.areaBetNum[i];
+        } else selfWin[i] = 0;
+        var actionTime = .5, seq = void 0, delayTime = 0, chip = void 0;
+        for (var _i3 = 0; _i3 < this.betArea.length; _i3++) if (-1 == openResult.indexOf(_i3)) {
+          while (this.chipNode[_i3].length > 0) {
+            chip = this.chipNode[_i3].pop();
+            seq = cc.sequence(cc.moveTo(actionTime, bankerWorldPos).easing(cc.easeInOut(3)), cc.callFunc(function(chip) {
+              this.recycleChip(chip);
+            }.bind(this, chip)));
+            chip.stopAllActions();
+            chip.runAction(seq);
+          }
+          delayTime = actionTime;
+          audioMgr.playEffect(this.audioClearingChip);
+        }
+        this.scheduleOnce(function() {
+          for (var _i4 = 0; _i4 < this.betArea.length; _i4++) if (-1 != openResult.indexOf(_i4)) {
+            this.castSomeChipToTable(baiJiaLeDataLogic.areaBetNum[_i4], _i4, bankerWorldPos, 20, true);
+            audioMgr.playEffect(this.audioSomeChip);
+          }
+        }.bind(this), delayTime);
+        this.scheduleOnce(this.showSettlementAmount.bind(this), delayTime + .5);
+        delayTime += actionTime;
+        this.scheduleOnce(this.award.bind(this, selfWin, openResult), delayTime + .1);
+        var _loop2 = function _loop2(_i5) {
+          -1 != openResult.indexOf(_i5) && _this9.betArea[_i5].getChildByName("halo").runAction(cc.sequence(cc.blink(1, 3), cc.callFunc(function() {
+            _this9.betArea[_i5].getChildByName("halo").opacity = 255;
+          })));
+        };
+        for (var _i5 = 0; _i5 < this.betArea.length; _i5++) _loop2(_i5);
+      },
+      chipMoveToPlayer: function chipMoveToPlayer(startPos, endPos, chip) {
+        this.chipAction(startPos, endPos, chip, true);
+      },
+      award: function award(selfWin, openResult) {
+        var allPlayerWin = baiJiaLeDataLogic.areaBetNum;
+        var otherPlayerWin = 0, chip = void 0;
+        for (var i = 0; i < this.betArea.length; i++) {
+          var count = 0;
+          if (selfWin[i] > 0) {
+            count = Math.ceil(selfWin[i] / allPlayerWin[i] * this.chipNode[i].length);
+            count = count < 3 ? 3 : count;
+            count = count > this.chipNode[i].length ? this.chipNode[i].length : count;
+            var j = 0;
+            while (j < count) {
+              chip = this.chipNode[i].pop();
+              this.chipMoveToPlayer(chip.position, playerWorldPos, chip);
+              j++;
+            }
+          }
+          otherPlayerWin = allPlayerWin[i] - selfWin[i];
+          if (otherPlayerWin > 0) {
+            while (this.chipNode[i].length > 0) {
+              chip = this.chipNode[i].pop();
+              this.chipMoveToPlayer(chip.position, this.randomOtherPos(), chip);
+            }
+            audioMgr.playEffect(this.audioClearingChip);
+          }
+        }
+        if (curTimesHaveBet) if (baiJiaLeDataLogic.settlementAmount < 0) audioMgr.playEffect(this.aduioLose); else {
+          audioMgr.playEffect(this.audioClearingChip);
+          audioMgr.playEffect(this.audioWin);
+          this.animHeadWin.node.opacity = 255;
+          this.animHeadWin.play();
+        }
+      },
+      showSettlementAmount: function showSettlementAmount() {
+        var num = baiJiaLeDataLogic.settlementAmount;
+        if (!curTimesHaveBet) return;
+        0 === num && cc.error("\u7ed3\u7b97\u91d1\u989d\u9519\u8bef");
+        if (num < 0) {
+          this.txtSettlementAmount.font = this.loseChipNumFont;
+          this.txtSettlementAmount.string = num;
+        } else {
+          this.txtSettlementAmount.string = "+" + num;
+          this.txtSettlementAmount.font = this.winChipNumFont;
+        }
+        this.txtSettlementAmount.node.y = 0;
+        this.txtSettlementAmount.node.opacity = 255;
+        this.txtSettlementAmount.node.stopAllActions();
+        this.txtSettlementAmount.node.runAction(cc.moveBy(.2, 0, 70));
+      },
+      openCard: function openCard() {
+        cc.log("\u51c6\u5907\u6267\u884c\u5f00\u5956\u52a8\u753b,\u662f\u5426\u6536\u5230\u672c\u5c40\u7684\u5f00\u5956\u6d88\u606f", receivedOpenCardMsg);
+        stopBetAnimFinished = true;
+        if (receivedOpenCardMsg) this.openAllCardAction(baiJiaLeDataLogic.cardData); else {
+          this.unscheduleAllCallbacks();
+          dataLogic.setReqRecoverState(true);
+          http.post(constant.PostRecover, "gameRecoverCb", true);
+          var arg = {
+            type: constant.ToastType.Loading
+          };
+          this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+        }
+      },
+      setSatge: function setSatge(stage) {
+        baiJiaLeDataLogic.setCurStage(stage);
+        this.txtStage.string = baiJiaLeConstant.SatgeTxt[stage];
+      },
+      netDisconnect: function netDisconnect() {
+        this.unscheduleAllCallbacks();
+      },
+      onGameRecover: function onGameRecover(msg, isInit, curTime, curStage, isOpenCard) {
+        baiJiaLeDataLogic.resetData();
+        isInit && baiJiaLeDataLogic.setContinuousNotBetInning(0);
+        dataLogic.setNeedRecover(true);
+        var timeRemaining = baiJiaLeDataLogic.getDistanceNextStageTime(curTime, curStage);
+        cc.log("\u91cd\u8fde-----", curStage, timeRemaining, isOpenCard);
+        this.countDown(curStage, timeRemaining);
+        this.setSatge(curStage);
+        dataLogic.setReqRecoverState(false);
+        dataLogic.setDeskId(msg.deskId);
+        dataLogic.setMsgId(msg.msgId);
+        curStage == baiJiaLeConstant.Satge.Bet || this.simulateOnLinePlayerNum(msg.count);
+        baiJiaLeDataLogic.setOtherPlayerInfo();
+        this.setBetToggleConfig(msg.betConfig);
+        this.setCountPlayer(msg.count);
+        var trend = kf.clone(msg.trend);
+        baiJiaLeDataLogic.setTrend(trend);
+        var settlementAmount = 0;
+        var balance = 0;
+        if (null != msg.endData) {
+          settlementAmount = Number(msg.endData.split(",")[0]);
+          balance = msg.endData.split(",")[1];
+        } else balance = msg.balance;
+        cutTimesLimitBetNum = balance / 4;
+        baiJiaLeDataLogic.setSettlementAmount(settlementAmount);
+        if (isOpenCard) {
+          receivedOpenCardMsg = true;
+          baiJiaLeDataLogic.pushPlayId(msg.lastPlayId);
+          baiJiaLeDataLogic.setCardData(msg.lastOpenCards);
+          if (curStage == baiJiaLeConstant.Satge.OpenCard) {
+            this.setPlayerBalance(balance - settlementAmount);
+            dataLogic.setUserBalance(balance);
+          } else this.setPlayerBalance(balance);
+        } else {
+          receivedOpenCardMsg = false;
+          var totalBetNum = 0;
+          for (var i = 0; i < this.betArea.length; i++) totalBetNum += msg.myBet[i];
+          this.setPlayerBalance(balance.minus(totalBetNum));
+        }
+        dataLogic.setPlayId(msg.playId);
+        baiJiaLeDataLogic.pushPlayId(msg.playId);
+        baiJiaLeDataLogic.curRound = msg.lastPlayId.split("-")[1].substr(-4);
+        this.updateTrendUI(trend);
+        for (var _i6 = 0; _i6 < this.betArea.length; _i6++) {
+          this.setBetAmount(_i6, false, msg.allBet[_i6]);
+          this.setBetAmount(_i6, true, msg.myBet[_i6]);
+        }
+        curTimesHaveBet = baiJiaLeDataLogic.getAreaMyTotalBetNum() > 0;
+        this.updateUI(curStage, timeRemaining);
+        this.updateRanking(msg.others);
+        stopBetAnimFinished = false;
+      },
+      updateTrendUI: function updateTrendUI(trend) {
+        var isBlink = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+        var data = kf.clone(trend);
+        var curRound = Number(baiJiaLeDataLogic.curRound);
+        var startPos = curRound % 8;
+        cc.log("\u5f53\u524d\u73e0\u8def\u56fe\u7684\u8d77\u59cb\u4f4d\u7f6e", startPos);
+        var getDataNum = startPos + (data.length >= 16 ? 16 : data.length >= 8 ? 8 : 0) + (isBlink ? 1 : 0);
+        data = data.length > 24 ? data.slice(-getDataNum) : data;
+        if (!this.trenItem.length) for (var i = 0; i < 3; i++) for (var j = 0; j < 8; j++) {
+          var item = cc.instantiate(this.pfTrenItem);
+          item.parent = this.trendBg;
+          item.x = trendItemSpace * j + trendItemStartX;
+          item.y = trendItemY[i];
+          item.opacity = 0;
+          this.trenItem.push(item);
+        }
+        for (var _i7 = 0; _i7 < this.trenItem.length; _i7++) if (_i7 < data.length) {
+          this.trenItem[_i7].getChildByName("bg").getComponent(cc.Sprite).spriteFrame = this.sfTrenIcon[data[_i7][0]];
+          this.trenItem[_i7].opacity = 255;
+          this.trenItem[_i7].getChildByName("blueDot").opacity = data[_i7][1] ? 255 : 0;
+          this.trenItem[_i7].getChildByName("redDot").opacity = data[_i7][2] ? 255 : 0;
+        } else this.trenItem[_i7].opacity = 0;
+        if (isBlink) {
+          cc.log(data);
+          this.trenItem[data.length - 1].runAction(cc.sequence(cc.delayTime(.5), cc.blink(3, 6)));
+        }
+      },
+      updateRanking: function updateRanking(data) {
+        var item = null, showItemCount = 0;
+        for (var i = 0; i < 20; i++) {
+          item = this.rankingItem[i];
+          if (i < data.length) {
+            showItemCount++;
+            item.opacity = 255;
+            item.getChildByName("txtNickname").getComponent(cc.Label).string = data[i].name;
+            item.getChildByName("txtBetNum").getComponent(cc.Label).string = data[i].money;
+            this.setPlayerHead(data[i].avatar, item.getChildByName("head").getComponent(cc.Sprite));
+          } else item.opacity = 0;
+        }
+        this.rankingContent.height = showItemCount * -rankingItemSpace + 5;
+      },
+      initRanking: function initRanking() {
+        var item = null;
+        this.rankingItem = [];
+        for (var i = 0; i < 20; i++) {
+          item = cc.instantiate(this.pfRankingItem);
+          item.parent = this.rankingContent;
+          item.y = i * rankingItemSpace + rankingItemStartY;
+          this.rankingItem.push(item);
+        }
+      },
+      killAllChip: function killAllChip() {
+        var chip = void 0;
+        for (var i = 0; i < this.chipNode.length; i++) {
+          while (this.chipNode[i].length > 0) {
+            chip = this.chipNode[i].pop();
+            chip.stopAllActions();
+            this.recycleChip(chip);
+          }
+          this.chipNode[i] = [];
+        }
+      },
+      recycleChip: function recycleChip(chip) {
+        chip.opacity = 0;
+        chip.isUse = false;
+        this.leisureChip.push(chip);
+      },
+      packUpRankingView: function packUpRankingView() {
+        if (this.isShowRanking) {
+          var endPos = {
+            x: -cc.winSize.width / 2 - 234,
+            y: 0
+          };
+          this.rankingArrow.rotation += 180;
+          this.isShowRanking = false;
+          this.ranking.stopAllActions();
+          this.ranking.runAction(cc.moveTo(.2, endPos));
+        }
+      },
+      btnEvent: function btnEvent(event, key) {
+        audioMgr.playEffect(this.audioBtn);
+        "setRankingView" != key && this.packUpRankingView();
+        switch (key) {
+         case "matchBtn":
+          this.matching();
+          break;
+
+         case "exitRoom":
+          this.tryExitRoom();
+          break;
+
+         case "helpBtn":
+          kf.getObj(constant.PoolId.Help, this.toastLayer[0], this.helpPf, dataLogic.curGameId);
+          break;
+
+         case "recordBtn":
+          var record = kf.getObj(constant.PoolId.Record, this.toastLayer[0], this.recordPf, "record");
+          record.getComponent("record").recordMainShow(constant.GameId.BaiJiaLe);
+          break;
+
+         case "Setting":
+          kf.getObj(constant.PoolId.Setting, this.toastLayer[0], this.settingPf, "setting");
+          break;
+
+         case "forceExit":
+          this.toastHide(this.exitToastLayer);
+          this.exitRoom();
+
+         case "closeExitToastLayer":
+          this.toastHide(this.exitToastLayer);
+          break;
+
+         case "refresh":
+          location.reload();
+          break;
+
+         case "setRankingView":
+          var endPos = null;
+          endPos = this.isShowRanking ? {
+            x: -cc.winSize.width / 2 - 234,
+            y: 0
+          } : {
+            x: -cc.winSize.width / 2,
+            y: 0
+          };
+          this.rankingArrow.rotation += 180;
+          this.isShowRanking = !this.isShowRanking;
+          this.ranking.stopAllActions();
+          this.ranking.runAction(cc.moveTo(.2, endPos));
+        }
+      },
+      resetOpenCards: function resetOpenCards() {
+        for (var i = 0; i < 6; i++) {
+          this.cardsArr[i].stopAllActions();
+          this.cardsArr[i].opacity = 0;
+          this.cardsArr[i].position = cc.v2(191, 95);
+          this.cardsArr[i].scale = 1;
+          this.cardsArr[i].getComponent(cc.Sprite).spriteFrame = kf.getSFByImgName(this.cardAtlas, "backCard");
+        }
+        this.cardPointArr[0].opacity = 0;
+        this.cardPointArr[1].opacity = 0;
+      },
+      updateUI: function updateUI(stage, timeRemaining) {
+        var _this10 = this;
+        this.killAllChip();
+        this.animHeadWin.stop();
+        this.animHeadWin.node.opacity = 0;
+        this.txtSettlementAmount.node.opacity = 0;
+        this.finalAnim.node.x = -1e4;
+        this.finalAnim.stop();
+        this.heAnim.node.x = -1e4;
+        this.heAnim.stop();
+        switch (stage) {
+         case baiJiaLeConstant.Satge.Bet:
+          if (baiJiaLeDataLogic.continuousNotBetInning > 4) {
+            baiJiaLeDataLogic.setKickedOut(true);
+            this.exitRoom();
+          }
+          this.setPlayId(dataLogic.playId);
+          3 == baiJiaLeDataLogic.continuousNotBetInning && this.showNotBetWarning();
+          for (var i = 0; i < this.betArea.length; i++) this.betArea[i].getChildByName("halo").opacity = 0;
+          this.resetOpenCards();
+          this.recoverTableChip(15 - timeRemaining);
+          break;
+
+         case baiJiaLeConstant.Satge.StopBet:
+          cc.log("updateUI====================StopBet", timeRemaining);
+          this.setPlayId(dataLogic.playId);
+          this.recoverTableChip(5);
+          this.resetOpenCards();
+          this.updateBetAmount();
+          for (var _i8 = 0; _i8 < this.betArea.length; _i8++) this.betArea[_i8].getChildByName("halo").opacity = 0;
+          this.scheduleOnce(function() {
+            _this10.openCardStage(8);
+          }, 2 - timeRemaining);
+          break;
+
+         case baiJiaLeConstant.Satge.OpenCard:
+          this.resetOpenCards();
+          this.setPlayId(baiJiaLeDataLogic.latelyPlayIds[0]);
+          this.recoverTableChip(5);
+          this.updateBetAmount();
+          cc.log("========================================", timeRemaining);
+          this.openCardStage(timeRemaining);
+          break;
+
+         case baiJiaLeConstant.Satge.PieAward:
+          cc.log("\u65ad\u7ebf\u91cd\u8fde\u6d3e\u5956\u4e2d");
+          this.setPlayId(baiJiaLeDataLogic.latelyPlayIds[0]);
+          this.recoverTableChip();
+          timeRemaining > 2 ? this.clearing() : this.showSettlementAmount();
+        }
+      },
+      recoverTableChip: function recoverTableChip() {
+        var genTime = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 18;
+        var allBet = null;
+        for (var i = 0; i < this.betArea.length; i++) {
+          allBet = baiJiaLeDataLogic.areaBetNum[i];
+          if (allBet > 0) for (var j = 0; j < genTime; j++) this.genSomeChipToTable(i, allBet / genTime, true);
+        }
+      },
+      genSomeChipToTable: function genSomeChipToTable(areaKey, totalChipNum) {
+        var isRecover = arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
+        var chips = this.genSomeChip(totalChipNum, isRecover);
+        for (var i = 0; i < chips.length; i++) {
+          chips[i].opacity = 255;
+          chips[i].position = this.randomChipPos(areaKey);
+          this.chipNode[areaKey].push(chips[i]);
+        }
+      },
+      updateBetAmount: function updateBetAmount() {
+        for (var i = 0; i < this.betArea.length; i++) {
+          this.setBetAmount(i, false, baiJiaLeDataLogic.areaBetNum[i]);
+          this.setBetAmount(i, true, baiJiaLeDataLogic.areaMyBetNum[i]);
+        }
+      },
+      setBetAmount: function setBetAmount(betAreaKey, isSelf, amount) {
+        if (isSelf) {
+          this.txtSelfBetAmount[betAreaKey].string = 0 == amount ? 0 : amount;
+          baiJiaLeDataLogic.setAreaMyBetNum(betAreaKey, amount);
+        } else {
+          this.txtTotalBetAmount[betAreaKey].string = 0 == amount ? 0 : amount;
+          baiJiaLeDataLogic.setAreaBetNum(betAreaKey, amount);
+        }
+      },
+      setPlayerBalance: function setPlayerBalance(balance) {
+        "string" == typeof balance && (balance = Number(balance));
+        this.txtBalance.string = balance.toFixed(2);
+        dataLogic.setUserBalance(balance);
+      },
+      setBetToggleConfig: function setBetToggleConfig(config) {
+        baiJiaLeDataLogic.setBetBtnConfig(config);
+        for (var i = 0; i < baiJiaLeDataLogic.betBtnConfig.length; i++) this.choiceBet[i].getChildByName("txt").getComponent(cc.Label).string = config[i];
+      },
+      setCountPlayer: function setCountPlayer(num) {
+        this.txtCountPlayer.string = "\u672c\u684c\u5171" + num + "\u4eba";
+      },
+      showMaintainingToast: function showMaintainingToast() {
+        var hintTxt = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "\u7cfb\u7edf\u9700\u8981\u51e0\u5206\u949f\u5347\u7ea7\u4e00\u4e0b\uff0c\u8bf7\u7a0d\u7b49";
+        if (this.getToast(constant.ToastType.Hint, 4)) return;
+        var arg = {
+          type: constant.ToastType.Hint,
+          extend: {
+            contentTxt: hintTxt,
+            btnEventName: [ null, "exitRoom" ],
+            btnTxt: [ null, "\u597d\u7684" ]
+          }
+        };
+        kf.getObj(constant.PoolId.ToastHint, this.toastLayer[4], this.pfToastHint, arg);
+      },
+      loadSceneFrontDispose: function loadSceneFrontDispose() {
+        kf.clearPool(constant.PoolId.Chip);
+      },
+      updateBalanceCb: function updateBalanceCb() {},
+      syncServerTimeCb: function syncServerTimeCb() {
+        var now = new Date().getTime();
+        cc.log("\u670d\u52a1\u5668\u65f6\u95f4", msg.Data, now - dataLogic.timeOff);
+        return;
+        var toast;
+        var arg;
+      },
+      tryExitRoom: function tryExitRoom() {
+        0 == baiJiaLeDataLogic.getAreaMyTotalBetNum() ? this.exitRoom() : this.showExitGameToast("\u6e38\u620f\u4e2d\u4e0d\u80fd\u9000\u51fa\u54e6\uff0c\u8bf7\u7b49\u5f85\u6e38\u620f\u7ed3\u675f\u518d\u9000\u51fa", baiJiaLeDataLogic.getAreaMyTotalBetNum());
+      },
+      exitRoom: function exitRoom() {
+        cc.log("\u9000\u51fa\u623f\u95f4");
+        audioMgr.stopEffect(this.alarmClockAudioId);
+        baiJiaLeDataLogic.setContinuousNotBetInning(0);
+        this.unscheduleAllCallbacks();
+        isMaintaining || http.post({
+          action: "DoPlay",
+          eventName: "leave"
+        });
+        this.goBackSelectRoom();
+      },
+      setSelfUI: function setSelfUI() {
+        this.txtNickname.string = dataLogic.userName;
+        this.setPlayerBalance(dataLogic.userBalance);
+        this.setPlayerHead(dataLogic.userHeadUrl, this.spHead);
+      }
+    }, _defineProperty(_cc$Class, "setPlayerBalance", function setPlayerBalance(balance) {
+      "string" == typeof balance && (balance = Number(balance));
+      this.txtBalance.string = balance.toFixed(2);
+      dataLogic.setUserBalance(balance);
+    }), _defineProperty(_cc$Class, "setPlayerHead", function setPlayerHead(headUrl, sp) {
+      resMgr.loadSingleRes("baoWang" + headUrl.replace(".jpg", ""), function(res) {
+        sp.spriteFrame = res;
+      }, cc.SpriteFrame);
+    }), _defineProperty(_cc$Class, "setPlayId", function setPlayId(playId) {
+      curPlayId = playId;
+      this.roomNum.getChildByName("txt").getComponent(cc.Label).string = "\u724c\u5c40\u7f16\u53f7\uff1a" + playId;
+      this.setRoomNumState();
+    }), _defineProperty(_cc$Class, "setRoomNumState", function setRoomNumState() {
+      this.roomNum.getChildByName("txt").getComponent(cc.Label)._updateRenderData(true);
+      this.roomNum.width = this.roomNum.getChildByName("txt").width + 40;
+    }), _defineProperty(_cc$Class, "gameShow", function gameShow() {
+      audioMgr.stopAllEffect();
+      if (baiJiaLeDataLogic.continuousNotBetInning > 4) {
+        baiJiaLeDataLogic.setKickedOut(true);
+        this.exitRoom();
+      }
+      if (isMaintaining) {
+        this.unscheduleAllCallbacks();
+        this.showMaintainingToast();
+        return;
+      }
+      this.unscheduleAllCallbacks();
+      this.unschedule(this.callback);
+      this.animStart.stop();
+      this.animStop.stop();
+      this.animStart.node.opacity = 0;
+      this.animStop.node.opacity = 0;
+      this.finalAnim.node.x = -1e4;
+      this.finalAnim.stop();
+      this.heAnim.node.x = -1e4;
+      this.heAnim.stop();
+      if (this.socketIO.isConnected()) {
+        dataLogic.setReqRecoverState(true);
+        http.post(constant.PostRecover, "gameRecoverCb", true);
+        var arg = {
+          type: constant.ToastType.Loading
+        };
+        this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+      }
+      return;
+    }), _defineProperty(_cc$Class, "gameHide", function gameHide() {
+      this.unscheduleAllCallbacks();
+      gameHidePlayId = curPlayId;
+      gameHideStage = baiJiaLeDataLogic.curSatge;
+      this.resetOpenCards();
+    }), _defineProperty(_cc$Class, "onOpen", function onOpen(msgData) {
+      receivedOpenCardMsg = true;
+      baiJiaLeDataLogic.addContinuousNotBetInning();
+      baiJiaLeDataLogic.setCardData(msgData.cards);
+      var trend = kf.clone(msgData.trend);
+      baiJiaLeDataLogic.setTrend(trend);
+      stopBetAnimFinished && this.openAllCardAction(msgData.cards);
+      dataLogic.setPlayId(msgData.playId);
+      baiJiaLeDataLogic.pushPlayId(msgData.playId);
+      if (dataLogic.isHide && baiJiaLeDataLogic.continuousNotBetInning > 4) {
+        baiJiaLeDataLogic.setKickedOut(true);
+        this.exitRoom();
+      }
+      this.updateRanking(msgData.others);
+      var settlementAmount = msgData.endData.split(",")[0];
+      baiJiaLeDataLogic.setSettlementAmount(settlementAmount);
+      var balance = msgData.endData.split(",")[1];
+      dataLogic.setUserBalance(balance);
+      this.setCountPlayer(msgData.count);
+      1 == msgData.isStop ? isMaintaining = true : this.simulateOnLinePlayerNum(msgData.count);
+    }), _defineProperty(_cc$Class, "openAllCardAction", function openAllCardAction(data) {
+      cc.log("\u7ffb\u62cd\uff01\uff01\uff01\uff01");
+      if (dataLogic.isHide) return;
+      this.openCardStage();
+    }), _defineProperty(_cc$Class, "onBet", function onBet(msgData) {
+      var betNum = 0;
+      for (var i = 0; i < this.betArea.length; i++) {
+        betNum = msgData.allBet[i] - baiJiaLeDataLogic.areaBetNum[i];
+        betNum > 0 && this.castSomeChipToTable(betNum, i, null, 20);
+        this.setBetAmount(i, false, msgData.allBet[i]);
+      }
+      this.setCountPlayer(msgData.count);
+      audioMgr.playEffect(this.audioSomeChip);
+    }), _defineProperty(_cc$Class, "castSomeChipToTable", function castSomeChipToTable(totalChipNum, areaKey) {
+      var startPos = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null;
+      var maxCount = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 10;
+      var isEnd = arguments.length > 4 && void 0 !== arguments[4] && arguments[4];
+      if (dataLogic.isHide) return;
+      var chips = this.genSomeChip(totalChipNum, maxCount);
+      doLoop(this, chips.length);
+      function doLoop(_this, _loopLength) {
+        for (var j = 0; j < _loopLength; j++) {
+          var pos = null == startPos ? chips[j].position : startPos;
+          chips[j].position = null == startPos ? _this.randomOtherPos() : startPos;
+          _this.chipAction(pos, _this.randomChipPos(areaKey), chips[j], false, areaKey, j, isEnd);
+        }
+      }
+    }), _defineProperty(_cc$Class, "randomFrom", function randomFrom(lowerValue, upperValue) {
+      return Math.floor(Math.random() * (upperValue - lowerValue + 1) + lowerValue);
+    }), _defineProperty(_cc$Class, "randomChipPos", function randomChipPos(betAreaKey) {
+      var x = dataLogic.randomIntBySeed(chipRandomPos[betAreaKey].x - (4 == betAreaKey || 1 == betAreaKey ? 40 : 0), chipRandomPos[betAreaKey].x + 180);
+      var y = dataLogic.randomIntBySeed(chipRandomPos[betAreaKey].y + (betAreaKey > 1 ? 40 : 60), chipRandomPos[betAreaKey].y + (betAreaKey > 1 ? 100 : 120));
+      return cc.v2(x, y);
+    }), _defineProperty(_cc$Class, "randomOtherPos", function randomOtherPos() {
+      return {
+        x: 0,
+        y: dataLogic.randomInt(otherPlayerYMin, otherPlayerYMax)
+      };
+    }), _defineProperty(_cc$Class, "chipAction", function chipAction(startPos, endPos, chip, isEndKill, betAreaKey, index, notDelayAction) {
+      var _this11 = this;
+      if (dataLogic.isHide) {
+        if (isEndKill) this.recycleChip(chip); else {
+          chip.position = endPos;
+          this.chipNode[betAreaKey].push(chip);
+        }
+        return;
+      }
+      var actionTime = startPos.sub(endPos).mag() * chipMoveSpeed;
+      var move = cc.moveTo(actionTime, endPos).easing(cc.easeInOut(3));
+      chip.stopAllActions();
+      chip.rotation = 360 * Math.random();
+      chip.rotation = 360 * Math.random();
+      if (isEndKill) {
+        var seq = cc.sequence(move, cc.callFunc(function() {
+          _this11.recycleChip(chip);
+        }));
+        chip.runAction(seq);
+      } else {
+        this.chipNode[betAreaKey].push(chip);
+        chip.runAction(cc.sequence(cc.delayTime(notDelayAction ? 0 : .1 * index), cc.callFunc(function() {
+          chip.opacity = 255;
+        }, this), move, cc.callFunc(function() {
+          if (_this11.chipNode[betAreaKey].length >= maxTableChipNum && !notDelayAction) {
+            var chip = _this11.chipNode[betAreaKey].shift();
+            chip.stopAllActions();
+            _this11.recycleChip(chip);
+          }
+        }, this)));
+      }
+    }), _defineProperty(_cc$Class, "genSomeChip", function genSomeChip(totalChipNum) {
+      var maxCount = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 10;
+      var isRecover = arguments[2];
+      var base = 2 * dataLogic.selectRoomConfig[dataLogic.curRoomKey - 1].ante;
+      var count = Math.ceil(totalChipNum / base);
+      var _maxCount = isRecover ? maxTableChipNum : maxCount;
+      count = count > _maxCount ? _maxCount : count;
+      var chipNum = 0, key = void 0, chips = [], pos = {
+        x: 0,
+        y: 0
+      };
+      for (var i = 0; i < count; i++) {
+        key = dataLogic.randomInt(0, 4);
+        chipNum = baiJiaLeDataLogic.betBtnConfig[key];
+        chips.push(this.genChip(chipNum, pos));
+      }
+      return chips;
+    }), _defineProperty(_cc$Class, "genChip", function genChip(chipNum, pos) {
+      var chip = null;
+      if (0 == this.leisureChip.length) chip = kf.getObj(constant.PoolId.Chip, this.chipLayer, this.pfChip); else {
+        chip = this.leisureChip.pop();
+        if (chip.isUse) {
+          cc.log("---------\u8fd9\u4e2a\u7b79\u7801\u5df2\u7ecf\u88ab\u7528\u4e86");
+          this.genChip(chipNum, pos);
+          return;
+        }
+        chip.opacity = 255;
+      }
+      var key = kf.getArrIndexByValue(baiJiaLeDataLogic.betBtnConfig, chipNum);
+      if (-1 == key) {
+        cc.error("\u672a\u627e\u5230\u5bf9\u5e94\u7684\u4e0b\u6ce8\u6309\u94ae\u914d\u7f6e", chipNum);
+        return;
+      }
+      var data = {
+        chipNum: chipNum,
+        iconKey: key,
+        pos: pos,
+        color: chipTxtColor[key]
+      };
+      chip.getComponent("chip").initUI(data);
+      chip.opacity = 0;
+      chip.isUse = true;
+      return chip;
+    }), _defineProperty(_cc$Class, "betCb", function betCb(msgData, localCbArg) {
+      if (msgData.Code == constant.HttpCode.Succeed) {
+        baiJiaLeDataLogic.setContinuousNotBetInning(-1);
+        curTimesHaveBet = true;
+      } else {
+        baiJiaLeDataLogic.setAreaMyBetNum(localCbArg.betArea, Number(baiJiaLeDataLogic.areaMyBetNum[localCbArg.betArea]).minus(localCbArg.betNum));
+        this.setBetAmount(localCbArg.betArea, true, baiJiaLeDataLogic.areaMyBetNum[localCbArg.betArea]);
+        msgData.Code == constant.HttpCode.NotSufficientFunds ? this.setPlayerBalance(msgData.Data) : this.setPlayerBalance(dataLogic.userBalance.add(localCbArg.betNum));
+      }
+    }), _defineProperty(_cc$Class, "simulateOnLinePlayerNum", function simulateOnLinePlayerNum(num) {
+      var _this12 = this;
+      var updateCount = 0;
+      var min = num - 10, max = num + 10;
+      min < 1 && (min = 1);
+      this.updateSimulateOnLinePlayerNum && this.unschedule(this.updateSimulateOnLinePlayerNum);
+      this.updateSimulateOnLinePlayerNum = function() {
+        if (BRCattleDataLogic.curSatge == BRCattle.Satge.Bet) {
+          _this12.unschedule(_this12.updateSimulateOnLinePlayerNum);
+          return;
+        }
+        _this12.setCountPlayer(dataLogic.randomInt(min, max));
+        updateCount++;
+        if (5 == updateCount) {
+          updateCount = 0;
+          http.post(BRCattle.PostOnLinePlayerCount);
+        }
+      };
+      this.schedule(this.updateSimulateOnLinePlayerNum, 1);
+    }), _defineProperty(_cc$Class, "reqOnLinePlayerCountCb", function reqOnLinePlayerCountCb(msg) {
+      msg.Code == constant.HttpCode.Succeed && this.simulateOnLinePlayerNum(msg.Data);
+    }), _cc$Class));
+    cc._RF.pop();
+  }, {
+    gameSceneBase: "gameSceneBase"
+  } ],
   bank: [ function(require, module, exports) {
     "use strict";
     cc._RF.push(module, "498e7hNW35IlIKVB2j9NUnZ", "bank");
@@ -7605,6 +9061,1259 @@ window.__require = function e(t, n, r) {
   }, {
     sceneBase: "sceneBase"
   } ],
+  bcbmConstant: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "1c2274ciBRN+I2tWbdZyh7G", "bcbmConstant");
+    "use strict";
+    window.bcbmConstant = window.bcbmConstant || {};
+    var n = 0;
+    n = 0;
+    bcbmConstant.Satge = {
+      Bet: n++,
+      StopBet: n++,
+      OpenCard: n++,
+      PieAward: n++
+    };
+    bcbmConstant.SatgeTxt = [];
+    bcbmConstant.SatgeTxt[bcbmConstant.Satge.Bet] = "\u8bf7\u4e0b\u6ce8...";
+    bcbmConstant.SatgeTxt[bcbmConstant.Satge.StopBet] = "\u505c\u6b62\u4e0b\u6ce8...";
+    bcbmConstant.SatgeTxt[bcbmConstant.Satge.OpenCard] = "\u5f00\u5956\u4e2d...";
+    bcbmConstant.SatgeTxt[bcbmConstant.Satge.PieAward] = "\u6d3e\u5956\u4e2d...";
+    bcbmConstant.StageBeginTime = [ 0, 15, 17, 25 ];
+    var _action = "DoPlay";
+    bcbmConstant.PostBet = {
+      action: _action,
+      eventName: "bet"
+    };
+    bcbmConstant.PostOnLinePlayerCount = {
+      action: _action,
+      eventName: "getCount"
+    };
+    cc._RF.pop();
+  }, {} ],
+  bcbmDataLogic: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "1a150EEJctBDoZQdkHNv4sX", "bcbmDataLogic");
+    "use strict";
+    window.bcbmDataLogic = {
+      init: function init() {
+        this.betBtnConfig = [ 1, 2, 3, 4, 5 ];
+        this.resetData();
+        this.continuousNotBetInning = 0;
+        this.isKickedOut = false;
+        this.curSatge = null;
+        this.otherPlayers = [];
+        this.openIndex = "";
+        this.lastOpenIndex = "";
+        this.trend = [];
+        this.latelyPlayIds = [];
+        this.curRound = 0;
+      },
+      resetData: function resetData() {
+        this.areaBetNum = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
+        this.areaMyBetNum = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
+        this.cardData = [];
+        this.settlementAmount = 0;
+      },
+      setBetBtnConfig: function setBetBtnConfig(data) {
+        this.betBtnConfig = kf.clone(data);
+      },
+      setOpenIndex: function setOpenIndex(openIndex) {
+        this.openIndex = openIndex;
+      },
+      setLastOpenIndex: function setLastOpenIndex(lastOpenIndex) {
+        this.lastOpenIndex = lastOpenIndex;
+      },
+      setTrend: function setTrend(data) {
+        this.trend = kf.clone(data);
+      },
+      setSettlementAmount: function setSettlementAmount(num) {
+        this.settlementAmount = num;
+      },
+      getTotalBetNum: function getTotalBetNum() {
+        var total = 0;
+        for (var i = 0; i < this.areaBetNum.length; i++) total += this.areaBetNum[i];
+        return total;
+      },
+      setAreaBetNum: function setAreaBetNum(key, num) {
+        this.areaBetNum[key] = num;
+      },
+      setAreaMyBetNum: function setAreaMyBetNum(key, num) {
+        this.areaMyBetNum[key] = num;
+      },
+      getAreaMyTotalBetNum: function getAreaMyTotalBetNum() {
+        var count = 0;
+        for (var i = 0; i < this.areaMyBetNum.length; i++) count += this.areaMyBetNum[i];
+        return count;
+      },
+      addContinuousNotBetInning: function addContinuousNotBetInning() {
+        this.continuousNotBetInning++;
+      },
+      setContinuousNotBetInning: function setContinuousNotBetInning(num) {
+        this.continuousNotBetInning = num;
+      },
+      setOtherPlayerInfo: function setOtherPlayerInfo(data) {
+        this.otherPlayers = kf.clone(data);
+      },
+      setKickedOut: function setKickedOut(isKickedOut) {
+        this.isKickedOut = isKickedOut;
+      },
+      setCurStage: function setCurStage(stage) {
+        this.curSatge = stage;
+      },
+      getCurStage: function getCurStage(curTime) {
+        var time = Math.floor((curTime - dataLogic.timeOff) / 1e3) % 30;
+        return time < bcbmConstant.StageBeginTime[1] ? bcbmConstant.Satge.Bet : time < bcbmConstant.StageBeginTime[2] ? bcbmConstant.Satge.StopBet : time < bcbmConstant.StageBeginTime[3] ? bcbmConstant.Satge.OpenCard : bcbmConstant.Satge.PieAward;
+      },
+      getDistanceNextStageTime: function getDistanceNextStageTime(curTime, curStage) {
+        var time = Math.floor((curTime - dataLogic.timeOff) / 1e3) % 30;
+        var nextStageBeginTime = bcbmConstant.StageBeginTime[this.getNextStage(curStage)];
+        var distanceNextStageTime = nextStageBeginTime - time;
+        distanceNextStageTime < 0 && (distanceNextStageTime = 30 - time);
+        return distanceNextStageTime;
+      },
+      getNextStage: function getNextStage(curStage) {
+        return (curStage + 1) % 4;
+      },
+      playIdDiffValue: function playIdDiffValue(playId1, playId2) {
+        var v1 = Number(playId1.substr(-4));
+        var v2 = Number(playId2.substr(-4));
+        return v2 - v1;
+      },
+      pushPlayId: function pushPlayId(playId) {
+        this.latelyPlayIds.length > 1 && this.latelyPlayIds.shift();
+        this.latelyPlayIds.push(playId);
+      },
+      getCardValue: function getCardValue(cardKey) {
+        if (0 == cardKey % 13) return 1;
+        return cardKey % 13 + 1;
+      }
+    };
+    bcbmDataLogic.init();
+    cc._RF.pop();
+  }, {} ],
+  bcbmHall: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "3c83f64NP5NPJLAQZufCGvd", "bcbmHall");
+    "use strict";
+    cc.Class({
+      extends: require("selectRoomSceneBase"),
+      properties: {},
+      onLoad: function onLoad() {
+        this.baseInit(constant.GameId.Bcbm);
+        if (bcbmDataLogic.isKickedOut) {
+          this.showKickedOut();
+          bcbmDataLogic.setKickedOut(false);
+        }
+      },
+      showKickedOut: function showKickedOut() {
+        var arg = {
+          type: constant.ToastType.Hint,
+          extend: {
+            contentTxt: "\u60a8\u5df2\u8fde\u7eed5\u5c40\u672a\u4e0b\u6ce8\uff0c\u88ab\u8bf7\u79bb\u4e86\u724c\u684c",
+            btnEventName: [ null, "toastClose" ],
+            btnTxt: [ null, "\u786e\u5b9a" ]
+          }
+        };
+        kf.getObj(constant.PoolId.ToastHint, this.toastLayer[3], this.pfToastHint, arg);
+      },
+      preloadRes: function preloadRes() {
+        cc.log("\u9884\u52a0\u8f7d\u8d44\u6e90");
+        var list = [ "Bcbm/UI/5", "Bcbm/table", "Bcbm/bg" ];
+        for (var i = 0; i < list.length; i++) cc.loader.loadRes(list[i], function(err, res) {
+          if (err) {
+            cc.error("\u52a0\u8f7d\u8d44\u6e90\u9519\u8bef", err);
+            return;
+          }
+        });
+      }
+    });
+    cc._RF.pop();
+  }, {
+    selectRoomSceneBase: "selectRoomSceneBase"
+  } ],
+  bcbm: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "28a9fdSVgtB0ZG6Brn+RdOi", "bcbm");
+    "use strict";
+    var _cc$Class;
+    function _defineProperty(obj, key, value) {
+      key in obj ? Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      }) : obj[key] = value;
+      return obj;
+    }
+    var clientEvent = kf.require("basic.clientEvent");
+    var trendItemStartX = -111;
+    var trendItemSpace = 31.75;
+    var trendItemY = [ 28, -4, -38 ];
+    var rankingItemStartY = -38;
+    var rankingItemSpace = -73;
+    var playerWorldPos = cc.v2();
+    var chipMoveSpeed = 8e-4;
+    var bankerWorldPos = cc.v2();
+    var chipRandomPos = [];
+    var stopBetAnimFinished = false;
+    var canvasPosOff = {};
+    var otherPlayerYMin = 0;
+    var otherPlayerYMax = 0;
+    var gameHidePlayId = "";
+    var gameHideStage = "";
+    var curPlayId = "";
+    var cutTimesLimitBetNum = 0;
+    var isMaintaining = false;
+    var curTimesHaveBet = false;
+    var backCardPosY = 3, maxTableChipNum = 50;
+    var betAreaPos = [ cc.v2(-316, -34), cc.v2(1, -74), cc.v2(316, 34) ];
+    var chipTxtColor = [ new cc.Color(75, 179, 139), new cc.Color(73, 176, 159), new cc.Color(73, 147, 183), new cc.Color(80, 120, 185), new cc.Color(164, 111, 224) ];
+    var receivedOpenCardMsg = false;
+    cc.Class((_cc$Class = {
+      extends: require("gameSceneBase"),
+      properties: {
+        reciprocal: cc.Node,
+        roomNum: cc.Node,
+        ranking: cc.Node,
+        rankingContent: cc.Node,
+        rankingArrow: cc.Node,
+        betArea: [ cc.Node ],
+        chipLayer: cc.Node,
+        banker: cc.Node,
+        txtNickname: cc.Label,
+        txtBalance: cc.Label,
+        txtStage: cc.Label,
+        txtTotalBetAmount: [ cc.Label ],
+        txtSelfBetAmount: [ cc.Label ],
+        txtSettlementAmount: cc.Label,
+        txtCountPlayer: cc.Label,
+        spHead: cc.Sprite,
+        pfRankingItem: cc.Prefab,
+        pfChip: cc.Prefab,
+        winChipNumFont: cc.Font,
+        loseChipNumFont: cc.Font,
+        choiceBet: [ cc.Node ],
+        animStart: cc.Animation,
+        animStop: cc.Animation,
+        animHeadWin: cc.Animation,
+        turnCircle: [ cc.Node ],
+        trendContent: cc.Node,
+        carIcon: [ cc.SpriteFrame ],
+        rebate: [ cc.Node ],
+        lastestOpenAniPfb: cc.Prefab,
+        audioWin: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioLose: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioTurnCircle: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioTurnStop: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioStartBet: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioStopBet: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioChip: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioClearingChip: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioSomeChip: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioAlarmClock: {
+          default: null,
+          type: cc.AudioClip
+        },
+        audioCarEngine: {
+          default: null,
+          type: cc.AudioClip
+        }
+      },
+      registerEvent: function registerEvent() {
+        this.registerHandler = [ [ "gameShow", this.gameShow.bind(this) ], [ "gameHide", this.gameHide.bind(this) ], [ "onOpen", this.onOpen.bind(this) ], [ "onBet", this.onBet.bind(this) ], [ "betCb", this.betCb.bind(this) ], [ "gameRecoverCb", this.gameRecoverCb.bind(this) ], [ "updateBalanceCb", this.updateBalanceCb.bind(this) ], [ "syncServerTimeCb", this.syncServerTimeCb.bind(this) ], [ "exitRoom", this.exitRoom.bind(this) ], [ "reqOnLinePlayerCountCb", this.reqOnLinePlayerCountCb.bind(this) ] ];
+        for (var i = 0; i < this.registerHandler.length; i++) {
+          var handler = this.registerHandler[i];
+          clientEvent.registerEvent(handler[0], handler[1]);
+        }
+      },
+      onLoad: function onLoad() {
+        var _this2 = this;
+        this.baseInit(constant.GameId.Bcbm);
+        this.registerEvent();
+        isMaintaining = false;
+        this.setSelfUI();
+        dataLogic.setReqRecoverState(true);
+        http.post(constant.PostRecover, "gameRecoverCb", true);
+        var arg = {
+          type: constant.ToastType.Loading
+        };
+        this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+        this.ranking.x = -cc.winSize.width / 2 - 234;
+        this.isShowRanking = false;
+        this.curChoiceBetKey = 0;
+        kf.createPool(constant.PoolId.Chip, 500, this.pfChip);
+        this.chipNode = [];
+        this.leisureChip = [];
+        for (var i = 0; i < 8; i++) this.chipNode[i] = [];
+        this.node.on(cc.Node.EventType.TOUCH_END, function() {
+          _this2.packUpRankingView();
+        });
+        this.circlePos = [ cc.v2(2.4, 242.5), cc.v2(72.7, 243.5), cc.v2(144, 243), cc.v2(214.5, 244), cc.v2(284.9, 232.4), cc.v2(347.7, 200.4), cc.v2(397.8, 150.5), cc.v2(429, 89.1), cc.v2(440.6, 17.4), cc.v2(429.3, -51.9), cc.v2(397.5, -113.7), cc.v2(347, -164.2), cc.v2(284.1, -194.3), cc.v2(214.2, -207.2), cc.v2(143.8, -207.2), cc.v2(72.4, -207.2), cc.v2(1.4, -207.2), cc.v2(-70, -207.2), cc.v2(-141, -207.2), cc.v2(-211, -207.2), cc.v2(-282, -197), cc.v2(-345, -164), cc.v2(-394, -114), cc.v2(-426, -52), cc.v2(-437, 16), cc.v2(-426, 87), cc.v2(-394, 151), cc.v2(-344.5, 200), cc.v2(-283, 232), cc.v2(-212, 242), cc.v2(-140, 244), cc.v2(-70, 243) ];
+        var node = new cc.instantiate(this.lastestOpenAniPfb);
+        node.parent = this.trendContent.getChildByName("car1");
+      },
+      start: function start() {
+        var _this3 = this;
+        otherPlayerYMin = cc.winSize.height / 2 - 150;
+        otherPlayerYMax = cc.winSize.height / 2 + 150;
+        canvasPosOff.x = cc.winSize.width / 2 - this.node.x;
+        canvasPosOff.y = cc.winSize.height / 2 - this.node.y;
+        playerWorldPos.x = this.spHead.node.getWorldMatrix(cc.mat4()).m12 + canvasPosOff.x;
+        playerWorldPos.y = this.spHead.node.getWorldMatrix(cc.mat4()).m13;
+        bankerWorldPos.x = this.banker.getWorldMatrix(cc.mat4()).m12 + canvasPosOff.x;
+        bankerWorldPos.y = this.banker.getWorldMatrix(cc.mat4()).m13 + canvasPosOff.y;
+        this.getWorldPos(this.chipLayer);
+        var pos = this.spHead.node.parent.position;
+        var _loop = function _loop(i) {
+          chipRandomPos[i] = {};
+          chipRandomPos[i].x = _this3.betArea[i].getWorldMatrix(cc.mat4()).m12 - 85 + canvasPosOff.x;
+          chipRandomPos[i].y = _this3.betArea[i].getWorldMatrix(cc.mat4()).m13 - 85 + canvasPosOff.y;
+          var betNum = 0;
+          var totalBet = 0;
+          var areaBet = 0;
+          _this3.betArea[i].on(cc.Node.EventType.TOUCH_END, function(i, pos, event) {
+            this.packUpRankingView();
+            betNum = bcbmDataLogic.betBtnConfig[this.curChoiceBetKey];
+            totalBet = bcbmDataLogic.getAreaMyTotalBetNum().add(betNum);
+            areaBet = bcbmDataLogic.areaMyBetNum[i].add(betNum);
+            if (bcbmDataLogic.curSatge != bcbmConstant.Satge.Bet) {
+              var arg = {
+                type: constant.ToastType.RequestError,
+                extend: {
+                  hintStr: "\u975e\u4e0b\u6ce8\u72b6\u6001\uff0c\u8bf7\u7a0d\u7b49~"
+                }
+              };
+              kf.getObj(constant.PoolId.ToastRequestError, this.toastLayer[4], this.toastRequestErrorPf, arg);
+              return;
+            }
+            if (areaBet > 100 * bcbmDataLogic.betBtnConfig[0]) {
+              var _arg = {
+                type: constant.ToastType.RequestError,
+                extend: {
+                  hintStr: "\u4e0b\u6ce8\u5931\u8d25\uff0c\u8be5\u4e0b\u6ce8\u70b9\u9650\u7ea2" + bcbmDataLogic.betBtnConfig[0] + "~" + 100 * bcbmDataLogic.betBtnConfig[0]
+                }
+              };
+              kf.getObj(constant.PoolId.ToastRequestError, this.toastLayer[4], this.toastRequestErrorPf, _arg);
+              return;
+            }
+            if (betNum > dataLogic.userBalance) {
+              this.showLayerTip("\u60a8\u7684\u4f59\u989d\u4e0d\u8db3\uff0c\u65e0\u6cd5\u4e0b\u6ce8");
+              return;
+            }
+            audioMgr.playEffect(this.audioChip);
+            this.spHead.node.parent.stopAllActions();
+            this.spHead.node.parent.runAction(cc.jumpTo(.05, pos, 10, 1));
+            this.setPlayerBalance(dataLogic.userBalance.minus(betNum));
+            this.bet(playerWorldPos, this.randomChipPos(i), betNum, i, true);
+            this.rebate[i].opacity || (this.rebate[i].opacity = 255);
+            var reqArg = {
+              action: "DoPlay",
+              eventName: "bet",
+              betArea: i,
+              betNum: betNum
+            };
+            var localCbArg = {
+              betArea: i,
+              betNum: betNum
+            };
+            http.post(reqArg, "betCb", localCbArg);
+          }.bind(_this3, i, pos));
+        };
+        for (var i = 0; i < 8; i++) _loop(i);
+        this.initRanking();
+      },
+      hideAllRebateNode: function hideAllRebateNode() {
+        for (var i = 0; i < this.rebate.length; i++) this.rebate[i].opacity = 0;
+      },
+      choiceBetNumEvent: function choiceBetNumEvent(event, key) {
+        "" != event && audioMgr.playEffect(this.audioBtn);
+        this.packUpRankingView();
+        key = Number(key);
+        this.curChoiceBetKey = key;
+      },
+      bet: function bet(startPos, endPos, chipNum, betBlock, isSelf) {
+        var txt = void 0;
+        if (isSelf) {
+          txt = this.betArea[betBlock].getChildByName("selfBetMoney").getChildByName("txt").getComponent(cc.Label);
+          txt.string = Number(txt.string).add(chipNum);
+          bcbmDataLogic.setAreaMyBetNum(betBlock, Number(bcbmDataLogic.areaMyBetNum[betBlock]).add(chipNum));
+        }
+        bcbmDataLogic.setAreaBetNum(betBlock, Number(bcbmDataLogic.areaBetNum[betBlock]).add(chipNum));
+        txt = this.betArea[betBlock].getChildByName("totalBetMoney").getChildByName("txt").getComponent(cc.Label);
+        txt.string = Number(txt.string).add(chipNum);
+        this.chipMoveToTable(startPos, endPos, chipNum, betBlock);
+      },
+      chipMoveToTable: function chipMoveToTable(startPos, endPos, chipNum, betBlock) {
+        var chip = this.genChip(chipNum, startPos);
+        this.chipAction(startPos, endPos, chip, false, betBlock, null, true);
+      },
+      getWorldPos: function getWorldPos(node) {
+        var pos = node.position;
+        do {
+          node = node.parent;
+          pos.x += node.x;
+          pos.y += node.y;
+        } while ("Canvas" != node.name);
+        return pos;
+      },
+      gameRecoverCb: function gameRecoverCb(msg, isInit) {
+        kf.killObj(this.recoverLoad);
+        if (constant.HttpCode.Succeed != msg.Code) {
+          this.doneGameRecover = true;
+          this.killAllToast();
+          dataLogic.gameEnd();
+          isMaintaining = true;
+          constant.HttpCode.error == msg.Code && this.showMaintainingToast(msg.StrCode);
+          return;
+        }
+        var curTime = new Date().getTime();
+        var curStage = bcbmDataLogic.getCurStage(curTime);
+        cc.log("\u5f53\u524d\u9636\u6bb5", curStage, msg.Data.state);
+        var reReq = false;
+        1 != msg.Data.state || curStage != bcbmConstant.Satge.StopBet && curStage != bcbmConstant.Satge.OpenCard && curStage != bcbmConstant.Satge.PieAward ? 2 == msg.Data.state && curStage == bcbmConstant.Satge.Bet && (reReq = true) : reReq = true;
+        if (reReq) {
+          dataLogic.setReqRecoverState(true);
+          http.post(constant.PostRecover, "gameRecoverCb", isInit);
+          var arg = {
+            type: constant.ToastType.Loading
+          };
+          this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+          return;
+        }
+        var isOpenCard = true;
+        1 != msg.Data.state && curStage != bcbmConstant.Satge.Bet || (isOpenCard = false);
+        this.onGameRecover(msg.Data, isInit, curTime, curStage, isOpenCard);
+      },
+      betUpcomingStopHint: function betUpcomingStopHint() {
+        var _this4 = this;
+        this.schedule(function() {
+          _this4.alarmClockAudioId = audioMgr.playEffect(_this4.audioAlarmClock);
+        }, 1, 2);
+      },
+      countDown: function countDown(stage, time, overCb) {
+        var timeTxt = this.reciprocal.getChildByName("Label").getComponent(cc.Label);
+        timeTxt.string = time;
+        audioMgr.stopEffect(this.alarmClockAudioId);
+        this.reciprocal.stopAllActions();
+        this.reciprocal.rotation = 0;
+        stage == bcbmConstant.Satge.Bet && time < 4 && this.betUpcomingStopHint();
+        this.callback = function() {
+          stage == bcbmConstant.Satge.Bet && 4 == time && this.betUpcomingStopHint();
+          time--;
+          timeTxt.string = time;
+          if (time <= 0) {
+            audioMgr.stopEffect(this.alarmClockAudioId);
+            this.reciprocal.stopAllActions();
+            this.reciprocal.rotation = 0;
+            time = 0;
+            this.unschedule(this.callback);
+            this.intoNewStage(bcbmDataLogic.getNextStage(stage));
+            overCb && overCb();
+          }
+        };
+        this.schedule(this.callback, 1);
+      },
+      showNotBetWarning: function showNotBetWarning() {
+        var arg = {
+          type: constant.ToastType.Hint,
+          extend: {
+            contentTxt: "\u60a8\u5df2\u7ecf3\u5c40\u6ca1\u6709\u8fdb\u884c\u4e0b\u6ce8\uff0c\u8d85\u8fc75\u5c40\u5c06\u88ab\u8bf7\u51fa\u623f\u95f4",
+            btnEventName: [ null, "toastClose" ],
+            btnTxt: [ null, "\u786e\u5b9a" ]
+          }
+        };
+        kf.getObj(constant.PoolId.ToastHint, this.toastLayer[3], this.pfToastHint, arg);
+      },
+      openCardStage: function openCardStage(openIndex, timeRemaining) {
+        var map = [ "\u5927\u5b9d\u9a6c", "\u5954\u9a70", "\u5927\u4f17", "\u4fdd\u65f6\u6377", "\u5b9d\u9a6c", "\u5954\u9a70", "\u5927\u4f17", "\u4fdd\u65f6\u6377", "\u5927\u4f17\u5927", "\u5b9d\u9a6c", "\u5954\u9a70", "\u5927\u4f17", "\u4fdd\u65f6\u6377", "\u5b9d\u9a6c", "\u5954\u9a70", "\u5927\u4f17", "\u4fdd\u65f6\u6377\u5927", "\u4fdd\u65f6\u6377", "\u5b9d\u9a6c", "\u5954\u9a70", "\u5927\u4f17", "\u4fdd\u65f6\u6377", "\u5b9d\u9a6c", "\u5954\u9a70", "\u5927\u5954\u9a70", "\u5927\u4f17", "\u4fdd\u65f6\u6377", "\u5b9d\u9a6c", "\u5954\u9a70", "\u5927\u4f17", "\u4fdd\u65f6\u6377", "\u5b9d\u9a6c" ];
+        var loopTimes = 0;
+        cc.log("lastOpenIndex====================", bcbmDataLogic.lastOpenIndex, openIndex);
+        var index = bcbmDataLogic.lastOpenIndex || 0;
+        var loopCount = this.circlePos.length - index + 1 * this.circlePos.length + (openIndex || 0);
+        var count = 0;
+        this.callbackNew = function() {
+          var _this5 = this;
+          this.turnCircle[0].position = this.circlePos[index];
+          0 == loopTimes && 0 == count && audioMgr.playEffect(this.audioTurnCircle);
+          count >= (loopTimes + 1) * this.circlePos.length && loopTimes++;
+          index++;
+          count++;
+          index >= this.circlePos.length && (index = 0);
+          if (count - 1 == loopCount) {
+            audioMgr.playEffect(this.audioTurnStop);
+            this.turnCircle[0].getChildByName("ef_ben").opacity = 255;
+            this.turnCircle[0].getChildByName("ef_ben").getComponent(cc.Animation).play();
+            this.scheduleOnce(function() {
+              audioMgr.playEffect(_this5.audioCarEngine);
+            }, 1.5);
+            cc.log("setLastOpenIndex===============", bcbmDataLogic.openIndex);
+            bcbmDataLogic.setLastOpenIndex(bcbmDataLogic.openIndex);
+            this.unschedule(this.callbackNew);
+          }
+          if (5 == count && 0 == loopTimes) {
+            this.unschedule(this.callbackNew);
+            this.schedule(this.callbackNew, 1.5 / (loopCount - 8));
+          }
+          if (count == loopCount - 4) {
+            this.unschedule(this.callbackNew);
+            this.schedule(this.callbackNew, .2);
+          } else if (count == loopCount - 3) {
+            cc.log("2");
+            this.unschedule(this.callbackNew);
+            this.schedule(this.callbackNew, .4);
+          } else if (count == loopCount - 2) {
+            cc.log("3");
+            this.unschedule(this.callbackNew);
+            this.schedule(this.callbackNew, .6);
+          } else if (count == loopCount - 1) {
+            cc.log("4");
+            this.unschedule(this.callbackNew);
+            this.schedule(this.callbackNew, .8);
+          } else if (count == loopCount) {
+            cc.log("5");
+            this.unschedule(this.callbackNew);
+            this.schedule(this.callbackNew, 1);
+          }
+        };
+        if (!timeRemaining || timeRemaining && 8 == timeRemaining) this.schedule(this.callbackNew, .36); else if (timeRemaining && timeRemaining > 4) this.schedule(this.callbackNew, .02); else if (timeRemaining && timeRemaining <= 4) {
+          this.turnCircle[0].position = this.circlePos[openIndex];
+          this.turnCircle[0].getChildByName("ef_ben").opacity = 255;
+          this.turnCircle[0].getChildByName("ef_ben").getComponent(cc.Animation).play();
+          bcbmDataLogic.setLastOpenIndex(bcbmDataLogic.openIndex);
+        }
+      },
+      intoNewStage: function intoNewStage(stage) {
+        var curTime = new Date().getTime();
+        var timeRemaining = bcbmDataLogic.getDistanceNextStageTime(curTime, stage);
+        this.countDown(stage, timeRemaining);
+        this.animHeadWin.stop();
+        this.animHeadWin.node.opacity = 0;
+        var anim = this.trendContent.getChildByName("car1").getChildByName("ef_benC").getComponent(cc.Animation);
+        anim.setCurrentTime("1.1");
+        this.trendContent.getChildByName("car1").getChildByName("ef_benC").getComponent(cc.Animation).stop();
+        switch (stage) {
+         case bcbmConstant.Satge.Bet:
+          cc.log("ssssssssssssssssssssssssssssssssssssssss");
+          curTimesHaveBet = false;
+          bcbmDataLogic.resetData();
+          receivedOpenCardMsg = false;
+          this.txtSettlementAmount.node.opacity = 0;
+          3 == bcbmDataLogic.continuousNotBetInning && this.showNotBetWarning();
+          this.setPlayId(dataLogic.playId);
+          stopBetAnimFinished = false;
+          this.cleanBetAmount();
+          this.killAllChip();
+          bcbmDataLogic.curRound = Number(bcbmDataLogic.curRound) + 1;
+          for (var i = 0; i < 8; i++) this.betArea[i].getChildByName("halo").opacity = 0;
+          cutTimesLimitBetNum = dataLogic.userBalance / 4;
+          stopBetAnimFinished = false;
+          this.hideAllRebateNode();
+          this.animStart.node.opacity = 255;
+          this.animStart.play();
+          audioMgr.playEffect(this.audioStartBet);
+          this.turnCircle[0].getChildByName("ef_ben").opacity = 0;
+          this.turnCircle[0].getChildByName("ef_ben").getComponent(cc.Animation).stop();
+          break;
+
+         case bcbmConstant.Satge.StopBet:
+          audioMgr.playEffect(this.audioStopBet);
+          stopBetAnimFinished = false;
+          this.animStop.node.opacity = 255;
+          this.animStop.on("finished", this.openCard, this);
+          this.animStop.play();
+          break;
+
+         case bcbmConstant.Satge.OpenCard:
+          cc.log("\u5f00\u62cd\u5566LLLLLLLLLLLLLL");
+          break;
+
+         case bcbmConstant.Satge.PieAward:
+          cc.log("\u6d3e\u5956\u4e2d\u5566!!!!!!!!");
+          this.clearing();
+          this.setPlayerBalance(dataLogic.userBalance);
+          this.updateTrendUI(bcbmDataLogic.trend, true);
+          if (bcbmDataLogic.continuousNotBetInning > 4) {
+            bcbmDataLogic.setKickedOut(true);
+            this.exitRoom();
+          } else if (isMaintaining) {
+            this.unscheduleAllCallbacks();
+            this.showMaintainingToast();
+          }
+        }
+        this.setSatge(stage);
+      },
+      cleanBetAmount: function cleanBetAmount() {
+        for (var i = 0; i < 8; i++) {
+          this.setBetAmount(i, true, 0);
+          this.setBetAmount(i, false, 0);
+        }
+      },
+      clearing: function clearing() {
+        var _this6 = this;
+        var selfWin = [], endKey = bcbmDataLogic.trend[bcbmDataLogic.trend.length - 1];
+        var areaMyBetNum = kf.clone(bcbmDataLogic.areaMyBetNum);
+        for (var i = 0; i < 8; i++) if (i == endKey && areaMyBetNum[endKey]) {
+          selfWin[i] = areaMyBetNum[i];
+          selfWin[i] = null == selfWin[i] ? 0 : selfWin[i];
+        } else selfWin[i] = 0;
+        var actionTime = .6, seq = void 0, delayTime = 0, chip = void 0;
+        for (var _i = 0; _i < 8; _i++) if (_i != endKey) {
+          while (this.chipNode[_i].length > 0) {
+            chip = this.chipNode[_i].pop();
+            seq = cc.sequence(cc.delayTime(1.25), cc.moveTo(actionTime, bankerWorldPos).easing(cc.easeInOut(3)), cc.callFunc(function(chip) {
+              this.recycleChip(chip);
+            }.bind(this, chip)));
+            chip.stopAllActions();
+            chip.runAction(seq);
+          }
+          delayTime = actionTime;
+          audioMgr.playEffect(this.audioClearingChip);
+        }
+        this.scheduleOnce(function() {
+          this.castSomeChipToTable(bcbmDataLogic.areaBetNum[endKey], endKey, bankerWorldPos, 20, true);
+          audioMgr.playEffect(this.audioSomeChip);
+        }.bind(this), delayTime + 1.5);
+        this.scheduleOnce(this.showSettlementAmount.bind(this), delayTime + 1.75);
+        delayTime += actionTime;
+        this.scheduleOnce(this.award.bind(this, selfWin, endKey), delayTime + 1.35);
+        bcbmDataLogic.areaBetNum[endKey] > 0 && this.betArea[endKey].getChildByName("halo").runAction(cc.sequence(cc.blink(1, 3), cc.callFunc(function() {
+          _this6.betArea[endKey].getChildByName("halo").opacity = 255;
+        })));
+      },
+      chipMoveToPlayer: function chipMoveToPlayer(startPos, endPos, chip) {
+        this.chipAction(startPos, endPos, chip, true);
+      },
+      award: function award(selfWin, endKey) {
+        var allPlayerWin = bcbmDataLogic.areaBetNum;
+        var count = void 0, otherPlayerWin = 0, chip = void 0;
+        if (selfWin[endKey]) {
+          count = Math.ceil(selfWin[endKey] / allPlayerWin[endKey] * this.chipNode[endKey].length);
+          count = count < 3 ? 3 : count;
+          count = count > this.chipNode[endKey].length ? this.chipNode[endKey].length : count;
+          var j = 0;
+          while (j < count) {
+            chip = this.chipNode[endKey].pop();
+            this.chipMoveToPlayer(chip.position, playerWorldPos, chip);
+            j++;
+          }
+        }
+        otherPlayerWin = allPlayerWin[endKey] - selfWin[endKey];
+        if (otherPlayerWin > 0) {
+          while (this.chipNode[endKey].length > 0) {
+            chip = this.chipNode[endKey].pop();
+            this.chipMoveToPlayer(chip.position, this.randomOtherPos(), chip);
+          }
+          audioMgr.playEffect(this.audioClearingChip);
+        }
+        if (curTimesHaveBet) if (bcbmDataLogic.settlementAmount < 0) audioMgr.playEffect(this.audioLose); else {
+          audioMgr.playEffect(this.audioClearingChip);
+          audioMgr.playEffect(this.audioWin);
+          this.animHeadWin.node.opacity = 255;
+          this.animHeadWin.play();
+        }
+      },
+      showSettlementAmount: function showSettlementAmount() {
+        var num = bcbmDataLogic.settlementAmount;
+        if (!curTimesHaveBet) return;
+        0 === num && cc.error("\u7ed3\u7b97\u91d1\u989d\u9519\u8bef");
+        if (num < 0) {
+          this.txtSettlementAmount.font = this.loseChipNumFont;
+          this.txtSettlementAmount.string = num;
+        } else {
+          this.txtSettlementAmount.string = "+" + num;
+          this.txtSettlementAmount.font = this.winChipNumFont;
+        }
+        this.txtSettlementAmount.node.y = 0;
+        this.txtSettlementAmount.node.opacity = 255;
+        this.txtSettlementAmount.node.stopAllActions();
+        this.txtSettlementAmount.node.runAction(cc.moveBy(.2, 0, 70));
+      },
+      openCard: function openCard() {
+        cc.log("\u51c6\u5907\u6267\u884c\u5f00\u5956\u52a8\u753b,\u662f\u5426\u6536\u5230\u672c\u5c40\u7684\u5f00\u5956\u6d88\u606f", receivedOpenCardMsg);
+        stopBetAnimFinished = true;
+        if (receivedOpenCardMsg) this.openAllCardAction(bcbmDataLogic.openIndex); else {
+          this.unscheduleAllCallbacks();
+          dataLogic.setReqRecoverState(true);
+          http.post(constant.PostRecover, "gameRecoverCb", true);
+          var arg = {
+            type: constant.ToastType.Loading
+          };
+          this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+        }
+      },
+      setSatge: function setSatge(stage) {
+        bcbmDataLogic.setCurStage(stage);
+        this.txtStage.string = bcbmConstant.SatgeTxt[stage];
+      },
+      netDisconnect: function netDisconnect() {
+        this.unscheduleAllCallbacks();
+      },
+      onGameRecover: function onGameRecover(msg, isInit, curTime, curStage, isOpenCard) {
+        bcbmDataLogic.resetData();
+        isInit && bcbmDataLogic.setContinuousNotBetInning(0);
+        dataLogic.setNeedRecover(true);
+        var timeRemaining = bcbmDataLogic.getDistanceNextStageTime(curTime, curStage);
+        this.countDown(curStage, timeRemaining);
+        this.setSatge(curStage);
+        dataLogic.setReqRecoverState(false);
+        dataLogic.setDeskId(msg.deskId);
+        dataLogic.setMsgId(msg.msgId);
+        curStage == bcbmConstant.Satge.Bet || this.simulateOnLinePlayerNum(msg.count);
+        bcbmDataLogic.setOtherPlayerInfo();
+        this.setBetToggleConfig(msg.betConfig);
+        this.setCountPlayer(msg.count);
+        var trend = kf.clone(msg.trend);
+        bcbmDataLogic.setTrend(trend);
+        var settlementAmount = 0;
+        var balance = 0;
+        if (null != msg.endData) {
+          settlementAmount = Number(msg.endData.split(",")[0]);
+          balance = msg.endData.split(",")[1];
+        } else balance = msg.balance;
+        cutTimesLimitBetNum = balance / 4;
+        bcbmDataLogic.setSettlementAmount(settlementAmount);
+        if (isOpenCard) {
+          cc.log("\u5df2\u7ecf\u5f00\u724c\u5566\u554a");
+          receivedOpenCardMsg = true;
+          bcbmDataLogic.pushPlayId(msg.lastPlayId);
+          bcbmDataLogic.setOpenIndex(msg.openIndex);
+          bcbmDataLogic.setLastOpenIndex(msg.lastOpenIndex);
+          if (curStage == bcbmConstant.Satge.OpenCard) {
+            this.setPlayerBalance(+balance - +settlementAmount);
+            dataLogic.setUserBalance(balance);
+          } else this.setPlayerBalance(balance);
+        } else {
+          receivedOpenCardMsg = false;
+          var totalBetNum = 0;
+          bcbmDataLogic.setLastOpenIndex(msg.lastOpenIndex);
+          for (var i = 0; i < 8; i++) totalBetNum += msg.myBet[i];
+          this.setPlayerBalance(balance.minus(totalBetNum));
+        }
+        this.turnCircle[0].position = this.circlePos[curStage == bcbmConstant.Satge.PieAward ? msg.openIndex : msg.lastOpenIndex];
+        this.turnCircle[0].opacity = 255;
+        dataLogic.setPlayId(msg.playId);
+        bcbmDataLogic.pushPlayId(msg.playId);
+        if (msg.trend.length < 20) {
+          for (var _i2 = 0; _i2 < this.trendContent.length; _i2++) _i2 < msg.trend.length ? this.trendContent.children[_i2].active = true : this.trendContent.children[_i2].active = false;
+          this.trendContent.height = 80 * msg.trend.length;
+        }
+        if (isOpenCard && curStage == bcbmConstant.Satge.OpenCard && timeRemaining > 4 || isOpenCard && curStage == bcbmConstant.Satge.StopBet) {
+          var trendData = msg.trend.length > 20 ? msg.trend.slice(-21, -1) : msg.trend.slice(-msg.trend.length, -1);
+          this.updateTrendUI(trendData);
+        } else this.updateTrendUI(msg.trend, !isOpenCard);
+        for (var _i3 = 0; _i3 < 8; _i3++) {
+          this.setBetAmount(_i3, false, msg.allBet[_i3]);
+          this.setBetAmount(_i3, true, msg.myBet[_i3]);
+        }
+        curTimesHaveBet = bcbmDataLogic.getAreaMyTotalBetNum() > 0;
+        this.updateUI(curStage, timeRemaining);
+        this.updateRanking(msg.others);
+        stopBetAnimFinished = false;
+      },
+      updateTrendUI: function updateTrendUI(trendData) {
+        var isGameOver = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+        trendData.length > 20 && (trendData = trendData.slice(-20));
+        var index = 0;
+        this.trendContent.parent.parent.getComponent(cc.ScrollView).scrollToTop();
+        this.trendContent.height = 80 * trendData.length;
+        for (var i = trendData.length - 1; i >= 0; i--) {
+          var node = this.trendContent.getChildByName("car" + (index + 1));
+          var sp = node.getComponent(cc.Sprite);
+          sp.spriteFrame = this.carIcon[trendData[i]];
+          cc.log(index, trendData.length, "222222222222222222222");
+          index < trendData.length && (node.active = true);
+          index++;
+        }
+        if (trendData[trendData.length - 1] < 4) {
+          this.trendContent.getChildByName("car1").getChildByName("ef_benC").getChildByName("lan").active = true;
+          this.trendContent.getChildByName("car1").getChildByName("ef_benC").getChildByName("huang").active = false;
+        } else {
+          this.trendContent.getChildByName("car1").getChildByName("ef_benC").getChildByName("lan").active = false;
+          this.trendContent.getChildByName("car1").getChildByName("ef_benC").getChildByName("huang").active = true;
+        }
+        isGameOver && this.trendContent.getChildByName("car1").getChildByName("ef_benC").getComponent(cc.Animation).play();
+      },
+      updateRanking: function updateRanking(data) {
+        var item = null, showItemCount = 0;
+        for (var i = 0; i < 20; i++) {
+          item = this.rankingItem[i];
+          if (i < data.length) {
+            showItemCount++;
+            item.opacity = 255;
+            item.getChildByName("txtNickname").getComponent(cc.Label).string = data[i].name;
+            item.getChildByName("txtBetNum").getComponent(cc.Label).string = data[i].money;
+            this.setPlayerHead(data[i].avatar, item.getChildByName("head").getComponent(cc.Sprite));
+          } else item.opacity = 0;
+        }
+        this.rankingContent.height = showItemCount * -rankingItemSpace + 5;
+      },
+      initRanking: function initRanking() {
+        var item = null;
+        this.rankingItem = [];
+        for (var i = 0; i < 20; i++) {
+          item = cc.instantiate(this.pfRankingItem);
+          item.parent = this.rankingContent;
+          item.y = i * rankingItemSpace + rankingItemStartY;
+          this.rankingItem.push(item);
+        }
+      },
+      killAllChip: function killAllChip() {
+        var chip = void 0;
+        for (var i = 0; i < this.chipNode.length; i++) {
+          while (this.chipNode[i].length > 0) {
+            chip = this.chipNode[i].pop();
+            chip.stopAllActions();
+            this.recycleChip(chip);
+          }
+          this.chipNode[i] = [];
+        }
+      },
+      recycleChip: function recycleChip(chip) {
+        chip.opacity = 0;
+        chip.isUse = false;
+        this.leisureChip.push(chip);
+      },
+      packUpRankingView: function packUpRankingView() {
+        if (this.isShowRanking) {
+          var endPos = {
+            x: -cc.winSize.width / 2 - 234,
+            y: 0
+          };
+          this.rankingArrow.rotation += 180;
+          this.isShowRanking = false;
+          this.ranking.stopAllActions();
+          this.ranking.runAction(cc.moveTo(.2, endPos));
+        }
+      },
+      btnEvent: function btnEvent(event, key) {
+        audioMgr.playEffect(this.audioBtn);
+        "setRankingView" != key && this.packUpRankingView();
+        switch (key) {
+         case "exitRoom":
+          this.tryExitRoom();
+          break;
+
+         case "helpBtn":
+          kf.getObj(constant.PoolId.Help, this.toastLayer[0], this.helpPf, dataLogic.curGameId);
+          break;
+
+         case "recordBtn":
+          var record = kf.getObj(constant.PoolId.Record, this.toastLayer[0], this.recordPf, "record");
+          record.getComponent("record").recordMainShow(constant.GameId.Bcbm);
+          break;
+
+         case "Setting":
+          kf.getObj(constant.PoolId.Setting, this.toastLayer[0], this.settingPf, "setting");
+          break;
+
+         case "forceExit":
+          this.toastHide(this.exitToastLayer);
+          this.exitRoom();
+
+         case "closeExitToastLayer":
+          this.toastHide(this.exitToastLayer);
+          break;
+
+         case "refresh":
+          location.reload();
+          break;
+
+         case "setRankingView":
+          var endPos = null;
+          endPos = this.isShowRanking ? {
+            x: -cc.winSize.width / 2 - 234,
+            y: 0
+          } : {
+            x: -cc.winSize.width / 2,
+            y: 0
+          };
+          this.rankingArrow.rotation += 180;
+          this.isShowRanking = !this.isShowRanking;
+          this.ranking.stopAllActions();
+          this.ranking.runAction(cc.moveTo(.2, endPos));
+        }
+      },
+      updateUI: function updateUI(stage, timeRemaining) {
+        var _this7 = this;
+        this.killAllChip();
+        this.animHeadWin.stop();
+        this.animHeadWin.node.opacity = 0;
+        this.txtSettlementAmount.node.opacity = 0;
+        switch (stage) {
+         case bcbmConstant.Satge.Bet:
+          if (bcbmDataLogic.continuousNotBetInning > 4) {
+            bcbmDataLogic.setKickedOut(true);
+            this.exitRoom();
+          }
+          this.setPlayId(dataLogic.playId);
+          3 == bcbmDataLogic.continuousNotBetInning && this.showNotBetWarning();
+          for (var i = 0; i < 8; i++) this.betArea[i].getChildByName("halo").opacity = 0;
+          this.recoverTableChip(15 - timeRemaining);
+          this.turnCircle[0].getChildByName("ef_ben").opacity = 0;
+          this.turnCircle[0].getChildByName("ef_ben").getComponent(cc.Animation).stop();
+          break;
+
+         case bcbmConstant.Satge.StopBet:
+          cc.log("updateUI====================StopBet", timeRemaining);
+          this.setPlayId(dataLogic.playId);
+          this.recoverTableChip(15 - timeRemaining);
+          this.updateBetAmount();
+          for (var _i4 = 0; _i4 < 8; _i4++) this.betArea[_i4].getChildByName("halo").opacity = 0;
+          this.scheduleOnce(function() {
+            _this7.openCardStage(bcbmDataLogic.openIndex, 8);
+          }, 2 - timeRemaining);
+          break;
+
+         case bcbmConstant.Satge.OpenCard:
+          this.setPlayId(bcbmDataLogic.latelyPlayIds[0]);
+          this.recoverTableChip();
+          this.updateBetAmount();
+          cc.log("========================================", timeRemaining);
+          this.openCardStage(bcbmDataLogic.openIndex, timeRemaining);
+          break;
+
+         case bcbmConstant.Satge.PieAward:
+          cc.log("\u65ad\u7ebf\u91cd\u8fde\u6d3e\u5956\u4e2d");
+          this.setPlayId(bcbmDataLogic.latelyPlayIds[0]);
+          this.recoverTableChip();
+          timeRemaining > 1 ? this.clearing() : this.showSettlementAmount();
+        }
+      },
+      recoverTableChip: function recoverTableChip() {
+        var genTime = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 18;
+        var allBet = null;
+        for (var i = 0; i < 8; i++) {
+          allBet = bcbmDataLogic.areaBetNum[i];
+          if (allBet > 0) for (var j = 0; j < genTime; j++) this.genSomeChipToTable(i, allBet / genTime, true);
+        }
+      },
+      genSomeChipToTable: function genSomeChipToTable(areaKey, totalChipNum) {
+        var isRecover = arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
+        var chips = this.genSomeChip(totalChipNum, isRecover);
+        for (var i = 0; i < chips.length; i++) {
+          chips[i].opacity = 255;
+          chips[i].position = this.randomChipPos(areaKey);
+          this.chipNode[areaKey].push(chips[i]);
+        }
+      },
+      updateBetAmount: function updateBetAmount() {
+        for (var i = 0; i < 8; i++) {
+          this.setBetAmount(i, false, bcbmDataLogic.areaBetNum[i]);
+          this.setBetAmount(i, true, bcbmDataLogic.areaMyBetNum[i]);
+        }
+      },
+      setBetAmount: function setBetAmount(betAreaKey, isSelf, amount) {
+        if (isSelf) {
+          this.txtSelfBetAmount[betAreaKey].string = 0 == amount ? 0 : amount;
+          bcbmDataLogic.setAreaMyBetNum(betAreaKey, amount);
+        } else {
+          this.txtTotalBetAmount[betAreaKey].string = 0 == amount ? 0 : amount;
+          bcbmDataLogic.setAreaBetNum(betAreaKey, amount);
+        }
+      },
+      setPlayerBalance: function setPlayerBalance(balance) {
+        "string" == typeof balance && (balance = Number(balance));
+        this.txtBalance.string = balance.toFixed(2);
+        dataLogic.setUserBalance(balance);
+      },
+      setBetToggleConfig: function setBetToggleConfig(config) {
+        bcbmDataLogic.setBetBtnConfig(config);
+        for (var i = 0; i < bcbmDataLogic.betBtnConfig.length; i++) this.choiceBet[i].getChildByName("txt").getComponent(cc.Label).string = config[i];
+      },
+      setCountPlayer: function setCountPlayer(num) {
+        this.txtCountPlayer.string = "\u672c\u684c\u5171" + num + "\u4eba";
+      },
+      showMaintainingToast: function showMaintainingToast() {
+        var hintTxt = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "\u7cfb\u7edf\u9700\u8981\u51e0\u5206\u949f\u5347\u7ea7\u4e00\u4e0b\uff0c\u8bf7\u7a0d\u7b49";
+        if (this.getToast(constant.ToastType.Hint, 4)) return;
+        var arg = {
+          type: constant.ToastType.Hint,
+          extend: {
+            contentTxt: hintTxt,
+            btnEventName: [ null, "exitRoom" ],
+            btnTxt: [ null, "\u597d\u7684" ]
+          }
+        };
+        kf.getObj(constant.PoolId.ToastHint, this.toastLayer[4], this.pfToastHint, arg);
+      },
+      loadSceneFrontDispose: function loadSceneFrontDispose() {
+        kf.clearPool(constant.PoolId.Chip);
+      },
+      updateBalanceCb: function updateBalanceCb() {},
+      syncServerTimeCb: function syncServerTimeCb() {
+        var now = new Date().getTime();
+        cc.log("\u670d\u52a1\u5668\u65f6\u95f4", msg.Data, now - dataLogic.timeOff);
+        return;
+        var toast;
+        var arg;
+      },
+      tryExitRoom: function tryExitRoom() {
+        0 == bcbmDataLogic.getAreaMyTotalBetNum() ? this.exitRoom() : this.showExitGameToast("\u6e38\u620f\u4e2d\u4e0d\u80fd\u9000\u51fa\u54e6\uff0c\u8bf7\u7b49\u5f85\u6e38\u620f\u7ed3\u675f\u518d\u9000\u51fa", bcbmDataLogic.getAreaMyTotalBetNum());
+      },
+      exitRoom: function exitRoom() {
+        audioMgr.stopEffect(this.alarmClockAudioId);
+        bcbmDataLogic.setContinuousNotBetInning(0);
+        this.unscheduleAllCallbacks();
+        isMaintaining || http.post({
+          action: "DoPlay",
+          eventName: "leave"
+        });
+        this.goBackSelectRoom();
+      },
+      setSelfUI: function setSelfUI() {
+        this.txtNickname.string = dataLogic.userName;
+        this.setPlayerBalance(dataLogic.userBalance);
+        this.setPlayerHead(dataLogic.userHeadUrl, this.spHead);
+      }
+    }, _defineProperty(_cc$Class, "setPlayerBalance", function setPlayerBalance(balance) {
+      "string" == typeof balance && (balance = Number(balance));
+      this.txtBalance.string = balance.toFixed(2);
+      dataLogic.setUserBalance(balance);
+    }), _defineProperty(_cc$Class, "setPlayerHead", function setPlayerHead(headUrl, sp) {
+      resMgr.loadSingleRes("baoWang" + headUrl.replace(".jpg", ""), function(res) {
+        sp.spriteFrame = res;
+      }, cc.SpriteFrame);
+    }), _defineProperty(_cc$Class, "setPlayId", function setPlayId(playId) {
+      curPlayId = playId;
+      this.roomNum.getChildByName("txt").getComponent(cc.Label).string = "\u724c\u5c40\u7f16\u53f7\uff1a" + playId;
+      this.setRoomNumState();
+    }), _defineProperty(_cc$Class, "setRoomNumState", function setRoomNumState() {
+      this.roomNum.getChildByName("txt").getComponent(cc.Label)._updateRenderData(true);
+      this.roomNum.width = this.roomNum.getChildByName("txt").width + 40;
+    }), _defineProperty(_cc$Class, "gameShow", function gameShow() {
+      audioMgr.stopAllEffect();
+      if (bcbmDataLogic.continuousNotBetInning > 4) {
+        bcbmDataLogic.setKickedOut(true);
+        this.exitRoom();
+      }
+      if (isMaintaining) {
+        this.unscheduleAllCallbacks();
+        this.showMaintainingToast();
+        return;
+      }
+      this.unscheduleAllCallbacks();
+      this.unschedule(this.callback);
+      this.unschedule(this.callbackNew);
+      this.animStart.stop();
+      this.animStop.stop();
+      this.animStart.node.opacity = 0;
+      this.animStop.node.opacity = 0;
+      if (this.socketIO.isConnected()) {
+        dataLogic.setReqRecoverState(true);
+        http.post(constant.PostRecover, "gameRecoverCb", true);
+        var arg = {
+          type: constant.ToastType.Loading
+        };
+        this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+      }
+      return;
+    }), _defineProperty(_cc$Class, "gameHide", function gameHide() {
+      this.unscheduleAllCallbacks();
+      gameHidePlayId = curPlayId;
+      gameHideStage = bcbmDataLogic.curSatge;
+      audioMgr.stopAllEffect();
+    }), _defineProperty(_cc$Class, "onOpen", function onOpen(msgData) {
+      receivedOpenCardMsg = true;
+      bcbmDataLogic.addContinuousNotBetInning();
+      bcbmDataLogic.setOpenIndex(msgData.openIndex);
+      var trend = kf.clone(msgData.trend);
+      bcbmDataLogic.setTrend(trend);
+      cc.log("======stopBetAnimFinished", stopBetAnimFinished);
+      if (stopBetAnimFinished) {
+        cc.log("onOpen\u901a\u77e5\u60a8\u5f00\u62cd\u5566");
+        this.openAllCardAction(msgData.openIndex);
+      }
+      dataLogic.setPlayId(msgData.playId);
+      bcbmDataLogic.pushPlayId(msgData.playId);
+      if (dataLogic.isHide && bcbmDataLogic.continuousNotBetInning > 4) {
+        bcbmDataLogic.setKickedOut(true);
+        this.exitRoom();
+      }
+      this.updateRanking(msgData.others);
+      var settlementAmount = msgData.endData.split(",")[0];
+      bcbmDataLogic.setSettlementAmount(settlementAmount);
+      var balance = msgData.endData.split(",")[1];
+      dataLogic.setUserBalance(balance);
+      this.setCountPlayer(msgData.count);
+      1 == msgData.isStop ? isMaintaining = true : this.simulateOnLinePlayerNum(msgData.count);
+    }), _defineProperty(_cc$Class, "openAllCardAction", function openAllCardAction(data) {
+      cc.log("\u7ffb\u62cd\uff01\uff01\uff01\uff01");
+      if (dataLogic.isHide) return;
+      this.openCardStage(data);
+    }), _defineProperty(_cc$Class, "onBet", function onBet(msgData) {
+      var betNum = 0;
+      for (var i = 0; i < 8; i++) {
+        betNum = msgData.allBet[i] - bcbmDataLogic.areaBetNum[i];
+        betNum > 0 && this.castSomeChipToTable(betNum, i, null, 20);
+        this.setBetAmount(i, false, msgData.allBet[i]);
+      }
+      this.setCountPlayer(msgData.count);
+      audioMgr.playEffect(this.audioSomeChip);
+    }), _defineProperty(_cc$Class, "castSomeChipToTable", function castSomeChipToTable(totalChipNum, areaKey) {
+      var startPos = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null;
+      var maxCount = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 10;
+      var isEnd = arguments.length > 4 && void 0 !== arguments[4] && arguments[4];
+      if (dataLogic.isHide) return;
+      var chips = this.genSomeChip(totalChipNum, maxCount);
+      function doLoop(_this, _loopLength) {
+        for (var j = 0; j < _loopLength; j++) {
+          var pos = null == startPos ? chips[j].position : startPos;
+          chips[j].position = null == startPos ? _this.randomOtherPos() : startPos;
+          _this.chipAction(pos, _this.randomChipPos(areaKey), chips[j], false, areaKey, j, isEnd);
+        }
+      }
+      doLoop(this, chips.length);
+    }), _defineProperty(_cc$Class, "randomFrom", function randomFrom(lowerValue, upperValue) {
+      return Math.floor(Math.random() * (upperValue - lowerValue + 1) + lowerValue);
+    }), _defineProperty(_cc$Class, "randomChipPos", function randomChipPos(betAreaKey) {
+      var x = dataLogic.randomIntBySeed(chipRandomPos[betAreaKey].x + (7 == betAreaKey || 3 == betAreaKey ? 10 : 0 == betAreaKey || 4 == betAreaKey ? 45 : 30), chipRandomPos[betAreaKey].x + (3 == betAreaKey || 7 == betAreaKey ? 130 : 150));
+      var y = dataLogic.randomIntBySeed(chipRandomPos[betAreaKey].y + (betAreaKey > 3 ? 40 : 70), chipRandomPos[betAreaKey].y + (betAreaKey > 3 ? 90 : 120));
+      return cc.v2(x, y);
+    }), _defineProperty(_cc$Class, "randomOtherPos", function randomOtherPos() {
+      return {
+        x: 0,
+        y: dataLogic.randomInt(otherPlayerYMin, otherPlayerYMax)
+      };
+    }), _defineProperty(_cc$Class, "chipAction", function chipAction(startPos, endPos, chip, isEndKill, betAreaKey, index, notDelayAction) {
+      var _this8 = this;
+      if (dataLogic.isHide) {
+        if (isEndKill) this.recycleChip(chip); else {
+          chip.position = endPos;
+          this.chipNode[betAreaKey].push(chip);
+        }
+        return;
+      }
+      var actionTime = startPos.sub(endPos).mag() * chipMoveSpeed;
+      var move = cc.moveTo(actionTime, endPos).easing(cc.easeInOut(3));
+      chip.stopAllActions();
+      chip.rotation = 360 * Math.random();
+      if (isEndKill) {
+        var seq = cc.sequence(move, cc.callFunc(function() {
+          _this8.recycleChip(chip);
+        }));
+        chip.runAction(seq);
+      } else {
+        this.chipNode[betAreaKey].push(chip);
+        chip.runAction(cc.sequence(cc.delayTime(notDelayAction ? 0 : .1 * index), cc.callFunc(function() {
+          chip.opacity = 255;
+        }, this), move, cc.callFunc(function() {
+          if (_this8.chipNode[betAreaKey].length >= maxTableChipNum && !notDelayAction) {
+            var chip = _this8.chipNode[betAreaKey].shift();
+            chip.stopAllActions();
+            _this8.recycleChip(chip);
+          }
+        }, this)));
+      }
+    }), _defineProperty(_cc$Class, "genSomeChip", function genSomeChip(totalChipNum) {
+      var maxCount = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 10;
+      var isRecover = arguments[2];
+      var base = 2 * dataLogic.selectRoomConfig[dataLogic.curRoomKey - 1].ante;
+      var count = Math.ceil(totalChipNum / base);
+      var _maxCount = isRecover ? maxTableChipNum : maxCount;
+      count = count > _maxCount ? _maxCount : count;
+      var chipNum = 0, key = void 0, chips = [], pos = {
+        x: 0,
+        y: 0
+      };
+      for (var i = 0; i < count; i++) {
+        key = dataLogic.randomInt(0, 4);
+        chipNum = bcbmDataLogic.betBtnConfig[key];
+        chips.push(this.genChip(chipNum, pos));
+      }
+      return chips;
+    }), _defineProperty(_cc$Class, "genChip", function genChip(chipNum, pos) {
+      var chip = null;
+      if (0 == this.leisureChip.length) {
+        chip = kf.getObj(constant.PoolId.Chip, this.chipLayer, this.pfChip);
+        chip.getChildByName("bg").width = 26;
+        chip.getChildByName("bg").height = 26;
+      } else {
+        chip = this.leisureChip.pop();
+        if (chip.isUse) {
+          cc.log("---------\u8fd9\u4e2a\u7b79\u7801\u5df2\u7ecf\u88ab\u7528\u4e86");
+          this.genChip(chipNum, pos);
+          return;
+        }
+        chip.opacity = 255;
+      }
+      var key = kf.getArrIndexByValue(bcbmDataLogic.betBtnConfig, chipNum);
+      if (-1 == key) {
+        cc.error("\u672a\u627e\u5230\u5bf9\u5e94\u7684\u4e0b\u6ce8\u6309\u94ae\u914d\u7f6e", chipNum);
+        return;
+      }
+      var data = {
+        chipNum: chipNum,
+        iconKey: key,
+        pos: pos,
+        color: chipTxtColor[key]
+      };
+      chip.getComponent("chip").initUI(data);
+      chip.opacity = 0;
+      chip.isUse = true;
+      return chip;
+    }), _defineProperty(_cc$Class, "betCb", function betCb(msgData, localCbArg) {
+      if (msgData.Code == constant.HttpCode.Succeed) {
+        bcbmDataLogic.setContinuousNotBetInning(-1);
+        curTimesHaveBet = true;
+      } else {
+        bcbmDataLogic.setAreaMyBetNum(localCbArg.betArea, Number(bcbmDataLogic.areaMyBetNum[localCbArg.betArea]).minus(localCbArg.betNum));
+        this.setBetAmount(localCbArg.betArea, true, bcbmDataLogic.areaMyBetNum[localCbArg.betArea]);
+        msgData.Code == constant.HttpCode.NotSufficientFunds ? this.setPlayerBalance(msgData.Data) : this.setPlayerBalance(dataLogic.userBalance.add(localCbArg.betNum));
+      }
+    }), _defineProperty(_cc$Class, "simulateOnLinePlayerNum", function simulateOnLinePlayerNum(num) {
+      var _this9 = this;
+      var updateCount = 0;
+      var min = num - 10, max = num + 10;
+      min < 1 && (min = 1);
+      this.updateSimulateOnLinePlayerNum && this.unschedule(this.updateSimulateOnLinePlayerNum);
+      this.updateSimulateOnLinePlayerNum = function() {
+        if (bcbmDataLogic.curSatge == bcbmConstant.Satge.Bet) {
+          _this9.unschedule(_this9.updateSimulateOnLinePlayerNum);
+          return;
+        }
+        _this9.setCountPlayer(dataLogic.randomInt(min, max));
+        updateCount++;
+        if (5 == updateCount) {
+          updateCount = 0;
+          http.post(bcbmConstant.PostOnLinePlayerCount);
+        }
+      };
+      this.schedule(this.updateSimulateOnLinePlayerNum, 1);
+    }), _defineProperty(_cc$Class, "reqOnLinePlayerCountCb", function reqOnLinePlayerCountCb(msg) {
+      msg.Code == constant.HttpCode.Succeed && this.simulateOnLinePlayerNum(msg.Data);
+    }), _cc$Class));
+    cc._RF.pop();
+  }, {
+    gameSceneBase: "gameSceneBase"
+  } ],
   bindAndCheckPhoneNum: [ function(require, module, exports) {
     "use strict";
     cc._RF.push(module, "ff85eSKOE5CS7cer/hUmyxq", "bindAndCheckPhoneNum");
@@ -7775,6 +10484,7 @@ window.__require = function e(t, n, r) {
             resMgr.loadSingleRes("prefab/baoWang/registerCashGift", function(res) {
               var node = cc.instantiate(res);
               node.parent = cc.find("Canvas/toastLayer/1");
+              node.getComponent("registerCashGift").init("register", dataLogic.registerCashGift);
             }, cc.Prefab);
           }
           _doneCb(msg.Data, msg.StrCode);
@@ -9841,7 +12551,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "haveNiu":
@@ -10204,7 +12914,15 @@ window.__require = function e(t, n, r) {
       LandlordsHall: "landlordsHall",
       Landlords: "landlords",
       LongHuHall: "longHuHall",
-      LongHu: "longHu"
+      LongHu: "longHu",
+      TenfoldBRCattleHall: "BRCattleHall",
+      TenfoldBRCattle: "BRCattle",
+      BaiJiaLeHall: "bjlHall",
+      BaiJiaLe: "bjl",
+      BcbmHall: "bcbmHall",
+      Bcbm: "bcbm",
+      GiftMoneyHall: "giftMoneyHall",
+      GiftMoney: "giftMoney"
     };
     constant.GameScene = {};
     constant.GameScene[constant.SceneName.GoldenFraud] = true;
@@ -10219,6 +12937,9 @@ window.__require = function e(t, n, r) {
     constant.GameScene[constant.SceneName.ErBaGang] = true;
     constant.GameScene[constant.SceneName.Landlords] = true;
     constant.GameScene[constant.SceneName.LongHu] = true;
+    constant.GameScene[constant.SceneName.Bcbm] = true;
+    constant.GameScene[constant.SceneName.BaiJiaLe] = true;
+    constant.GameScene[constant.SceneName.GiftMoney] = true;
     constant.ToastName = {
       InfoToast: "infoToast"
     };
@@ -10242,8 +12963,11 @@ window.__require = function e(t, n, r) {
       BRCattle: "11",
       LongHu: "12",
       Landlords: "14",
-      BaiJaiLe: "15",
-      SeeFourCattle: "16"
+      BaiJiaLe: "15",
+      SeeFourCattle: "16",
+      Bcbm: "17",
+      TenfoldBRCattle: "21",
+      GiftMoney: "24"
     };
     constant.GameNickName = {};
     constant.GameNickName[constant.GameId.GoldenFraud] = "\u70b8\u91d1\u82b1";
@@ -10260,8 +12984,11 @@ window.__require = function e(t, n, r) {
     constant.GameNickName[constant.GameId.ErBaGang] = "\u4e8c\u516b\u6760";
     constant.GameNickName[constant.GameId.BRCattle] = "\u767e\u4eba\u725b\u725b";
     constant.GameNickName[constant.GameId.Landlords] = "\u6597\u5730\u4e3b";
-    constant.GameNickName[constant.GameId.BaiJaiLe] = "\u767e\u5bb6\u4e50";
+    constant.GameNickName[constant.GameId.BaiJiaLe] = "\u767e\u5bb6\u4e50";
     constant.GameNickName[constant.GameId.LongHu] = "\u9f99\u864e\u6597";
+    constant.GameNickName[constant.GameId.TenfoldBRCattle] = "\u5341\u500d\u767e\u4eba\u725b\u725b";
+    constant.GameNickName[constant.GameId.Bcbm] = "\u5954\u9a70\u5b9d\u9a6c";
+    constant.GameNickName[constant.GameId.GiftMoney] = "\u7ea2\u5305\u626b\u96f7";
     constant.GameNickName["aboutUs"] = "\u5173\u4e8e\u6211\u4eec";
     constant.RegisterCashGiftRes = [ {
       path: "baoWang/registerCashGift",
@@ -10300,6 +13027,16 @@ window.__require = function e(t, n, r) {
     }, {
       path: "hall/miniGameCard",
       resType: "dir",
+      useScene: constant.SceneName.Hall,
+      notRelease: true
+    }, {
+      path: "font/winChipNum_0",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.Hall,
+      notRelease: true
+    }, {
+      path: "font/winChipNum",
+      resType: cc.Font,
       useScene: constant.SceneName.Hall,
       notRelease: true
     } ];
@@ -10483,7 +13220,7 @@ window.__require = function e(t, n, r) {
       useScene: constant.SceneName.CattleHall,
       notRelease: true
     } ];
-    constant.GameRes[constant.GameId.BRCattle] = [ {
+    var _BRCattleRes = [ {
       path: "5659f76c-fff6-4ec1-aba4-7c47549dd192",
       resType: cc.Prefab
     }, {
@@ -10531,14 +13268,6 @@ window.__require = function e(t, n, r) {
       resType: "dir",
       useScene: constant.SceneName.BRCattle
     }, {
-      path: "BRCattle/bg",
-      resType: cc.SpriteFrame,
-      useScene: constant.SceneName.BRCattle
-    }, {
-      path: "BRCattle/table",
-      resType: cc.SpriteFrame,
-      useScene: constant.SceneName.BRCattle
-    }, {
       path: "cattle/effect/cow",
       resType: "dir",
       useScene: constant.SceneName.BRCattle
@@ -10549,11 +13278,6 @@ window.__require = function e(t, n, r) {
       notRelease: true
     }, {
       path: "common/UI/preLoad",
-      resType: "dir",
-      useScene: constant.SceneName.BRCattleHall,
-      notRelease: true
-    }, {
-      path: "selectRoom/BRCattle",
       resType: "dir",
       useScene: constant.SceneName.BRCattleHall,
       notRelease: true
@@ -10573,6 +13297,44 @@ window.__require = function e(t, n, r) {
       useScene: constant.SceneName.BRCattleHall,
       notRelease: true
     } ];
+    constant.GameRes[constant.GameId.BRCattle] = _BRCattleRes.concat([ {
+      path: "BRCattle/bg",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BRCattle
+    }, {
+      path: "BRCattle/table",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BRCattle
+    }, {
+      path: "selectRoom/BRCattle/gameName",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BRCattleHall
+    }, {
+      path: "selectRoom/BRCattle/brnn_room",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BRCattleHall
+    } ]);
+    constant.GameRes[constant.GameId.TenfoldBRCattle] = _BRCattleRes.concat([ {
+      path: "tenfoldBRCattle/BG",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BRCattle
+    }, {
+      path: "tenfoldBRCattle/tenfoldTable",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BRCattle
+    }, {
+      path: "tenfoldBRCattle",
+      resType: "dir",
+      useScene: constant.SceneName.BRCattle
+    }, {
+      path: "selectRoom/tenfoldBRCattle/gameName",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BRCattleHall
+    }, {
+      path: "selectRoom/tenfoldBRCattle/hall",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BRCattleHall
+    } ]);
     constant.GameRes[constant.GameId.Landlords] = [ {
       path: "ed78e5c9-e6f3-4e10-86cc-dc7163895947",
       resType: ""
@@ -11196,9 +13958,6 @@ window.__require = function e(t, n, r) {
       notRelease: true
     } ];
     constant.GameRes[constant.GameId.SanGong] = [ {
-      path: "5659f76c-fff6-4ec1-aba4-7c47549dd192",
-      resType: cc.Prefab
-    }, {
       path: "94899643-dd0b-43c7-8d3a-0c25203405fe",
       resType: cc.Prefab
     }, {
@@ -11844,6 +14603,171 @@ window.__require = function e(t, n, r) {
       resType: "dir",
       useScene: constant.SceneName.ErBaGangHall
     } ];
+    constant.GameRes[constant.GameId.Bcbm] = [ {
+      path: "5a192441-8ecb-4e89-9a21-5ed2af57a5db",
+      resType: cc.Prefab
+    }, {
+      path: "1f76a94c-49f0-4edc-8bcc-27e3cdc1301f",
+      resType: cc.Prefab
+    }, {
+      path: "84e764f3-5410-4e72-85b8-181be118b19c",
+      resType: cc.Prefab
+    }, {
+      path: "31865f22-27b6-4639-80a7-475b3915df56",
+      resType: ""
+    }, {
+      path: "360fa939-f5e5-43bd-bb8d-6ec4687c9e97",
+      resType: ""
+    }, {
+      path: "62b865ec-1fd1-4506-afd8-3652320d8610",
+      resType: ""
+    }, {
+      path: "7b769a94-7468-4a8c-a527-1f9b6c58963d",
+      resType: ""
+    }, {
+      path: "fcafc389-e13c-42fa-b231-bddd62b95f1a",
+      resType: ""
+    }, {
+      path: "common/UI/preLoad",
+      resType: "dir",
+      useScene: constant.SceneName.Bcbm,
+      notRelease: true
+    }, {
+      path: "font",
+      resType: "dir",
+      useScene: constant.SceneName.Bcbm,
+      notRelease: true
+    }, {
+      path: "Bcbm",
+      resType: "dir",
+      useScene: constant.SceneName.Bcbm,
+      notRelease: true
+    }, {
+      path: "BRCattle/miniPng",
+      resType: "dir",
+      useScene: constant.SceneName.Bcbm
+    }, {
+      path: "common/UI/preLoad",
+      resType: "dir",
+      useScene: constant.SceneName.BcbmHall,
+      notRelease: true
+    }, {
+      path: "selectRoom/Bcbm",
+      resType: "dir",
+      useScene: constant.SceneName.BcbmHall,
+      notRelease: true
+    }, {
+      path: "selectRoom/effect",
+      resType: "dir",
+      useScene: constant.SceneName.BcbmHall,
+      notRelease: true
+    }, {
+      path: "selectRoom/xuanfang",
+      resType: cc.SpriteAtlas,
+      useScene: constant.SceneName.BcbmHall,
+      notRelease: true
+    }, {
+      path: "font",
+      resType: "dir",
+      useScene: constant.SceneName.BcbmHall,
+      notRelease: true
+    }, {
+      path: "Bcbm/bg",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.Bcbm
+    }, {
+      path: "Bcbm/table",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.Bcbm
+    } ];
+    constant.GameRes[constant.GameId.GiftMoney] = [];
+    constant.GameRes[constant.GameId.BaiJiaLe] = [ {
+      path: "5a192441-8ecb-4e89-9a21-5ed2af57a5db",
+      resType: cc.Prefab
+    }, {
+      path: "1f76a94c-49f0-4edc-8bcc-27e3cdc1301f",
+      resType: cc.Prefab
+    }, {
+      path: "76e16efc-5774-421c-a8c0-57b5be4b717a",
+      resType: cc.Prefab
+    }, {
+      path: "31865f22-27b6-4639-80a7-475b3915df56",
+      resType: ""
+    }, {
+      path: "360fa939-f5e5-43bd-bb8d-6ec4687c9e97",
+      resType: ""
+    }, {
+      path: "62b865ec-1fd1-4506-afd8-3652320d8610",
+      resType: ""
+    }, {
+      path: "7b769a94-7468-4a8c-a527-1f9b6c58963d",
+      resType: ""
+    }, {
+      path: "eba45310-cf35-46d6-93a5-a6f36db3e3f0",
+      resType: ""
+    }, {
+      path: "21565259-705c-4ce5-b499-260b3479ac07",
+      resType: ""
+    }, {
+      path: "common/UI/preLoad",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLe,
+      notRelease: true
+    }, {
+      path: "font",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLe,
+      notRelease: true
+    }, {
+      path: "BaiJiaLe",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLe
+    }, {
+      path: "BRCattle/miniPng",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLe
+    }, {
+      path: "LongHu/effect/he",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLe
+    }, {
+      path: "LongHu/UI",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLe
+    }, {
+      path: "common/UI/preLoad",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLeHall,
+      notRelease: true
+    }, {
+      path: "selectRoom/BaiJiaLe",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLeHall,
+      notRelease: true
+    }, {
+      path: "selectRoom/effect",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLeHall,
+      notRelease: true
+    }, {
+      path: "selectRoom/xuanfang",
+      resType: cc.SpriteAtlas,
+      useScene: constant.SceneName.BaiJiaLeHall,
+      notRelease: true
+    }, {
+      path: "font",
+      resType: "dir",
+      useScene: constant.SceneName.BaiJiaLeHall,
+      notRelease: true
+    }, {
+      path: "BaiJiaLe/bg",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BaiJiaLe
+    }, {
+      path: "BaiJiaLe/table",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.BaiJiaLe
+    } ];
     constant.GameRes[constant.ToastName.InfoToast] = [ {
       path: "common/UI/delayLoad",
       resType: "dir"
@@ -11914,7 +14838,8 @@ window.__require = function e(t, n, r) {
       LoadTimeout: n++,
       SystemError: n++,
       Hint: n++,
-      ConnectTimeout: n++
+      ConnectTimeout: n++,
+      LoadingWaitStart: n++
     };
     n = 0;
     constant.ToastPriority = {
@@ -12062,7 +14987,7 @@ window.__require = function e(t, n, r) {
         var picKey = index % 6;
         sceneName == constant.SceneName.DzpkHall ? this.antesTxt.string = "\u76f2\u6ce8" : sceneName == constant.SceneName.BRCattleHall ? this.antesTxt.string = "\u9650\u7ea2" : this.antesTxt.string = "\u5e95\u6ce8";
         this.roomName.string = msg.roomName;
-        if (sceneName == constant.SceneName.BRCattleHall) {
+        if (sceneName == constant.SceneName.BRCattleHall || sceneName == constant.SceneName.BaiJiaLeHall || sceneName == constant.SceneName.BcbmHall) {
           this.bet.string = msg.ante + "~" + 100 * msg.ante;
           this.bet.fontSize = 30;
         } else {
@@ -12410,7 +15335,7 @@ window.__require = function e(t, n, r) {
       }
       return 1 == res ? 0 : res;
     }
-    var _EVENT_TYPE = [ "loadScene", "onGameStart", "onSeeCard", "onFold", "onBet", "onPass", "onCompareCard", "onPlayerOperation", "onGameRecover", "gameRecoverCb", "checkRecoverCb", "tryIntoRoomCb", "onGameEnd", "seeCardCb", "foldCb", "betCb", "passCb", "compareCardCb", "reqUserBalanceCb", "syncUserBalanceCb", "getUserBalanceCb", "updateBalanceCb", "syncBetBtnConfig", "socketMsg", "onJoin", "matchingCb", "cancelMatchingCb", "syncServerTimeCb", "reqServerTimeCb", "calibrationServerTimeCb", "onVillage", "onOpenCards", "village", "openCards", "socketDisconnect", "socketTimeout", "exitRoom", "loginCb", "reconnect", "httpCbRepeater", "intoNextScene", "getAboutCb", "syncRecordCb", "GetUserBalanceCb", "updateHallBalance", "onLeave", "reqSelectRoomConfigCb", "intoGameRoom", "toastType", "killAllToast", "killToast", "btnIntoGameEvent", "showNotice", "checkGameStateCb", "getJackpotCb", "bonusGameBetCb", "exitBonusGameCb", "openCb", "onOpenDice", "onStartGuess", "guessCb", "onGuess", "toastHintBtnHandle", "stopGameCb", "openCardCb", "onGameOver", "reqGameListCb", "tryIntoGame", "showLoadTimeoutToast", "onOpen", "cancelRefreshToastShow", "reqCheckCodeCb", "getLettersCb", "getRankingListCb", "getLetterContentCb", "getNoticeDetailCb", "getGradeListCb", "getNoticeDetailCb", "getAllAnnouncementsCb", "operationLettersCb", "getGradeDataCb", "getGradeScoreCb", "reqUnreadLetterNumCb", "checkOriginalPassword", "setNewPasswordCb", "getGradeScoreCb", "updataPersonalInfoCb", "getSecurityCentreDataCb", "showLayerToast", "getRechargeWayCb", "getSafeQuestionListCb", "setSafeQuestionCb", "checkSafeQuestionCb", "registerCb", "CheckShowCodeCb", "checkUserExistCb", "customCallBack", "getRechargeCb", "setBankCardCb", "reqBankModuleDataCb", "reqFirstCardCb", "checkBankCardCb", "withdrawCb", "getInitDataCb", "reqBankCardDetailCb", "reqTradingTypeCb", "reqTradingRecordCb", "balanceExchangeCb", "transferCb", "getActivityCb", "getActiviInfoCb", "getUserAwardInfoCb", "getActivityBonusCb", "getLoginOutCb", "getSpreadCodeCb", "getAgentReportCb", "getReportInfoCb", "tryJoinPKRoomCb", "getAchievementCb", "setAchievementCb", "reqFriendRoomListCb", "reqCreateRoomCb", "onReady", "readyCb", "onRemind", "onRemove", "leaveGameCb", "reqRoomIdCb", "getUserInfoCardCb", "showLayerTip", "reqSendSMSCheckCodeCb", "checkPhoneCb", "getAchievementActivityDataCb", "getAchievementAwardCb", "getAppDataCb", "visitorRegisterCb", "visitorLoginCb", "onLandlord", "onPlayCards", "onPass", "onAutoPlay", "showCardCb", "onGameEnds", "callScoreCb", "getLettersByJudgeIsPop", "getGiftAwardCb", "getActivityCb_panel", "cancelAutoPlayCb", "autoPlayCb", "reqOnLinePlayerCountCb" ];
+    var _EVENT_TYPE = [ "loadScene", "onGameStart", "onSeeCard", "onFold", "onBet", "onPass", "onCompareCard", "onPlayerOperation", "onGameRecover", "gameRecoverCb", "checkRecoverCb", "tryIntoRoomCb", "onGameEnd", "seeCardCb", "foldCb", "betCb", "passCb", "compareCardCb", "reqUserBalanceCb", "syncUserBalanceCb", "getUserBalanceCb", "updateBalanceCb", "syncBetBtnConfig", "socketMsg", "onJoin", "matchingCb", "cancelMatchingCb", "syncServerTimeCb", "reqServerTimeCb", "calibrationServerTimeCb", "onVillage", "onOpenCards", "village", "openCards", "socketDisconnect", "socketTimeout", "exitRoom", "loginCb", "reconnect", "httpCbRepeater", "intoNextScene", "getAboutCb", "syncRecordCb", "GetUserBalanceCb", "updateHallBalance", "onLeave", "reqSelectRoomConfigCb", "intoGameRoom", "toastType", "killAllToast", "killToast", "btnIntoGameEvent", "showNotice", "checkGameStateCb", "getJackpotCb", "bonusGameBetCb", "exitBonusGameCb", "openCb", "onOpenDice", "onStartGuess", "guessCb", "onGuess", "toastHintBtnHandle", "stopGameCb", "openCardCb", "onGameOver", "reqGameListCb", "tryIntoGame", "showLoadTimeoutToast", "onOpen", "cancelRefreshToastShow", "reqCheckCodeCb", "getLettersCb", "getRankingListCb", "getLetterContentCb", "getNoticeDetailCb", "getGradeListCb", "getNoticeDetailCb", "getAllAnnouncementsCb", "operationLettersCb", "getGradeDataCb", "getGradeScoreCb", "reqUnreadLetterNumCb", "checkOriginalPassword", "setNewPasswordCb", "getGradeScoreCb", "updataPersonalInfoCb", "getSecurityCentreDataCb", "showLayerToast", "getRechargeWayCb", "getSafeQuestionListCb", "setSafeQuestionCb", "checkSafeQuestionCb", "registerCb", "CheckShowCodeCb", "checkUserExistCb", "customCallBack", "getRechargeCb", "setBankCardCb", "reqBankModuleDataCb", "reqFirstCardCb", "checkBankCardCb", "withdrawCb", "getInitDataCb", "reqBankCardDetailCb", "reqTradingTypeCb", "reqTradingRecordCb", "balanceExchangeCb", "transferCb", "getActivityCb", "getActiviInfoCb", "getUserAwardInfoCb", "getActivityBonusCb", "getLoginOutCb", "getSpreadCodeCb", "getAgentReportCb", "getReportInfoCb", "tryJoinPKRoomCb", "getAchievementCb", "setAchievementCb", "reqFriendRoomListCb", "reqCreateRoomCb", "onReady", "readyCb", "onRemind", "onRemove", "leaveGameCb", "reqRoomIdCb", "getUserInfoCardCb", "showLayerTip", "reqSendSMSCheckCodeCb", "checkPhoneCb", "getAchievementActivityDataCb", "getAchievementAwardCb", "getAppDataCb", "visitorRegisterCb", "visitorLoginCb", "onLandlord", "onPlayCards", "onPass", "onAutoPlay", "showCardCb", "onGameEnds", "callScoreCb", "getLettersByJudgeIsPop", "getGiftAwardCb", "getActivityCb_panel", "cancelAutoPlayCb", "autoPlayCb", "reqOnLinePlayerCountCb", "getSignInConfigCb", "signInCb", "onPush", "onGrab", "onSettle", "onNoAlive", "onExit", "onCurrent", "leaveGameRoomCb" ];
     var _seed = 0;
     var _curSceneName = null;
     var _intervalSendId = null;
@@ -12496,7 +15421,7 @@ window.__require = function e(t, n, r) {
         this.hasSafePassword = false;
         this.isTransfer = false;
         this.storeObj = {};
-        this.CacheArr = [ "GradeList", "DailyRewardConfig", "SysActivity", "OtherActivity", "Announcements", "SiteConfig", "GetGameList", "IndexCarousel", "NewMessage", "GameList", "GetAppData" ];
+        this.CacheArr = [ "GradeList", "DailyRewardConfig", "SysActivity", "OtherActivity", "Announcements", "SiteConfig", "GetGameList", "IndexCarousel", "NewMessage", "GameList", "GetAppData", "GetFirstRecharge" ];
         this.CacheData = cc.sys.localStorage.getItem("CacheData");
         this.CacheData = this.CacheData ? JSON.parse(this.CacheData) : {};
         this.inviteCodeType = 0;
@@ -12514,6 +15439,18 @@ window.__require = function e(t, n, r) {
         };
         this.msgList = [];
         this.regGift = 0;
+        this.firstRechargeGiftState = false;
+        this.rechargeState = false;
+        this.signInState = true;
+      },
+      setSignInState: function setSignInState(state) {
+        this.signInState = state;
+      },
+      setFirstRechargeGiftState: function setFirstRechargeGiftState(state) {
+        this.firstRechargeGiftState = state;
+      },
+      setRechargeState: function setRechargeState(state) {
+        this.rechargeState = state;
       },
       setRegisterCashGift: function setRegisterCashGift(num) {
         this.registerCashGift = num;
@@ -12877,7 +15814,7 @@ window.__require = function e(t, n, r) {
       getJoinAmountByRoomId: function getJoinAmountByRoomId(roomId) {
         var list = this.selectRoomConfig;
         for (var i = 0; i < list.length; i++) if (list[i].roomId == roomId) return list[i].joinAmount;
-        cc.log("\u627e\u4e0d\u5230roomId", roomId);
+        cc.log("\u627e\u4e0d\u5230roomId", roomId, this.selectRoomConfig);
       },
       getAnteByRoomId: function getAnteByRoomId(roomId) {
         var list = this.selectRoomConfig;
@@ -13822,7 +16759,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
         }
       },
       matching: function matching() {
@@ -15525,7 +18462,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "cancelMatching":
@@ -17563,7 +20500,6 @@ window.__require = function e(t, n, r) {
       return null;
     };
     kf.createSlideCheckCode = function(jsAddr, checkSucceedCb, point) {
-      cc.log("\u521b\u5efa\u6ed1\u5757\u9a8c\u8bc1\u7801");
       point.showLoadView(true);
       if (cc.sys.isNative) {
         jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "doCaptcha", "(Ljava/lang/String;)V", jsAddr);
@@ -19076,7 +22012,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "showdown":
@@ -20031,7 +22967,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "stopGame":
@@ -20473,6 +23409,102 @@ window.__require = function e(t, n, r) {
   }, {
     gameSceneBase: "gameSceneBase"
   } ],
+  firstRechargeGift: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "db5b5mUzblH0YpOBWUqruj1", "firstRechargeGift");
+    "use strict";
+    var clientEvent = kf.require("basic.clientEvent");
+    cc.Class({
+      extends: cc.Component,
+      properties: {
+        acClick: {
+          type: cc.AudioClip,
+          default: null
+        },
+        loadIcon: cc.Node,
+        fixedMoney: cc.Node,
+        ratiosMoney: cc.Node,
+        txtRatios: cc.Label,
+        txtPresenterRatiosHint: cc.Label
+      },
+      registerEvent: function registerEvent() {
+        this.registerHandler = [ [ "getInitDataCb", this.getInitDataCb.bind(this) ] ];
+        for (var i = 0; i < this.registerHandler.length; i++) {
+          var handler = this.registerHandler[i];
+          clientEvent.registerEvent(handler[0], handler[1]);
+        }
+      },
+      unregisterEvent: function unregisterEvent() {
+        for (var i = 0; i < this.registerHandler.length; i++) {
+          var handler = this.registerHandler[i];
+          clientEvent.unregisterEvent(handler[0], handler[1]);
+        }
+      },
+      onLoad: function onLoad() {
+        this.registerEvent();
+        this.loadIcon.runAction(cc.repeatForever(cc.rotateBy(1, 360)));
+        http.post({
+          action: "GetInitData",
+          Requirement: JSON.stringify([ "GetFirstRecharge" ]),
+          reqExtendArg: {
+            timeoutRefresh: false,
+            reRequested: false
+          }
+        }, "getInitDataCb");
+      },
+      getInitDataCb: function getInitDataCb(data) {
+        this.loadIcon.active = false;
+        if (data.Code != constant.HttpCode.Succeed) return;
+        var config = data.BackData.GetFirstRecharge;
+        if (config) if (1 == config.discount_type) this.initFixedMoneyItems(config.areaArr, config.amountArr); else {
+          this.txtRatios.string = config.first_discount + "%\u989d\u5916\u5956\u91d1";
+          this.ratiosMoney.active = true;
+          config.rechargeLimit ? config.maxGift ? this.txtPresenterRatiosHint.string = "\u9996\u6b21\u5145\u503c\u4efb\u610f\u91d1\u989d\uff0c\u5373\u53ef\u83b7\u5f97\u6597\u5730\u4e3b\u8bb0\u724c\u5668\uff0c\n\u6ee1" + config.rechargeLimit + "\u5143\u8fd8\u6709" + config.first_discount + "%\u989d\u5916\u5956\u91d1\uff0c\u6700\u591a\u53ef\u5f97" + config.maxGift + "\u5143\u54e6\uff01" : this.txtPresenterRatiosHint.string = "\u9996\u6b21\u5145\u503c\u4efb\u610f\u91d1\u989d\uff0c\u5373\u53ef\u83b7\u5f97\u6597\u5730\u4e3b\u8bb0\u724c\u5668\uff0c\n\u6ee1" + config.rechargeLimit + "\u5143\u8fd8\u6709" + config.first_discount + "%\u989d\u5916\u5956\u91d1\u54e6\uff01" : config.maxGift ? this.txtPresenterRatiosHint.string = "\u9996\u6b21\u5145\u503c\u4efb\u610f\u91d1\u989d\uff0c\u5373\u53ef\u83b7\u5f97\u9996\u5145\u5927\u793c\u5305\uff0c\n\u5956\u91d1\u6700\u591a\u53ef\u5f97" + config.maxGift + "\u5143\u54e6\uff01" : this.txtPresenterRatiosHint.string = "\u9996\u6b21\u5145\u503c\u4efb\u610f\u91d1\u989d\uff0c\u5373\u53ef\u83b7\u5f97\u9996\u5145\u5927\u793c\u5305\u54e6\uff01";
+        }
+      },
+      initFixedMoneyItems: function initFixedMoneyItems(rechargeList, presenterList) {
+        var item = {}, offX = 166;
+        for (var i = 0; i < rechargeList.length; i++) {
+          item = this.fixedMoney.getChildByName("item" + i);
+          item.active = true;
+          if (rechargeList.length > 4) {
+            item.y = i > 3 ? -150 : 20;
+            item.x = i > 3 ? (8 - rechargeList.length) * offX / 2 - 249 + (i - 4) * offX : i * offX - 249;
+          } else {
+            item.y = -70;
+            item.x = (4 - rechargeList.length) * offX / 2 - 249 + i * offX;
+          }
+          item.getChildByName("txtPresenterMoney").getComponent(cc.Label).string = presenterList[i] + "\u91d1\u5e01";
+          item.getChildByName("txtRechargeMoney").getComponent(cc.Label).string = "\u5145" + rechargeList[i];
+        }
+      },
+      close: function close() {
+        this.unregisterEvent();
+        this.node.destroy();
+      },
+      btnEvent: function btnEvent(event, name) {
+        audioMgr.playEffect(this.acClick);
+        switch (name) {
+         case "recharge":
+          kf.getObj(constant.PoolId.DialogComonLayer, this.node.parent, null, {
+            path: "prefab/baoWang/payCenter",
+            js: "payCenter",
+            initArg: 1
+          });
+          this.close();
+          break;
+
+         case "close":
+          this.close();
+          break;
+
+         default:
+          cc.log("\u672a\u77e5\u4e8b\u4ef6\u540d", name);
+        }
+      }
+    });
+    cc._RF.pop();
+  }, {} ],
   forgetPassword: [ function(require, module, exports) {
     "use strict";
     cc._RF.push(module, "bdd723UTR1H8ag8U+vbdqmS", "forgetPassword");
@@ -20821,6 +23853,7 @@ window.__require = function e(t, n, r) {
         _isFirstUse = false;
         this.initGameTab();
         this.initRecordItem(10);
+        cc.log("====initFirstUse");
         this.scheduleOnce(function() {
           _this.unschedule(_loadProcessCb);
           _this.toastShow();
@@ -20852,6 +23885,7 @@ window.__require = function e(t, n, r) {
       },
       toastShow: function toastShow() {
         var _this3 = this;
+        cc.log("toastShow");
         var seq = cc.sequence(cc.fadeIn(0), cc.scaleTo(.08, 1.1, 1.1), cc.scaleTo(.03, 1, 1), cc.callFunc(function() {
           var toggle = _this3.tabNavToggleContainer.children[0].getComponent(cc.Toggle);
           if (toggle.isChecked) _this3.toggleBind(false, dataLogic.gameList[0].gameTypeId); else {
@@ -20972,15 +24006,17 @@ window.__require = function e(t, n, r) {
         var item = void 0;
         for (var i = 0; i < _recordItemCount; i++) {
           item = this.content.getChildByName("item" + i);
+          if (!item) break;
           item.opacity = 0;
         }
       },
       showRecordItem: function showRecordItem(data) {
         this.hideRecordItem();
-        if (data.length > _recordItemCount) data.length = _recordItemCount; else if (0 == data.length) {
+        if (null == data || 0 == data.length) {
           this.nullRecord.opacity = 255;
           return;
         }
+        data.length > _recordItemCount && (data.length = _recordItemCount);
         if (0 != data.length) {
           this.nullRecord.opacity = 0;
           this.content.height = data.length * this.content.getChildByName("item0").height;
@@ -21139,6 +24175,8 @@ window.__require = function e(t, n, r) {
           gameId: dataLogic.curGameId,
           sceneName: sceneName
         });
+        var help = this.toastLayer[0].getChildByName("newHelp");
+        help && kf.killObj(help);
       },
       reqSelectRoomConfigCb: function reqSelectRoomConfigCb(msg, nextSceneInfo) {
         if (msg.Code == constant.HttpCode.Succeed) {
@@ -21173,7 +24211,7 @@ window.__require = function e(t, n, r) {
       },
       cancelMatchingExceptionHandling: function cancelMatchingExceptionHandling(msg) {
         if (msg.Code == constant.HttpCode.Succeed || msg.Code == constant.HttpCode.Timeout || msg.Code == constant.HttpCode.GameOver) return;
-        dataLogic.isPlaying || this.showRefreshToast("\u8bf7\u6c42\u8d85\u65f6\uff0c\u5237\u65b0\u8bd5\u8bd5\u770b\u5427", 4, 3);
+        dataLogic.isPlaying || this.showRefreshToast("\u8bf7\u6c42\u8d85\u65f6\uff0c\u91cd\u542f\u8bd5\u8bd5\u770b\u5427", 4, 3);
       },
       showTimeOutNotStartToast: function showTimeOutNotStartToast(hintTxt, event) {
         var toast = this.getToast(constant.ToastType.Hint, 0);
@@ -21395,6 +24433,762 @@ window.__require = function e(t, n, r) {
     cc._RF.pop();
   }, {
     sceneBase: "sceneBase"
+  } ],
+  giftMoneyConstant: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "dd955VokCZB47jwUdiu13S7", "giftMoneyConstant");
+    "use strict";
+    window.giftMoneyConstant = window.giftMoneyConstant || {};
+    giftMoneyConstant.maxPlayerNum = 6;
+    var n = 0;
+    giftMoneyConstant.CardType = {
+      Single: n++,
+      Pair: n++,
+      Straight: n++,
+      Flush: n++,
+      StraightFlush: n++,
+      Set: n++
+    };
+    giftMoneyConstant.Audio = {
+      Bg: 0
+    };
+    n = 0;
+    giftMoneyConstant.PlayerState = {
+      Fold: n++,
+      HaveSeen: n++,
+      Failed: n++,
+      Normal: n++
+    };
+    var _action = "DoPlay";
+    giftMoneyConstant.PostSend = {
+      action: _action,
+      eventName: "push"
+    };
+    giftMoneyConstant.PostGrap = {
+      action: _action,
+      eventName: "grab"
+    };
+    giftMoneyConstant.PostAutoGrap = {
+      action: _action,
+      eventName: "autoPlay"
+    };
+    giftMoneyConstant.PostMatching = {
+      action: "JoinRoom"
+    };
+    giftMoneyConstant.PostCancelAutoGrap = {
+      action: _action,
+      eventName: "cancelAutoPlay"
+    };
+    giftMoneyConstant.PostGuess = {
+      action: _action,
+      eventName: "guess"
+    };
+    giftMoneyConstant.PostCancelMatching = {
+      action: _action,
+      eventName: "leave"
+    };
+    cc._RF.pop();
+  }, {} ],
+  giftMoneyDataLogic: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "be40cSTLIxFqrcq32OXdYNY", "giftMoneyDataLogic");
+    "use strict";
+    window.giftMoneyDataLogic = {
+      init: function init() {
+        this.grabPlayerInfo = [];
+        this.btnConfig = [];
+        this.isKickedOut = false;
+      },
+      addPlayer: function addPlayer(playerData) {
+        this.grabPlayerInfo.push(playerData);
+      },
+      setBtnConfig: function setBtnConfig(data) {
+        this.btnConfig = data;
+      },
+      setKickedOut: function setKickedOut(isKickedOut) {
+        this.isKickedOut = isKickedOut;
+      }
+    };
+    giftMoneyDataLogic.init();
+    cc._RF.pop();
+  }, {} ],
+  giftMoneyHall: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "72f19tlrLpOWLLrbppL4AcV", "giftMoneyHall");
+    "use strict";
+    cc.Class({
+      extends: require("selectRoomSceneBase"),
+      properties: {},
+      onLoad: function onLoad() {
+        this.baseInit(constant.GameId.GiftMoney);
+        if (giftMoneyDataLogic.isKickedOut) {
+          this.showKickedOut();
+          giftMoneyDataLogic.setKickedOut(false);
+        }
+      },
+      showKickedOut: function showKickedOut() {
+        var arg = {
+          type: constant.ToastType.Hint,
+          extend: {
+            contentTxt: "\u60a8\u8d85\u8fc72\u5206\u949f\u6ca1\u6709\u53c2\u4e0e\u6e38\u620f\uff0c\u88ab\u8bf7\u79bb\u4e86\u623f\u95f4",
+            btnEventName: [ null, "toastClose" ],
+            btnTxt: [ null, "\u786e\u5b9a" ]
+          }
+        };
+        kf.getObj(constant.PoolId.ToastHint, this.toastLayer[3], this.pfToastHint, arg);
+      },
+      preloadRes: function preloadRes() {
+        cc.log("\u9884\u52a0\u8f7d\u8d44\u6e90");
+        var list = [ "Bcbm/UI/5", "Bcbm/table", "Bcbm/bg" ];
+        for (var i = 0; i < list.length; i++) cc.loader.loadRes(list[i], function(err, res) {
+          if (err) {
+            cc.error("\u52a0\u8f7d\u8d44\u6e90\u9519\u8bef", err);
+            return;
+          }
+        });
+      }
+    });
+    cc._RF.pop();
+  }, {
+    selectRoomSceneBase: "selectRoomSceneBase"
+  } ],
+  giftMoney: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "60b8eDX4ZxGbpYV7qMFmMZn", "giftMoney");
+    "use strict";
+    var _cc$Class;
+    function _defineProperty(obj, key, value) {
+      key in obj ? Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      }) : obj[key] = value;
+      return obj;
+    }
+    var clientEvent = kf.require("basic.clientEvent");
+    var isOpenAniFinished = false;
+    var bankerPos = [ cc.v2(-562.2, 230), cc.v2(562.2, 230), cc.v2(-562.2, 140), cc.v2(562.2, 140), cc.v2(-562.2, 50), cc.v2(562.2, 50), cc.v2(-562.2, -40), cc.v2(562.2, -40), cc.v2(-562.2, -130), cc.v2(562.2, -130) ];
+    cc.Class((_cc$Class = {
+      extends: require("gameSceneBase"),
+      properties: {
+        txtNickname: cc.Label,
+        txtBalance: cc.Label,
+        spHead: cc.Sprite,
+        matchingBtn: cc.Node,
+        playerArr: [ cc.Node ],
+        playIdTxt: cc.Label,
+        waitRedPanel: cc.Node,
+        hasRedPanel: cc.Node,
+        sendGiftMoneyPanel: cc.Node,
+        btnBg: [ cc.SpriteFrame ],
+        moneyBtnArr: [ cc.Node ],
+        numBtnArr: [ cc.Node ],
+        boomBtnArr: [ cc.Node ],
+        waitPlayer: [ cc.Node ],
+        curBagOwner: cc.Label,
+        curLeftNumber: cc.Label,
+        curBagMoney: cc.Label,
+        curBoomNumberLabel: cc.Label,
+        countDownTxt: cc.Label,
+        awardBg: [ cc.SpriteFrame ],
+        winChipNumFont: cc.Font,
+        loseChipNumFont: cc.Font,
+        curState: cc.Node,
+        openBtn: cc.Node,
+        banker: cc.Node,
+        timer: cc.Node,
+        selfBorder: cc.Node,
+        playerBg: [ cc.SpriteFrame ],
+        autoGrapAni: cc.Animation,
+        boom: cc.Node,
+        sendGiftMoneyBtnBg: [ cc.SpriteFrame ],
+        sendGiftMoneyBtn: cc.Node,
+        grapMoneyAudio: {
+          default: null,
+          type: cc.AudioClip
+        },
+        openAudio: {
+          default: null,
+          type: cc.AudioClip
+        }
+      },
+      registerEvent: function registerEvent() {
+        this.registerHandler = [ [ "matchingCb", this.matchingCb.bind(this) ], [ "onGameRecover", this.onGameRecover.bind(this) ], [ "onGameStart", this.onGameStart.bind(this) ], [ "onPush", this.onPush.bind(this) ], [ "onGrab", this.onGrab.bind(this) ], [ "onSettle", this.onSettle.bind(this) ], [ "onNoAlive", this.onNoAlive.bind(this) ], [ "gameRecoverCb", this.gameRecoverCb.bind(this) ], [ "onExit", this.onExit.bind(this) ], [ "onCurrent", this.onCurrent.bind(this) ], [ "betCb", this.betCb.bind(this) ], [ "openCb", this.openCb.bind(this) ], [ "leaveGameRoomCb", this.leaveGameRoomCb.bind(this) ] ];
+        for (var i = 0; i < this.registerHandler.length; i++) {
+          var handler = this.registerHandler[i];
+          clientEvent.registerEvent(handler[0], handler[1]);
+        }
+      },
+      gameShow: function gameShow() {},
+      gameHide: function gameHide() {},
+      onLoad: function onLoad() {
+        this.baseInit(constant.GameId.GiftMoney);
+        this.registerEvent();
+        this.setSelfUI();
+        this.resetGrapPlayerState();
+        this.gameState = -1;
+        if (dataLogic.needRecover) {
+          cc.log("==============\u65ad\u7ebf\u91cd\u8fde");
+          this.doneGameRecover = false;
+          this.isOffLine = 1;
+          dataLogic.setReqRecoverState(true);
+          http.post(constant.PostRecover, "gameRecoverCb");
+          var arg = {
+            type: constant.ToastType.Loading
+          };
+          this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+        } else {
+          dataLogic.setReqRecoverState(false);
+          dataLogic.setDeskId(-1);
+          var roomKey = dataLogic.curRoomKey || 1;
+          giftMoneyConstant.PostMatching.roomId = constant.GameId.GiftMoney + roomKey;
+          var _arg = {
+            type: constant.ToastType.LoadingWaitStart
+          };
+          this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, _arg);
+          http.post(giftMoneyConstant.PostMatching, "matchingCb");
+        }
+        this.timer.getComponent(cc.Animation).play();
+        this.countDownTxt.node.opacity = 0;
+        this.curGiftMoney = "";
+        this.curSendNumber = "";
+        this.curBoomNumber = "";
+        this.sendPlayerArr = [];
+        this.nowRedEnvelopId = "";
+        this.curRoundLossMoney = "";
+        this.curRoundSeatIndex = null;
+        this.isAutoGrap = false;
+        this.grabCbData = null;
+        this.startIndex = 0;
+        this.selfSendBagNum = 0;
+      },
+      btnEvent: function btnEvent(event, eventType) {
+        eventType && audioMgr.playEffect(this.audioBtn);
+        switch (eventType) {
+         case "exitGame":
+          cc.log("exitGame");
+          this.tryExitGame();
+          break;
+
+         case "helpBtn":
+          kf.getObj(constant.PoolId.Help, this.toastLayer[0], this.helpPf, dataLogic.curGameId);
+          break;
+
+         case "recordBtn":
+          var record = kf.getObj(constant.PoolId.Record, this.toastLayer[0], this.recordPf, "record");
+          record.getComponent("record").recordMainShow(constant.GameId.GiftMoney);
+          break;
+
+         case "Setting":
+          kf.getObj(constant.PoolId.Setting, this.toastLayer[0], this.settingPf, "setting");
+          break;
+
+         case "showGiftMoneyPanel":
+          this.checkBetBtnState();
+          this.sendGiftMoneyPanel.active = true;
+          break;
+
+         case "closeGiftMoneyPanel":
+          this.sendGiftMoneyPanel.active = false;
+          this.resetSendGiftMoneyData();
+        }
+      },
+      resetSendGiftMoneyData: function resetSendGiftMoneyData() {
+        this.curGiftMoney = "";
+        this.curSendNumber = "";
+        this.curBoomNumber = "";
+      },
+      gameRecoverCb: function gameRecoverCb(data) {
+        this.onGameRecover(data.Data);
+        dataLogic.setReqRecoverState(false);
+        dataLogic.setDeskId(data.Data.deskId);
+        dataLogic.setMsgId(data.Data.msgId);
+      },
+      tryExitGame: function tryExitGame() {
+        -1 != this.gameState || this.selfSendBagNum ? this.showExitGameToast("\u6e38\u620f\u4e2d\u4e0d\u80fd\u9000\u51fa\u54e6\uff0c\u8bf7\u7b49\u5f85\u6e38\u620f\u7ed3\u675f\u518d\u9000\u51fa") : this.exitRoom();
+      },
+      exitRoom: function exitRoom() {
+        this.unscheduleAllCallbacks();
+        this.node.stopAllActions();
+        constant.PostCancelMatching.roomId = constant.GameId.GiftMoney + dataLogic.curRoomKey;
+        http.post(constant.PostCancelMatching, "leaveGameRoomCb");
+      },
+      leaveGameRoomCb: function leaveGameRoomCb(data) {
+        if (1 == data.Code || -4 == data.Code) {
+          cc.log("3333333333333333333333");
+          this.goBackSelectRoom();
+        } else this.showExitGameToast("\u9000\u51fa\u5931\u8d25\uff0c\u8bf7\u60a8\u91cd\u65b0\u518d\u8bd5");
+      },
+      setAutoGrap: function setAutoGrap() {
+        audioMgr.playEffect(this.audioBtn);
+        this.isAutoGrap = !this.isAutoGrap;
+        if (this.isAutoGrap) {
+          this.autoGrapAni.play();
+          this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2\u4e2d......";
+          giftMoneyConstant.PostAutoGrap.roomId = constant.GameId.GiftMoney + dataLogic.curRoomKey;
+          http.post(giftMoneyConstant.PostAutoGrap, "openCb", "autoPlay");
+        } else {
+          giftMoneyConstant.PostCancelAutoGrap.roomId = constant.GameId.GiftMoney + dataLogic.curRoomKey;
+          http.post(giftMoneyConstant.PostCancelAutoGrap, "openCb", "cancelAutoPlay");
+          this.autoGrapAni.stop();
+          this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2";
+        }
+      },
+      toggleGiftMoney: function toggleGiftMoney(event, key) {
+        audioMgr.playEffect(this.audioBtn);
+        for (var i = 0; i < this.moneyBtnArr.length; i++) {
+          var btn = this.moneyBtnArr[i];
+          btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[0];
+          btn.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 128, 117, 1);
+        }
+        event.target.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[1];
+        event.target.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 86, 73, 1);
+        this.curGiftMoney = giftMoneyDataLogic.btnConfig[key];
+      },
+      toggleGiftMoneyNumber: function toggleGiftMoneyNumber(event, key) {
+        audioMgr.playEffect(this.audioBtn);
+        for (var i = 0; i < this.numBtnArr.length; i++) {
+          var btn = this.numBtnArr[i];
+          btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[0];
+          btn.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 128, 117, 1);
+        }
+        event.target.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[1];
+        event.target.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 86, 73, 1);
+        this.curSendNumber = [ 5, 7, 10 ][key];
+      },
+      toggleBoomNumber: function toggleBoomNumber(event, key) {
+        audioMgr.playEffect(this.audioBtn);
+        for (var i = 0; i < this.boomBtnArr.length; i++) {
+          var btn = this.boomBtnArr[i];
+          btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[0];
+          btn.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 128, 117, 1);
+        }
+        event.target.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[1];
+        event.target.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 86, 73, 1);
+        this.curBoomNumber = key;
+      },
+      sendGiftMoney: function sendGiftMoney(event, key) {
+        audioMgr.playEffect(this.audioBtn);
+        if (!this.curGiftMoney) {
+          this.showLayerTip("\u8bf7\u9009\u62e9\u7ea2\u5305\u91d1\u989d");
+          return;
+        }
+        if (!this.curSendNumber) {
+          this.showLayerTip("\u8bf7\u9009\u62e9\u7ea2\u5305\u4e2a\u6570");
+          return;
+        }
+        if (!this.curBoomNumber) {
+          this.showLayerTip("\u8bf7\u9009\u62e9\u96f7\u53f7");
+          return;
+        }
+        giftMoneyConstant.PostSend.redEnvelopAmount = this.curGiftMoney;
+        giftMoneyConstant.PostSend.redEnvelopCount = this.curSendNumber;
+        giftMoneyConstant.PostSend.hitNumber = this.curBoomNumber;
+        http.post(giftMoneyConstant.PostSend, "betCb");
+      },
+      betCb: function betCb(data) {
+        if (1 == data.Code) {
+          this.showLayerTip("\u6210\u529f\u53d1\u51fa\u7ea2\u5305");
+          this.sendGiftMoneyPanel.active = false;
+          this.resetGiftMoneyPanel();
+          this.gameState = 1;
+          this.selfSendBagNum += 1;
+          return;
+        }
+        1 == data.Code && 4 == data.Data ? this.showLayerTip("\u6392\u961f\u7ea2\u5305\u5df2\u6ee1\uff0c\u8bf7\u7a0d\u540e\u518d\u53d1") : this.showLayerTip("\u53d1\u9001\u5931\u8d25\uff0c\u8bf7\u91cd\u65b0\u53d1\u9001");
+      },
+      resetGiftMoneyPanel: function resetGiftMoneyPanel() {
+        this.curGiftMoney = this.curSendNumber = this.curBoomNumber = "";
+        for (var i = 0; i < this.moneyBtnArr.length; i++) {
+          var btn = this.moneyBtnArr[i];
+          btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[0];
+          btn.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 128, 117, 1);
+        }
+        for (var _i = 0; _i < this.numBtnArr.length; _i++) {
+          var btn = this.numBtnArr[_i];
+          btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[0];
+          btn.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 128, 117, 1);
+        }
+        for (var _i2 = 0; _i2 < this.boomBtnArr.length; _i2++) {
+          var btn = this.boomBtnArr[_i2];
+          btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[0];
+          btn.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 128, 117, 1);
+        }
+      },
+      setSelfUI: function setSelfUI() {
+        this.txtNickname.string = dataLogic.userName;
+        this.setPlayerBalance(dataLogic.userBalance);
+        this.setPlayerHead(dataLogic.userHeadUrl, this.spHead);
+      },
+      setPlayerBalance: function setPlayerBalance(balance) {
+        "string" == typeof balance && (balance = Number(balance));
+        this.txtBalance.string = balance.toFixed(2);
+        dataLogic.setUserBalance(balance);
+      },
+      setPlayerHead: function setPlayerHead(headUrl, sp) {
+        resMgr.loadSingleRes("baoWang" + headUrl.replace(".jpg", ""), function(res) {
+          sp.spriteFrame = res;
+        }, cc.SpriteFrame);
+      },
+      matchingCb: function matchingCb(data) {
+        if (1 == data.Code) {
+          dataLogic.setDeskId(data.Data.deskId);
+          this.setBetBtnConfig(data.Data);
+        } else {
+          if (this.recoverLoad && this.recoverLoad.parent) {
+            this.recoverLoad.stopAllActions();
+            kf.killObj(this.recoverLoad);
+          }
+          if (constant.HttpCode.NotSufficientFunds == data.Code) {
+            this.setPlayerBalance(constant.SelfUISeatId, data.Data);
+            var roomKey = dataLogic.curRoomKey;
+            var admittanceChipNum = dataLogic.getJoinAmountByRoomId(dataLogic.curGameId + roomKey);
+            this.showRechargeToast(admittanceChipNum, true);
+            return;
+          }
+        }
+      },
+      setBetBtnConfig: function setBetBtnConfig(data) {
+        giftMoneyDataLogic.setBtnConfig(data.amount);
+        this.renderBetBtn();
+      },
+      renderBetBtn: function renderBetBtn() {
+        for (var i = 0; i < 4; i++) {
+          var btn = this.moneyBtnArr[i];
+          btn.getChildByName("Background").getChildByName("txt").getComponent(cc.Label).string = giftMoneyDataLogic.btnConfig[i];
+          if (giftMoneyDataLogic.btnConfig[i] > dataLogic.userBalance) {
+            btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[2];
+            btn.getComponent(cc.Button).interactable = false;
+          }
+        }
+      },
+      checkBetBtnState: function checkBetBtnState() {
+        for (var i = 0; i < 4; i++) {
+          var btn = this.moneyBtnArr[i];
+          if (giftMoneyDataLogic.btnConfig[i] > dataLogic.userBalance) {
+            btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[2];
+            btn.getComponent(cc.Button).interactable = false;
+          } else {
+            btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[0];
+            btn.getComponent(cc.Button).interactable = true;
+          }
+        }
+      },
+      grapGiftMoney: function grapGiftMoney() {
+        audioMgr.playEffect(this.audioBtn);
+        giftMoneyConstant.PostGrap.redEnvelopId = this.nowRedEnvelopId;
+        cc.log("================", dataLogic.userId);
+        if (this.checkBalanceIsEnoughToLose() > 0) {
+          this.setGrapEffect(true);
+          audioMgr.playEffect(this.openAudio);
+          giftMoneyConstant.PostGrap.roomId = constant.GameId.GiftMoney + dataLogic.curRoomKey;
+          http.post(giftMoneyConstant.PostGrap, "openCb");
+        } else if (this.isAutoGrap) {
+          this.isAutoGrap = false;
+          this.autoGrapAni.stop();
+          this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2";
+          this.showExitGameToast("\u60a8\u643a\u5e26\u7684\u91d1\u989d\u4e0d\u8db3\uff0c\u5df2\u505c\u6b62\u81ea\u52a8\u62a2\u529f\u80fd");
+        } else this.showExitGameToast("\u643a\u5e26\u7684\u91d1\u989d\u4e0d\u8db3\u4ee5\u8d54\u4ed8\uff0c\u8bf7\u5145\u503c");
+      },
+      checkBalanceIsEnoughToLose: function checkBalanceIsEnoughToLose() {
+        return dataLogic.userBalance - this.curRoundLossMoney;
+      },
+      setGrapEffect: function setGrapEffect(isPlayOpenEffect) {
+        var kai_no = this.openBtn.getChildByName("kai_no");
+        var kai_ing = this.openBtn.getChildByName("kai_ing");
+        if (isPlayOpenEffect) {
+          kai_no.active = false;
+          kai_no.getComponent(cc.Animation).stop();
+          kai_ing.active = true;
+          var open_ing = kai_ing.getComponent(cc.Animation);
+          open_ing.play();
+          open_ing.on("finished", this.openAniCb, this);
+        } else {
+          kai_no.active = true;
+          kai_no.getComponent(cc.Animation).play();
+          kai_ing.active = false;
+          kai_ing.getComponent(cc.Animation).stop();
+        }
+      },
+      openAniCb: function openAniCb() {
+        isOpenAniFinished = true;
+        if (null !== this.grabCbData && !this.curState.active) if (5 == this.grabCbData.Code) this.gameState = 1; else if (1 == this.grabCbData.Code && 1 == this.grabCbData.Data) {
+          this.openBtn.active = false;
+          this.curState.active = true;
+          this.curState.getChildByName("txt").getComponent(cc.Label).string = "\u5df2\u62a2\u5b8c";
+        } else {
+          cc.log(this.grabCbData);
+          this.showLayerTip(this.grabCbData.StrCode);
+        }
+      },
+      openCb: function openCb(data, flag) {
+        if ("autoPlay" == flag) {
+          if (1 != data.Code) {
+            this.showLayerTip(data.StrCode ? data.StrCode : "\u53d1\u8d77\u81ea\u52a8\u62a2\u5931\u8d25");
+            this.isAutoGrap = false;
+            this.autoGrapAni.stop();
+            this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2";
+          }
+        } else if ("cancelAutoPlay" == flag) if (1 == data.Code) {
+          this.isAutoGrap = false;
+          this.autoGrapAni.stop();
+          this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2";
+        } else this.showLayerTip(data.StrCode ? data.StrCode : "\u53d6\u6d88\u5931\u8d25"); else this.grabCbData = data;
+      },
+      onPush: function onPush(data) {
+        if (!this.hasRedPanel.active) {
+          this.hasRedPanel.active = true;
+          this.waitRedPanel.active = false;
+          this.curState.active = false;
+          this.openBtn.active = true;
+          this.setGrapEffect(false);
+        }
+        var obj = {
+          avatar: data.avartar,
+          nickName: data.nickName,
+          userId: data.userId
+        };
+        this.sendPlayerArr.push(obj);
+        if (this.sendPlayerArr.length < 3) {
+          var sp = this.waitPlayer[data.totalCount - 1].getComponent(cc.Sprite);
+          this.setPlayerHead(obj.avatar, sp);
+          1 == data.totalCount && (this.curBagOwner.string = data.nickName);
+        }
+      },
+      onCurrent: function onCurrent(data) {
+        if (this.recoverLoad && this.recoverLoad.parent) {
+          this.recoverLoad.stopAllActions();
+          kf.killObj(this.recoverLoad);
+        }
+        this.resetGrapPlayerState();
+        this.timer.getComponent(cc.Animation).stop();
+        this.timer.getChildByName("sl_00007").active = false;
+        this.countDown();
+        for (var i = 0; i < 3; i++) {
+          var sp = this.waitPlayer[i].getComponent(cc.Sprite);
+          if (0 == i) {
+            this.setPlayerHead(data.avartar, sp);
+            this.curBagOwner.string = data.nickName;
+          } else this.sendPlayerArr[this.startIndex + i - 1].avartar && this.setPlayerHead(this.sendPlayerArr[this.startIndex + i - 1].avartar, sp);
+        }
+        this.startIndex += 1;
+        this.curLeftNumber.string = "\u5269\u4f59\uff1a" + data.count;
+        this.curBagMoney.string = "\u7ea2\u5305\u603b\u989d\uff1a" + data.amount;
+        this.curBoomNumberLabel.string = data.hitNumber;
+        this.nowRedEnvelopId = data.redEnvelopId;
+        this.curState.active = false;
+        this.openBtn.active = true;
+        this.grabCbData = null;
+        this.resetBoomState();
+        this.setGrapEffect(false);
+        isOpenAniFinished = false;
+        this.resetBankerAndSelfBorderState();
+        this.curRoundLossMoney = data.amount * (5 == data.count ? 2 : 7 == data.count ? 1.5 : 1);
+        data.userId == dataLogic.userId && this.selfSendBagNum--;
+      },
+      resetBoomState: function resetBoomState() {
+        this.boom.opacity = 0;
+        this.boom.x = -1e4;
+      },
+      resetGrapPlayerState: function resetGrapPlayerState() {
+        giftMoneyDataLogic.grabPlayerInfo = [];
+        for (var i = 0; i < this.playerArr.length; i++) {
+          var sp = this.playerArr[i].getChildByName("avatarBox");
+          var playerNameNode = this.playerArr[i].getChildByName("playerName");
+          var stateNode = this.playerArr[i].getChildByName("grapState");
+          var awardNode = this.playerArr[i].getChildByName("award");
+          stateNode.getChildByName("txt").getComponent(cc.Label).string = "\u7b49\u5f85\u63ed\u6653";
+          playerNameNode.opacity = 0;
+          stateNode.opacity = 0;
+          sp.opacity = 0;
+          awardNode.opacity = 0;
+          this.playerArr[i].getComponent(cc.Sprite).spriteFrame = this.playerBg[0];
+        }
+      },
+      resetBankerAndSelfBorderState: function resetBankerAndSelfBorderState() {
+        this.banker.x = -1e4;
+        this.selfBorder.x = -1e4;
+      },
+      onGrab: function onGrab(data) {
+        var _this = this;
+        audioMgr.playEffect(this.grapMoneyAudio);
+        var playerInfo = {
+          nickName: data.nickName
+        };
+        giftMoneyDataLogic.addPlayer(playerInfo);
+        var index = giftMoneyDataLogic.grabPlayerInfo.length - 1;
+        var avatarBox = this.playerArr[index].getChildByName("avatarBox");
+        var sp = this.playerArr[index].getChildByName("avatarBox").getChildByName("avatar").getComponent(cc.Sprite);
+        var playerNameNode = this.playerArr[index].getChildByName("playerName");
+        var stateNode = this.playerArr[index].getChildByName("grapState");
+        playerNameNode.opacity = 255;
+        stateNode.opacity = 255;
+        avatarBox.opacity = 255;
+        this.setPlayerHead(data.avartar, sp);
+        playerNameNode.getComponent(cc.Label).string = data.nickName;
+        this.setBagLeftNumber(data.count);
+        data.isRob && (this.banker.position = bankerPos[index]);
+        if (-1 != data.userId && data.userId == dataLogic.userId) {
+          this.selfBorder.y = this.playerArr[index].y;
+          this.selfBorder.x = this.playerArr[index].x - (index % 2 == 0 ? 5 : -5);
+          this.selfBorder.scaleX = index % 2 == 0 ? -1 : 1;
+          this.playerArr[index].getComponent(cc.Sprite).spriteFrame = this.playerBg[1];
+          this.curRoundSeatIndex = index;
+          if (!this.curState.active) {
+            var kai_no = this.openBtn.getChildByName("kai_no");
+            var kai_ing = this.openBtn.getChildByName("kai_ing");
+            kai_no.active = false;
+            kai_ing.active = true;
+            kai_no.getComponent(cc.Animation).stop();
+            var open_ing_ani = kai_ing.getComponent(cc.Animation);
+            open_ing_ani.play();
+            open_ing_ani.on("finished", function() {
+              _this.openBtn.active = false;
+              _this.curState.active = true;
+              _this.curState.getChildByName("txt").getComponent(cc.Label).string = "\uffe5" + data.amount;
+            }, this);
+          }
+        }
+        if (data.isHit) {
+          var x = this.playerArr[index].x + (index % 2 == 0 ? 210 : -210);
+          var y = this.playerArr[index].y + 10;
+          this.boom.position = cc.v2(x, y);
+        }
+      },
+      setBagLeftNumber: function setBagLeftNumber(count) {
+        this.curLeftNumber.string = "\u5269\u4f59\uff1a" + count;
+      },
+      onSettle: function onSettle(data) {
+        var gameResult = data.gameResult;
+        for (var i = 0; i < gameResult.length; i++) {
+          var node = this.playerArr[i];
+          var awardNode = node.getChildByName("award");
+          awardNode.opacity = 255;
+          var grapMoney = node.getChildByName("grapState").getChildByName("txt").getComponent(cc.Label);
+          var awardMoney = awardNode.getChildByName("awardMoney").getComponent(cc.Label);
+          if (gameResult[i].reward > 0) {
+            awardNode.getComponent(cc.Sprite).spriteFrame = this.awardBg[0];
+            awardMoney.font = this.winChipNumFont;
+            awardMoney.string = "+" + gameResult[i].reward.toFixed(2);
+            grapMoney.string = gameResult[i].grabAmount.toFixed(2);
+          } else {
+            awardNode.getComponent(cc.Sprite).spriteFrame = this.awardBg[1];
+            awardMoney.font = this.loseChipNumFont;
+            awardMoney.string = gameResult[i].reward.toFixed(2);
+            grapMoney.string = gameResult[i].grabAmount.toFixed(2);
+          }
+          if (null !== this.curRoundSeatIndex && this.curRoundSeatIndex == i) {
+            var balance = +dataLogic.userBalance + +gameResult[i].reward;
+            this.setPlayerBalance(balance);
+            dataLogic.setUserBalance(balance);
+          }
+        }
+        -1e4 != this.boom.x && (this.boom.opacity = 255);
+        if (dataLogic.userBalance < Number(dataLogic.selectRoomConfig[dataLogic.curRoomKey - 1].joinAmount)) {
+          this.sendGiftMoneyBtn.getComponent(cc.Sprite).spriteFrame = this.sendGiftMoneyBtnBg[1];
+          this.sendGiftMoneyBtn.getComponent(cc.Button).interactable = false;
+        }
+        this.gameState = -1;
+      },
+      onNoAlive: function onNoAlive(data) {
+        var arg = {
+          type: constant.ToastType.Hint,
+          extend: {
+            contentTxt: "\u60a8\u5df2\u7ecf1\u5206\u949f\u6ca1\u6709\u53c2\u4e0e\u6e38\u620f\uff0c\u8d85\u8fc72\u5206\u949f\u5c06\u88ab\u8bf7\u51fa\u623f\u95f4",
+            btnEventName: [ null, "toastClose" ],
+            btnTxt: [ null, "\u786e\u5b9a" ]
+          }
+        };
+        kf.getObj(constant.PoolId.ToastHint, this.toastLayer[3], this.pfToastHint, arg);
+      },
+      addPlayer: function addPlayer(playerInfo) {
+        var renderPlayer = giftMoneyDataLogic.playerInfo.length > 10 ? giftMoneyDataLogic.playerInfo.slice(-10) : giftMoneyDataLogic.playerInfo;
+        for (var i = 0; i < renderPlayer.length; i++) ;
+      }
+    }, _defineProperty(_cc$Class, "setPlayerHead", function setPlayerHead(headUrl, sp) {
+      resMgr.loadSingleRes("baoWang" + headUrl.replace(".jpg", ""), function(res) {
+        sp.spriteFrame = res;
+      }, cc.SpriteFrame);
+    }), _defineProperty(_cc$Class, "onGameRecover", function onGameRecover(data) {
+      if (this.recoverLoad && this.recoverLoad.parent) {
+        this.recoverLoad.stopAllActions();
+        kf.killObj(this.recoverLoad);
+      }
+      var state = data.state;
+      this.setPlayId(data.playId);
+      if (0 == state) {
+        this.hasRedPanel.active = false;
+        this.waitRedPanel.active = true;
+        this.curState.active = true;
+        this.openBtn.active = false;
+      } else {
+        this.hasRedPanel.active = true;
+        this.waitRedPanel.active = false;
+        this.curState.active = false;
+        this.openBtn.active = true;
+        this.setGrapEffect(false);
+      }
+      if (data.pushPlayerInfos.length) {
+        this.sendPlayerArr = data.pushPlayerInfos;
+        for (var i = 0; i < 3; i++) {
+          var sp = this.waitPlayer[i].getComponent(cc.Sprite);
+          if (0 == i) {
+            this.curBagOwner.string = data.currentNickName;
+            this.setPlayerHead(data.currentAvartar, sp);
+          } else this.setPlayerHead(data.pushPlayerInfos[i - 1].Avatar, sp);
+        }
+      }
+      if (data.playerInfo && data.playerInfo.length) {
+        for (var _i3 = 0; _i3 < data.playerInfo.length; _i3++) {
+          var avatarBox = this.playerArr[_i3].getChildByName("avatarBox");
+          var sp = this.playerArr[_i3].getChildByName("avatarBox").getChildByName("avatar").getComponent(cc.Sprite);
+          var playerNameNode = this.playerArr[_i3].getChildByName("playerName");
+          var stateNode = this.playerArr[_i3].getChildByName("grapState");
+          playerNameNode.opacity = 255;
+          stateNode.opacity = 255;
+          avatarBox.opacity = 255;
+          this.setPlayerHead(data.playerInfo[_i3].headUrl, sp);
+          playerNameNode.getComponent(cc.Label).string = data.playerInfo[_i3].nickName;
+        }
+        giftMoneyDataLogic.grabPlayerInfo = data.playerInfo;
+      }
+      this.curLeftNumber.string = "\u5269\u4f59\uff1a" + data.currentCount;
+      this.curBagMoney.string = "\u7ea2\u5305\u603b\u989d\uff1a" + data.currentAmount;
+      this.curBoomNumberLabel.string = data.currentHitNumber;
+      this.isAutoGrap = data.isAutoPlay;
+      if (this.isAutoGrap) {
+        this.autoGrapAni.play();
+        this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2\u4e2d......";
+      }
+      data.gameResult && data.gameResult.length;
+    }), _defineProperty(_cc$Class, "onGameStart", function onGameStart(data) {
+      dataLogic.setDeskId(data.deskId);
+      this.setPlayId(data.playId);
+      giftMoneyDataLogic.grabPlayerInfo = data.playerInfo;
+    }), _defineProperty(_cc$Class, "setPlayId", function setPlayId(playId) {
+      this.playIdTxt.string = "\u724c\u5c40\u7f16\u53f7\uff1a" + playId;
+    }), _defineProperty(_cc$Class, "countDown", function countDown() {
+      this.unschedule(this.callback);
+      var remainingTime = 7;
+      this.countDownTxt.node.opacity = 255;
+      this.countDownTxt.string = remainingTime;
+      this.callback = function() {
+        remainingTime--;
+        this.countDownTxt.string = remainingTime;
+        if (remainingTime <= 0) {
+          remainingTime = 0;
+          this.unschedule(this.callback);
+        }
+      };
+      this.schedule(this.callback, 1);
+    }), _defineProperty(_cc$Class, "onExit", function onExit() {
+      giftMoneyDataLogic.setKickedOut(true);
+      this.goBackSelectRoom();
+    }), _cc$Class));
+    cc._RF.pop();
+  }, {
+    gameSceneBase: "gameSceneBase"
   } ],
   goldenFraudConstant: [ function(require, module, exports) {
     "use strict";
@@ -23673,6 +27467,10 @@ window.__require = function e(t, n, r) {
         setting: cc.Node,
         record: cc.Node,
         bindPhoneNum: cc.Node,
+        loadMask: cc.Node,
+        loadIcon: cc.Node,
+        firstRechargeIcon: cc.Node,
+        signInIcon: cc.Node,
         hallBg: cc.Sprite,
         defaultHallBg: cc.SpriteFrame,
         spHead: cc.Sprite,
@@ -23684,7 +27482,7 @@ window.__require = function e(t, n, r) {
         activityCenterPf: cc.Prefab
       },
       registerEvent: function registerEvent() {
-        this.registerHandler = [ [ "reqSelectRoomConfigCb", this.reqSelectRoomConfigCb.bind(this) ], [ "checkGameStateCb", this.checkGameStateCb.bind(this) ], [ "reqUserBalanceCb", this.reqUserBalanceCb.bind(this) ], [ "reqUnreadLetterNumCb", this.reqUnreadLetterNumCb.bind(this) ], [ "getInitDataCb", this.getInitDataCb.bind(this) ], [ "getLettersByJudgeIsPop", this.getLettersByJudgeIsPop.bind(this) ] ];
+        this.registerHandler = [ [ "reqSelectRoomConfigCb", this.reqSelectRoomConfigCb.bind(this) ], [ "checkGameStateCb", this.checkGameStateCb.bind(this) ], [ "reqUserBalanceCb", this.reqUserBalanceCb.bind(this) ], [ "reqUnreadLetterNumCb", this.reqUnreadLetterNumCb.bind(this) ], [ "getInitDataCb", this.getInitDataCb.bind(this) ], [ "getLettersByJudgeIsPop", this.getLettersByJudgeIsPop.bind(this) ], [ "checkRecoverCb", this.checkRecoverCb.bind(this) ] ];
         for (var i = 0; i < this.registerHandler.length; i++) {
           var handler = this.registerHandler[i];
           clientEvent.registerEvent(handler[0], handler[1]);
@@ -23721,6 +27519,7 @@ window.__require = function e(t, n, r) {
             resMgr.loadSingleRes("prefab/baoWang/registerCashGift", function(res) {
               var node = cc.instantiate(res);
               node.parent = _this.toastLayer[1];
+              node.getComponent("registerCashGift").init("register", dataLogic.registerCashGift);
             }, cc.Prefab);
           } else !dataLogic.userPhoneNum && dataLogic.regGift > 0 && resMgr.loadSingleRes("prefab/baoWang/hintBindPhone", function(res) {
             var node = cc.instantiate(res);
@@ -23737,15 +27536,27 @@ window.__require = function e(t, n, r) {
           dataLogic.setIsNewRegister(false);
         }
         this.bindPhoneNum.active = !dataLogic.userPhoneNum;
+        this.firstRechargeIcon.active = dataLogic.firstRechargeGiftState;
+        this.signInIcon.active = dataLogic.signInState;
+        dataLogic.signInState ? this.firstRechargeIcon.x = cc.winSize.width / 2 - 425 : this.firstRechargeIcon.x = cc.winSize.width / 2 - 340;
+        dataLogic.firstRechargeGiftState && http.post(constant.PostCheckForMatch, "checkRecoverCb");
+      },
+      checkRecoverCb: function checkRecoverCb(msg) {
+        if (msg.Code == constant.HttpCode.Succeed) {
+          dataLogic.setFirstRechargeGiftState(msg.Data.hasFirstGift);
+          dataLogic.setRechargeState(msg.Data.isSend);
+          this.firstRechargeIcon.active = dataLogic.firstRechargeGiftState;
+          dataLogic.signInState ? this.firstRechargeIcon.x = cc.winSize.width / 2 - 425 : this.firstRechargeIcon.x = cc.winSize.width / 2 - 340;
+        }
       },
       getInitDataCb: function getInitDataCb(data) {
         var _this2 = this;
         if (data.Code != constant.HttpCode.Succeed) return;
         var backData = data.BackData;
         var curTime = new Date().getTime();
-        curTime - _checkUnreadTime_ms > _checkUnreadTimeSpacing ? this.reqUnreadLetterNum() : _checkUnreadTimerID = setTimeout(function() {
+        curTime - _checkUnreadTime_ms > _checkUnreadTimeSpacing ? this.reqUnreadLetterNum() : null == _checkUnreadTimerID && (_checkUnreadTimerID = setTimeout(function() {
           _this2.reqUnreadLetterNum();
-        }, _checkUnreadTimeSpacing - (curTime - _checkUnreadTime_ms));
+        }, _checkUnreadTimeSpacing - (curTime - _checkUnreadTime_ms)));
         if (data.BackData.SiteConfig) {
           data.BackData.SiteConfig.WebDTBG ? kf.loadNetImg(constant.imgServer + data.BackData.SiteConfig.WebDTBG, this.hallBg) : this.hallBg.spriteFrame = this.defaultHallBg;
           dataLogic.setServiceAddr(data.BackData.SiteConfig.Service);
@@ -24045,8 +27856,10 @@ window.__require = function e(t, n, r) {
           14: "doudizhu",
           15: "baijiale",
           16: "kansizhang",
+          17: "baoma",
           19: "senlin",
-          21: "shibei"
+          21: "shibei",
+          24: "hongbao"
         };
         var i = 0, skeleton = null, spineNode = void 0;
         var load = function load() {
@@ -24085,6 +27898,22 @@ window.__require = function e(t, n, r) {
         cc.log("btnEvent", key);
         audioMgr.playEffect(this.audioBtn);
         switch (key) {
+         case "signIn":
+          this.loadMask.active = true;
+          this.loadIcon.active = true;
+          this.loadIcon.runAction(cc.repeatForever(cc.rotateBy(1, 360)));
+          resMgr.loadSingleRes("prefab/baoWang/signIn", function(res) {
+            var node = cc.instantiate(res);
+            node.parent = _this7.toastLayer[0];
+            node.getComponent("signIn").init(function() {
+              _this7.txtBalance.string = dataLogic.userBalance.toFixed(2);
+            });
+            _this7.loadMask.active = false;
+            _this7.loadIcon.stopAllActions();
+            _this7.loadIcon.active = false;
+          }, cc.Prefab);
+          break;
+
          case "payCenter":
           kf.getObj(constant.PoolId.DialogComonLayer, this.toastLayer[0], this.pfDialogCommonLayer, {
             path: "prefab/baoWang/payCenter",
@@ -24186,7 +28015,17 @@ window.__require = function e(t, n, r) {
           this.rightArrow.active = false;
           break;
 
-         case "recharge":
+         case "firstRecharge":
+          this.loadMask.active = true;
+          this.loadIcon.active = true;
+          this.loadIcon.runAction(cc.repeatForever(cc.rotateBy(1, 360)));
+          resMgr.loadSingleRes("prefab/baoWang/firstRechargeGift", function(res) {
+            var node = cc.instantiate(res);
+            node.parent = _this7.toastLayer[0];
+            _this7.loadMask.active = false;
+            _this7.loadIcon.stopAllActions();
+            _this7.loadIcon.active = false;
+          }, cc.Prefab);
           break;
 
          case "service":
@@ -24279,6 +28118,7 @@ window.__require = function e(t, n, r) {
           skeleton.node.opacity = 0;
           kf.killObj(this.gameCard[i]);
         }
+        _checkUnreadTimerID = null;
         clearTimeout(_checkUnreadTimerID);
       },
       preloadRes: function preloadRes() {
@@ -24290,177 +28130,6 @@ window.__require = function e(t, n, r) {
   }, {
     sceneBase: "sceneBase"
   } ],
-  help: [ function(require, module, exports) {
-    "use strict";
-    cc._RF.push(module, "8b1681vH+9PHbhs8f1Spkq4", "help");
-    "use strict";
-    var clientEvent = kf.require("basic.clientEvent");
-    var _loadProcessCb = null;
-    cc.Class({
-      extends: cc.Component,
-      properties: {
-        clickAudio: {
-          default: null,
-          type: cc.AudioClip
-        },
-        closeBtn: cc.Button,
-        bg: cc.Node,
-        helpMain: cc.Node,
-        loadIconPf: cc.Prefab,
-        tabNavContent: cc.Node,
-        gameToggle: [ cc.Node ],
-        gameContent: [ cc.Node ],
-        gameNavToggle: [ cc.Node ],
-        gameScrollView: [ cc.Node ],
-        rebateTxtArr: [ cc.Label ],
-        aboutUsStr: cc.Label
-      },
-      registerEvent: function registerEvent() {
-        this.registerHandler = [ [ "getAboutCb", this.getAboutCb.bind(this) ] ];
-        for (var i = 0; i < this.registerHandler.length; i++) {
-          var handler = this.registerHandler[i];
-          clientEvent.registerEvent(handler[0], handler[1]);
-        }
-      },
-      onLoad: function onLoad() {
-        this.bg.width = cc.winSize.width;
-        this.bg.height = cc.winSize.height;
-      },
-      getAboutCb: function getAboutCb(data) {
-        1 == data.Code ? this.aboutUsStr.string = data.Data.aboutUs : this.aboutUsStr.string = "\u5f00\u5fc3\u68cb\u724c\uff08Happy Board Games\uff09\u6df1\u8015\u68cb\u724c\u6e38\u620f\u5e02\u573a\uff0c\u575a\u6301\u771f\u4eba\u5bf9\u6218\u3001\u516c\u5e73\u7ade\u6280\u7684\u6e38\u620f\u539f\u5219\uff0c\u6ce8\u91cd\u8fd8\u539f\u73a9\u5bb6\u771f\u5b9e\u7684\u7ebf\u4e0b\u6e38\u620f\u4f53\u9a8c\uff0c\u81ea\u4e0a\u7ebf\u4ee5\u6765\u4e00\u76f4\u6df1\u53d7\u5e7f\u5927\u73a9\u5bb6\u559c\u7231\uff0c\u540c\u65f6\u5728\u7ebf\u4eba\u6570\u5c61\u521b\u65b0\u9ad8\u3002\u6211\u4eec\u81f4\u529b\u4e8e\u6253\u9020\u4e00\u6d41\u7684\u6e38\u620f\u5e73\u53f0\uff0c\u63d0\u4f9b\u957f\u671f\u7a33\u5b9a\u3001\u516c\u5e73\u3001\u6109\u5feb\u7684\u6e38\u620f\u73af\u5883\uff0c\u6301\u7eed\u7528\u5fc3\u4e3a\u5e7f\u5927\u73a9\u5bb6\u670d\u52a1\u3002";
-      },
-      loadResource: function loadResource(sceneName) {
-        var _this = this;
-        if (dataLogic.isToastLoad) this.toastShow(); else {
-          var arg = {
-            type: constant.ToastType.Loading
-          };
-          var load = kf.getObj(constant.PoolId.ToastLoading, this.node, this.toastLoadingPf, arg);
-          var txt = load.getChildByName("txt").getComponent(cc.Label);
-          txt.string = "\u52aa\u529b\u52a0\u8f7d\u8d44\u6e90\u4e2d...0%";
-          var n = 0;
-          _loadProcessCb = function _loadProcessCb() {
-            n++;
-            txt.string = "\u52aa\u529b\u52a0\u8f7d\u8d44\u6e90\u4e2d..." + n + "%";
-          };
-          this.schedule(_loadProcessCb, .1, 98);
-          var preloadRes = constant.GameRes[sceneName];
-          var loadDone = function loadDone() {
-            _this.unschedule(_loadProcessCb);
-            kf.killObj(load);
-            _this.toastShow();
-            dataLogic.isToastLoad = true;
-          };
-          var loadTimeout = function loadTimeout() {
-            _this.unschedule(_loadProcessCb);
-            kf.killObj(load);
-            kf.killObj(_this.node);
-            clientEvent.dispatchEvent("showLoadTimeoutToast");
-          };
-          resMgr.loadRes(preloadRes, loadDone, constant.loadResTimeLimit, loadTimeout);
-        }
-      },
-      toastShow: function toastShow() {
-        var _this2 = this;
-        var seq = cc.sequence(cc.fadeIn(0), cc.scaleTo(0, 0), cc.scaleTo(.2, 1.1, 1.1), cc.scaleTo(.03, 1, 1), cc.callFunc(function() {
-          _this2.initScrollContentHeight(_this2.type);
-        }));
-        this.helpMain.runAction(seq);
-        this.bg.active = true;
-      },
-      reuse: function reuse() {
-        this.registerEvent();
-        this.loadResource(constant.ToastName.InfoToast);
-        for (var i = 0; i < this.rebateTxtArr.length; i++) this.rebateTxtArr[i].string = "\u4e3a\u4e86\u7ed9\u73a9\u5bb6\u63d0\u4f9b\u957f\u671f\u7a33\u5b9a\u3001\u516c\u5e73\u3001\u6109\u5feb\u7684\u6e38\u620f\u73af\u5883\uff0c\u5e73\u53f0\u4f1a\u5728\u6bcf\u5c40\u6e38\u620f\u7ed3\u675f\u65f6\u6536\u53d6\u8d62\u5bb6\u5956\u91d1\u7684" + dataLogic.feeRate + "%\u4f5c\u4e3a\u623f\u8d39\u3002";
-        var msg = dataLogic.gameList;
-        this.newArr = [];
-        for (var _i in msg) {
-          if ("05" == msg[_i].gameTypeId || 5 == msg[_i].state || "14" == msg[_i].gameTypeId) continue;
-          this.newArr.push(msg[_i]);
-        }
-        this.sortTabNav(this.newArr);
-        http.post({
-          action: "GetAboutUs"
-        }, "getAboutCb");
-      },
-      sortTabNav: function sortTabNav(msg) {
-        for (var i in msg) {
-          var sceneName = dataLogic.getGameSceneNameByGameId(Number(msg[i].gameTypeId));
-          var gameKey = this.getToastTitleName(sceneName);
-          this.gameToggle[gameKey].y = -89 * (Number(i) + 1);
-          this.gameToggle[gameKey].active = true;
-        }
-      },
-      btnEvent: function btnEvent(event, key) {
-        audioMgr.playEffect(this.clickAudio);
-        switch (key) {
-         case "closeBtn":
-          this.helpMainClose();
-        }
-      },
-      helpMainShow: function helpMainShow(type) {
-        this.type = type;
-        cc.log("type", this.type);
-        this.toggleBind(type);
-      },
-      helpMainClose: function helpMainClose() {
-        var _this3 = this;
-        var seq = cc.sequence(cc.scaleTo(.05, .7, .7), cc.fadeOut(0), cc.scaleTo(0, 0, 0));
-        this.helpMain.runAction(seq);
-        this.bg.active = false;
-        this.scheduleOnce(function() {
-          kf.killObj(_this3.node);
-          _this3.toggleBind(_this3.type);
-        }, .3);
-      },
-      toggleBtnEvent: function toggleBtnEvent(event, key) {
-        audioMgr.playEffect(this.clickAudio);
-        this.toggleBind(key);
-      },
-      toggleBind: function toggleBind(sceneName) {
-        for (var i in this.gameContent) {
-          this.gameToggle[i].getComponent(cc.Toggle).isChecked = false;
-          this.gameContent[i].active = false;
-        }
-        this.gameKey = this.getToastTitleName(sceneName);
-        0 == this.gameKey || this.TabToggleBind(1);
-        this.gameToggle[this.gameKey].getComponent(cc.Toggle).isChecked = true;
-        this.gameContent[this.gameKey].active = true;
-        this.gameScrollView[this.gameKey].height = this.gameScrollView[this.gameKey].children[0].height;
-      },
-      initScrollContentHeight: function initScrollContentHeight(sceneName) {
-        var gameKey = this.getToastTitleName(sceneName);
-        cc.log("-------", gameKey, sceneName);
-        this.gameScrollView[gameKey].height = this.gameScrollView[gameKey].children[0].height;
-        this.tabNavContent.height = 89 * (this.newArr.length + 1) + 10;
-        this.tabNavContent.y = 0;
-        this.gameToggle[gameKey].y < -425 && (this.tabNavContent.y = -this.gameToggle[gameKey].y - 514 + 99);
-      },
-      getToastTitleName: function getToastTitleName(sceneName) {
-        if ("aboutUs" == sceneName) return 0;
-        for (var key in constant.SceneName) if (sceneName == constant.SceneName[key]) {
-          cc.log(constant.toastTitleName[key]);
-          return constant.toastTitleName[key];
-        }
-      },
-      gameTabToggle: function gameTabToggle(event, key) {
-        this.TabToggleBind(key);
-      },
-      TabToggleBind: function TabToggleBind(key) {
-        var scrollView = this.gameScrollView[this.gameKey];
-        scrollView.height = scrollView.children[key - 1].height;
-        scrollView.y = 0;
-        scrollView.children[key - 1].y = 0;
-        for (var i in scrollView.children) {
-          scrollView.children[i].active = false;
-          this.gameNavToggle[this.gameKey].children[i].getComponent(cc.Toggle).isChecked = false;
-        }
-        this.gameNavToggle[this.gameKey].children[key - 1].getComponent(cc.Toggle).isChecked = true;
-        scrollView.children[key - 1].active = true;
-      }
-    });
-    cc._RF.pop();
-  }, {} ],
   hintBindPhone: [ function(require, module, exports) {
     "use strict";
     cc._RF.push(module, "459ceEepddLAYwe/LOX2QWz", "hintBindPhone");
@@ -24573,6 +28242,7 @@ window.__require = function e(t, n, r) {
       if (!version) {
         var path = jsb.fileUtils.getWritablePath() + window._game_res_version;
         var file = path + "/" + module + "_project.manifest";
+        cc.log("manifest file:", file);
         if (jsb.fileUtils.isFileExist(file)) {
           var str = jsb.fileUtils.getStringFromFile(file);
           version = JSON.parse(str).version;
@@ -24618,7 +28288,7 @@ window.__require = function e(t, n, r) {
       };
       this.hotup = new (require("hotUpdate"))();
       this.hotup.init(d);
-      this.hotup.check_update("http://jack.wwmxdkf01.com/Images/hot/", this.updir);
+      this.hotup.check_update("http://jack.kfcs123.com/Images/hot/", this.updir);
     };
     hotUpdateMgr.check_before = function(module) {
       this.setDownloadingModule(module);
@@ -24786,7 +28456,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case jsb.EventAssetsManager.UPDATE_FINISHED:
-          cc.log("upgrade finished =========================", event.getTotalFiles(), event.getTotalBytes());
+          cc.log("upgrade finished\uff0cTotalFiles", event.getTotalFiles(), "TotalSize", event.getTotalBytes() / 1024 / 1024, "m");
           var newPaths = this._am.getLocalManifest().getSearchPaths();
           over = true;
           this.emit("UPDATE_FINISHED");
@@ -24867,11 +28537,31 @@ window.__require = function e(t, n, r) {
             cc.loader.md5Pipe && (url = cc.loader.md5Pipe.transformURL(url));
             jsb.fileUtils.isFileExist(url) ? this._am.loadLocalManifest(url) : this._am.loadLocalManifest(createManifest(), path);
           } else {
-            var assets = {};
+            var getExistAssets = function getExistAssets() {
+              var assets = {};
+              cc.log("----------", _this2.file_project, !jsb.fileUtils.isFileExist(_this2.file_project));
+              if (!jsb.fileUtils.isFileExist(_this2.file_project)) {
+                cc.log(_this2.file_project, "\u4e0d\u5b58\u5728");
+                return assets;
+              }
+              cc.log("----------1");
+              var moduleAllAssets = JSON.parse(jsb.fileUtils.getStringFromFile(_this2.file_project)).assets;
+              cc.log("moduleAllAssets", moduleAllAssets);
+              var unionSetData = JSON.parse(jsb.fileUtils.getStringFromFile(unionSetManifestUrl));
+              cc.log("unionSetData", unionSetData);
+              for (var key in moduleAllAssets) unionSetData[key] && (assets[key] = unionSetData[key]);
+              cc.log("assets", assets);
+              return assets;
+            };
             if (jsb.fileUtils.isFileExist(unionSetManifestUrl)) if (jsb.fileUtils.isFileExist(url)) {
+              cc.log(url, "\u5b58\u5728");
               this.updateManifestFromUnionSet(url, unionSetManifestUrl);
               this._am.loadLocalManifest(url);
-            } else this._am.loadLocalManifest(createManifest(assets), path); else this._am.loadLocalManifest(createManifest(assets), path);
+            } else {
+              cc.log(url, "\u4e0d\u5b58\u5728");
+              var assets = getExistAssets();
+              this._am.loadLocalManifest(createManifest(assets), path);
+            } else this._am.loadLocalManifest(createManifest(), path);
           }
         }
         if (!this._am.getLocalManifest() || !this._am.getLocalManifest().isLoaded()) {
@@ -24910,7 +28600,7 @@ window.__require = function e(t, n, r) {
     var _cookie = !!cc.sys.isNative && cc.sys.localStorage.getItem("_pokerGameCookie");
     window.http = {
       init: function init() {
-        _url = cc.sys.isNative || "7456" == window.location.port || "7070" == window.location.port ? "http://jack.wwmxdkf01.com/gameApi/" : "/gameApi/";
+        _url = cc.sys.isNative || "7456" == window.location.port || "7070" == window.location.port ? "http://jack.kfcs123.com/gameApi/" : "/gameApi/";
       },
       get: function get(reqArg, cbEventName) {
         var url = "";
@@ -26115,7 +29805,7 @@ window.__require = function e(t, n, r) {
           withCardSchemes = getWithCardSchemes(threeLineCardSchemes[i], threeLineCount);
           if (withCardSchemes.length < threeLineCount) continue;
           arr = withCardSchemes.slice(0, threeLineCount);
-          withCards = this.sortCard(kf.flatten(arr));
+          withCards = this.sortCard(kf.flattenArr(arr));
           schemes.push(threeLineCardSchemes[i].concat(withCards));
         }
         return schemes;
@@ -26675,6 +30365,7 @@ window.__require = function e(t, n, r) {
         spineResult: sp.Skeleton,
         winChipNumFont: cc.Font,
         loseChipNumFont: cc.Font,
+        jpqSpriteFrame: cc.SpriteFrame,
         acPass: {
           default: [],
           type: cc.AudioClip
@@ -26905,6 +30596,10 @@ window.__require = function e(t, n, r) {
         }
         var state = cc.sys.localStorage.getItem("landlordRecordCardState") || "true";
         this.recordCardBg.active = "true" == state;
+        if (dataLogic.rechargeState) {
+          this.recordCardBg.getComponent(cc.Sprite).spriteFrame = this.jpqSpriteFrame;
+          for (var _i6 = 0; _i6 < 15; _i6++) this.recordCardBg.getChildByName("txt" + _i6).opacity = 0;
+        }
       },
       reqRecover: function reqRecover() {
         this.doneGameRecover = false;
@@ -26972,18 +30667,18 @@ window.__require = function e(t, n, r) {
             curTouchCardKey = i;
             break;
           }
-          for (var _i6 = 0; _i6 < 20; _i6++) if (0 != _this.handCard[0][_i6].opacity && _this.handCard[0][_i6].y <= _checkCardY) if (curTouchCardKey > touchStartKey) if (_i6 < touchStartKey || _i6 > curTouchCardKey) {
-            _this.handCard[0][_i6].getChildByName("bg").color = kf.fromHEX("#FFFFFF");
-            _this.handCard[0][_i6].opacity = 255;
+          for (var _i7 = 0; _i7 < 20; _i7++) if (0 != _this.handCard[0][_i7].opacity && _this.handCard[0][_i7].y <= _checkCardY) if (curTouchCardKey > touchStartKey) if (_i7 < touchStartKey || _i7 > curTouchCardKey) {
+            _this.handCard[0][_i7].getChildByName("bg").color = kf.fromHEX("#FFFFFF");
+            _this.handCard[0][_i7].opacity = 255;
           } else {
-            _this.handCard[0][_i6].getChildByName("bg").color = kf.fromHEX("#A0A0A0");
-            _this.handCard[0][_i6].opacity = _checkCardOpacity;
-          } else if (_i6 < curTouchCardKey || _i6 > touchStartKey) {
-            _this.handCard[0][_i6].getChildByName("bg").color = kf.fromHEX("#FFFFFF");
-            _this.handCard[0][_i6].opacity = 255;
+            _this.handCard[0][_i7].getChildByName("bg").color = kf.fromHEX("#A0A0A0");
+            _this.handCard[0][_i7].opacity = _checkCardOpacity;
+          } else if (_i7 < curTouchCardKey || _i7 > touchStartKey) {
+            _this.handCard[0][_i7].getChildByName("bg").color = kf.fromHEX("#FFFFFF");
+            _this.handCard[0][_i7].opacity = 255;
           } else {
-            _this.handCard[0][_i6].getChildByName("bg").color = kf.fromHEX("#A0A0A0");
-            _this.handCard[0][_i6].opacity = _checkCardOpacity;
+            _this.handCard[0][_i7].getChildByName("bg").color = kf.fromHEX("#A0A0A0");
+            _this.handCard[0][_i7].opacity = _checkCardOpacity;
           }
         };
         _cardTouchEnd = function _cardTouchEnd(e) {
@@ -27089,16 +30784,16 @@ window.__require = function e(t, n, r) {
           _tableCardData = kf.clone(msg.playedCards);
           DDZDataLogic.setCurStage(DDZConstant.Stage.ShowCard);
           this.showLandlordsCards(msg.landlordAttachCards, false);
-          for (var _i7 = 0; _i7 < 3; _i7++) {
-            UISeatId = dataLogic.getUISeatIdBySeatId(_i7);
-            var result = DDZDataLogic.getCardType(msg.playedCards[_i7]);
+          for (var _i8 = 0; _i8 < 3; _i8++) {
+            UISeatId = dataLogic.getUISeatIdBySeatId(_i8);
+            var result = DDZDataLogic.getCardType(msg.playedCards[_i8]);
             this.setCardOnTable(UISeatId, result.cards);
-            if (_i7 == dataLogic.selfSeatId) {
-              DDZDataLogic.setAutoPlayState(1 == msg.autoPlay[_i7]);
-              this.setAutoPlayUI(1 == msg.autoPlay[_i7]);
+            if (_i8 == dataLogic.selfSeatId) {
+              DDZDataLogic.setAutoPlayState(1 == msg.autoPlay[_i8]);
+              this.setAutoPlayUI(1 == msg.autoPlay[_i8]);
             } else {
-              this.setOtherPlayerAutoPlayState(UISeatId, msg.autoPlay[_i7]);
-              this.setOtherPlayerCardCount(UISeatId, msg.leftCards[_i7]);
+              this.setOtherPlayerAutoPlayState(UISeatId, msg.autoPlay[_i8]);
+              this.setOtherPlayerCardCount(UISeatId, msg.leftCards[_i8]);
             }
           }
           if (msg.seatId != (dataLogic.selfSeatId + 1) % 3) {
@@ -27145,8 +30840,8 @@ window.__require = function e(t, n, r) {
           }
           this.setPlayerInfo(playerInfo[i], UISeatId, true);
         }
-        for (var _i8 = playerInfo.length; _i8 < this.player.length; _i8++) {
-          UISeatId = dataLogic.getUISeatIdBySeatId(_i8);
+        for (var _i9 = playerInfo.length; _i9 < this.player.length; _i9++) {
+          UISeatId = dataLogic.getUISeatIdBySeatId(_i9);
           this.player[UISeatId].active && (this.player[UISeatId].active = false);
         }
         this.initAllPlayerReadyStateUI();
@@ -27525,21 +31220,21 @@ window.__require = function e(t, n, r) {
         }
         this.unregisterCardEvent();
         var cards = [];
-        for (var _i9 = 0; _i9 < 3; _i9++) {
-          if (0 == msg.leftCards[_i9].length) continue;
-          if (dataLogic.selfSeatId == _i9) {
+        for (var _i10 = 0; _i10 < 3; _i10++) {
+          if (0 == msg.leftCards[_i10].length) continue;
+          if (dataLogic.selfSeatId == _i10) {
             this.resetHandCardView();
             _tableCardData[constant.SelfUISeatId] = [];
           } else {
-            UISeatId = dataLogic.getUISeatIdBySeatId(_i9);
-            cards = DDZDataLogic.sortCard(msg.leftCards[_i9]);
+            UISeatId = dataLogic.getUISeatIdBySeatId(_i10);
+            cards = DDZDataLogic.sortCard(msg.leftCards[_i10]);
             _tableCardData[UISeatId] = kf.clone(cards);
             this.otherPlayerShowCard(UISeatId, cards, null, true, false);
           }
         }
-        for (var _i10 = 0; _i10 < 3; _i10++) {
-          _UISeatId = dataLogic.getUISeatIdBySeatId(_i10);
-          this.setPlayerBalance(_UISeatId, msg.balances[_i10]);
+        for (var _i11 = 0; _i11 < 3; _i11++) {
+          _UISeatId = dataLogic.getUISeatIdBySeatId(_i11);
+          this.setPlayerBalance(_UISeatId, msg.balances[_i11]);
         }
         DDZDataLogic.setCurStage(DDZConstant.Stage.GameOver);
         if (dataLogic.isFriendRoom) {
@@ -27738,9 +31433,9 @@ window.__require = function e(t, n, r) {
           this.handCard[0][i].y = _unCheckCardY;
         }
         if (null == _lastPlayerCardType) {
-          for (var _i11 = 19; _i11 > -1; _i11--) if (0 != this.handCard[0][_i11].opacity) {
-            this.handCard[0][_i11].opacity = 255;
-            this.handCard[0][_i11].y = _checkCardY;
+          for (var _i12 = 19; _i12 > -1; _i12--) if (0 != this.handCard[0][_i12].opacity) {
+            this.handCard[0][_i12].opacity = 255;
+            this.handCard[0][_i12].y = _checkCardY;
             break;
           }
         } else {
@@ -27748,12 +31443,12 @@ window.__require = function e(t, n, r) {
             this.btnEvent("", "pass");
             return;
           }
-          for (var _i12 = 19; _i12 > -1; _i12--) {
-            if (0 == this.handCard[0][_i12].opacity) continue;
-            if (_hintSchemes[0].indexOf(this.handCard[0][_i12].cardData) > -1) {
-              cc.log("===\u81ea\u52a8\u51fa", this.handCard[0][_i12].cardData);
-              this.handCard[0][_i12].opacity = 255;
-              this.handCard[0][_i12].y = _checkCardY;
+          for (var _i13 = 19; _i13 > -1; _i13--) {
+            if (0 == this.handCard[0][_i13].opacity) continue;
+            if (_hintSchemes[0].indexOf(this.handCard[0][_i13].cardData) > -1) {
+              cc.log("===\u81ea\u52a8\u51fa", this.handCard[0][_i13].cardData);
+              this.handCard[0][_i13].opacity = 255;
+              this.handCard[0][_i13].y = _checkCardY;
             }
           }
         }
@@ -28018,8 +31713,8 @@ window.__require = function e(t, n, r) {
           startX = _centerX - _this9.handCardParent[0].x + .5 * (len - 1) * -spacingX;
           cc.log("startX", startX, DDZDataLogic.cardData);
           var n = 0;
-          for (var _i13 = 0; _i13 < 20; _i13++) if (_unCheckCardY == _this9.handCard[0][_i13].y && 255 == _this9.handCard[0][_i13].opacity) {
-            _this9.handCard[0][_i13].runAction(cc.moveTo(.07, n * spacingX + startX, _unCheckCardY));
+          for (var _i14 = 0; _i14 < 20; _i14++) if (_unCheckCardY == _this9.handCard[0][_i14].y && 255 == _this9.handCard[0][_i14].opacity) {
+            _this9.handCard[0][_i14].runAction(cc.moveTo(.07, n * spacingX + startX, _unCheckCardY));
             n++;
           }
         }, .2);
@@ -28471,7 +32166,7 @@ window.__require = function e(t, n, r) {
       },
       cancelMatchingExceptionHandling: function cancelMatchingExceptionHandling(msg) {
         if (msg.Code == constant.HttpCode.Succeed || msg.Code == constant.HttpCode.Timeout) return;
-        dataLogic.isPlaying || this.showRefreshToast("\u8bf7\u6c42\u8d85\u65f6\uff0c\u5237\u65b0\u8bd5\u8bd5\u770b\u5427", 4, 3);
+        dataLogic.isPlaying || this.showRefreshToast("\u8bf7\u6c42\u8d85\u65f6\uff0c\u91cd\u542f\u8bd5\u8bd5\u770b\u5427", 4, 3);
       },
       playerLeave: function playerLeave(seatId) {
         cc.log("\u6e05\u7406\u73a9\u5bb6UI", seatId);
@@ -28915,7 +32610,7 @@ window.__require = function e(t, n, r) {
         }
       },
       onLoad: function onLoad() {
-        audioMgr.setFalseAudioClip(this.audioBtn);
+        audioMgr.setFalseAudioClip(this.falseBtnAudio);
         window.retryUpdate = this.retryUpdate.bind(this);
         _updateLoadProgress = this.updateLoadProgress.bind(this);
         for (var i in constant.GameId) cc.sys.localStorage.setItem(constant.GameId[i] + "ModuleVersion", "");
@@ -28942,13 +32637,9 @@ window.__require = function e(t, n, r) {
         }
         cc.log("\u7248\u672c\u53f7", version, hotUpdateMgr.getSubModuleVersion(module));
         if (kf.compareVersion(version, hotUpdateMgr.getSubModuleVersion(module)) < 0) {
-          cc.log("\u9700\u8981\u66f4\u65b0");
           this.upgradeDoneCb = cb;
           hotUpdateMgr.check_update(this, module);
-        } else {
-          cc.log("\u4e0d\u9700\u8981\u66f4\u65b0");
-          cb();
-        }
+        } else cb();
       },
       init: function init() {
         var _this = this;
@@ -29058,6 +32749,9 @@ window.__require = function e(t, n, r) {
         dataLogic.setCheckRecoverState(true);
         this.syncNetInfo(data.connectInfo);
         this.syncUserInfo(data.userInfo);
+        dataLogic.setFirstRechargeGiftState(data.hasFirstGift);
+        dataLogic.setRechargeState(data.isSend);
+        dataLogic.setSignInState(data.hasSignInEvent);
         if (1 == data.matchData.status) {
           dataLogic.setReqRecoverState(true);
           dataLogic.setNeedRecover(true);
@@ -29243,10 +32937,6 @@ window.__require = function e(t, n, r) {
               loginSucceedCb: this.loginSucceed.bind(this)
             }
           });
-          break;
-
-         case "startScene":
-          cc.director.loadScene("start");
           break;
 
          case "visitorLogin":
@@ -30155,6 +33845,9 @@ window.__require = function e(t, n, r) {
         paiGowCardTypeXxplain4: cc.SpriteFrame,
         paiGowDanCard: cc.SpriteFrame,
         erbagang: cc.SpriteFrame,
+        baiJiaLe_xian: cc.SpriteFrame,
+        baiJiaLe_zhuang: cc.SpriteFrame,
+        baiJiaLe_rebate: cc.SpriteFrame,
         loadIconPf: cc.Prefab,
         pfGameTab: cc.Prefab,
         pfLabel: cc.Prefab,
@@ -32301,7 +35994,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "showdown":
@@ -34447,10 +38140,11 @@ window.__require = function e(t, n, r) {
           item = this.content.getChildByName("item" + i);
           item.opacity = 0;
         }
-        if (data.length > this.initCount) data.length = this.initCount; else if (0 == data.length) {
+        if (null == data || 0 == data.length) {
           this.nullRecord.opacity = 255;
           return;
         }
+        data.length > this.initCount && (data.length = this.initCount);
         if (0 != data.length) {
           this.nullRecord.opacity = 0;
           this.content.height = data.length * this.content.getChildByName("item0").height;
@@ -34472,6 +38166,7 @@ window.__require = function e(t, n, r) {
     cc.Class({
       extends: cc.Component,
       properties: {
+        txtCashGift: cc.Label,
         audioBtn: {
           default: null,
           type: cc.AudioClip
@@ -34482,12 +38177,20 @@ window.__require = function e(t, n, r) {
         },
         font: cc.Font
       },
-      start: function start() {
+      init: function init(cashGiftType, money) {
         var _this = this;
+        switch (cashGiftType) {
+         case "register":
+          this.txtCashGift.string = "\u6ce8\u518c\u793c\u91d1";
+          break;
+
+         case "signIn":
+          this.txtCashGift.string = "\u7b7e\u5230\u793c\u91d1";
+        }
         _audioId = audioMgr.playEffect(this.audioEf);
         var txt = this.node.getChildByName("txt").getComponent(cc.Label);
         txt.font = this.font;
-        txt.string = "x" + dataLogic.registerCashGift;
+        txt.string = "x" + money;
         this.scheduleOnce(function() {
           _this.node.getChildByName("glod").x = -(txt.node.width / 2 + 2);
         }, .1);
@@ -34775,13 +38478,23 @@ window.__require = function e(t, n, r) {
          case "selectRoom/cattle/seeFourCattleHallBg":
          case "cattle/seeThreeCattle/hallBg":
          case "login/bg":
-          cc.log("----\u80cc\u666f\u8def\u5f84", path);
+         case "BRCattle/bg":
+         case "selectRoom/BRCattle/brnn_room":
+         case "tenfoldBRCattle/BG":
+         case "selectRoom/tenfoldBRCattle/hall":
           _this.bgTexture = res;
           break;
 
          case "selectRoom/cattle/seeThreeCattle":
          case "selectRoom/cattle/seeFourCattle":
+         case "selectRoom/BRCattle/gameName":
+         case "selectRoom/tenfoldBRCattle/gameName":
           _this.gameNameTexture = res;
+          break;
+
+         case "tenfoldBRCattle/tenfoldTable":
+         case "BRCattle/table":
+          _this.tableTexture = res;
         }
         num++;
         loadProcessCb && loadProcessCb(num / resList.length, res, path);
@@ -36471,7 +40184,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "showdown":
@@ -36736,7 +40449,6 @@ window.__require = function e(t, n, r) {
         }
         dataLogic.setLoadSceneTimeout(false);
         nextScene = null;
-        constant.GameScene[sceneName] || dataLogic.gameEnd();
         this.loadSceneFrontDispose && this.loadSceneFrontDispose();
         var loadSceneRelevantRes = function loadSceneRelevantRes() {
           loadingScene = true;
@@ -36771,13 +40483,7 @@ window.__require = function e(t, n, r) {
           path: "friendRoom",
           resType: "dir"
         });
-        if (dataLogic.isNewRegister) if (dataLogic.userPhoneNum && dataLogic.userBalance > 0) {
-          resList.push({
-            path: "font",
-            resType: "dir"
-          });
-          resList.push.apply(resList, _toConsumableArray(constant.RegisterCashGiftRes));
-        } else dataLogic.userPhoneNum || resList.push.apply(resList, _toConsumableArray(constant.HintRegisterRes));
+        dataLogic.isNewRegister && (dataLogic.userPhoneNum && dataLogic.userBalance > 0 ? resList.push.apply(resList, _toConsumableArray(constant.RegisterCashGiftRes)) : dataLogic.userPhoneNum || resList.push.apply(resList, _toConsumableArray(constant.HintRegisterRes)));
         var isPreloadScene = false;
         var resDoneCb = null;
         var _allLoadDoneFunc = null;
@@ -36835,6 +40541,7 @@ window.__require = function e(t, n, r) {
           }
         };
         resList.length > 0 ? resMgr.loadRes(resList, resDoneCb, resLoadTimeLimit, resLoadTimeoutCb, null, needLoadToast && resLoadProcessCb) : resDoneCb && resDoneCb();
+        cc.log("sceneName===========", sceneName);
         cc.director.preloadScene(sceneName, function() {
           isPreloadScene = true;
           if (needLoadToast) {
@@ -36851,9 +40558,9 @@ window.__require = function e(t, n, r) {
         if (cc.sys.isNative) ; else {
           var splash = document.getElementById("splash");
           if ("block" == splash.style.display) {
-            this.showLayerTip("\u65e0\u6cd5\u8fde\u63a5websocket,\u7cfb\u7edf\u5c06\u81ea\u52a8\u5237\u65b0\u9875\u9762");
+            this.showLayerTip("\u65e0\u6cd5\u8fde\u63a5websocket,\u7cfb\u7edf\u5c06\u81ea\u52a8\u91cd\u542f\u5e94\u7528");
             this.scheduleOnce(function() {
-              window.location.reload();
+              cc.game.restart();
             }, 2);
           }
         }
@@ -36900,7 +40607,7 @@ window.__require = function e(t, n, r) {
           cc.log("\u5f53\u524d\u6d88\u606f\u4e0d\u5904\u7406", data, "\u670d\u52a1\u7aefdeskId", data.deskId, "\u5ba2\u6237\u7aefdeskId", dataLogic.roomConfig.deskId);
           return;
         }
-        if (1 != data.msgId && Number(data.msgId) != dataLogic.msgId + 1 && dataLogic.curGameId != constant.GameId.BRCattle && dataLogic.curGameId != constant.GameId.LongHu) {
+        if (1 != data.msgId && Number(data.msgId) != dataLogic.msgId + 1) {
           cc.log("\u670d\u52a1\u7aef\u6d88\u606fmsgId", data.msgId, "\u5ba2\u6237\u7aef\u6d88\u606fmsgId", dataLogic.msgId);
           this.setMatchingToastView && this.setMatchingToastView(false);
           dataLogic.setReqRecoverState(true);
@@ -37164,27 +40871,17 @@ window.__require = function e(t, n, r) {
         this.toastLayer[4].stopAllActions();
       },
       showRefreshToast: function showRefreshToast() {
-        var hintTxt = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "\u52a0\u8f7d\u8d85\u65f6\uff0c\u5237\u65b0\u8bd5\u4e0b\u5427";
+        var hintTxt = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "\u52a0\u8f7d\u8d85\u65f6\uff0c\u91cd\u542f\u8bd5\u4e0b\u5427";
         var _this5 = this;
         var zOrder = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 4;
         var delayTime = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0;
         if (kf.getPoolSize(constant.PoolId.ToastHint) < 1) return;
-        if (cc.sys.isNative) {
-          if (this.toastLayer[4].getChildByName("toastInGameDisconnect")) this.toastLayer[4].getChildByName("toastInGameDisconnect").onlyManualClose = true; else {
-            var _arg4 = {
-              type: constant.ToastType.InGameDisconnect,
-              onlyManualClose: true
-            };
-            kf.getObj(constant.PoolId.ToastInGameDisconnect, this.toastLayer[4], this.toastInGameDisconnectPf, _arg4);
-          }
-          return;
-        }
         var arg = {
           type: constant.ToastType.Hint,
           extend: {
             contentTxt: hintTxt,
             btnEventName: [ null, "refresh" ],
-            btnTxt: [ null, "\u5237\u65b0" ]
+            btnTxt: [ null, "\u91cd\u542f" ]
           }
         };
         0 == delayTime ? this.showHintToast(arg, zOrder) : this.toastLayer[4].runAction(cc.sequence(cc.delayTime(delayTime), cc.callFunc(function() {
@@ -37288,7 +40985,7 @@ window.__require = function e(t, n, r) {
       },
       preloadRes: function preloadRes() {
         cc.log("\u9884\u52a0\u8f7d\u8d44\u6e90");
-        var list = [ "cattle/seeThreeCattle/bg", "cattle/table", "card", "cattle/cow", "cattle/effect/cow/cattle_paixing_di1", "cattle/ui/zhuang", "cattle/effect/start/cattle_start_di_00008" ];
+        var list = [ "cattle/table", "card", "cattle/cow", "cattle/effect/cow/cattle_paixing_di1", "cattle/ui/zhuang", "cattle/effect/start/cattle_start_di_00008" ];
         for (var i = 0; i < list.length; i++) cc.loader.loadRes(list[i], function(err, res) {
           if (err) {
             cc.error("\u52a0\u8f7d\u8d44\u6e90\u9519\u8bef", err);
@@ -38834,7 +42531,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "haveNiu":
@@ -39091,18 +42788,22 @@ window.__require = function e(t, n, r) {
           sceneName: gameSceneName,
           gameId: dataLogic.curGameId
         };
+        cc.log(gameSceneName, nextSceneInfo, Json, "6565666756666666");
         if (null == Json) {
+          cc.log("777777777777777777");
           dataLogic.reqSelectRoomConfig(dataLogic.curGameId, nextSceneInfo);
           return;
         }
         var data = JSON.parse(Json);
         if (null == data || data.BackData != msg.BackData) {
+          cc.log(data, "8888888888888888888");
           dataLogic.reqSelectRoomConfig(dataLogic.curGameId, nextSceneInfo);
           return;
         }
         dataLogic.setCurRoomKey(roomKey);
         this.txtBalance.string = msg.Data.balance.toFixed(2);
         dataLogic.setUserBalance(Number(this.txtBalance.string));
+        cc.log(roomKey, "==================99999999999999");
         this.tryIntoGame(roomKey);
       },
       reqSelectRoomConfigCb: function reqSelectRoomConfigCb(msg) {
@@ -39115,6 +42816,7 @@ window.__require = function e(t, n, r) {
         }
         this.initRoomCard();
         cc.sys.localStorage.setItem("gameSelectRoomConfig" + this.sceneName, JSON.stringify(msg));
+        cc.log(dataLogic.curRoomKey, "5555555555555555555555555555");
         this.tryIntoGame(dataLogic.curRoomKey);
       },
       goBackHall: function goBackHall() {
@@ -39180,9 +42882,9 @@ window.__require = function e(t, n, r) {
       init: function init(msg, index, sceneName) {
         var _this = this;
         var picKey = index % 6;
-        sceneName == constant.SceneName.DzpkHall ? this.antesTxt.string = "\u76f2\u6ce8" : sceneName == constant.SceneName.BRCattleHall || sceneName == constant.SceneName.LongHuHall ? this.antesTxt.string = "\u9650\u7ea2" : this.antesTxt.string = "\u5e95\u6ce8";
+        sceneName == constant.SceneName.DzpkHall ? this.antesTxt.string = "\u76f2\u6ce8" : sceneName == constant.SceneName.BRCattleHall || sceneName == constant.SceneName.LongHuHall || sceneName == constant.SceneName.BcbmHall || sceneName == constant.SceneName.BaiJiaLeHall ? this.antesTxt.string = "\u9650\u7ea2" : this.antesTxt.string = "\u5e95\u6ce8";
         this.roomName.string = msg.roomName;
-        if (sceneName == constant.SceneName.BRCattleHall || sceneName == constant.SceneName.LongHuHall) {
+        if (sceneName == constant.SceneName.BRCattleHall || sceneName == constant.SceneName.LongHuHall || sceneName === constant.SceneName.BcbmHall || sceneName == constant.SceneName.BaiJiaLeHall) {
           this.bet.string = msg.ante + "~" + 100 * msg.ante;
           this.bet.fontSize = 30;
         } else {
@@ -39499,6 +43201,123 @@ window.__require = function e(t, n, r) {
     });
     cc._RF.pop();
   }, {} ],
+  signIn: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "6fcd6y807NEUZDAVdRq+MXG", "signIn");
+    "use strict";
+    var clientEvent = kf.require("basic.clientEvent");
+    var _getSucceedCb = null;
+    cc.Class({
+      extends: cc.Component,
+      properties: {
+        acClick: {
+          type: cc.AudioClip,
+          default: null
+        },
+        sfMiniItemBg: [ cc.SpriteFrame ],
+        sfMaxItemBg: [ cc.SpriteFrame ],
+        sfGetCashGiftBtnState: [ cc.SpriteFrame ],
+        btGetCashGift: cc.Button,
+        loadIcon: cc.Node
+      },
+      registerEvent: function registerEvent() {
+        this.registerHandler = [ [ "getSignInConfigCb", this.getSignInConfigCb.bind(this) ], [ "signInCb", this.signInCb.bind(this) ] ];
+        for (var i = 0; i < this.registerHandler.length; i++) {
+          var handler = this.registerHandler[i];
+          clientEvent.registerEvent(handler[0], handler[1]);
+        }
+      },
+      unregisterEvent: function unregisterEvent() {
+        for (var i = 0; i < this.registerHandler.length; i++) {
+          var handler = this.registerHandler[i];
+          clientEvent.unregisterEvent(handler[0], handler[1]);
+        }
+      },
+      onLoad: function onLoad() {
+        cc.log("signIn onLoad");
+      },
+      getSignInConfigCb: function getSignInConfigCb(data) {
+        this.loadIcon.stopAllActions();
+        this.loadIcon.active = false;
+        if (1 != data.Code) return;
+        var waitGetKey = -1, itemBg = void 0;
+        for (var i = 0; i < 7; i++) {
+          this.signInList[i].opacity = 255;
+          this.signInList[i].getChildByName("txtMoney").getComponent(cc.Label).string = "x" + data.Data[i].Money;
+          this.signInList[i].getChildByName("GetaPrize").active = 2 == data.Data[i].Status;
+          itemBg = 1 != data.Data[i].Status ? 6 == i ? this.sfMaxItemBg[0] : this.sfMiniItemBg[0] : 6 == i ? this.sfMaxItemBg[1] : this.sfMiniItemBg[1];
+          1 == data.Data[i].Status && (waitGetKey = i);
+          this.signInList[i].getComponent(cc.Sprite).spriteFrame = itemBg;
+        }
+        this.btGetCashGift.node.active = true;
+        if (-1 == waitGetKey) {
+          this.btGetCashGift.interactable = false;
+          this.btGetCashGift.node.getComponent(cc.Sprite).spriteFrame = this.sfGetCashGiftBtnState[1];
+        } else {
+          this.btGetCashGift.interactable = true;
+          this.btGetCashGift.node.getComponent(cc.Sprite).spriteFrame = this.sfGetCashGiftBtnState[0];
+        }
+      },
+      start: function start() {},
+      init: function init(getSucceedCb) {
+        _getSucceedCb = getSucceedCb;
+        this.registerEvent();
+        this.signInList = [];
+        for (var i = 0; i < 7; i++) {
+          this.signInList[i] = this.node.getChildByName("signInItem" + i);
+          this.signInList[i].opacity = false;
+        }
+        this.btGetCashGift.node.active = false;
+        this.loadIcon.active = true;
+        this.loadIcon.runAction(cc.repeatForever(cc.rotateBy(1, 360)));
+        http.post({
+          Action: "GetSignInEvent"
+        }, "getSignInConfigCb");
+      },
+      btnEvent: function btnEvent(event, name) {
+        audioMgr.playEffect(this.acClick);
+        switch (name) {
+         case "close":
+          this.close();
+          break;
+
+         case "getCashGift":
+          this.btGetCashGift.interactable = false;
+          this.loadIcon.active = true;
+          this.loadIcon.runAction(cc.repeatForever(cc.rotateBy(1, 360)));
+          http.post({
+            Action: "SignIn"
+          }, "signInCb");
+          resMgr.loadSingleRes("prefab/baoWang/registerCashGift", function(res) {}, cc.Prefab);
+          break;
+
+         default:
+          cc.log("\u672a\u77e5\u4e8b\u4ef6\u540d", name);
+        }
+      },
+      close: function close() {
+        this.unregisterEvent();
+        this.node.destroy();
+      },
+      signInCb: function signInCb(data) {
+        var _this = this;
+        if (data.Code == constant.HttpCode.Succeed) {
+          dataLogic.setUserBalance(Number(dataLogic.userBalance).add(data.Data.Money));
+          _getSucceedCb();
+          resMgr.loadSingleRes("prefab/baoWang/registerCashGift", function(res) {
+            _this.close();
+            var node = cc.instantiate(res);
+            node.parent = _this.node.parent;
+            node.getComponent("registerCashGift").init("signIn", data.Data.Money);
+          }, cc.Prefab);
+        } else {
+          this.btGetCashGift.interactable = true;
+          this.loadIcon.active = false;
+        }
+      }
+    });
+    cc._RF.pop();
+  }, {} ],
   slider: [ function(require, module, exports) {
     "use strict";
     cc._RF.push(module, "cf3b0Z2leZKbrhCLYGSj7Bi", "slider");
@@ -39616,8 +43435,8 @@ window.__require = function e(t, n, r) {
         });
         this.IO.on("connect", function(data) {
           cc.log("socketIO\u8fde\u63a5\u6210\u529f", _createConnected);
-          if (_createConnected) return;
           _state = _SocketState.Connect;
+          if (_createConnected) return;
           _createConnected = true;
           _connectCb && _connectCb();
         });
@@ -40306,6 +44125,10 @@ window.__require = function e(t, n, r) {
             this.hintBox.getChildByName("exitBtn").active = true;
             this.hintBox.getChildByName("toastBtnLeft").active = false;
           }
+          break;
+
+         case constant.ToastType.LoadingWaitStart:
+          this.loadTxt.string = "\u73a9\u5bb6\u5c31\u4f4d\u4e2d\uff0c\u8bf7\u8010\u5fc3\u7b49\u5f85...";
         }
       },
       unuse: function unuse() {},
@@ -40358,7 +44181,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
         }
       },
       toastHintBtnEvent: function toastHintBtnEvent(event, eventName) {
@@ -40408,7 +44231,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "toastClose":
@@ -41570,7 +45393,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case "refresh":
-          location.reload();
+          cc.game.restart();
           break;
 
          case "haveNiu":
@@ -41765,4 +45588,4 @@ window.__require = function e(t, n, r) {
     });
     cc._RF.pop();
   }, {} ]
-}, {}, [ "clientEvent", "eventListener", "TTQRcode", "engineAdapter", "miniCommon", "hotUpdate", "hotUpdateMgr", "http", "network", "socket", "socketIO", "activityCenter", "activityRule", "addBankCard", "agentReport_item", "alterPassword", "bindAndCheckPhoneNum", "checkBankCard", "checkCode", "createRoom", "createRoomItem", "deposit", "editPersonalInfo", "fastRecharge", "forgetPassword", "guideWatchPlayerCard", "hintBindPhone", "hotUpdateDialog", "informAward", "inputRoomNumber", "joinRoomTip", "levelRule", "loginOut", "loginView", "mailCentre", "mailDetails", "mailInfoItem", "payCenter", "personalCenter", "phoneLogin", "phoneRegister", "playerCard", "rankingList", "rankingListItem", "rechargeRecord", "register", "registerCashGift", "resetPassword", "setPassword", "systemNotice", "tradingRecordItem", "transferConfirm", "yinShangItem", "dialogBase", "dialogCommonLayer", "dialogExtend", "gameEntrance", "gameRecord", "help", "kingHelp", "kingRecord", "kingRecordItem", "layerMsg", "newHelp", "notice", "record", "recordItem", "setting", "toast", "BRCattleConstant", "LongHuConstant", "audioMgr", "cattleConstant", "constant", "diceConstant", "dzpkConstant", "ebgConstant", "goldenFraudConstant", "kingConstant", "landlordsConstant", "paiGowConstant", "resMgr", "sanGongConstant", "BRCattleDataLogic", "LongHuDataLogic", "cattleDataLogic", "dataLogic", "diceLogic", "dzDataLogic", "ebgDataLogic", "goldenFraudDataLogic", "kingDataLogic", "landlordsDataLogic", "paiGowDataLogic", "sanGongDataLogic", "BRCattle", "BRCattleHall", "LongHu", "LongHuHall", "bank", "buttonScaler", "cattleHall", "cattleScene", "closePop", "callDiceRecord", "callDiceRecordItem", "diceHall", "diceMain", "dzpkHall", "dzpkMain", "pfbCommon", "erBaGang", "erBaGangHall", "fastZJH", "fastZJHHall", "gameSceneBase", "chip", "goldenFraud", "goldenFraudHall", "hall", "baseGame", "bonusGame", "landlords", "landlordsHall", "login", "offerPK", "paiGow", "paiGowHall", "sanGong", "sanGongHall", "sceneBase", "seeThreeCattle", "seeThreeCattleHall", "selectRoom", "selectRoomSceneBase", "slider", "spreadInfo", "tongBiCattle", "tongBiCattleHall" ]);
+}, {}, [ "clientEvent", "eventListener", "TTQRcode", "engineAdapter", "miniCommon", "hotUpdate", "hotUpdateMgr", "http", "network", "socket", "socketIO", "activityCenter", "activityRule", "addBankCard", "agentReport_item", "alterPassword", "bindAndCheckPhoneNum", "checkBankCard", "checkCode", "createRoom", "createRoomItem", "deposit", "editPersonalInfo", "fastRecharge", "firstRechargeGift", "forgetPassword", "guideWatchPlayerCard", "hintBindPhone", "hotUpdateDialog", "informAward", "inputRoomNumber", "joinRoomTip", "levelRule", "loginOut", "loginView", "mailCentre", "mailDetails", "mailInfoItem", "payCenter", "personalCenter", "phoneLogin", "phoneRegister", "playerCard", "rankingList", "rankingListItem", "rechargeRecord", "register", "registerCashGift", "resetPassword", "setPassword", "signIn", "systemNotice", "tradingRecordItem", "transferConfirm", "yinShangItem", "dialogBase", "dialogCommonLayer", "dialogExtend", "gameEntrance", "gameRecord", "kingHelp", "kingRecord", "kingRecordItem", "layerMsg", "newHelp", "notice", "record", "recordItem", "setting", "toast", "BRCattleConstant", "LongHuConstant", "audioMgr", "baiJiaLeConstant", "bcbmConstant", "cattleConstant", "constant", "diceConstant", "dzpkConstant", "ebgConstant", "giftMoneyConstant", "goldenFraudConstant", "kingConstant", "landlordsConstant", "paiGowConstant", "resMgr", "sanGongConstant", "BRCattleDataLogic", "LongHuDataLogic", "baiJiaLeDataLogic", "bcbmDataLogic", "cattleDataLogic", "dataLogic", "diceLogic", "dzDataLogic", "ebgDataLogic", "giftMoneyDataLogic", "goldenFraudDataLogic", "kingDataLogic", "landlordsDataLogic", "paiGowDataLogic", "sanGongDataLogic", "BRCattle", "BRCattleHall", "bcbm", "bcbmHall", "LongHu", "LongHuHall", "baiJiaLe", "baiJiaLeHall", "bank", "buttonScaler", "cattleHall", "cattleScene", "closePop", "callDiceRecord", "callDiceRecordItem", "diceHall", "diceMain", "dzpkHall", "dzpkMain", "pfbCommon", "erBaGang", "erBaGangHall", "fastZJH", "fastZJHHall", "gameSceneBase", "giftMoney", "giftMoneyHall", "chip", "goldenFraud", "goldenFraudHall", "hall", "baseGame", "bonusGame", "landlords", "landlordsHall", "login", "offerPK", "paiGow", "paiGowHall", "sanGong", "sanGongHall", "sceneBase", "seeThreeCattle", "seeThreeCattleHall", "selectRoom", "selectRoomSceneBase", "slider", "spreadInfo", "tongBiCattle", "tongBiCattleHall" ]);

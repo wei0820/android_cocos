@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "arrow",
-    "texture": "12b39ca49",
+    "texture": "173326cf0",
     "rect": [
-      826,
-      155,
+      658,
+      259,
       41,
       40
     ],

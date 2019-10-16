@@ -1,0 +1,41 @@
+{
+  "__type__": "cc.SpriteAtlas",
+  "_spriteFrames": {
+    "BG": {
+      "__uuid__": "a8NNeMbTNOeqj/yYi9ZZrD"
+    },
+    "Purple": {
+      "__uuid__": "4eGzzTtBRCAoZzInyBQm1c"
+    },
+    "Yellow": {
+      "__uuid__": "ecSrWZ/l1LNqEtLNcz7lZh"
+    },
+    "button1": {
+      "__uuid__": "54xTCTtYpO3IBe5T/+PU7/"
+    },
+    "button2": {
+      "__uuid__": "eflzismqFP/oLv/yGLkcXc"
+    },
+    "BigCoin": {
+      "__uuid__": "d2Xwu5l8tAyLor3S2kiiMm"
+    },
+    "GetaPrize": {
+      "__uuid__": "e3zKPGU3tBuoGetGo7u1g/"
+    },
+    "Close": {
+      "__uuid__": "e7l5RHjfBB858r7WGzMqvv"
+    },
+    "BigYellow": {
+      "__uuid__": "28z98ZTqRM/LT55tWgoteR"
+    },
+    "BigPurple": {
+      "__uuid__": "5e4AyRBG9HiqtsExp/m2OI"
+    },
+    "Coin": {
+      "__uuid__": "ebsSKlbllKt5fmZJwwApG4"
+    },
+    "BGcat": {
+      "__uuid__": "8dQMCOI1ZP7Lgqr7GwE0Gg"
+    }
+  }
+}

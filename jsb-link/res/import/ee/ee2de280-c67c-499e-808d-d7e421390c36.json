@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "xz_0004",
-    "texture": "12b39ca49",
+    "texture": "173326cf0",
     "rect": [
-      648,
-      228,
+      906,
+      157,
       58,
       37
     ],
@@ -17,6 +17,7 @@
       58,
       37
     ],
+    "rotated": 1,
     "capInsets": [
       0,
       0,

@@ -43,11 +43,11 @@
     "goBackBg": {
       "__uuid__": "0bE2t7AGlP5agafxOe7fI8"
     },
-    "bd_0004": {
-      "__uuid__": "0eSWxdVmRO85i+iMx2fAHE"
+    "qd_txt": {
+      "__uuid__": "d3GYXcGlxIb7azAc63EdlO"
     },
-    "hy-3": {
-      "__uuid__": "21dzhzWFxP1YqQ9J0WGnoS"
+    "sh_txt": {
+      "__uuid__": "efqu4rLGRC06fAX9UkWAaJ"
     },
     "wait": {
       "__uuid__": "23/1V4CYNKUo+jiEMN+t6y"
@@ -58,8 +58,8 @@
     "xz_zi": {
       "__uuid__": "a9QvxWa3dBg62ckiC7KY3P"
     },
-    "hy-4": {
-      "__uuid__": "d46WZNrR1HGpysCeggKD15"
+    "bd_0004": {
+      "__uuid__": "0eSWxdVmRO85i+iMx2fAHE"
     },
     "bindPhoneNum": {
       "__uuid__": "5dWWWelopH/I0nOZO5WBY2"
@@ -82,11 +82,11 @@
     "hallRecord": {
       "__uuid__": "781jIU4+hFL7BBasQfZLQs"
     },
-    "hy-1": {
-      "__uuid__": "fbKdBnc01JZpqFdiVsuyXL"
+    "hy-3": {
+      "__uuid__": "21dzhzWFxP1YqQ9J0WGnoS"
     },
-    "download3": {
-      "__uuid__": "4dSEbBJtRFObtsqEilsUoz"
+    "hy-4": {
+      "__uuid__": "d46WZNrR1HGpysCeggKD15"
     },
     "bd_0001": {
       "__uuid__": "42plusn5xDRax3i6vAMsqw"
@@ -100,11 +100,17 @@
     "hy-sg_00011": {
       "__uuid__": "156ELr88RIsZd62/1lOwV8"
     },
-    "hallSetting": {
-      "__uuid__": "93I8f3UJNJTpNJ6foJVBOU"
+    "hy-1": {
+      "__uuid__": "fbKdBnc01JZpqFdiVsuyXL"
+    },
+    "download3": {
+      "__uuid__": "4dSEbBJtRFObtsqEilsUoz"
     },
     "hy-sg_00000": {
       "__uuid__": "6dfKnKp3BLMLqlGJqvZIaQ"
+    },
+    "hallSetting": {
+      "__uuid__": "93I8f3UJNJTpNJ6foJVBOU"
     },
     "hy-sg_00012": {
       "__uuid__": "e3ecOM7hZNWoAwXlVs1FGo"
@@ -148,11 +154,8 @@
     "ranking": {
       "__uuid__": "4c13lLDK1AKoRhvPQiUzyd"
     },
-    "service": {
-      "__uuid__": "64qz4+vXhECpggRfmOudOF"
-    },
-    "xz_0004": {
-      "__uuid__": "eeLeKAxnxJnoCN1+QhOQw2"
+    "tixian": {
+      "__uuid__": "30mHionG9PiJEKG4dfyOvV"
     },
     "mail": {
       "__uuid__": "ddnStZ/y5EC6+5VZ8kaIeF"
@@ -162,6 +165,18 @@
     },
     "xz_0005": {
       "__uuid__": "6beqMHGbhMAZ/ZgCseHmyv"
+    },
+    "service": {
+      "__uuid__": "64qz4+vXhECpggRfmOudOF"
+    },
+    "sh_pic": {
+      "__uuid__": "642gkKlVxDJpPpaH/7epxR"
+    },
+    "xz_0004": {
+      "__uuid__": "eeLeKAxnxJnoCN1+QhOQw2"
+    },
+    "qd_pic": {
+      "__uuid__": "f3H3MAwXhGBbXKyYiLy0uC"
     },
     "download1": {
       "__uuid__": "7d6NKcJ+1E85akQlxyrx5Z"

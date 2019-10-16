@@ -56,6 +56,7 @@ import android.widget.Toast;
 
 import com.android.app.game.v0812.R;
 import com.fm.openinstall.OpenInstall;
+import com.fm.openinstall.listener.AppInstallAdapter;
 import com.fm.openinstall.listener.AppWakeUpAdapter;
 import com.fm.openinstall.model.AppData;
 import com.mcxiaoke.bus.Bus;
@@ -164,15 +165,22 @@ public class AppActivity extends Cocos2dxActivity {
             }
         });
         checkPermission();
+//        mViewStartPage.setVisibility(View.GONE);GONE
+        OpenInstall.getWakeUp(getIntent(),wakeUpAdapter);
+        OpenInstall.reportRegister();
+
     }
     AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {
         @Override
         public void onWakeUp(AppData appData) {
             //获取渠道数据
             String channelCode = appData.getChannel();
+            Log.d(TAG, "wakeUpAdapter : wakeUpAdapter = " + channelCode);
             //获取绑定数据
             String bindData = appData.getData();
-            Log.d("OpenInstall", "getWakeUp : wakeupData = " + appData.toString());
+            Log.d(TAG, "wakeUpAdapter : wakeUpAdapter = " + appData.toString());
+
+
         }
     };
     @Override
@@ -385,6 +393,33 @@ public class AppActivity extends Cocos2dxActivity {
         mTvCount.setVisibility(View.GONE);
         mImgStartPage.setImageResource(R.mipmap.bg);
         roundCornerProgressBar.setVisibility(View.VISIBLE);
+        getOpneData();
+
+    }
+
+    private void getOpneData(){
+        // 一定要等到数据界面已经刷新采取做处理。
+        // 获取OpenInstall安装数据
+        OpenInstall.getInstall(new AppInstallAdapter() {
+            @Override
+            public void onInstall(AppData appData) {
+                //获取渠道数据
+                String channelCode = appData.getChannel();
+                Log.d(TAG, "getOpneData = " + channelCode);
+                //获取自定义数据
+                String bindData = appData.getData();
+                Log.d(TAG, "getOpneData = " + appData.toString());
+
+                app.runOnGLThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Cocos2dxJavascriptJavaBridge.evalString("window._spCode ="+ bindData);
+                        Log.d(TAG, "getOpneData =!! " + bindData.toString());
+
+                    }
+                });
+            }
+        });
     }
 
     // 供JS调用
@@ -452,9 +487,16 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
     public static void openUrlByBrowse(String url) {
-        Uri uri = Uri.parse(url);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        getContext().startActivity(intent);
+        Log.d(TAG, "openUrlByBrowse: "+url);
+        app.runOnGLThread(new Runnable() {
+            @Override
+            public void run() {
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -470,18 +512,18 @@ public class AppActivity extends Cocos2dxActivity {
 
     // 直接结束倒计时
     public static void JSGotoMain(String value) {
+
         Bus.getDefault().post(new GotoMainEvent());
     }
 
 
     public static float showProgress(float i) {
         return i;
-
-
     }
 
     // 加载资源进度控制
     public static void getLoadngingProgressRate(float f) {
+        Log.d(TAG, "getLoadngingProgressRate: ");
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -496,6 +538,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     // 热跟新进度控制
     public static void getUpdateProgressRate(float f) {
+        Log.d(TAG, "getUpdateProgressRate: ");
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -509,8 +552,11 @@ public class AppActivity extends Cocos2dxActivity {
         });
     }
 
+
     // 显示更新失败弹窗
     public static void showUpdateFailedDialog() {
+        Log.d(TAG, "showUpdateFailedDialog: ");
+
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {

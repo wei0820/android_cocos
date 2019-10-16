@@ -1,0 +1,38 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "piaofu",
+  "_duration": 0.8,
+  "sample": 25,
+  "speed": 0.5,
+  "wrapMode": "2",
+  "curveData": {
+    "paths": {
+      "pic": {
+        "props": {
+          "y": [
+            {
+              "frame": 0,
+              "value": 25
+            },
+            {
+              "frame": 0.2,
+              "value": 28
+            },
+            {
+              "frame": 0.4,
+              "value": 25
+            },
+            {
+              "frame": 0.6,
+              "value": 22
+            },
+            {
+              "frame": 0.8,
+              "value": 25
+            }
+          ]
+        }
+      }
+    }
+  }
+}

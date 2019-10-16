@@ -39,10 +39,10 @@
         "__id__": 11
       },
       {
-        "__id__": 12
+        "__id__": 13
       },
       {
-        "__id__": 13
+        "__id__": 14
       }
     ],
     "_level": 1,
@@ -66,6 +66,9 @@
         "__type__": "75084bHcbFHW4anabVxG8c/",
         "node": {
           "__id__": 1
+        },
+        "txtCashGift": {
+          "__id__": 12
         },
         "audioBtn": {
           "__uuid__": "ecfWSodf1HdqrJvyOKGSj4"
@@ -502,20 +505,7 @@
     },
     "_components": [
       {
-        "__type__": "cc.Label",
-        "node": {
-          "__id__": 11
-        },
-        "_useOriginalSize": false,
-        "_string": "注册礼金",
-        "_N$string": "注册礼金",
-        "_fontSize": 26,
-        "_N$file": {
-          "__uuid__": "f282P+0sVPqqrZwiub4W4d"
-        },
-        "_isSystemFontUsed": false,
-        "_N$horizontalAlign": 1,
-        "_N$verticalAlign": 1
+        "__id__": 12
       }
     ],
     "_prefab": {
@@ -545,6 +535,22 @@
     }
   },
   {
+    "__type__": "cc.Label",
+    "node": {
+      "__id__": 11
+    },
+    "_useOriginalSize": false,
+    "_string": "注册礼金",
+    "_N$string": "注册礼金",
+    "_fontSize": 26,
+    "_N$file": {
+      "__uuid__": "f282P+0sVPqqrZwiub4W4d"
+    },
+    "_isSystemFontUsed": false,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1
+  },
+  {
     "__type__": "cc.Node",
     "_name": "txt",
     "_parent": {
@@ -554,7 +560,7 @@
       {
         "__type__": "cc.Label",
         "node": {
-          "__id__": 12
+          "__id__": 13
         },
         "_useOriginalSize": false,
         "_N$file": {
@@ -581,7 +587,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 42,
+      "x": 58,
       "y": 2
     }
   },
@@ -595,7 +601,7 @@
       {
         "__type__": "cc.ParticleSystem",
         "node": {
-          "__id__": 13
+          "__id__": 14
         },
         "_dstBlendFactor": 1,
         "_custom": true,

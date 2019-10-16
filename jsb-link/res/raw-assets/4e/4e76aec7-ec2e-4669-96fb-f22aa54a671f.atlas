@@ -1,0 +1,146 @@
+
+baoma.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+230311vt8i76srpff7frp8
+  rotate: false
+  xy: 169, 13
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+bj
+  rotate: false
+  xy: 2, 296
+  size: 260, 214
+  orig: 262, 216
+  offset: 1, 1
+  index: -1
+canying
+  rotate: false
+  xy: 413, 343
+  size: 97, 71
+  orig: 99, 73
+  offset: 1, 1
+  index: -1
+che
+  rotate: true
+  xy: 2, 2
+  size: 199, 72
+  orig: 201, 74
+  offset: 1, 1
+  index: -1
+guang
+  rotate: false
+  xy: 264, 416
+  size: 222, 94
+  orig: 224, 96
+  offset: 1, 1
+  index: -1
+guang2
+  rotate: true
+  xy: 169, 79
+  size: 122, 53
+  orig: 124, 55
+  offset: 1, 1
+  index: -1
+guang3
+  rotate: false
+  xy: 264, 312
+  size: 147, 43
+  orig: 149, 45
+  offset: 1, 1
+  index: -1
+guang4
+  rotate: false
+  xy: 413, 318
+  size: 93, 23
+  orig: 95, 25
+  offset: 1, 1
+  index: -1
+guang5
+  rotate: false
+  xy: 2, 203
+  size: 232, 91
+  orig: 234, 93
+  offset: 1, 1
+  index: -1
+guang6
+  rotate: true
+  xy: 76, 8
+  size: 193, 91
+  orig: 195, 93
+  offset: 1, 1
+  index: -1
+sd
+  rotate: true
+  xy: 236, 196
+  size: 98, 25
+  orig: 100, 27
+  offset: 1, 1
+  index: -1
+sd2
+  rotate: false
+  xy: 264, 281
+  size: 110, 29
+  orig: 112, 31
+  offset: 1, 1
+  index: -1
+shaizi1
+  rotate: false
+  xy: 284, 204
+  size: 21, 21
+  orig: 23, 23
+  offset: 1, 1
+  index: -1
+shaizi2
+  rotate: true
+  xy: 312, 241
+  size: 38, 53
+  orig: 40, 55
+  offset: 1, 1
+  index: -1
+shaizi3
+  rotate: false
+  xy: 263, 201
+  size: 19, 24
+  orig: 21, 26
+  offset: 1, 1
+  index: -1
+shaizi4
+  rotate: false
+  xy: 488, 461
+  size: 14, 18
+  orig: 16, 20
+  offset: 1, 1
+  index: -1
+shaizi5
+  rotate: false
+  xy: 263, 227
+  size: 47, 52
+  orig: 49, 54
+  offset: 1, 1
+  index: -1
+shaizi6
+  rotate: false
+  xy: 376, 289
+  size: 24, 21
+  orig: 26, 23
+  offset: 1, 1
+  index: -1
+shaizi7
+  rotate: true
+  xy: 488, 481
+  size: 29, 19
+  orig: 31, 21
+  offset: 1, 1
+  index: -1
+zi
+  rotate: false
+  xy: 264, 357
+  size: 147, 57
+  orig: 149, 59
+  offset: 1, 1
+  index: -1

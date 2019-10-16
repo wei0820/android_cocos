@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "hallSetting",
-    "texture": "12b39ca49",
+    "texture": "173326cf0",
     "rect": [
-      448,
-      191,
+      482,
+      97,
       88,
       78
     ],

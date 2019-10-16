@@ -20,12 +20,12 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        try {
-            Log.d(TAG, "onCreate: "+   DataCleanManager.getTotalCacheSize(getApplicationContext()));
-            DataCleanManager.clearAllCache(getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Log.d(TAG, "onCreate: "+   DataCleanManager.getTotalCacheSize(getApplicationContext()));
+//            DataCleanManager.clearAllCache(getApplicationContext());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         CrashReport.initCrashReport(getApplicationContext(), "b93156a620", false);
         closeAndroidPDialog();

@@ -5,7 +5,7 @@
     "scene": {
       "__id__": 1
     },
-    "asyncLoadAssets": {}
+    "asyncLoadAssets": null
   },
   {
     "__type__": "cc.Scene",
@@ -21,8 +21,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.7263888888888889,
-      "y": 0.7263888888888889,
+      "x": 0.6888888888888889,
+      "y": 0.6888888888888889,
       "z": 1
     },
     "autoReleaseAssets": false
@@ -140,10 +140,10 @@
           "__id__": 35
         },
         "loadMask": {
-          "__id__": 38
+          "__id__": 39
         },
         "loadIcon": {
-          "__id__": 39
+          "__id__": 38
         },
         "people": {
           "__id__": 8
@@ -162,11 +162,8 @@
         "downloadBtn": {
           "__id__": 33
         },
-        "falseBgMusic": {
-          "__uuid__": "c6O6ZVHIdP9rFXd1vdNu0H"
-        },
         "falseBtnAudio": {
-          "__uuid__": "c6O6ZVHIdP9rFXd1vdNu0H"
+          "__uuid__": "ecfWSodf1HdqrJvyOKGSj4"
         }
       }
     ],
@@ -1070,8 +1067,8 @@
           "__id__": 30
         },
         "_useOriginalSize": false,
-        "_string": "抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防上当受骗 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活\n版本号：v1.3.0\n                        ",
-        "_N$string": "抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防上当受骗 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活\n版本号：v1.3.0\n                        ",
+        "_string": "抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防上当受骗 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活\n版本号：v1.3.2\n                        ",
+        "_N$string": "抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防上当受骗 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活\n版本号：v1.3.2\n                        ",
         "_fontSize": 20,
         "_lineHeight": 34,
         "_N$file": {
@@ -1123,7 +1120,7 @@
             "target": {
               "__id__": 2
             },
-            "component": "login",
+            "_componentId": "63f57RJXVVMt7DaE+nB8opo",
             "handler": "btnEvent",
             "customEventData": "visitorLogin"
           }
@@ -1153,6 +1150,24 @@
           "r": 255,
           "g": 255,
           "b": 255
+        },
+        "_N$normalSprite": {
+          "__uuid__": "f0BIwQ8D5Ml7nTNQbh1YlS"
+        },
+        "_N$pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$disabledSprite": {
+          "__uuid__": "29FYIk+N1GYaeWH/q1NxQO"
         },
         "_N$target": {
           "__id__": 31
@@ -1208,7 +1223,7 @@
             "target": {
               "__id__": 2
             },
-            "_componentId": "63f57RJXVVMt7DaE+nB8opo",
+            "component": "login",
             "handler": "btnEvent",
             "customEventData": "service"
           }
@@ -1270,7 +1285,7 @@
             "target": {
               "__id__": 2
             },
-            "_componentId": "63f57RJXVVMt7DaE+nB8opo",
+            "component": "login",
             "handler": "btnEvent",
             "customEventData": "downloadApp"
           }
@@ -1410,7 +1425,7 @@
             "target": {
               "__id__": 2
             },
-            "_componentId": "63f57RJXVVMt7DaE+nB8opo",
+            "component": "login",
             "handler": "btnEvent",
             "customEventData": "showLogin"
           }
@@ -1440,6 +1455,24 @@
           "r": 255,
           "g": 255,
           "b": 255
+        },
+        "_N$normalSprite": {
+          "__uuid__": "f0BIwQ8D5Ml7nTNQbh1YlS"
+        },
+        "_N$pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$disabledSprite": {
+          "__uuid__": "29FYIk+N1GYaeWH/q1NxQO"
         },
         "_N$target": {
           "__id__": 36
@@ -1529,6 +1562,24 @@
           "g": 255,
           "b": 255
         },
+        "_N$normalSprite": {
+          "__uuid__": "f0BIwQ8D5Ml7nTNQbh1YlS"
+        },
+        "_N$pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "pressedSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "hoverSprite": {
+          "__uuid__": "e97GVMl6JHh5Ml5qEDdSGa"
+        },
+        "_N$disabledSprite": {
+          "__uuid__": "29FYIk+N1GYaeWH/q1NxQO"
+        },
         "_N$target": {
           "__id__": 37
         }
@@ -1556,7 +1607,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "loadMask",
+    "_name": "loadIcon",
     "_parent": {
       "__id__": 2
     },
@@ -1566,12 +1617,39 @@
         "node": {
           "__id__": 38
         },
+        "_spriteFrame": {
+          "__uuid__": "21DsG5BaxOcp2FIgMLSWla"
+        }
+      }
+    ],
+    "_opacity": 0,
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 47,
+      "height": 46
+    }
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "loadMask",
+    "_parent": {
+      "__id__": 2
+    },
+    "_components": [
+      {
+        "__type__": "cc.Sprite",
+        "node": {
+          "__id__": 39
+        },
+        "_spriteFrame": {
+          "__uuid__": "a2MjXRFdtLlYQ5ouAFv/+R"
+        },
         "_sizeMode": 0
       },
       {
         "__type__": "cc.Widget",
         "node": {
-          "__id__": 38
+          "__id__": 39
         },
         "alignMode": 0,
         "_alignFlags": 45,
@@ -1581,7 +1659,7 @@
       {
         "__type__": "cc.BlockInputEvents",
         "node": {
-          "__id__": 38
+          "__id__": 39
         },
         "_enabled": false
       }
@@ -1594,30 +1672,6 @@
       "__type__": "cc.Size",
       "width": 1280,
       "height": 720
-    }
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "loadIcon",
-    "_parent": {
-      "__id__": 2
-    },
-    "_components": [
-      {
-        "__type__": "cc.Sprite",
-        "node": {
-          "__id__": 39
-        },
-        "_spriteFrame": {
-          "__uuid__": "21DsG5BaxOcp2FIgMLSWla"
-        }
-      }
-    ],
-    "_opacity": 0,
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 47,
-      "height": 46
     }
   },
   {

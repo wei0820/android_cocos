@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "hy-sg_00000",
-    "texture": "12b39ca49",
+    "texture": "173326cf0",
     "rect": [
-      482,
-      97,
+      448,
+      221,
       64,
       88
     ],
@@ -17,6 +17,7 @@
       329,
       88
     ],
+    "rotated": 1,
     "capInsets": [
       0,
       0,

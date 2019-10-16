@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "mail",
-    "texture": "12b39ca49",
+    "texture": "173326cf0",
     "rect": [
-      704,
-      153,
+      862,
+      97,
       54,
       62
     ],
@@ -17,6 +17,7 @@
       54,
       62
     ],
+    "rotated": 1,
     "capInsets": [
       0,
       0,
