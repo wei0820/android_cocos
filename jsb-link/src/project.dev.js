@@ -5509,9 +5509,7 @@ window.__require = function e(t, n, r) {
       var isLoop = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
       if (dataLogic.isHide) return;
       if (_isOpenEffect) {
-        cc.log("\u64ad\u653e\u97f3\u6548");
         var id = cc.audioEngine.playEffect(audioClip, isLoop);
-        cc.log("id+++", id);
         _effectIdList.push(id);
         return id;
       }
@@ -5554,7 +5552,6 @@ window.__require = function e(t, n, r) {
       cc.log("\u64ad\u653e\u97f3\u4e50", _isOpenMusic, dataLogic.isHide);
       if (_isOpenMusic) {
         var id = cc.audioEngine.playEffect(_falseAudioClip, false);
-        cc.log("id+++", id);
         cc.audioEngine.stopEffect(id);
         cc.audioEngine.playMusic(audioClip, isLoop);
       }
@@ -28538,27 +28535,22 @@ window.__require = function e(t, n, r) {
             jsb.fileUtils.isFileExist(url) ? this._am.loadLocalManifest(url) : this._am.loadLocalManifest(createManifest(), path);
           } else {
             var getExistAssets = function getExistAssets() {
-              var assets = {};
-              cc.log("----------", _this2.file_project, !jsb.fileUtils.isFileExist(_this2.file_project));
-              if (!jsb.fileUtils.isFileExist(_this2.file_project)) {
-                cc.log(_this2.file_project, "\u4e0d\u5b58\u5728");
-                return assets;
+              var assets = {}, assetsUrl = path + "/" + _this2.file_module + "_assets.manifest";
+              cc.log("assetsUrl", assetsUrl);
+              if (!jsb.fileUtils.isFileExist(assetsUrl)) {
+                assetsUrl = _this2.file_module + "_assets.manifest";
+                cc.log("assetsUrl=", assetsUrl);
+                if (!jsb.fileUtils.isFileExist(assetsUrl)) return assets;
               }
-              cc.log("----------1");
-              var moduleAllAssets = JSON.parse(jsb.fileUtils.getStringFromFile(_this2.file_project)).assets;
-              cc.log("moduleAllAssets", moduleAllAssets);
+              var moduleAllAssets = JSON.parse(jsb.fileUtils.getStringFromFile(assetsUrl));
               var unionSetData = JSON.parse(jsb.fileUtils.getStringFromFile(unionSetManifestUrl));
-              cc.log("unionSetData", unionSetData);
               for (var key in moduleAllAssets) unionSetData[key] && (assets[key] = unionSetData[key]);
-              cc.log("assets", assets);
               return assets;
             };
             if (jsb.fileUtils.isFileExist(unionSetManifestUrl)) if (jsb.fileUtils.isFileExist(url)) {
-              cc.log(url, "\u5b58\u5728");
               this.updateManifestFromUnionSet(url, unionSetManifestUrl);
               this._am.loadLocalManifest(url);
             } else {
-              cc.log(url, "\u4e0d\u5b58\u5728");
               var assets = getExistAssets();
               this._am.loadLocalManifest(createManifest(assets), path);
             } else this._am.loadLocalManifest(createManifest(), path);
@@ -28598,9 +28590,17 @@ window.__require = function e(t, n, r) {
     var _xhrList = [];
     var _key = 0;
     var _cookie = !!cc.sys.isNative && cc.sys.localStorage.getItem("_pokerGameCookie");
+    var _domainName = "http://jack.kfcs123.com";
     window.http = {
       init: function init() {
-        _url = cc.sys.isNative || "7456" == window.location.port || "7070" == window.location.port ? "http://jack.kfcs123.com/gameApi/" : "/gameApi/";
+        _url = _domainName + "/gameApi/";
+      },
+      setDomainName: function setDomainName(domainName) {
+        _url = domainName + "/gameApi/";
+        return _domainName = domainName;
+      },
+      getDomainName: function getDomainName() {
+        return _domainName;
       },
       get: function get(reqArg, cbEventName) {
         var url = "";
@@ -36389,7 +36389,8 @@ window.__require = function e(t, n, r) {
       },
       showTutorial: function showTutorial() {
         audioMgr.playEffect(this.clickAudio);
-        cc.sys.isNative || "7456" != window.location.port ? dataLogic.openWindow("RechargeWayWeixin" == this.curChargeWayType ? "./tutorial/index.html?type=wx" : "./tutorial/index.html?type=zfb") : dataLogic.openWindow("RechargeWayWeixin" == this.curChargeWayType ? "./build/tutorial/index.html?type=wx" : "./build/tutorial/index.html?type=zfb");
+        var url = http.getDomainName() + ("RechargeWayWeixin" == this.curChargeWayType ? "/tutorial/index.html?type=wx" : "/tutorial/index.html?type=zfb");
+        dataLogic.openWindow(url);
       },
       customCallBack: function customCallBack() {
         this.goingNextStep();

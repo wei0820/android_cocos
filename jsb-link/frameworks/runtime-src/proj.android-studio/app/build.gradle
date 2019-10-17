@@ -136,9 +136,11 @@ android.applicationVariants.all { variant ->
         }
 
         copy {
-            from "${sourceDir}/main_project.manifest"
-            from "${sourceDir}/main_version.manifest"
+            from "${sourceDir}"
+            //from "${sourceDir}/main_project.manifest"
+            //from "${sourceDir}/main_version.manifest"
             into outputDir
+            include "**/*.manifest"
         }
     }
 }

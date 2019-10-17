@@ -151,6 +151,9 @@
     <content url="file://C:/CocosCreator_2.0.10/resources/cocos2d-x/external/sources/xxtea">
       <sourceFolder url="file://C:/CocosCreator_2.0.10/resources/cocos2d-x/external/sources/xxtea" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../../../android-ndk-r16b/sources/android/cpufeatures">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../android-ndk-r16b/sources/android/cpufeatures" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../../Classes">
       <sourceFolder url="file://$MODULE_DIR$/../../Classes" isTestSource="false" />
     </content>
@@ -224,15 +227,12 @@
       <excludeFolder url="file://$MODULE_DIR$/.externalNativeBuild" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
-    <content url="file://$MODULE_DIR$/../../../../../../android-ndk-r16b/sources/android/cpufeatures">
-      <sourceFolder url="file://$MODULE_DIR$/../../../../../../android-ndk-r16b/sources/android/cpufeatures" isTestSource="false" />
-    </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\Administrator\Desktop\CP\jsb-link\frameworks\runtime-src\proj.android-studio\app\libs\bugly_crash_release.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\Administrator\Desktop\CP\jsb-link\frameworks\runtime-src\proj.android-studio\app\libs\glide-full-4.7.0.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\Administrator\Desktop\CP\jsb-link\frameworks\runtime-src\proj.android-studio\app\libs\OpenInstall_v2.3.0.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\Administrator\Desktop\CP\jsb-link\frameworks\runtime-src\proj.android-studio\app\libs\VerifySDK.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\Administrator\Desktop\jsb-link1017\frameworks\runtime-src\proj.android-studio\app\libs\bugly_crash_release.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\Administrator\Desktop\jsb-link1017\frameworks\runtime-src\proj.android-studio\app\libs\glide-full-4.7.0.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\Administrator\Desktop\jsb-link1017\frameworks\runtime-src\proj.android-studio\app\libs\OpenInstall_v2.3.0.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: __local_aars__:C.\Users\Administrator\Desktop\jsb-link1017\frameworks\runtime-src\proj.android-studio\app\libs\VerifySDK.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:C.\CocosCreator_2.0.10\resources\cocos2d-x\cocos\platform\android\java\libs\android-async-http-1.4.9.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:C.\CocosCreator_2.0.10\resources\cocos2d-x\cocos\platform\android\java\libs\com.android.vending.expansion.zipfile.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:27.1.0@jar" level="project" />
