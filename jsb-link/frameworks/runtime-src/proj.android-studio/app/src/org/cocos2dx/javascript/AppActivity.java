@@ -559,7 +559,6 @@ public class AppActivity extends Cocos2dxActivity {
     // 显示更新失败弹窗
     public static void showUpdateFailedDialog() {
         Log.d(TAG, "showUpdateFailedDialog: ");
-
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -584,6 +583,7 @@ public class AppActivity extends Cocos2dxActivity {
                 WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
                 lp.dimAmount = 0.2f;
                 dialog.getWindow().setAttributes(lp);
+                dialog.setCanceledOnTouchOutside(false);
                 dialog.show();
 
             }
@@ -595,7 +595,6 @@ public class AppActivity extends Cocos2dxActivity {
         final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if (wifi.isAvailable() || mobile.isAvailable()) {
-
         } else {
             showDialog(context);
         }
@@ -606,7 +605,7 @@ public class AppActivity extends Cocos2dxActivity {
         dialog.setContentView(R.layout.layout_alertdialog);
         ImageButton button = dialog.findViewById(R.id.btn);
         TextView textView = dialog.findViewById(R.id.text);
-        textView.setText("更新失败！请检查网络后重试。");
+        textView.setText("無網路！请检查网络后重试。");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -617,6 +616,7 @@ public class AppActivity extends Cocos2dxActivity {
         WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
         lp.dimAmount = 0.2f;
         dialog.getWindow().setAttributes(lp);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
     }
 
