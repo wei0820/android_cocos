@@ -61,8 +61,6 @@ import com.fm.openinstall.listener.AppWakeUpAdapter;
 import com.fm.openinstall.model.AppData;
 import com.mcxiaoke.bus.Bus;
 import com.mcxiaoke.bus.annotation.BusReceiver;
-
-import org.cocos2dx.javascript.service.NetWorkStateReceiver;
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
@@ -87,7 +85,8 @@ public class AppActivity extends Cocos2dxActivity {
     private static View loadPage;
     private static TextView textView;
     private static com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
-    private static String[] array = new String[]{"赢了不吱声，说明城府深；输了不投降，竞争意识强",
+    private static String[] array = new String[]{
+            "赢了不吱声，说明城府深；输了不投降，竞争意识强",
             "看准下重注，超越拆迁户",
             "想要打牌手气好，心理素质加技巧",
             "吃吃喝喝都是赔，唯有打牌有来回",
@@ -95,16 +94,10 @@ public class AppActivity extends Cocos2dxActivity {
             "打牌打得好，说明有头脑",
             "打牌不怕炸，说明胆子大",
             "打牌打得精，说明思路清"};
-//    NetWorkStateReceiver netWorkStateReceiver;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = this;
-//        debugModel();
-        //获取唤醒参数
-        //用户注册成功后调用
-//        OpenInstall.reportRegister();
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
             // Android launched another instance of the root activity into an existing task
@@ -139,11 +132,11 @@ public class AppActivity extends Cocos2dxActivity {
         mClipboardManager = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
         LayoutInflater inflater = getLayoutInflater();
         mViewStartPage = inflater.inflate(R.layout.activity_start_page, null);
-        mLayout = (RelativeLayout) mViewStartPage.findViewById(R.id.box_start_page);
-        mImgStartPage = (ImageView) mViewStartPage.findViewById(R.id.img_start_page);
-        mBtnCountTime = (RelativeLayout) mViewStartPage.findViewById(R.id.box_count_time);
-        mTvCount = (TextView) mViewStartPage.findViewById(R.id.tv_count);
-        textView = (TextView) mViewStartPage.findViewById(R.id.text);
+        mLayout =  mViewStartPage.findViewById(R.id.box_start_page);
+        mImgStartPage  = mViewStartPage.findViewById(R.id.img_start_page);
+        mBtnCountTime = mViewStartPage.findViewById(R.id.box_count_time);
+        mTvCount = mViewStartPage.findViewById(R.id.tv_count);
+        textView = mViewStartPage.findViewById(R.id.text);
         roundCornerProgressBar = mViewStartPage.findViewById(R.id.progress);
         roundCornerProgressBar.setMax(1);
         roundCornerProgressBar.setVisibility(View.GONE);
@@ -165,7 +158,6 @@ public class AppActivity extends Cocos2dxActivity {
             }
         });
         checkPermission();
-
         OpenInstall.getWakeUp(getIntent(),wakeUpAdapter);
         OpenInstall.reportRegister();
 
@@ -196,22 +188,15 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onResume() {
         super.onResume();
         SDKWrapper.getInstance().onResume();
-//        if (netWorkStateReceiver == null) {
-//            netWorkStateReceiver = new NetWorkStateReceiver();
-//        }
         IntentFilter filter = new IntentFilter();
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-//        registerReceiver(netWorkStateReceiver, filter);
-//        checkNetWork(getApplicationContext());
         getOpneData();
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         SDKWrapper.getInstance().onPause();
-//        unregisterReceiver(netWorkStateReceiver);
     }
 
     @Override
@@ -326,8 +311,6 @@ public class AppActivity extends Cocos2dxActivity {
                 return;
             }
         }*/
-
-
     }
 
     private static final String TAG = "AppActivity";
@@ -412,7 +395,6 @@ public class AppActivity extends Cocos2dxActivity {
                 //获取自定义数据
                 String bindData = appData.getData();
                 Log.d(TAG, "getOpneData = " + appData.toString());
-
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
@@ -461,9 +443,6 @@ public class AppActivity extends Cocos2dxActivity {
         boolean success = event.isSuccess();
         String ticket = event.getTicket();
         String randstr = event.getRandstr();
-        Log.d(TAG, "onSomeEvent: "+ticket);
-        Log.d(TAG, "onSomeEvent: "+randstr);
-        Log.d(TAG, "onSomeEvent: "+success);
         String msg;
         String status = "0";
         if (success) {
@@ -483,7 +462,6 @@ public class AppActivity extends Cocos2dxActivity {
                 // js 脚本语句句
                 String js = "androidBridge(\"" + status + "\",\"" + ticket + "\")";
                 // 回调给 js 执⾏行行 androidBridge ⽅方法。
-                Log.d(TAG, "run: "+js);
                 Cocos2dxJavascriptJavaBridge.evalString(js);
             }
         });
@@ -593,37 +571,6 @@ public class AppActivity extends Cocos2dxActivity {
             }
         });
     }
-
-    private void checkNetWork(Context context) {
-        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (wifi.isAvailable() || mobile.isAvailable()) {
-        } else {
-            showDialog(context);
-        }
-    }
-
-    public static void showDialog(Context context) {
-        Dialog dialog = new Dialog(context, R.style.selectorDialog);
-        dialog.setContentView(R.layout.layout_alertdialog);
-        ImageButton button = dialog.findViewById(R.id.btn);
-        TextView textView = dialog.findViewById(R.id.text);
-        textView.setText("無網路！请检查网络后重试。");
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-        // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
-        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-        lp.dimAmount = 0.2f;
-        dialog.getWindow().setAttributes(lp);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
-    }
-
 }
 
 
