@@ -95,7 +95,7 @@ public class AppActivity extends Cocos2dxActivity {
             "打牌打得好，说明有头脑",
             "打牌不怕炸，说明胆子大",
             "打牌打得精，说明思路清"};
-    NetWorkStateReceiver netWorkStateReceiver;
+//    NetWorkStateReceiver netWorkStateReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,7 +165,7 @@ public class AppActivity extends Cocos2dxActivity {
             }
         });
         checkPermission();
-//        mViewStartPage.setVisibility(View.GONE);GONE
+
         OpenInstall.getWakeUp(getIntent(),wakeUpAdapter);
         OpenInstall.reportRegister();
 
@@ -196,12 +196,12 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onResume() {
         super.onResume();
         SDKWrapper.getInstance().onResume();
-        if (netWorkStateReceiver == null) {
-            netWorkStateReceiver = new NetWorkStateReceiver();
-        }
+//        if (netWorkStateReceiver == null) {
+//            netWorkStateReceiver = new NetWorkStateReceiver();
+//        }
         IntentFilter filter = new IntentFilter();
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(netWorkStateReceiver, filter);
+//        registerReceiver(netWorkStateReceiver, filter);
 //        checkNetWork(getApplicationContext());
         getOpneData();
 
@@ -211,7 +211,7 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onPause() {
         super.onPause();
         SDKWrapper.getInstance().onPause();
-        unregisterReceiver(netWorkStateReceiver);
+//        unregisterReceiver(netWorkStateReceiver);
     }
 
     @Override
@@ -395,7 +395,7 @@ public class AppActivity extends Cocos2dxActivity {
         mTvCount.setVisibility(View.GONE);
         mImgStartPage.setImageResource(R.mipmap.bg);
         roundCornerProgressBar.setVisibility(View.VISIBLE);
-
+        mBtnCountTime.setVisibility(View.GONE);
     }
 
 
@@ -461,6 +461,9 @@ public class AppActivity extends Cocos2dxActivity {
         boolean success = event.isSuccess();
         String ticket = event.getTicket();
         String randstr = event.getRandstr();
+        Log.d(TAG, "onSomeEvent: "+ticket);
+        Log.d(TAG, "onSomeEvent: "+randstr);
+        Log.d(TAG, "onSomeEvent: "+success);
         String msg;
         String status = "0";
         if (success) {
@@ -468,7 +471,7 @@ public class AppActivity extends Cocos2dxActivity {
             status = "200";
         } else {
             msg = "验证失败,票据为" + ticket + "  --  randstr = " + randstr;
-            status = "0";
+            status = "";
         }
         sendJSCaptcha(status, ticket);
     }
@@ -480,6 +483,7 @@ public class AppActivity extends Cocos2dxActivity {
                 // js 脚本语句句
                 String js = "androidBridge(\"" + status + "\",\"" + ticket + "\")";
                 // 回调给 js 执⾏行行 androidBridge ⽅方法。
+                Log.d(TAG, "run: "+js);
                 Cocos2dxJavascriptJavaBridge.evalString(js);
             }
         });
@@ -533,7 +537,7 @@ public class AppActivity extends Cocos2dxActivity {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress() >= 1.0) {
-                    mViewStartPage.setVisibility(View.GONE);
+//                    mViewStartPage.setVisibility(View.GONE);
                 }
             }
         });

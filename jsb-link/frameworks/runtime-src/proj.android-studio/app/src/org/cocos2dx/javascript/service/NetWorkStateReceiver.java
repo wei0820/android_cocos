@@ -58,7 +58,7 @@ public class NetWorkStateReceiver extends BroadcastReceiver {
         dialog.setContentView(R.layout.layout_alertdialog);
         ImageButton button = dialog.findViewById(R.id.btn);
         TextView textView = dialog.findViewById(R.id.text);
-        textView.setText("更新失败！请检查网络后重试。");
+        textView.setText("网络異常!请检查网络后重试。");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +69,7 @@ public class NetWorkStateReceiver extends BroadcastReceiver {
         WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
         lp.dimAmount=0.2f;
         dialog.getWindow().setAttributes(lp);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
     }
