@@ -11,4 +11,5 @@
 
     <color name="demo_btn_bg_normal">#777777</color>
     <color name="demo_btn_bg_pressed">#666666</color>
+
 </resources>

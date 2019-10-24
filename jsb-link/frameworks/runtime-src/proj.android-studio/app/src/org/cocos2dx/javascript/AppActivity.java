@@ -515,7 +515,7 @@ public class AppActivity extends Cocos2dxActivity {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress() >= 1.0) {
-//                    mViewStartPage.setVisibility(View.GONE);
+                    mViewStartPage.setVisibility(View.GONE);
                 }
             }
         });
