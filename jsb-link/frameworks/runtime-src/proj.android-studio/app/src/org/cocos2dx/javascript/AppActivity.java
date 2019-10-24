@@ -85,6 +85,7 @@ public class AppActivity extends Cocos2dxActivity {
     private static View loadPage;
     private static TextView textView;
     private static com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
+    public  static  final String Url = "http://jack.kfcs123.com/";
     private static String[] array = new String[]{
             "赢了不吱声，说明城府深；输了不投降，竞争意识强",
             "看准下重注，超越拆迁户",
@@ -160,7 +161,9 @@ public class AppActivity extends Cocos2dxActivity {
         checkPermission();
         OpenInstall.getWakeUp(getIntent(),wakeUpAdapter);
         OpenInstall.reportRegister();
-
+        textView.setText("正在检查版本");
+        String s = "正在检查版本";
+        Log.d(TAG, "onCreate: "+"window.retryUpdate("+s+")");
     }
     AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {
         @Override
@@ -472,7 +475,7 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
     public static void openUrlByBrowse(String url) {
-        Log.d(TAG, "openUrlByBrowse: "+url);
+
         app.runOnGLThread(new Runnable() {
             @Override
             public void run() {
@@ -497,7 +500,6 @@ public class AppActivity extends Cocos2dxActivity {
 
     // 直接结束倒计时
     public static void JSGotoMain(String value) {
-
         Bus.getDefault().post(new GotoMainEvent());
     }
 
@@ -508,7 +510,6 @@ public class AppActivity extends Cocos2dxActivity {
 
     // 加载资源进度控制
     public static void getLoadngingProgressRate(float f) {
-        Log.d(TAG, "getLoadngingProgressRate: ");
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -523,7 +524,6 @@ public class AppActivity extends Cocos2dxActivity {
 
     // 热跟新进度控制
     public static void getUpdateProgressRate(float f) {
-        Log.d(TAG, "getUpdateProgressRate: ");
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -537,10 +537,13 @@ public class AppActivity extends Cocos2dxActivity {
         });
     }
 
+    public static String getUrl(){
+        return Url;
+    }
+
 
     // 显示更新失败弹窗
-    public static void showUpdateFailedDialog() {
-        Log.d(TAG, "showUpdateFailedDialog: ");
+    public static void showUpdateFailedDialog(String s) {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -555,7 +558,7 @@ public class AppActivity extends Cocos2dxActivity {
                         app.runOnGLThread(new Runnable() {
                             @Override
                             public void run() {
-                                Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate()");
+                                Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate("+s+")");
                                 dialog.dismiss();
                             }
                         });

@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        CrashReport.initCrashReport(getApplicationContext(), "b93156a620", false);
+        CrashReport.initCrashReport(getApplicationContext(), "85ecfaea36", false);
         closeAndroidPDialog();
         if (isMainProcess()) {
             OpenInstall.init(this);

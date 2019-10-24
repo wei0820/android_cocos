@@ -18,7 +18,7 @@
     <uses-permission android:name="com.qiku.widget3d.permission.WIDGET_ADVERT" />
     <uses-permission android:name="com.android.launcher.permission.RECEIVE_LAUNCH_BROADCASTS" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-
+    
     <application
         android:name="org.cocos2dx.javascript.App"
         android:allowBackup="true"
