@@ -4,47 +4,50 @@
     "playerCardBg": {
       "__uuid__": "29UBpVojJAFotlblt3AWeV"
     },
-    "timerFrame": {
-      "__uuid__": "b760XuJs9G4Kf34C/otvFl"
+    "topBg": {
+      "__uuid__": "abMvDrO4RPc6OwyPcnNIhB"
     },
-    "timerSpot": {
-      "__uuid__": "397hpN5iZEl5TuRlFiRCSQ"
+    "playerInfoBgBox": {
+      "__uuid__": "91MNUEz1BNUKxwWqCrZh12"
     },
     "toastBtnRight": {
       "__uuid__": "ae9RTyBFpF9KBiCEfj1+g8"
     },
+    "cancelCompareBg": {
+      "__uuid__": "6dVOITy0FHBYnBbQ1DfxPW"
+    },
+    "anteBg": {
+      "__uuid__": "9f8638yvVMLqLdxiHm2orP"
+    },
+    "timerFrame": {
+      "__uuid__": "b760XuJs9G4Kf34C/otvFl"
+    },
     "toastBtnLeft": {
       "__uuid__": "25VXJN+FtKc5Q8IGY1/SiZ"
-    },
-    "guideWatchPlayerCardBg": {
-      "__uuid__": "e7jxcZdRdL1KzWKlEw9Fx9"
-    },
-    "redBtnBg": {
-      "__uuid__": "43vdpPNsZF7atveVlB80Yk"
-    },
-    "blueBtnBg": {
-      "__uuid__": "5chZWnnXBEb4uDya68HuH0"
-    },
-    "balanceBg": {
-      "__uuid__": "77/oy5vcBHtboUgTpqk/x+"
-    },
-    "greenBtnBg": {
-      "__uuid__": "8cEiZ2KxRIc4v0Ck7DCsJR"
-    },
-    "purpleBtnBg": {
-      "__uuid__": "90105yOHJPmp5LGIRTX9+L"
-    },
-    "yellowBtnBg": {
-      "__uuid__": "eeUC6uUztIvaHltPp9/gzv"
-    },
-    "time": {
-      "__uuid__": "cb0567DHNC2JHTSgmvG2au"
     },
     "leastBetBg": {
       "__uuid__": "d6wC394NtLMLoIkj0GVlQ7"
     },
-    "setttingBtn": {
-      "__uuid__": "4eVyVU7ThCEpgMXBa6uVyF"
+    "wait": {
+      "__uuid__": "fdqJZ1CidPrIPPxAzrI0a+"
+    },
+    "timerSpot": {
+      "__uuid__": "397hpN5iZEl5TuRlFiRCSQ"
+    },
+    "balanceBg": {
+      "__uuid__": "77/oy5vcBHtboUgTpqk/x+"
+    },
+    "hallPlay": {
+      "__uuid__": "2f7DD3nAFHGIMdaRpmPLlI"
+    },
+    "redBtnBg": {
+      "__uuid__": "43vdpPNsZF7atveVlB80Yk"
+    },
+    "arrow": {
+      "__uuid__": "0daKzDrUxB7rW3Tw5ai1iT"
+    },
+    "guideWatchPlayerCardBg": {
+      "__uuid__": "e7jxcZdRdL1KzWKlEw9Fx9"
     },
     "yupai": {
       "__uuid__": "e2HkS4qDdJL7uast6r6UPi"
@@ -52,23 +55,41 @@
     "exitBtn": {
       "__uuid__": "caJmavn7VHg4rQfNeq5wSk"
     },
-    "record_icon": {
-      "__uuid__": "57wLj6D1xKMKE53y/mkpHh"
+    "blueBtnBg": {
+      "__uuid__": "5chZWnnXBEb4uDya68HuH0"
     },
-    "hallPlay": {
-      "__uuid__": "2f7DD3nAFHGIMdaRpmPLlI"
+    "greenBtnBg": {
+      "__uuid__": "8cEiZ2KxRIc4v0Ck7DCsJR"
+    },
+    "purpleBtnBg": {
+      "__uuid__": "90105yOHJPmp5LGIRTX9+L"
     },
     "playerInfoBg": {
       "__uuid__": "82fOB7wq5A8rH1f6eR81HX"
+    },
+    "yellowBtnBg": {
+      "__uuid__": "eeUC6uUztIvaHltPp9/gzv"
+    },
+    "time": {
+      "__uuid__": "cb0567DHNC2JHTSgmvG2au"
+    },
+    "setttingBtn": {
+      "__uuid__": "4eVyVU7ThCEpgMXBa6uVyF"
+    },
+    "record_icon": {
+      "__uuid__": "57wLj6D1xKMKE53y/mkpHh"
+    },
+    "zhuang": {
+      "__uuid__": "3bFoQFjShN6avscG1N+4fR"
+    },
+    "toastNet": {
+      "__uuid__": "a8yLt9ITlOKYmPJjgo5PUm"
     },
     "help_icon": {
       "__uuid__": "91SEX64BZDdaHYVpIMKEVC"
     },
     "cardType": {
       "__uuid__": "ff4mLmSIdJ+Jb+g5kErceK"
-    },
-    "toastNet": {
-      "__uuid__": "a8yLt9ITlOKYmPJjgo5PUm"
     }
   }
 }

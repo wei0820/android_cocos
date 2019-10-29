@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "progress_num_tip",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
-      263,
-      353,
+      139,
+      641,
       82,
       56
     ],
@@ -17,6 +17,7 @@
       82,
       56
     ],
+    "rotated": 1,
     "capInsets": [
       0,
       0,

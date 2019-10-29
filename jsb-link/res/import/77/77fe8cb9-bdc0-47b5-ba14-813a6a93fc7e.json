@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "balanceBg",
-    "texture": "12939da53",
+    "texture": "12efe362d",
     "rect": [
-      998,
-      199,
+      843,
+      276,
       110,
       22
     ],

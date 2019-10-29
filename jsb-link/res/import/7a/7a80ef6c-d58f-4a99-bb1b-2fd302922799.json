@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "level_icon",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
-      668,
-      242,
+      994,
+      277,
       21,
       29
     ],

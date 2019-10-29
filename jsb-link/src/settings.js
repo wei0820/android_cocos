@@ -166,207 +166,119 @@ window._CCSettings = {
                 "cc.SpriteFrame",
                 1
             ],
-            beZWCqNIZDLJ6lQbvj9ggQ: [
-                "BaiJiaLe/UI/01.png",
-                "cc.Texture2D"
-            ],
             "1cycBcXBlPFYyqWCDLLTpn": [
                 "BaiJiaLe/UI/02",
                 "cc.SpriteFrame",
                 1
-            ],
-            "5c5XTyzDtPIL4LJzGAE6Q3": [
-                "BaiJiaLe/UI/02.png",
-                "cc.Texture2D"
             ],
             "0clobf9vhAvoy6eWRUEZsY": [
                 "BaiJiaLe/UI/03",
                 "cc.SpriteFrame",
                 1
             ],
-            "29y30MnhVNzqzMf4Ujp6YU": [
-                "BaiJiaLe/UI/03.png",
-                "cc.Texture2D"
-            ],
             "699b72jSFFKrya4A7rzkkQ": [
                 "BaiJiaLe/UI/31",
                 "cc.SpriteFrame",
                 1
             ],
-            "ddNiF/kSJG/77nrYAGIhtD": [
-                "BaiJiaLe/UI/31.png",
-                "cc.Texture2D"
+            "43BskchYxNI4XcPVy7XvL9": [
+                "BaiJiaLe/UI/AutoAtlas.pac",
+                "cc.SpriteAtlas"
             ],
             "46YLx5MmFInK4DV6TgWxn7": [
                 "BaiJiaLe/UI/xY_0000s_0000",
                 "cc.SpriteFrame",
                 1
             ],
-            "4dkklawR9N2LoOzBzsw++H": [
-                "BaiJiaLe/UI/xY_0000s_0000.png",
-                "cc.Texture2D"
-            ],
             "4eKFtKg6NJjqt41F6kgGWY": [
                 "BaiJiaLe/UI/xY_0000s_0001",
                 "cc.SpriteFrame",
                 1
-            ],
-            "47HEcXEIdFl6oxKxKZTdtU": [
-                "BaiJiaLe/UI/xY_0000s_0001.png",
-                "cc.Texture2D"
             ],
             b8M0PUtetA3rbcRCzqkkrX: [
                 "BaiJiaLe/UI/xY_0000s_0002",
                 "cc.SpriteFrame",
                 1
             ],
-            "8dEO7VlplMeYv/xgSbiPU9": [
-                "BaiJiaLe/UI/xY_0000s_0002.png",
-                "cc.Texture2D"
-            ],
             "57FQK+N35HYYAE6xawVvbb": [
                 "BaiJiaLe/UI/xY_0000s_0003",
                 "cc.SpriteFrame",
                 1
-            ],
-            "98KvEF/MZLbr1Fw6X7H+Zz": [
-                "BaiJiaLe/UI/xY_0000s_0003.png",
-                "cc.Texture2D"
             ],
             "83DwQs405AkqhjKYtqitP+": [
                 "BaiJiaLe/UI/xY_0000s_0004",
                 "cc.SpriteFrame",
                 1
             ],
-            "6a1Ex6qX1EPI/lyzvXhily": [
-                "BaiJiaLe/UI/xY_0000s_0004.png",
-                "cc.Texture2D"
-            ],
             "6fZMGlrRxJkbhjzLjpOfyz": [
                 "BaiJiaLe/UI/xY_0000s_0005",
                 "cc.SpriteFrame",
                 1
-            ],
-            abcFiI5EJP7KDfhIiNfTOX: [
-                "BaiJiaLe/UI/xY_0000s_0005.png",
-                "cc.Texture2D"
             ],
             "52T8ko5H9DMLnkrJIiWHFN": [
                 "BaiJiaLe/UI/xY_0000s_0006",
                 "cc.SpriteFrame",
                 1
             ],
-            "645U58T1xOq5ZfxEhEhXTG": [
-                "BaiJiaLe/UI/xY_0000s_0006.png",
-                "cc.Texture2D"
-            ],
             d5bKNJi6ROmbyJfMRvNyi5: [
                 "BaiJiaLe/UI/xY_0000s_0007",
                 "cc.SpriteFrame",
                 1
-            ],
-            "b2g25L9O9EFpVXjCpOF0+B": [
-                "BaiJiaLe/UI/xY_0000s_0007.png",
-                "cc.Texture2D"
             ],
             "15NQJNqX1IE7DhvO2Y7ywy": [
                 "BaiJiaLe/UI/xY_0000s_0008",
                 "cc.SpriteFrame",
                 1
             ],
-            "6dlF6y1iVHcbfFHnBz4i8p": [
-                "BaiJiaLe/UI/xY_0000s_0008.png",
-                "cc.Texture2D"
-            ],
             "43Si2DNXBPoaDpIoUVb/12": [
                 "BaiJiaLe/UI/xY_0000s_0009",
                 "cc.SpriteFrame",
                 1
-            ],
-            "72Up6P+olIOqqFmLrOfGuI": [
-                "BaiJiaLe/UI/xY_0000s_0009.png",
-                "cc.Texture2D"
             ],
             b8785ZNp1ADbG4FR9P8i1f: [
                 "BaiJiaLe/UI/xY_0000s_0011",
                 "cc.SpriteFrame",
                 1
             ],
-            "7a0tspTIJK06hFJkIWCBRy": [
-                "BaiJiaLe/UI/xY_0000s_0011.png",
-                "cc.Texture2D"
-            ],
             bb3LRIB6FKn4t52P27sOhl: [
                 "BaiJiaLe/UI/和",
                 "cc.SpriteFrame",
                 1
-            ],
-            "245xZv9J1F46qjhgTqJouM": [
-                "BaiJiaLe/UI/和.png",
-                "cc.Texture2D"
             ],
             "714a6mwKJJ8JFV+E9uX8I6": [
                 "BaiJiaLe/UI/庄",
                 "cc.SpriteFrame",
                 1
             ],
-            "52Ol5/twRCc6f1ho9bqxlV": [
-                "BaiJiaLe/UI/庄.png",
-                "cc.Texture2D"
-            ],
             "14Cz7HpbNNNI6LAMRoak5x": [
                 "BaiJiaLe/UI/庄赢",
                 "cc.SpriteFrame",
                 1
-            ],
-            ecmFdfQ4xIlqaBPbpOP2hF: [
-                "BaiJiaLe/UI/庄赢.png",
-                "cc.Texture2D"
             ],
             a5TvjBK8xD5Z9BGloa9Ir3: [
                 "BaiJiaLe/UI/牌盒1",
                 "cc.SpriteFrame",
                 1
             ],
-            "72x0sw9wpFU4oeKvybFQTm": [
-                "BaiJiaLe/UI/牌盒1.png",
-                "cc.Texture2D"
-            ],
             e2ZlorORhAUIz2AgGJe5K1: [
                 "BaiJiaLe/UI/红点",
                 "cc.SpriteFrame",
                 1
-            ],
-            "35rjQZAG1PfrU9CxTaPfFP": [
-                "BaiJiaLe/UI/红点.png",
-                "cc.Texture2D"
             ],
             bdeV2vuR1GrIBsIfHR0Hod: [
                 "BaiJiaLe/UI/蓝点",
                 "cc.SpriteFrame",
                 1
             ],
-            "7eGovKOThENZxFRoM5UcMA": [
-                "BaiJiaLe/UI/蓝点.png",
-                "cc.Texture2D"
-            ],
             a8rtsklBtBxoeUfXvXMEVY: [
                 "BaiJiaLe/UI/金币",
                 "cc.SpriteFrame",
                 1
             ],
-            "ebKgvM/lpOB45npYUGWI1h": [
-                "BaiJiaLe/UI/金币.png",
-                "cc.Texture2D"
-            ],
             "6cTZtYeJBE4peA8q0WqUM1": [
                 "BaiJiaLe/UI/闲",
                 "cc.SpriteFrame",
                 1
-            ],
-            ce7O6vYFlOgLJKPaUgn4b1: [
-                "BaiJiaLe/UI/闲.png",
-                "cc.Texture2D"
             ],
             "daztSWdBtC0oK6+TX2zKXr": [
                 "BaiJiaLe/bg",
@@ -391,315 +303,179 @@ window._CCSettings = {
                 "cc.SpriteFrame",
                 1
             ],
-            f6druMxX9IPboKllbzlHYL: [
-                "Bcbm/UI/10.png",
-                "cc.Texture2D"
-            ],
             e0uZO0s9VE1K3OtkQHZbP6: [
                 "Bcbm/UI/15",
                 "cc.SpriteFrame",
                 1
-            ],
-            "21TBWxOutFq6IuCBd5b+UC": [
-                "Bcbm/UI/15.png",
-                "cc.Texture2D"
             ],
             bcH8ayAslBq5XbS6cq2bqu: [
                 "Bcbm/UI/25",
                 "cc.SpriteFrame",
                 1
             ],
-            baFK8pLMxFp4FcMecMlHZY: [
-                "Bcbm/UI/25.png",
-                "cc.Texture2D"
-            ],
             a05ADuycRGkaJMJGwCBKYS: [
                 "Bcbm/UI/5",
                 "cc.SpriteFrame",
                 1
-            ],
-            a7DJlAW51L65VoNhUkmd0U: [
-                "Bcbm/UI/5.png",
-                "cc.Texture2D"
             ],
             "92VNYw8CRANa7yjGlHE26X": [
                 "Bcbm/UI/50",
                 "cc.SpriteFrame",
                 1
             ],
-            "05QbJJzwxPnqlXfKLICNlE": [
-                "Bcbm/UI/50.png",
-                "cc.Texture2D"
+            "4cNxex135Bd6QZHL38OkVJ": [
+                "Bcbm/UI/AutoAtlas.pac",
+                "cc.SpriteAtlas"
             ],
             e5sejPoIZHE5i3S5TpYH06: [
                 "Bcbm/UI/b1_00000",
                 "cc.SpriteFrame",
                 1
             ],
-            c1peNA1ylP6rYDIQdCOnM7: [
-                "Bcbm/UI/b1_00000.png",
-                "cc.Texture2D"
-            ],
             "72XRIg3PtKOb6Dlmi+xZA9": [
                 "Bcbm/UI/b2_00000",
                 "cc.SpriteFrame",
                 1
-            ],
-            cflORmpyBNBYTFjzWTvrLT: [
-                "Bcbm/UI/b2_00000.png",
-                "cc.Texture2D"
             ],
             "07VtoPD5xNGrjDQbcxSkqO": [
                 "Bcbm/UI/b_00001",
                 "cc.SpriteFrame",
                 1
             ],
-            adhzszqXxJ17UbqRBVeiXz: [
-                "Bcbm/UI/b_00001.png",
-                "cc.Texture2D"
-            ],
             "40Wl/meolFX5TfuoLf1Yq/": [
                 "Bcbm/UI/b_00002",
                 "cc.SpriteFrame",
                 1
-            ],
-            "a7C7T4B+RAwKpGkW0ASQcx": [
-                "Bcbm/UI/b_00002.png",
-                "cc.Texture2D"
             ],
             "ebSe0Ar/VK+5pc0YdshBmq": [
                 "Bcbm/UI/b_00003",
                 "cc.SpriteFrame",
                 1
             ],
-            aczTId6thF9YQQ4nIjem5d: [
-                "Bcbm/UI/b_00003.png",
-                "cc.Texture2D"
-            ],
             "98403mdiNNn6gCht7hnS6D": [
                 "Bcbm/UI/b_00004",
                 "cc.SpriteFrame",
                 1
-            ],
-            "38YVk0jhhOla5MtrvKGTge": [
-                "Bcbm/UI/b_00004.png",
-                "cc.Texture2D"
             ],
             "46QqAvSxlE6KnMEhD5aZQC": [
                 "Bcbm/UI/b_00005",
                 "cc.SpriteFrame",
                 1
             ],
-            "22JlBSFjZI7YFWmD6knSjC": [
-                "Bcbm/UI/b_00005.png",
-                "cc.Texture2D"
-            ],
             "3c8ClBBf1IOrAbSucxaXEH": [
                 "Bcbm/UI/b_00006",
                 "cc.SpriteFrame",
                 1
-            ],
-            "f2g0H/Za9Hbq/bgFCRF4J5": [
-                "Bcbm/UI/b_00006.png",
-                "cc.Texture2D"
             ],
             "3dnbahBCRAwqiG+Aaey/ll": [
                 "Bcbm/UI/b_00007",
                 "cc.SpriteFrame",
                 1
             ],
-            "accntn6olCELa+Qmx7Wp4p": [
-                "Bcbm/UI/b_00007.png",
-                "cc.Texture2D"
-            ],
             "79EHZvtdtO1Z3v7p6Vb7FO": [
                 "Bcbm/UI/b_00008",
                 "cc.SpriteFrame",
                 1
-            ],
-            "5cJmI1xfBKmIsx1g4bie+j": [
-                "Bcbm/UI/b_00008.png",
-                "cc.Texture2D"
             ],
             "05R/7W/ERM0ojrD6cvgXKd": [
                 "Bcbm/UI/b_00009",
                 "cc.SpriteFrame",
                 1
             ],
-            "2anrkjSRVPkrB9fLG/9mW4": [
-                "Bcbm/UI/b_00009.png",
-                "cc.Texture2D"
-            ],
             e01nh6hDVJW69g7NRmEbcz: [
                 "Bcbm/UI/timeTxtBg",
                 "cc.SpriteFrame",
                 1
-            ],
-            c9ZpkoJXdKhopGu9M3msrj: [
-                "Bcbm/UI/timeTxtBg.png",
-                "cc.Texture2D"
             ],
             "30gK+VWIRLnLYWJtCv5S7o": [
                 "Bcbm/UI/zxwj",
                 "cc.SpriteFrame",
                 1
             ],
-            a9PIhGuXNLua9o84gnN2BB: [
-                "Bcbm/UI/zxwj.png",
-                "cc.Texture2D"
-            ],
             "48iokFl+xKh4yr+LGnQzp4": [
                 "Bcbm/UI/保時捷BIG",
                 "cc.SpriteFrame",
                 1
-            ],
-            "9frQcGsXlMy4ebjYdWCjoa": [
-                "Bcbm/UI/保時捷BIG.png",
-                "cc.Texture2D"
             ],
             "6e43h8eXRDOoiAsT+JLgPb": [
                 "Bcbm/UI/保時捷小",
                 "cc.SpriteFrame",
                 1
             ],
-            dc5CUycKpMDKxAPuMQOGax: [
-                "Bcbm/UI/保時捷小.png",
-                "cc.Texture2D"
-            ],
             "7970Vvo2FLI5yIqB5Qg7Tl": [
                 "Bcbm/UI/光圈1",
                 "cc.SpriteFrame",
                 1
-            ],
-            "4fSsxkyvxNQaSFsP21+kLc": [
-                "Bcbm/UI/光圈1.png",
-                "cc.Texture2D"
             ],
             "5eKtppxuVD3qftOa9Tx05k": [
                 "Bcbm/UI/光圈2",
                 "cc.SpriteFrame",
                 1
             ],
-            "b8DuOSoWFAarKwF8tL/nHy": [
-                "Bcbm/UI/光圈2.png",
-                "cc.Texture2D"
-            ],
             "2eJbWQvJNPJruF3pId39DD": [
                 "Bcbm/UI/光圈3",
                 "cc.SpriteFrame",
                 1
-            ],
-            "1dphiJsxdJ1r+jU/UY7ADP": [
-                "Bcbm/UI/光圈3.png",
-                "cc.Texture2D"
             ],
             adYKnsv9RNXq2VK8aH80Ti: [
                 "Bcbm/UI/光圈4",
                 "cc.SpriteFrame",
                 1
             ],
-            "421Cw+MshPerbbe0ufFL5X": [
-                "Bcbm/UI/光圈4.png",
-                "cc.Texture2D"
-            ],
             "a00dbn8rZHrZ+L+w+e+MoM": [
                 "Bcbm/UI/在线玩家箭头",
                 "cc.SpriteFrame",
                 1
-            ],
-            "7cVgkmBQFFjZndpQEDNfDi": [
-                "Bcbm/UI/在线玩家箭头.png",
-                "cc.Texture2D"
             ],
             "13HkrPZulNJLw+CkMWxiJ9": [
                 "Bcbm/UI/大眾BIG",
                 "cc.SpriteFrame",
                 1
             ],
-            c0bml3jTtLXoMP67sn83Df: [
-                "Bcbm/UI/大眾BIG.png",
-                "cc.Texture2D"
-            ],
             "90VANjS2tKSq0B+Y1GFejn": [
                 "Bcbm/UI/大眾小",
                 "cc.SpriteFrame",
                 1
-            ],
-            "77cp5H+mtBGaW/FqnElnKz": [
-                "Bcbm/UI/大眾小.png",
-                "cc.Texture2D"
             ],
             "8bvJEifWpLsYAg9MZvnUuH": [
                 "Bcbm/UI/奔馳BIG",
                 "cc.SpriteFrame",
                 1
             ],
-            efOgTE6EBL271batyKiqSz: [
-                "Bcbm/UI/奔馳BIG.png",
-                "cc.Texture2D"
-            ],
             "80vDezt15JK7Q4knK9DAl7": [
                 "Bcbm/UI/奔馳小",
                 "cc.SpriteFrame",
                 1
-            ],
-            "6baQFsmY1K9L4+WI/PcYJv": [
-                "Bcbm/UI/奔馳小.png",
-                "cc.Texture2D"
             ],
             "29+ltDQKRB5qAnhsgUq7qx": [
                 "Bcbm/UI/寶馬BIG",
                 "cc.SpriteFrame",
                 1
             ],
-            "0boruCva1Lqqz644cTHDIF": [
-                "Bcbm/UI/寶馬BIG.png",
-                "cc.Texture2D"
-            ],
             a6voP0oVxEXb6w5OmSwYKi: [
                 "Bcbm/UI/寶馬小",
                 "cc.SpriteFrame",
                 1
-            ],
-            "55+xKgC4dPuaCtRrPPnjGo": [
-                "Bcbm/UI/寶馬小.png",
-                "cc.Texture2D"
             ],
             d2tgsnRR9GAqiYmPnRqFhf: [
                 "Bcbm/UI/桌光1",
                 "cc.SpriteFrame",
                 1
             ],
-            "37BDM/DhBFWK9AxhugfNja": [
-                "Bcbm/UI/桌光1.png",
-                "cc.Texture2D"
-            ],
             "52eXRC+uVBm4fl6SifEfex": [
                 "Bcbm/UI/桌光2",
                 "cc.SpriteFrame",
                 1
-            ],
-            "83jwYOK4tP7o4VOOx9m1SD": [
-                "Bcbm/UI/桌光2.png",
-                "cc.Texture2D"
             ],
             "8e0AP/TotDyLfSN2UzH1sK": [
                 "Bcbm/UI/牌桌上數字底",
                 "cc.SpriteFrame",
                 1
             ],
-            "1frZYvaYpNz5XwMgXmZfPH": [
-                "Bcbm/UI/牌桌上數字底.png",
-                "cc.Texture2D"
-            ],
             "98btzNknNOR6efPom/zb0G": [
                 "Bcbm/UI/開獎紀錄底",
                 "cc.SpriteFrame",
                 1
-            ],
-            "815i8FSPlBK6+tEykEZtOe": [
-                "Bcbm/UI/開獎紀錄底.png",
-                "cc.Texture2D"
             ],
             "5aHSu+cA5PUon8BSz00pXI": [
                 "Bcbm/bg",
@@ -719,8 +495,8 @@ window._CCSettings = {
                 "Bcbm/table.png",
                 "cc.Texture2D"
             ],
-            "d4KoCdCg9L3KI0PnGLcu+c": [
-                "LongHu/AutoAtlas.pac",
+            "9fxlCMtrJPWpXW99K88I5a": [
+                "LongHu/UI/AutoAtlas.pac",
                 "cc.SpriteAtlas"
             ],
             "a068LHynFFoIVX/loZEk97": [
@@ -777,6 +553,14 @@ window._CCSettings = {
                 "cc.SpriteFrame",
                 1
             ],
+            "00qmMBhwpH9Iq/OSfarps9": [
+                "LongHu/effect/6.png",
+                "cc.Texture2D"
+            ],
+            "a3Ni42lfJJlI42wyr+1yyQ": [
+                "LongHu/effect/he/AutoAtlas.pac",
+                "cc.SpriteAtlas"
+            ],
             "1eq6j/ZARPKYwRL3zCM94v": [
                 "LongHu/effect/he/he_0002s_0001",
                 "cc.SpriteFrame",
@@ -801,6 +585,10 @@ window._CCSettings = {
                 "LongHu/effect/he/he_g",
                 "cc.SpriteFrame",
                 1
+            ],
+            aduK1O1D9Hc7QXL4modFzH: [
+                "LongHu/effect/hu/AutoAtlas.pac",
+                "cc.SpriteAtlas"
             ],
             "4c5Nz/WplKW62653n6b4EW": [
                 "LongHu/effect/hu/hu_00000",
@@ -881,6 +669,10 @@ window._CCSettings = {
                 "LongHu/effect/hu/ren_0001s_0002",
                 "cc.SpriteFrame",
                 1
+            ],
+            "31+yv76mREuIKstPApMreA": [
+                "LongHu/effect/long/AutoAtlas.pac",
+                "cc.SpriteAtlas"
             ],
             "dbZ2i7Z7JHQoXO/UTxTIKF": [
                 "LongHu/effect/long/long_00000",
@@ -971,6 +763,10 @@ window._CCSettings = {
                 "LongHu/effect/long/ren_0000s_0002",
                 "cc.SpriteFrame",
                 1
+            ],
+            "04QbEDDiNGF4Bv+5fDwEkL": [
+                "LongHu/effect/vs/AutoAtlas.pac",
+                "cc.SpriteAtlas"
             ],
             "29REMv2yFA9oQTvQGBGmKP": [
                 "LongHu/effect/vs/Hit_Small_01_01",
@@ -1511,15 +1307,6 @@ window._CCSettings = {
                 "cc.SpriteFrame",
                 1
             ],
-            "568h9b8ZdLuJjeUk+S+/uO": [
-                "baoWang/blueBtn",
-                "cc.SpriteFrame",
-                1
-            ],
-            "24l7qgZGpC9LxZ9Qese0rG": [
-                "baoWang/blueBtn.png",
-                "cc.Texture2D"
-            ],
             "8frMMLJC5Mk6+xUhRe1S3c": [
                 "baoWang/check",
                 "cc.SpriteFrame",
@@ -1528,54 +1315,6 @@ window._CCSettings = {
             "437vt9WmJBYb4vvd4GeaF9": [
                 "baoWang/check.png",
                 "cc.Texture2D"
-            ],
-            "7224vtOsdOJZuZLcKCyUbx": [
-                "baoWang/circularBeadIcon",
-                "cc.SpriteFrame",
-                1
-            ],
-            "557cCxjV1Az5vVxmc+dg7N": [
-                "baoWang/circularBeadIcon.png",
-                "cc.Texture2D"
-            ],
-            "faSZvbjgRFB4UPzk3+uyKp": [
-                "baoWang/firstRechargeGift/AutoAtlas.pac",
-                "cc.SpriteAtlas"
-            ],
-            "8aBMv/b99EpJfuSsJJHeH+": [
-                "baoWang/firstRechargeGift/BG",
-                "cc.SpriteFrame",
-                1
-            ],
-            "1aGI2ShpRLvJI8MpvfubgG": [
-                "baoWang/firstRechargeGift/GiftCoinx",
-                "cc.SpriteFrame",
-                1
-            ],
-            "e9jB+kRvBC5YxwlvDuN/0Y": [
-                "baoWang/firstRechargeGift/addIcon",
-                "cc.SpriteFrame",
-                1
-            ],
-            c5srAd8RBMvrqDSZya3HN2: [
-                "baoWang/firstRechargeGift/button",
-                "cc.SpriteFrame",
-                1
-            ],
-            "519q1l/p9DeqAMBwFat0KF": [
-                "baoWang/firstRechargeGift/card",
-                "cc.SpriteFrame",
-                1
-            ],
-            "4a6bCD0A9H8pn2guC6fNMN": [
-                "baoWang/firstRechargeGift/close",
-                "cc.SpriteFrame",
-                1
-            ],
-            e8WWZxYi1JlJncptrBe93I: [
-                "baoWang/firstRechargeGift/prize",
-                "cc.SpriteFrame",
-                1
             ],
             "df42nWXYtDRazw+nFEHTwB": [
                 "baoWang/hallBottomBG",
@@ -1600,51 +1339,6 @@ window._CCSettings = {
                 "cc.SpriteFrame",
                 1
             ],
-            "6dyKJJ5rhI4Y8kvK29hVCV": [
-                "baoWang/infoCheck",
-                "cc.SpriteFrame",
-                1
-            ],
-            "47fz90Kl5GfoQwzU+zxJwF": [
-                "baoWang/infoCheck.png",
-                "cc.Texture2D"
-            ],
-            "3aCPDysVJENLSAwGwRK4sH": [
-                "baoWang/infoCheckBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "48n77knvBEtIq0RRompl60": [
-                "baoWang/infoCheckBg.png",
-                "cc.Texture2D"
-            ],
-            b55ADG8OxJz68J7ssQZEl0: [
-                "baoWang/inputBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "93WPalGXBLxrzDqgxi/z6Y": [
-                "baoWang/inputBg.png",
-                "cc.Texture2D"
-            ],
-            d8fXqVgalFu7etQ4oDqLrm: [
-                "baoWang/layerTip_bg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "34Zcp8G/1NLbi4sSwZwu3B": [
-                "baoWang/layerTip_bg.png",
-                "cc.Texture2D"
-            ],
-            e4zu7NE61BGJnLVqTzl8tm: [
-                "baoWang/leftMenuBarBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "14RYpdOQFFnZOVzH8AGR9e": [
-                "baoWang/leftMenuBarBg.png",
-                "cc.Texture2D"
-            ],
             "60oFffcTtEQawTMlCouFYV": [
                 "baoWang/leftTabBg",
                 "cc.SpriteFrame",
@@ -1653,418 +1347,6 @@ window._CCSettings = {
             b5xXuzDzVGZYmLcdayKbIH: [
                 "baoWang/leftTabBg.png",
                 "cc.Texture2D"
-            ],
-            "9fs2OXvVBOx5ZJG0Al+99+": [
-                "baoWang/line",
-                "cc.SpriteFrame",
-                1
-            ],
-            "f1dkW9WCFA+pbbv/XwtI0q": [
-                "baoWang/line.png",
-                "cc.Texture2D"
-            ],
-            f4UQJf4wpKn5YtU3GSrcVh: [
-                "baoWang/loginDialogTopBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            acD8oTBgVBRZOa7z5KUP8W: [
-                "baoWang/loginDialogTopBg.png",
-                "cc.Texture2D"
-            ],
-            dfNEqhFxJOh7c3jmTLQfMm: [
-                "baoWang/mailFrame",
-                "cc.SpriteFrame",
-                1
-            ],
-            bdiahUPA9FtrULSqekH0LJ: [
-                "baoWang/mailFrame.png",
-                "cc.Texture2D"
-            ],
-            bfDIHevZ9L5K2BrcbWEOmb: [
-                "baoWang/mailIcon0",
-                "cc.SpriteFrame",
-                1
-            ],
-            dcejMZgcREebWzep5d5hPG: [
-                "baoWang/mailIcon0.png",
-                "cc.Texture2D"
-            ],
-            eaI7sFpL9InY1EPgMNnB6E: [
-                "baoWang/mailLeftBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "c9m0ZTiFFNUqydtf/E8Wqv": [
-                "baoWang/mailLeftBg.png",
-                "cc.Texture2D"
-            ],
-            "57j2W6TFJBGYsNyMdAMpHC": [
-                "baoWang/mailNoticeIcon",
-                "cc.SpriteFrame",
-                1
-            ],
-            "75KTd6bv9KUpZVRHaYtYDL": [
-                "baoWang/mailNoticeIcon.png",
-                "cc.Texture2D"
-            ],
-            "38PyDCOjVCqJK4bWWsKh8k": [
-                "baoWang/mailReaded",
-                "cc.SpriteFrame",
-                1
-            ],
-            "9aTCPGKdJGGJlidDhmQ0xZ": [
-                "baoWang/mailReaded.png",
-                "cc.Texture2D"
-            ],
-            "33EDSTyQ5A0LZni5e5AtlI": [
-                "baoWang/mailUnread",
-                "cc.SpriteFrame",
-                1
-            ],
-            "63tTh/UktJkLwBoP3x9dyG": [
-                "baoWang/mailUnread.png",
-                "cc.Texture2D"
-            ],
-            "2fo/LBkNFOh722HBVlYLUd": [
-                "baoWang/menuItme1",
-                "cc.SpriteFrame",
-                1
-            ],
-            "3aacSYFs9I+r23ppYEW0Jk": [
-                "baoWang/menuItme1.png",
-                "cc.Texture2D"
-            ],
-            "4dJHdRUGhBCr/WFVgNM5qm": [
-                "baoWang/menuItme2",
-                "cc.SpriteFrame",
-                1
-            ],
-            c5HbTswhtA5Y79o0hmGUMp: [
-                "baoWang/menuItme2.png",
-                "cc.Texture2D"
-            ],
-            "16Q8vyq55L2IGA8H1y/zcv": [
-                "baoWang/menuItmeBg1",
-                "cc.SpriteFrame",
-                1
-            ],
-            "ab8LpSlR9AMoPB/x5BRgpt": [
-                "baoWang/menuItmeBg1.png",
-                "cc.Texture2D"
-            ],
-            "b3/E7lItdDlqXIM3C+yitz": [
-                "baoWang/menuItmeBg2",
-                "cc.SpriteFrame",
-                1
-            ],
-            "26KEn1jUpPA631rffnSbNF": [
-                "baoWang/menuItmeBg2.png",
-                "cc.Texture2D"
-            ],
-            "5cUyspuh5EsoclM4SbOXU9": [
-                "baoWang/noticeTitleBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "2bTjZ5PjpDV5XaEUKB29OL": [
-                "baoWang/noticeTitleBg.png",
-                "cc.Texture2D"
-            ],
-            d6bnqkmU1MVZ0qwABWAaNg: [
-                "baoWang/nullActivity",
-                "cc.SpriteFrame",
-                1
-            ],
-            fbJ73ZemJIIJMzmUsSBDIO: [
-                "baoWang/nullActivity.png",
-                "cc.Texture2D"
-            ],
-            "77dsJFmClMOpJOyNfnVKnO": [
-                "baoWang/nullData",
-                "cc.SpriteFrame",
-                1
-            ],
-            "166Ve8TQRLGLtatYgbQnOn": [
-                "baoWang/nullData.png",
-                "cc.Texture2D"
-            ],
-            "1bUdGKLGdLcKLUs7i8Lqlm": [
-                "baoWang/nullMail",
-                "cc.SpriteFrame",
-                1
-            ],
-            "7bUZBvinpDiaKooGUsRc3x": [
-                "baoWang/nullMail.png",
-                "cc.Texture2D"
-            ],
-            d82nhpgWNADYdRnAE6QRjM: [
-                "baoWang/payCenter/AutoAtlas.pac",
-                "cc.SpriteAtlas"
-            ],
-            "9avcr7JmtIe7ckksgSUJGS": [
-                "baoWang/payCenter/accountBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "62PJvJzCNG9qojqQZdIP6M": [
-                "baoWang/payCenter/bankTipBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "17Eoti4WpAfq7awTvog1Eh": [
-                "baoWang/payCenter/contentBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "89Yczqga9HE64qMGgya5rL": [
-                "baoWang/payCenter/copyBtn",
-                "cc.SpriteFrame",
-                1
-            ],
-            "99VQhTJ7xPJZC8zFhc31iR": [
-                "baoWang/payCenter/fourthPayTag",
-                "cc.SpriteFrame",
-                1
-            ],
-            d3tCQkTxRDYJfR7R3s5vSx: [
-                "baoWang/payCenter/recommendTag",
-                "cc.SpriteFrame",
-                1
-            ],
-            "7f9vagSSBGqJbNEw64/VR7": [
-                "baoWang/payCenter/selBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "c64ATPC4lDXruzLpols++m": [
-                "baoWang/payCenter/tutorialIcon",
-                "cc.SpriteFrame",
-                1
-            ],
-            "f1/iL5iq5GVZogmcZrv4lp": [
-                "baoWang/payCenter/unSelBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "7cz8PLVnlMarUqMzzPo9p0": [
-                "baoWang/payCenter/warmTip",
-                "cc.SpriteFrame",
-                1
-            ],
-            c2YlTecMFPvaltdyjjmu0m: [
-                "baoWang/payCenter/warmTipBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "ceQ1mb/ytCf6JQvHWGaWKl": [
-                "baoWang/personalCenter/1",
-                "cc.SpriteFrame",
-                1
-            ],
-            "06EdF9Sd5MPo3MdRrgomJo": [
-                "baoWang/personalCenter/10",
-                "cc.SpriteFrame",
-                1
-            ],
-            "42ZV4TIuFInKmHVoTAolw/": [
-                "baoWang/personalCenter/11",
-                "cc.SpriteFrame",
-                1
-            ],
-            "addBQbz0NG9ajC+9bKCuQa": [
-                "baoWang/personalCenter/12",
-                "cc.SpriteFrame",
-                1
-            ],
-            c4gIRfYqhHL4iZynrj5JAy: [
-                "baoWang/personalCenter/13",
-                "cc.SpriteFrame",
-                1
-            ],
-            "36xoka7k5Jbp8A5bmyVWYr": [
-                "baoWang/personalCenter/14",
-                "cc.SpriteFrame",
-                1
-            ],
-            "14bnweI05DwoqSbsGow0A/": [
-                "baoWang/personalCenter/15",
-                "cc.SpriteFrame",
-                1
-            ],
-            b7mOdN78FAJ7CmTSK4rDVj: [
-                "baoWang/personalCenter/2",
-                "cc.SpriteFrame",
-                1
-            ],
-            "756EVZFRZEvZ7QFYTL9WDh": [
-                "baoWang/personalCenter/3",
-                "cc.SpriteFrame",
-                1
-            ],
-            "3cAT2FfxNDA4LlA7mVoEr9": [
-                "baoWang/personalCenter/4",
-                "cc.SpriteFrame",
-                1
-            ],
-            "f35jz1EUBA9b8x+HKGVz55": [
-                "baoWang/personalCenter/5",
-                "cc.SpriteFrame",
-                1
-            ],
-            "8cZpxnKMxId5eqIU6xXkHA": [
-                "baoWang/personalCenter/6",
-                "cc.SpriteFrame",
-                1
-            ],
-            "c1LGCg2gdNLJ/CbOAkw4zl": [
-                "baoWang/personalCenter/7",
-                "cc.SpriteFrame",
-                1
-            ],
-            "bflUo/uMFOoIM7MuKdquW5": [
-                "baoWang/personalCenter/8",
-                "cc.SpriteFrame",
-                1
-            ],
-            "8ed4M2W61Fp7U87eGVdzQz": [
-                "baoWang/personalCenter/9",
-                "cc.SpriteFrame",
-                1
-            ],
-            "fcQ4uoSXlE44q/TrG9Ljo9": [
-                "baoWang/personalCenter/AutoAtlas.pac",
-                "cc.SpriteAtlas"
-            ],
-            "8cQ/qFUyJACrLojjcloxdr": [
-                "baoWang/personalCenter/accountBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "74CMtyxVhHR7a6HrRlwiN8": [
-                "baoWang/personalCenter/achievementBoxBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "577FKgBwZArKa0Hc8lxfV/": [
-                "baoWang/personalCenter/achievementRuleBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "624vfHAhNNILn+e22CeH52": [
-                "baoWang/personalCenter/ava_sel_bg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "57JwKsG4lPoZWQZdKgk0Sd": [
-                "baoWang/personalCenter/ava_unsel_bg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "47fbHcIONJPLA9/lS7ju55": [
-                "baoWang/personalCenter/avatar_border",
-                "cc.SpriteFrame",
-                1
-            ],
-            "caaD8+SlhCcad+dlDES8cv": [
-                "baoWang/personalCenter/copyAccount",
-                "cc.SpriteFrame",
-                1
-            ],
-            "9bCkHkzsJLlbysBljHs8xP": [
-                "baoWang/personalCenter/cur_progress",
-                "cc.SpriteFrame",
-                1
-            ],
-            "b5Ic+hmyVLc41dFnlTxNTi": [
-                "baoWang/personalCenter/edit_bg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "f9EZt0NaVBDKASJY/UPkZv": [
-                "baoWang/personalCenter/exclamationMark",
-                "cc.SpriteFrame",
-                1
-            ],
-            "5bxrflG9lGv6W3folDvkum": [
-                "baoWang/personalCenter/female",
-                "cc.SpriteFrame",
-                1
-            ],
-            "81mESDLoBKWKVu2nDggBXy": [
-                "baoWang/personalCenter/level_bottom_bg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "27qxb/hrxIopEobmpXsn1g": [
-                "baoWang/personalCenter/level_button",
-                "cc.SpriteFrame",
-                1
-            ],
-            "7agO9s1Y9KmbsbL9MCkieZ": [
-                "baoWang/personalCenter/level_icon",
-                "cc.SpriteFrame",
-                1
-            ],
-            e4GuEqsQBMsL2pYeHXgiYS: [
-                "baoWang/personalCenter/level_table_header",
-                "cc.SpriteFrame",
-                1
-            ],
-            "60dhOAsi5N5qoXHq26Z8tc": [
-                "baoWang/personalCenter/lightBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "832+cwab1Az57eMuWS6C1c": [
-                "baoWang/personalCenter/line",
-                "cc.SpriteFrame",
-                1
-            ],
-            "83nbCMyZFGTYlSFYXcMEnh": [
-                "baoWang/personalCenter/lock",
-                "cc.SpriteFrame",
-                1
-            ],
-            "01jGuA0WRCl6G2v8GBO+Sf": [
-                "baoWang/personalCenter/male",
-                "cc.SpriteFrame",
-                1
-            ],
-            "c82qfMvU9BW6qx78+otMhd": [
-                "baoWang/personalCenter/panel",
-                "cc.SpriteFrame",
-                1
-            ],
-            "d4J/7h6/FKkarkop5CtPia": [
-                "baoWang/personalCenter/pointer",
-                "cc.SpriteFrame",
-                1
-            ],
-            "38EZ8WSepA3pJWyxZna1/k": [
-                "baoWang/personalCenter/progress_bg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "7d/ABDOYROeLddwHbzEohu": [
-                "baoWang/personalCenter/progress_num_tip",
-                "cc.SpriteFrame",
-                1
-            ],
-            "321b3P+QlHwqOREi93l0lQ": [
-                "baoWang/personalCenter/score_icon",
-                "cc.SpriteFrame",
-                1
-            ],
-            "5fZXemt0dF5plR9cRLIsNI": [
-                "baoWang/personalCenter/show",
-                "cc.SpriteFrame",
-                1
-            ],
-            "9egwO8+cFFgKbFrHR9j+aP": [
-                "baoWang/personalCenter/title_icon",
-                "cc.SpriteFrame",
-                1
             ],
             "f8cCQOAx9BJIeOTEjirj+g": [
                 "baoWang/playerCard/icon_bzbn/AutoAtlas.pac",
@@ -4115,33 +3397,6 @@ window._CCSettings = {
                 "baoWang/playerCard/none/none.png",
                 "cc.Texture2D"
             ],
-            "4avu7jOa9NYqIG0Xz+v9gb": [
-                "baoWang/pullDownArrows",
-                "cc.SpriteFrame",
-                1
-            ],
-            "1dkAxF1UpP0Zr9veIU0OoN": [
-                "baoWang/pullDownArrows.png",
-                "cc.Texture2D"
-            ],
-            "64mjTp8zBCtZEtCF2q7x9t": [
-                "baoWang/pullDownListBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "a0Ajv/uQFM6pfpY8olB+IV": [
-                "baoWang/pullDownListBg.png",
-                "cc.Texture2D"
-            ],
-            "9fIP8IBtNKCLvtg427ddSt": [
-                "baoWang/redBtn",
-                "cc.SpriteFrame",
-                1
-            ],
-            f28FrEpKhMNp5gM6c5ZSRG: [
-                "baoWang/redBtn.png",
-                "cc.Texture2D"
-            ],
             d6MZbzJM9NTYzcjxjTqj9P: [
                 "baoWang/registerCashGift/AutoAtlas.pac",
                 "cc.SpriteAtlas"
@@ -4193,79 +3448,6 @@ window._CCSettings = {
             "61G5A3I3xD57DAjPujF1R9": [
                 "baoWang/registerCashGift/zc_di.png",
                 "cc.Texture2D"
-            ],
-            "b91/noasNDZbuKHxG//h2l": [
-                "baoWang/scrollBar",
-                "cc.SpriteFrame",
-                1
-            ],
-            "889VbSiydNcqUC0leCB73l": [
-                "baoWang/scrollBar.png",
-                "cc.Texture2D"
-            ],
-            "66tEK8l3NDpJQ1UZ722+/u": [
-                "baoWang/signIn/AutoAtlas.pac",
-                "cc.SpriteAtlas"
-            ],
-            "a8NNeMbTNOeqj/yYi9ZZrD": [
-                "baoWang/signIn/BG",
-                "cc.SpriteFrame",
-                1
-            ],
-            "8dQMCOI1ZP7Lgqr7GwE0Gg": [
-                "baoWang/signIn/BGcat",
-                "cc.SpriteFrame",
-                1
-            ],
-            d2Xwu5l8tAyLor3S2kiiMm: [
-                "baoWang/signIn/BigCoin",
-                "cc.SpriteFrame",
-                1
-            ],
-            "5e4AyRBG9HiqtsExp/m2OI": [
-                "baoWang/signIn/BigPurple",
-                "cc.SpriteFrame",
-                1
-            ],
-            "28z98ZTqRM/LT55tWgoteR": [
-                "baoWang/signIn/BigYellow",
-                "cc.SpriteFrame",
-                1
-            ],
-            e7l5RHjfBB858r7WGzMqvv: [
-                "baoWang/signIn/Close",
-                "cc.SpriteFrame",
-                1
-            ],
-            ebsSKlbllKt5fmZJwwApG4: [
-                "baoWang/signIn/Coin",
-                "cc.SpriteFrame",
-                1
-            ],
-            "e3zKPGU3tBuoGetGo7u1g/": [
-                "baoWang/signIn/GetaPrize",
-                "cc.SpriteFrame",
-                1
-            ],
-            "4eGzzTtBRCAoZzInyBQm1c": [
-                "baoWang/signIn/Purple",
-                "cc.SpriteFrame",
-                1
-            ],
-            "ecSrWZ/l1LNqEtLNcz7lZh": [
-                "baoWang/signIn/Yellow",
-                "cc.SpriteFrame",
-                1
-            ],
-            "54xTCTtYpO3IBe5T/+PU7/": [
-                "baoWang/signIn/button1",
-                "cc.SpriteFrame",
-                1
-            ],
-            "eflzismqFP/oLv/yGLkcXc": [
-                "baoWang/signIn/button2",
-                "cc.SpriteFrame",
-                1
             ],
             e4644J6KNOxqodLLzZ2lDb: [
                 "baoWang/spread/02",
@@ -4470,64 +3652,6 @@ window._CCSettings = {
             ],
             "13S7hkSwpMWYpwbdysaAB3": [
                 "baoWang/uncheck.png",
-                "cc.Texture2D"
-            ],
-            "08wug9VKpKeYC3clnwPW4c": [
-                "baoWang/winnerList/AutoAtlas.pac",
-                "cc.SpriteAtlas"
-            ],
-            "5866DbcPJG54mzw7vPhY5C": [
-                "baoWang/winnerList/bgCommon",
-                "cc.SpriteFrame",
-                1
-            ],
-            "22zEf9yJpJxKHzV8+pAoMO": [
-                "baoWang/winnerList/champion",
-                "cc.SpriteFrame",
-                1
-            ],
-            b8FwWtLIlBsb55Z95i3bgc: [
-                "baoWang/winnerList/commonBorder",
-                "cc.SpriteFrame",
-                1
-            ],
-            "24dIL1vCZEh4kT4kETtzqs": [
-                "baoWang/winnerList/golden",
-                "cc.SpriteFrame",
-                1
-            ],
-            cfYOGQJD5Lboep6xkAND3l: [
-                "baoWang/winnerList/secondWinner",
-                "cc.SpriteFrame",
-                1
-            ],
-            "c5o8Tx/gRPDJNxQb9+Ynuo": [
-                "baoWang/winnerList/selfGoldIcon",
-                "cc.SpriteFrame",
-                1
-            ],
-            "4ejlF7KfdPq6/4tjI7IZZ9": [
-                "baoWang/winnerList/selfLightBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "78WfQgl99NLru1WEwQZE/d": [
-                "baoWang/winnerList/selfLightBorder",
-                "cc.SpriteFrame",
-                1
-            ],
-            "96V1Yu3JlEF4b998z6t+Pw": [
-                "baoWang/winnerList/thirdWinner",
-                "cc.SpriteFrame",
-                1
-            ],
-            "81+1Mivm1JSZeLVWfqSq5g": [
-                "baoWang/yellowBtn",
-                "cc.SpriteFrame",
-                1
-            ],
-            c7nZBGZq5F9YA6TFvKkReO: [
-                "baoWang/yellowBtn.png",
                 "cc.Texture2D"
             ],
             "4aftmxJzJImZC0gPnV/9oH": [
@@ -4913,23 +4037,8 @@ window._CCSettings = {
                 "cattle/ui/AutoAtlas.pac",
                 "cc.SpriteAtlas"
             ],
-            "6dVOITy0FHBYnBbQ1DfxPW": [
-                "cattle/ui/cancelCompareBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "9cHANohHFPlaAy4lnVAqBC": [
-                "cattle/ui/leastBetBg",
-                "cc.SpriteFrame",
-                1
-            ],
             "9eEKnwvatIt6+DemPfeVzh": [
                 "cattle/ui/pinpai",
-                "cc.SpriteFrame",
-                1
-            ],
-            "91MNUEz1BNUKxwWqCrZh12": [
-                "cattle/ui/playerInfoBgBox",
                 "cc.SpriteFrame",
                 1
             ],
@@ -4940,16 +4049,6 @@ window._CCSettings = {
             ],
             "4aKV7SvWpCx5byYDf4T073": [
                 "cattle/ui/selNormal",
-                "cc.SpriteFrame",
-                1
-            ],
-            abMvDrO4RPc6OwyPcnNIhB: [
-                "cattle/ui/topBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "fdqJZ1CidPrIPPxAzrI0a+": [
-                "cattle/ui/wait",
                 "cc.SpriteFrame",
                 1
             ],
@@ -5223,6 +4322,16 @@ window._CCSettings = {
                 "common/UI/preLoad/AutoAtlas.pac",
                 "cc.SpriteAtlas"
             ],
+            "9f8638yvVMLqLdxiHm2orP": [
+                "common/UI/preLoad/anteBg",
+                "cc.SpriteFrame",
+                1
+            ],
+            "0daKzDrUxB7rW3Tw5ai1iT": [
+                "common/UI/preLoad/arrow",
+                "cc.SpriteFrame",
+                1
+            ],
             "77/oy5vcBHtboUgTpqk/x+": [
                 "common/UI/preLoad/balanceBg",
                 "cc.SpriteFrame",
@@ -5230,6 +4339,11 @@ window._CCSettings = {
             ],
             "5chZWnnXBEb4uDya68HuH0": [
                 "common/UI/preLoad/blueBtnBg",
+                "cc.SpriteFrame",
+                1
+            ],
+            "6dVOITy0FHBYnBbQ1DfxPW": [
+                "common/UI/preLoad/cancelCompareBg",
                 "cc.SpriteFrame",
                 1
             ],
@@ -5275,6 +4389,11 @@ window._CCSettings = {
             ],
             "82fOB7wq5A8rH1f6eR81HX": [
                 "common/UI/preLoad/playerInfoBg",
+                "cc.SpriteFrame",
+                1
+            ],
+            "91MNUEz1BNUKxwWqCrZh12": [
+                "common/UI/preLoad/playerInfoBgBox",
                 "cc.SpriteFrame",
                 1
             ],
@@ -5328,6 +4447,16 @@ window._CCSettings = {
                 "cc.SpriteFrame",
                 1
             ],
+            abMvDrO4RPc6OwyPcnNIhB: [
+                "common/UI/preLoad/topBg",
+                "cc.SpriteFrame",
+                1
+            ],
+            "fdqJZ1CidPrIPPxAzrI0a+": [
+                "common/UI/preLoad/wait",
+                "cc.SpriteFrame",
+                1
+            ],
             "eeUC6uUztIvaHltPp9/gzv": [
                 "common/UI/preLoad/yellowBtnBg",
                 "cc.SpriteFrame",
@@ -5335,6 +4464,11 @@ window._CCSettings = {
             ],
             e2HkS4qDdJL7uast6r6UPi: [
                 "common/UI/preLoad/yupai",
+                "cc.SpriteFrame",
+                1
+            ],
+            "3bFoQFjShN6avscG1N+4fR": [
+                "common/UI/preLoad/zhuang",
                 "cc.SpriteFrame",
                 1
             ],
@@ -7402,113 +6536,73 @@ window._CCSettings = {
                 "cc.SpriteFrame",
                 1
             ],
+            "06sIqqNyhMdb2hCdVJpo1g": [
+                "giftMoney/Effect/effect_sl/AutoAtlas.pac",
+                "cc.SpriteAtlas"
+            ],
             "81B31DbxhA676ZcDhXwOyE": [
                 "giftMoney/Effect/effect_sl/sl_00000",
                 "cc.SpriteFrame",
                 1
-            ],
-            "0egv7OC/pChqOd0L7ZKL56": [
-                "giftMoney/Effect/effect_sl/sl_00000.png",
-                "cc.Texture2D"
             ],
             bf4nE0PjFAhLnIMLJRMlNx: [
                 "giftMoney/Effect/effect_sl/sl_00001",
                 "cc.SpriteFrame",
                 1
             ],
-            aawYWQlyBAh7FaE4oRjaMl: [
-                "giftMoney/Effect/effect_sl/sl_00001.png",
-                "cc.Texture2D"
-            ],
             dd2HhowblJWqWEjTje6c9m: [
                 "giftMoney/Effect/effect_sl/sl_00002",
                 "cc.SpriteFrame",
                 1
-            ],
-            e8Wfu4BDdIgaQraR5TXm3m: [
-                "giftMoney/Effect/effect_sl/sl_00002.png",
-                "cc.Texture2D"
             ],
             fdFLIaThZLRIiNqBHZLKmn: [
                 "giftMoney/Effect/effect_sl/sl_00003",
                 "cc.SpriteFrame",
                 1
             ],
-            "4eanPu5X5FXaCcFI8Rknlc": [
-                "giftMoney/Effect/effect_sl/sl_00003.png",
-                "cc.Texture2D"
-            ],
             "f60N64NzNCHL++jzYfinj5": [
                 "giftMoney/Effect/effect_sl/sl_00004",
                 "cc.SpriteFrame",
                 1
-            ],
-            "59RaJdd89G6IZvHAHNyd0v": [
-                "giftMoney/Effect/effect_sl/sl_00004.png",
-                "cc.Texture2D"
             ],
             "d1iRNb3cFMB76G/tZGh3Vf": [
                 "giftMoney/Effect/effect_sl/sl_00005",
                 "cc.SpriteFrame",
                 1
             ],
-            "1eoRTjIHVOnKMl2YHSzEQZ": [
-                "giftMoney/Effect/effect_sl/sl_00005.png",
-                "cc.Texture2D"
-            ],
             "0aVY1+lHpC+pUXi4t0CRQ3": [
                 "giftMoney/Effect/effect_sl/sl_00006",
                 "cc.SpriteFrame",
                 1
-            ],
-            "9cp70ZVHhKhopXZW9F6wYM": [
-                "giftMoney/Effect/effect_sl/sl_00006.png",
-                "cc.Texture2D"
             ],
             bfeHEkswRJ9JjTk6EZG4Bz: [
                 "giftMoney/Effect/effect_sl/sl_00007",
                 "cc.SpriteFrame",
                 1
             ],
-            "821i05lqdKZY/qepv8nGql": [
-                "giftMoney/Effect/effect_sl/sl_00007.png",
-                "cc.Texture2D"
-            ],
             "62+d6QuzBAVoZhc4iiIibp": [
                 "giftMoney/Effect/effect_sl/sld",
                 "cc.SpriteFrame",
                 1
             ],
-            "e0Yb1inqVPE5LM/382ULHL": [
-                "giftMoney/Effect/effect_sl/sld.png",
-                "cc.Texture2D"
+            "caLxMUmOJPKqlekH+OKscM": [
+                "giftMoney/Effect/effect_zdq/AutoAtlas.pac",
+                "cc.SpriteAtlas"
             ],
             c4yMwxarRLfbQhAvqrcf3v: [
                 "giftMoney/Effect/effect_zdq/h_0002",
                 "cc.SpriteFrame",
                 1
             ],
-            "35n+lnQ7VGzq6H+uk//GL6": [
-                "giftMoney/Effect/effect_zdq/h_0002.png",
-                "cc.Texture2D"
-            ],
             "07BrrA9RJLZI5LhggiOaXY": [
                 "giftMoney/Effect/effect_zdq/h_0002s",
                 "cc.SpriteFrame",
                 1
             ],
-            "c0AB+QGWJDDYhiNxEW262O": [
-                "giftMoney/Effect/effect_zdq/h_0002s.png",
-                "cc.Texture2D"
-            ],
             "2d0HFw3JNJa6471ecmWep9": [
                 "giftMoney/Effect/effect_zdq/hq",
                 "cc.SpriteFrame",
                 1
-            ],
-            b3k2h5qtlEp5oFOvrwDGDS: [
-                "giftMoney/Effect/effect_zdq/hq.png",
-                "cc.Texture2D"
             ],
             "87tLxobJRNK6X+ce7vcrHp": [
                 "giftMoney/Effect/fa",
@@ -7528,50 +6622,134 @@ window._CCSettings = {
                 "giftMoney/Effect/kai.png",
                 "cc.Texture2D"
             ],
+            "ccBqz1IctPk4iAi/hTFxRN": [
+                "giftMoney/UI/AutoAtlas.pac",
+                "cc.SpriteAtlas"
+            ],
             b3u2bPzIVLg6HLU8VgnLif: [
-                "giftMoney/LongGray1",
+                "giftMoney/UI/LongGray1",
                 "cc.SpriteFrame",
                 1
-            ],
-            "80AGotyrtNjofrgtiheFBu": [
-                "giftMoney/LongGray1.png",
-                "cc.Texture2D"
             ],
             "7fDjC4PiVMr7syc7ZJgl8F": [
-                "giftMoney/LongRed1",
+                "giftMoney/UI/LongRed1",
                 "cc.SpriteFrame",
                 1
-            ],
-            "cajpbHQjtOLLZ/EbBHpPPA": [
-                "giftMoney/LongRed1.png",
-                "cc.Texture2D"
             ],
             "c98EuaD+hESqakHK5iU7Wp": [
-                "giftMoney/PBG",
+                "giftMoney/UI/PBG",
                 "cc.SpriteFrame",
                 1
-            ],
-            "5dsmFpkxtC2J+hwfoqE/T5": [
-                "giftMoney/PBG.png",
-                "cc.Texture2D"
             ],
             "e8L6/bT0xFTpuSxX9qaMty": [
-                "giftMoney/Red",
+                "giftMoney/UI/Red",
                 "cc.SpriteFrame",
                 1
-            ],
-            beKQzx9j9HZYyZDLjhQuWB: [
-                "giftMoney/Red.png",
-                "cc.Texture2D"
             ],
             a1SDNst31C77xdr2MAbFhW: [
-                "giftMoney/banker",
+                "giftMoney/UI/banker",
                 "cc.SpriteFrame",
                 1
             ],
-            "8fTVFfqKdPB6C099XFw1G4": [
-                "giftMoney/banker.png",
-                "cc.Texture2D"
+            "a2/WiEEZ5CU6g7FH292bzH": [
+                "giftMoney/UI/boom",
+                "cc.SpriteFrame",
+                1
+            ],
+            cfFT2wQh5Lsbx8bs6RxD9A: [
+                "giftMoney/UI/button",
+                "cc.SpriteFrame",
+                1
+            ],
+            "520w3hlCtF+4SPInU31csb": [
+                "giftMoney/UI/close",
+                "cc.SpriteFrame",
+                1
+            ],
+            "3fsQxvEV5JXpy/9P47berx": [
+                "giftMoney/UI/gray",
+                "cc.SpriteFrame",
+                1
+            ],
+            a8mS1urg1DZpO0KvkPbWPF: [
+                "giftMoney/UI/playerBg1",
+                "cc.SpriteFrame",
+                1
+            ],
+            "85JnWt6NZF3IvIXUnH1Wap": [
+                "giftMoney/UI/selfBg",
+                "cc.SpriteFrame",
+                1
+            ],
+            "28tiDCe8BJ44zKg4w9RyIB": [
+                "giftMoney/UI/selfBorder",
+                "cc.SpriteFrame",
+                1
+            ],
+            a0Pw3IUE9G2bbVdJZGJn9W: [
+                "giftMoney/UI/yellow",
+                "cc.SpriteFrame",
+                1
+            ],
+            "86rZqh/fJDx7kp1BCil/tS": [
+                "giftMoney/UI/zdq_00000",
+                "cc.SpriteFrame",
+                1
+            ],
+            "9cbXSscjNFXrb8wbyAm3+y": [
+                "giftMoney/UI/信息底",
+                "cc.SpriteFrame",
+                1
+            ],
+            f70h95UYRBioLCrAVtnGAz: [
+                "giftMoney/UI/小紅包",
+                "cc.SpriteFrame",
+                1
+            ],
+            "26Xs6EDT5DEob2qksepVRB": [
+                "giftMoney/UI/左右資訊欄棕底",
+                "cc.SpriteFrame",
+                1
+            ],
+            c5NQf1bhVKHpcc0qlESpM1: [
+                "giftMoney/UI/快來發紅包吧",
+                "cc.SpriteFrame",
+                1
+            ],
+            "92TZfJUldEyrdb8JK5XVnd": [
+                "giftMoney/UI/發紅包按鈕",
+                "cc.SpriteFrame",
+                1
+            ],
+            "1bVkljO+ZIjLhBb7QUNkDv": [
+                "giftMoney/UI/發紅包按鈕1",
+                "cc.SpriteFrame",
+                1
+            ],
+            eabKkQvnlDKaHkl69xXr2A: [
+                "giftMoney/UI/等待底圖",
+                "cc.SpriteFrame",
+                1
+            ],
+            "11EX55ubxEHqG/DgEc6+HY": [
+                "giftMoney/UI/紅包上長條底",
+                "cc.SpriteFrame",
+                1
+            ],
+            "4e76qFXPpI1I4ta1F31UA6": [
+                "giftMoney/UI/紅包花紋",
+                "cc.SpriteFrame",
+                1
+            ],
+            "0e56HNzc1CELsgAKYFKp16": [
+                "giftMoney/UI/红包扫雷BG",
+                "cc.SpriteFrame",
+                1
+            ],
+            "55wxAvAOFLJIyUzl4sfV9B": [
+                "giftMoney/UI/红包扫雷_框3",
+                "cc.SpriteFrame",
+                1
             ],
             b8wYedwFxDCK4u2jwv3Rqf: [
                 "giftMoney/bg",
@@ -7580,195 +6758,6 @@ window._CCSettings = {
             ],
             "371BM4w/RI/pl51SLmrSr7": [
                 "giftMoney/bg.png",
-                "cc.Texture2D"
-            ],
-            "a2/WiEEZ5CU6g7FH292bzH": [
-                "giftMoney/boom",
-                "cc.SpriteFrame",
-                1
-            ],
-            "52OZ4dMXtJL6M+/8Pz8PI6": [
-                "giftMoney/boom.png",
-                "cc.Texture2D"
-            ],
-            cfFT2wQh5Lsbx8bs6RxD9A: [
-                "giftMoney/button",
-                "cc.SpriteFrame",
-                1
-            ],
-            cadrloO2ZFGquP9NMZfYik: [
-                "giftMoney/button.png",
-                "cc.Texture2D"
-            ],
-            "19XCF+OwlJhLnaeVs8ufES": [
-                "giftMoney/button2",
-                "cc.SpriteFrame",
-                1
-            ],
-            "50mhKGBA1ByYn82MeNF7xP": [
-                "giftMoney/button2.png",
-                "cc.Texture2D"
-            ],
-            "520w3hlCtF+4SPInU31csb": [
-                "giftMoney/close",
-                "cc.SpriteFrame",
-                1
-            ],
-            "2dU/lHKqVOtrrJUWeYYW8E": [
-                "giftMoney/close.png",
-                "cc.Texture2D"
-            ],
-            "3fsQxvEV5JXpy/9P47berx": [
-                "giftMoney/gray",
-                "cc.SpriteFrame",
-                1
-            ],
-            a3SZhwzPFHA5wlebJXYQr0: [
-                "giftMoney/gray.png",
-                "cc.Texture2D"
-            ],
-            a8mS1urg1DZpO0KvkPbWPF: [
-                "giftMoney/playerBg1",
-                "cc.SpriteFrame",
-                1
-            ],
-            ebTZO9iF5HCYo41xhzn4La: [
-                "giftMoney/playerBg1.png",
-                "cc.Texture2D"
-            ],
-            "85JnWt6NZF3IvIXUnH1Wap": [
-                "giftMoney/selfBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "e15rPF/cRKTqWv8QcUHPjZ": [
-                "giftMoney/selfBg.png",
-                "cc.Texture2D"
-            ],
-            "28tiDCe8BJ44zKg4w9RyIB": [
-                "giftMoney/selfBorder",
-                "cc.SpriteFrame",
-                1
-            ],
-            "5ckNsk84FPmJOR063EHy5m": [
-                "giftMoney/selfBorder.png",
-                "cc.Texture2D"
-            ],
-            a0Pw3IUE9G2bbVdJZGJn9W: [
-                "giftMoney/yellow",
-                "cc.SpriteFrame",
-                1
-            ],
-            "403MEGXYhMW6a325cI9w/7": [
-                "giftMoney/yellow.png",
-                "cc.Texture2D"
-            ],
-            "86rZqh/fJDx7kp1BCil/tS": [
-                "giftMoney/zdq_00000",
-                "cc.SpriteFrame",
-                1
-            ],
-            d9fK1ZHstEy5vakDSzvLDA: [
-                "giftMoney/zdq_00000.png",
-                "cc.Texture2D"
-            ],
-            "9cbXSscjNFXrb8wbyAm3+y": [
-                "giftMoney/信息底",
-                "cc.SpriteFrame",
-                1
-            ],
-            "47c0nl6fZNXYFLAEFckdm2": [
-                "giftMoney/信息底.png",
-                "cc.Texture2D"
-            ],
-            f70h95UYRBioLCrAVtnGAz: [
-                "giftMoney/小紅包",
-                "cc.SpriteFrame",
-                1
-            ],
-            "50bJPdWndL9qggzyZD19Eq": [
-                "giftMoney/小紅包.png",
-                "cc.Texture2D"
-            ],
-            "26Xs6EDT5DEob2qksepVRB": [
-                "giftMoney/左右資訊欄棕底",
-                "cc.SpriteFrame",
-                1
-            ],
-            b2YkvlkbdM25lGnwakw4I4: [
-                "giftMoney/左右資訊欄棕底.png",
-                "cc.Texture2D"
-            ],
-            c5NQf1bhVKHpcc0qlESpM1: [
-                "giftMoney/快來發紅包吧",
-                "cc.SpriteFrame",
-                1
-            ],
-            "90de0CHJtElKFmYZWn+o//": [
-                "giftMoney/快來發紅包吧.png",
-                "cc.Texture2D"
-            ],
-            "92TZfJUldEyrdb8JK5XVnd": [
-                "giftMoney/發紅包按鈕",
-                "cc.SpriteFrame",
-                1
-            ],
-            "83vZu3KH9By7I3/Jq2c0AX": [
-                "giftMoney/發紅包按鈕.png",
-                "cc.Texture2D"
-            ],
-            "1bVkljO+ZIjLhBb7QUNkDv": [
-                "giftMoney/發紅包按鈕1",
-                "cc.SpriteFrame",
-                1
-            ],
-            "2cMXZEqjRJF7HYrzqL54Rj": [
-                "giftMoney/發紅包按鈕1.png",
-                "cc.Texture2D"
-            ],
-            eabKkQvnlDKaHkl69xXr2A: [
-                "giftMoney/等待底圖",
-                "cc.SpriteFrame",
-                1
-            ],
-            cfuBxgu9lBZ7i2WOv6e0zI: [
-                "giftMoney/等待底圖.png",
-                "cc.Texture2D"
-            ],
-            "11EX55ubxEHqG/DgEc6+HY": [
-                "giftMoney/紅包上長條底",
-                "cc.SpriteFrame",
-                1
-            ],
-            "32AfvVJe1HYqUovWoBRc93": [
-                "giftMoney/紅包上長條底.png",
-                "cc.Texture2D"
-            ],
-            "4e76qFXPpI1I4ta1F31UA6": [
-                "giftMoney/紅包花紋",
-                "cc.SpriteFrame",
-                1
-            ],
-            "40TBWNxC5G7rSX99GZPsTD": [
-                "giftMoney/紅包花紋.png",
-                "cc.Texture2D"
-            ],
-            "0e56HNzc1CELsgAKYFKp16": [
-                "giftMoney/红包扫雷BG",
-                "cc.SpriteFrame",
-                1
-            ],
-            "93pb/rVR5CxZe6y2zskjni": [
-                "giftMoney/红包扫雷BG.png",
-                "cc.Texture2D"
-            ],
-            "55wxAvAOFLJIyUzl4sfV9B": [
-                "giftMoney/红包扫雷_框3",
-                "cc.SpriteFrame",
-                1
-            ],
-            "d1m6e6sH5NvKNvT+KOnHez": [
-                "giftMoney/红包扫雷_框3.png",
                 "cc.Texture2D"
             ],
             "97uONghWJDGbO7LvlzzcmL": [
@@ -7780,33 +6769,13 @@ window._CCSettings = {
                 "cc.SpriteFrame",
                 1
             ],
-            "9f8638yvVMLqLdxiHm2orP": [
-                "goldenFraud/UI/anteBg",
-                "cc.SpriteFrame",
-                1
-            ],
-            "0daKzDrUxB7rW3Tw5ai1iT": [
-                "goldenFraud/UI/arrow",
-                "cc.SpriteFrame",
-                1
-            ],
             d4z3SOw0RAKZWLHRelq1RB: [
                 "goldenFraud/UI/awardPotBg",
                 "cc.SpriteFrame",
                 1
             ],
-            "e2IXMDfQ1NDZxmj/xU+Pxy": [
-                "goldenFraud/UI/balanceBg",
-                "cc.SpriteFrame",
-                1
-            ],
             "0bmealiNFNmJ2gOnBY4R0S": [
                 "goldenFraud/UI/btStop",
-                "cc.SpriteFrame",
-                1
-            ],
-            "12bK/NigFKN6VCZWBXanH2": [
-                "goldenFraud/UI/cancelCompareBg",
                 "cc.SpriteFrame",
                 1
             ],
@@ -13563,14 +12532,6 @@ window._CCSettings = {
                 "paiGow/hallBg.jpg",
                 "cc.Texture2D"
             ],
-            "2b7nAZfllIfKbyhM05b/JW": [
-                "payIcon.plist",
-                "cc.SpriteAtlas"
-            ],
-            d672C1dHBMLIHsQBX4Mlqr: [
-                "payIcon.png",
-                "cc.Texture2D"
-            ],
             "eeh+OfnbNCPZ9jax8cc+j0": [
                 "prefab/baoWang/activityCenter.prefab",
                 "cc.Prefab"
@@ -13738,14 +12699,6 @@ window._CCSettings = {
             advRXVrq9C9LlUPtDjy97z: [
                 "prefab/baoWang/withdraw.prefab",
                 "cc.Prefab"
-            ],
-            "4d3dP0o7VJGKjcLJdwCmdp": [
-                "rankingNumber.plist",
-                "cc.SpriteAtlas"
-            ],
-            "17drHVhZ1BIa6sk7OW2pK7": [
-                "rankingNumber.png",
-                "cc.Texture2D"
             ],
             "c8t+5pXNhGJI5lu0zZOvdm": [
                 "sanGong/bg",
@@ -14254,15 +13207,6 @@ window._CCSettings = {
             ],
             e13RqifA5Os4G0ADn7cDgF: [
                 "tenfoldBRCattle/tenfoldTable.png",
-                "cc.Texture2D"
-            ],
-            "3bFoQFjShN6avscG1N+4fR": [
-                "zhuang",
-                "cc.SpriteFrame",
-                1
-            ],
-            d7lpeyUQ1FfYBdfCWRuhkB: [
-                "zhuang.png",
                 "cc.Texture2D"
             ]
         }

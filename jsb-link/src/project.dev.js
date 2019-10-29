@@ -249,7 +249,6 @@ window.__require = function e(t, n, r) {
       properties: {
         dispenseCardNode: cc.Node,
         reciprocal: cc.Node,
-        betNum: cc.Node,
         roomNum: cc.Node,
         trendBg: cc.Node,
         ranking: cc.Node,
@@ -293,10 +292,6 @@ window.__require = function e(t, n, r) {
           type: cc.AudioClip
         },
         audioWin: {
-          default: null,
-          type: cc.AudioClip
-        },
-        aduioLose: {
           default: null,
           type: cc.AudioClip
         },
@@ -386,8 +381,6 @@ window.__require = function e(t, n, r) {
         };
         this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
         var selRoomKey = dataLogic.curRoomKey;
-        this.betNum.getChildByName("txt").getComponent(cc.Label).string = "\u5e95\u6ce8\uff1a" + dataLogic.getAnteByRoomId(dataLogic.curGameId + selRoomKey);
-        this.setBetNumState();
         this.ranking.x = -cc.winSize.width / 2 - 234;
         this.isShowRanking = false;
         this.curChoiceBetKey = 0;
@@ -627,10 +620,6 @@ window.__require = function e(t, n, r) {
           y: dataLogic.randomInt(otherPlayerYMin, otherPlayerYMax)
         };
       },
-      setBetNumState: function setBetNumState() {
-        this.betNum.getChildByName("txt").getComponent(cc.Label)._updateRenderData(true);
-        this.betNum.width = this.betNum.getChildByName("txt").width + 40;
-      },
       setRoomNumState: function setRoomNumState() {
         this.roomNum.getChildByName("txt").getComponent(cc.Label)._updateRenderData(true);
         this.roomNum.width = this.roomNum.getChildByName("txt").width + 40;
@@ -695,9 +684,6 @@ window.__require = function e(t, n, r) {
       gameRecoverCb: function gameRecoverCb(msg, isInit) {
         kf.killObj(this.recoverLoad);
         if (constant.HttpCode.Succeed != msg.Code) {
-          var roomKey = dataLogic.curRoomKey;
-          this.betNum.getChildByName("txt").getComponent(cc.Label).string = "\u5e95\u6ce8\uff1a" + dataLogic.getAnteByRoomId(dataLogic.curGameId + roomKey);
-          this.setBetNumState();
           this.doneGameRecover = true;
           this.killAllToast();
           dataLogic.gameEnd();
@@ -736,8 +722,6 @@ window.__require = function e(t, n, r) {
         dataLogic.setDeskId(msg.deskId);
         dataLogic.setMsgId(msg.msgId);
         var roomKey = dataLogic.curRoomKey;
-        this.betNum.getChildByName("txt").getComponent(cc.Label).string = "\u5e95\u6ce8\uff1a" + dataLogic.getAnteByRoomId(dataLogic.curGameId + roomKey);
-        this.setBetNumState();
         BRCattleDataLogic.setOtherPlayerInfo();
         this.setBetToggleConfig(msg.betConfig);
         this.setCountPlayer(msg.count);
@@ -1195,7 +1179,7 @@ window.__require = function e(t, n, r) {
           }
           allPlayerWin[i] > 0 && this.betArea[i].getChildByName("halo").runAction(cc.blink(1, 4));
         }
-        if (curTimesHaveBet) if (BRCattleDataLogic.settlementAmount < 0) audioMgr.playEffect(this.aduioLose); else {
+        if (curTimesHaveBet) if (BRCattleDataLogic.settlementAmount < 0) ; else {
           audioMgr.playEffect(this.audioClearingChip);
           audioMgr.playEffect(this.audioWin);
           this.animHeadWin.node.opacity = 255;
@@ -5551,14 +5535,13 @@ window.__require = function e(t, n, r) {
       var isLoop = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1];
       cc.log("\u64ad\u653e\u97f3\u4e50", _isOpenMusic, dataLogic.isHide);
       if (_isOpenMusic) {
-        var id = cc.audioEngine.playEffect(_falseAudioClip, false);
-        cc.audioEngine.stopEffect(id);
-        cc.audioEngine.playMusic(audioClip, isLoop);
+        _musicId = cc.audioEngine.playMusic(audioClip, isLoop);
+        cc.log("\u64ad\u653e _musicId", _musicId);
       }
     };
     audioMgr.stopMusic = function() {
-      cc.log("\u505c\u6b62\u97f3\u4e50");
-      cc.audioEngine.stopMusic();
+      cc.log("\u505c\u6b62\u97f3\u4e50", _musicId);
+      cc.audioEngine.stop(_musicId);
     };
     audioMgr.setMusicClip = function(clip) {
       _musicClip = clip;
@@ -10076,7 +10059,7 @@ window.__require = function e(t, n, r) {
         0 == bcbmDataLogic.getAreaMyTotalBetNum() ? this.exitRoom() : this.showExitGameToast("\u6e38\u620f\u4e2d\u4e0d\u80fd\u9000\u51fa\u54e6\uff0c\u8bf7\u7b49\u5f85\u6e38\u620f\u7ed3\u675f\u518d\u9000\u51fa", bcbmDataLogic.getAreaMyTotalBetNum());
       },
       exitRoom: function exitRoom() {
-        audioMgr.stopEffect(this.alarmClockAudioId);
+        audioMgr.stopAllEffect();
         bcbmDataLogic.setContinuousNotBetInning(0);
         this.unscheduleAllCallbacks();
         isMaintaining || http.post({
@@ -12921,22 +12904,6 @@ window.__require = function e(t, n, r) {
       GiftMoneyHall: "giftMoneyHall",
       GiftMoney: "giftMoney"
     };
-    constant.GameScene = {};
-    constant.GameScene[constant.SceneName.GoldenFraud] = true;
-    constant.GameScene[constant.SceneName.Cattle] = true;
-    constant.GameScene[constant.SceneName.Dzpk] = true;
-    constant.GameScene[constant.SceneName.SeeThreeCattle] = true;
-    constant.GameScene[constant.SceneName.TongBiCattle] = true;
-    constant.GameScene[constant.SceneName.SanGong] = true;
-    constant.GameScene[constant.SceneName.FastZJH] = true;
-    constant.GameScene[constant.SceneName.Dice] = true;
-    constant.GameScene[constant.SceneName.PaiGow] = true;
-    constant.GameScene[constant.SceneName.ErBaGang] = true;
-    constant.GameScene[constant.SceneName.Landlords] = true;
-    constant.GameScene[constant.SceneName.LongHu] = true;
-    constant.GameScene[constant.SceneName.Bcbm] = true;
-    constant.GameScene[constant.SceneName.BaiJiaLe] = true;
-    constant.GameScene[constant.SceneName.GiftMoney] = true;
     constant.ToastName = {
       InfoToast: "infoToast"
     };
@@ -13683,15 +13650,6 @@ window.__require = function e(t, n, r) {
       resType: "dir",
       useScene: constant.SceneName.TongBiCattle
     }, {
-      path: "common/effect/ef_tongchi",
-      resType: "dir",
-      useScene: constant.SceneName.TongBiCattle,
-      notRelease: true
-    }, {
-      path: "common/effect/ef_tongpei",
-      resType: "dir",
-      useScene: constant.SceneName.TongBiCattle
-    }, {
       path: "font",
       resType: "dir",
       useScene: constant.SceneName.TongBiCattle,
@@ -14270,6 +14228,9 @@ window.__require = function e(t, n, r) {
       notRelease: true
     } ];
     constant.GameRes[constant.GameId.FastZJH] = [ {
+      path: "a6b5b3b1-f5ca-4684-9ecd-0cd9c33e1bf2",
+      resType: ""
+    }, {
       path: "common/UI/delayLoad",
       resType: "dir",
       notRelease: true
@@ -14677,7 +14638,66 @@ window.__require = function e(t, n, r) {
       resType: cc.SpriteFrame,
       useScene: constant.SceneName.Bcbm
     } ];
-    constant.GameRes[constant.GameId.GiftMoney] = [];
+    constant.GameRes[constant.GameId.GiftMoney] = [ {
+      path: "3530d020-d5d2-44cc-9543-b9833f3a1da1",
+      resType: ""
+    }, {
+      path: "418e9f46-5d1d-4c8d-b772-36fca9cd0e4e",
+      resType: ""
+    }, {
+      path: "c7d8ee40-be71-4cf1-a1e2-6af1bc26170f",
+      resType: ""
+    }, {
+      path: "bebd88c9-25ef-468f-beeb-eeb974649237",
+      resType: ""
+    }, {
+      path: "common/UI/preLoad",
+      resType: "dir",
+      useScene: constant.SceneName.GiftMoney,
+      notRelease: true
+    }, {
+      path: "font",
+      resType: "dir",
+      useScene: constant.SceneName.GiftMoney,
+      notRelease: true
+    }, {
+      path: "giftMoney/Effect",
+      resType: "dir",
+      useScene: constant.SceneName.GiftMoney
+    }, {
+      path: "giftMoney/UI",
+      resType: "dir",
+      useScene: constant.SceneName.GiftMoney
+    }, {
+      path: "common/UI/preLoad",
+      resType: "dir",
+      useScene: constant.SceneName.GiftMoneyHall,
+      notRelease: true
+    }, {
+      path: "selectRoom/giftMoney",
+      resType: "dir",
+      useScene: constant.SceneName.GiftMoneyHall,
+      notRelease: true
+    }, {
+      path: "selectRoom/effect",
+      resType: "dir",
+      useScene: constant.SceneName.GiftMoneyHall,
+      notRelease: true
+    }, {
+      path: "selectRoom/xuanfang",
+      resType: cc.SpriteAtlas,
+      useScene: constant.SceneName.GiftMoneyHall,
+      notRelease: true
+    }, {
+      path: "font",
+      resType: "dir",
+      useScene: constant.SceneName.GiftMoneyHall,
+      notRelease: true
+    }, {
+      path: "giftMoney/bg",
+      resType: cc.SpriteFrame,
+      useScene: constant.SceneName.GiftMoney
+    } ];
     constant.GameRes[constant.GameId.BaiJiaLe] = [ {
       path: "5a192441-8ecb-4e89-9a21-5ed2af57a5db",
       resType: cc.Prefab
@@ -15332,7 +15352,7 @@ window.__require = function e(t, n, r) {
       }
       return 1 == res ? 0 : res;
     }
-    var _EVENT_TYPE = [ "loadScene", "onGameStart", "onSeeCard", "onFold", "onBet", "onPass", "onCompareCard", "onPlayerOperation", "onGameRecover", "gameRecoverCb", "checkRecoverCb", "tryIntoRoomCb", "onGameEnd", "seeCardCb", "foldCb", "betCb", "passCb", "compareCardCb", "reqUserBalanceCb", "syncUserBalanceCb", "getUserBalanceCb", "updateBalanceCb", "syncBetBtnConfig", "socketMsg", "onJoin", "matchingCb", "cancelMatchingCb", "syncServerTimeCb", "reqServerTimeCb", "calibrationServerTimeCb", "onVillage", "onOpenCards", "village", "openCards", "socketDisconnect", "socketTimeout", "exitRoom", "loginCb", "reconnect", "httpCbRepeater", "intoNextScene", "getAboutCb", "syncRecordCb", "GetUserBalanceCb", "updateHallBalance", "onLeave", "reqSelectRoomConfigCb", "intoGameRoom", "toastType", "killAllToast", "killToast", "btnIntoGameEvent", "showNotice", "checkGameStateCb", "getJackpotCb", "bonusGameBetCb", "exitBonusGameCb", "openCb", "onOpenDice", "onStartGuess", "guessCb", "onGuess", "toastHintBtnHandle", "stopGameCb", "openCardCb", "onGameOver", "reqGameListCb", "tryIntoGame", "showLoadTimeoutToast", "onOpen", "cancelRefreshToastShow", "reqCheckCodeCb", "getLettersCb", "getRankingListCb", "getLetterContentCb", "getNoticeDetailCb", "getGradeListCb", "getNoticeDetailCb", "getAllAnnouncementsCb", "operationLettersCb", "getGradeDataCb", "getGradeScoreCb", "reqUnreadLetterNumCb", "checkOriginalPassword", "setNewPasswordCb", "getGradeScoreCb", "updataPersonalInfoCb", "getSecurityCentreDataCb", "showLayerToast", "getRechargeWayCb", "getSafeQuestionListCb", "setSafeQuestionCb", "checkSafeQuestionCb", "registerCb", "CheckShowCodeCb", "checkUserExistCb", "customCallBack", "getRechargeCb", "setBankCardCb", "reqBankModuleDataCb", "reqFirstCardCb", "checkBankCardCb", "withdrawCb", "getInitDataCb", "reqBankCardDetailCb", "reqTradingTypeCb", "reqTradingRecordCb", "balanceExchangeCb", "transferCb", "getActivityCb", "getActiviInfoCb", "getUserAwardInfoCb", "getActivityBonusCb", "getLoginOutCb", "getSpreadCodeCb", "getAgentReportCb", "getReportInfoCb", "tryJoinPKRoomCb", "getAchievementCb", "setAchievementCb", "reqFriendRoomListCb", "reqCreateRoomCb", "onReady", "readyCb", "onRemind", "onRemove", "leaveGameCb", "reqRoomIdCb", "getUserInfoCardCb", "showLayerTip", "reqSendSMSCheckCodeCb", "checkPhoneCb", "getAchievementActivityDataCb", "getAchievementAwardCb", "getAppDataCb", "visitorRegisterCb", "visitorLoginCb", "onLandlord", "onPlayCards", "onPass", "onAutoPlay", "showCardCb", "onGameEnds", "callScoreCb", "getLettersByJudgeIsPop", "getGiftAwardCb", "getActivityCb_panel", "cancelAutoPlayCb", "autoPlayCb", "reqOnLinePlayerCountCb", "getSignInConfigCb", "signInCb", "onPush", "onGrab", "onSettle", "onNoAlive", "onExit", "onCurrent", "leaveGameRoomCb" ];
+    var _EVENT_TYPE = [ "loadScene", "onGameStart", "onSeeCard", "onFold", "onBet", "onPass", "onCompareCard", "onPlayerOperation", "onGameRecover", "gameRecoverCb", "checkRecoverCb", "tryIntoRoomCb", "onGameEnd", "seeCardCb", "foldCb", "betCb", "passCb", "compareCardCb", "reqUserBalanceCb", "syncUserBalanceCb", "getUserBalanceCb", "updateBalanceCb", "syncBetBtnConfig", "socketMsg", "onJoin", "matchingCb", "cancelMatchingCb", "syncServerTimeCb", "reqServerTimeCb", "calibrationServerTimeCb", "onVillage", "onOpenCards", "village", "openCards", "socketDisconnect", "socketTimeout", "exitRoom", "loginCb", "reconnect", "httpCbRepeater", "intoNextScene", "getAboutCb", "syncRecordCb", "GetUserBalanceCb", "updateHallBalance", "onLeave", "reqSelectRoomConfigCb", "intoGameRoom", "toastType", "killAllToast", "killToast", "btnIntoGameEvent", "showNotice", "checkGameStateCb", "getJackpotCb", "bonusGameBetCb", "exitBonusGameCb", "openCb", "onOpenDice", "onStartGuess", "guessCb", "onGuess", "toastHintBtnHandle", "stopGameCb", "openCardCb", "onGameOver", "reqGameListCb", "tryIntoGame", "showLoadTimeoutToast", "onOpen", "cancelRefreshToastShow", "reqCheckCodeCb", "getLettersCb", "getRankingListCb", "getLetterContentCb", "getNoticeDetailCb", "getGradeListCb", "getNoticeDetailCb", "getAllAnnouncementsCb", "operationLettersCb", "getGradeDataCb", "getGradeScoreCb", "reqUnreadLetterNumCb", "checkOriginalPassword", "setNewPasswordCb", "getGradeScoreCb", "updataPersonalInfoCb", "getSecurityCentreDataCb", "showLayerToast", "getRechargeWayCb", "getSafeQuestionListCb", "setSafeQuestionCb", "checkSafeQuestionCb", "registerCb", "CheckShowCodeCb", "checkUserExistCb", "customCallBack", "getRechargeCb", "setBankCardCb", "reqBankModuleDataCb", "reqFirstCardCb", "checkBankCardCb", "withdrawCb", "getInitDataCb", "reqBankCardDetailCb", "reqTradingTypeCb", "reqTradingRecordCb", "balanceExchangeCb", "transferCb", "getActivityCb", "getActiviInfoCb", "getUserAwardInfoCb", "getActivityBonusCb", "getLoginOutCb", "getSpreadCodeCb", "getAgentReportCb", "getReportInfoCb", "tryJoinPKRoomCb", "getAchievementCb", "setAchievementCb", "reqFriendRoomListCb", "reqCreateRoomCb", "onReady", "readyCb", "onRemind", "onRemove", "leaveGameCb", "reqRoomIdCb", "getUserInfoCardCb", "showLayerTip", "reqSendSMSCheckCodeCb", "checkPhoneCb", "getAchievementActivityDataCb", "getAchievementAwardCb", "getAppDataCb", "visitorRegisterCb", "visitorLoginCb", "onLandlord", "onPlayCards", "onPass", "onAutoPlay", "showCardCb", "onGameEnds", "callScoreCb", "getLettersByJudgeIsPop", "getGiftAwardCb", "getActivityCb_panel", "cancelAutoPlayCb", "autoPlayCb", "reqOnLinePlayerCountCb", "getSignInConfigCb", "signInCb", "onPush", "onGrab", "onSettle", "onNoAlive", "onExit", "onCurrent", "reqMainModuleVersionCb", "leaveGameRoomCb" ];
     var _seed = 0;
     var _curSceneName = null;
     var _intervalSendId = null;
@@ -23770,6 +23790,37 @@ window.__require = function e(t, n, r) {
     });
     cc._RF.pop();
   }, {} ],
+  gameMgr: [ function(require, module, exports) {
+    "use strict";
+    cc._RF.push(module, "3f5473ljfdKBJVMlYbFre+X", "gameMgr");
+    "use strict";
+    function _toConsumableArray(arr) {
+      if (Array.isArray(arr)) {
+        for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+        return arr2;
+      }
+      return Array.from(arr);
+    }
+    window.gameMgr = window.gameMgr || {
+      extends: cc.Component
+    };
+    gameMgr.init = function() {
+      this.sceneJs = null;
+    };
+    gameMgr.getSceneResList = function(sceneName, gameId) {
+      var gameRes = constant.GameRes[gameId];
+      var resList = [];
+      for (var i = 0; i < gameRes.length; i++) gameRes[i].useScene == sceneName && (null == gameRes[i].noneUndoneGameDelayLoad || dataLogic.needRecover) && resList.push(gameRes[i]);
+      dataLogic.isFriendRoom && resList.push({
+        path: "friendRoom",
+        resType: "dir"
+      });
+      dataLogic.isNewRegister && (dataLogic.userPhoneNum && dataLogic.userBalance > 0 ? resList.push.apply(resList, _toConsumableArray(constant.RegisterCashGiftRes)) : dataLogic.userPhoneNum || resList.push.apply(resList, _toConsumableArray(constant.HintRegisterRes)));
+      return resList;
+    };
+    gameMgr.init();
+    cc._RF.pop();
+  }, {} ],
   gameRecord: [ function(require, module, exports) {
     "use strict";
     cc._RF.push(module, "e212bD//axClJJFBLrPT9J5", "gameRecord");
@@ -24536,7 +24587,7 @@ window.__require = function e(t, n, r) {
       },
       preloadRes: function preloadRes() {
         cc.log("\u9884\u52a0\u8f7d\u8d44\u6e90");
-        var list = [ "Bcbm/UI/5", "Bcbm/table", "Bcbm/bg" ];
+        var list = [ "giftMoney/UI/banker", "giftMoney/Effect/fa", "giftMoney/bg" ];
         for (var i = 0; i < list.length; i++) cc.loader.loadRes(list[i], function(err, res) {
           if (err) {
             cc.error("\u52a0\u8f7d\u8d44\u6e90\u9519\u8bef", err);
@@ -24566,6 +24617,7 @@ window.__require = function e(t, n, r) {
     var clientEvent = kf.require("basic.clientEvent");
     var isOpenAniFinished = false;
     var bankerPos = [ cc.v2(-562.2, 230), cc.v2(562.2, 230), cc.v2(-562.2, 140), cc.v2(562.2, 140), cc.v2(-562.2, 50), cc.v2(562.2, 50), cc.v2(-562.2, -40), cc.v2(562.2, -40), cc.v2(-562.2, -130), cc.v2(562.2, -130) ];
+    var isMaintaining = false;
     cc.Class((_cc$Class = {
       extends: require("gameSceneBase"),
       properties: {
@@ -24601,11 +24653,16 @@ window.__require = function e(t, n, r) {
         boom: cc.Node,
         sendGiftMoneyBtnBg: [ cc.SpriteFrame ],
         sendGiftMoneyBtn: cc.Node,
+        waitDot: cc.Node,
         grapMoneyAudio: {
           default: null,
           type: cc.AudioClip
         },
         openAudio: {
+          default: null,
+          type: cc.AudioClip
+        },
+        boomAudio: {
           default: null,
           type: cc.AudioClip
         }
@@ -24617,8 +24674,30 @@ window.__require = function e(t, n, r) {
           clientEvent.registerEvent(handler[0], handler[1]);
         }
       },
-      gameShow: function gameShow() {},
-      gameHide: function gameHide() {},
+      gameShow: function gameShow() {
+        audioMgr.stopAllEffect();
+        if (isMaintaining) {
+          this.unscheduleAllCallbacks();
+          this.showMaintainingToast();
+          return;
+        }
+        this.unscheduleAllCallbacks();
+        this.unschedule(this.callback);
+        this.openBtn.getChildByName("kai_no").getComponent(cc.Animation).stop();
+        this.openBtn.getChildByName("kai_ing").getComponent(cc.Animation).stop();
+        this.autoGrapAni.stop();
+        if (this.socketIO.isConnected()) {
+          dataLogic.setReqRecoverState(true);
+          http.post(constant.PostRecover, "gameRecoverCb", true);
+          var arg = {
+            type: constant.ToastType.Loading
+          };
+          this.recoverLoad = kf.getObj(constant.PoolId.ToastLoading, this.toastLayer[2], this.toastLoadingPf, arg);
+        }
+      },
+      gameHide: function gameHide() {
+        this.unscheduleAllCallbacks();
+      },
       onLoad: function onLoad() {
         this.baseInit(constant.GameId.GiftMoney);
         this.registerEvent();
@@ -24659,6 +24738,8 @@ window.__require = function e(t, n, r) {
         this.grabCbData = null;
         this.startIndex = 0;
         this.selfSendBagNum = 0;
+        this.curRoundSelfBagMoney = 0;
+        this.curRoundSelfBagNum = 0;
       },
       btnEvent: function btnEvent(event, eventType) {
         eventType && audioMgr.playEffect(this.audioBtn);
@@ -24697,13 +24778,37 @@ window.__require = function e(t, n, r) {
         this.curBoomNumber = "";
       },
       gameRecoverCb: function gameRecoverCb(data) {
-        this.onGameRecover(data.Data);
-        dataLogic.setReqRecoverState(false);
-        dataLogic.setDeskId(data.Data.deskId);
-        dataLogic.setMsgId(data.Data.msgId);
+        if (constant.HttpCode.Succeed != data.Code) {
+          this.doneGameRecover = true;
+          this.killAllToast();
+          dataLogic.gameEnd();
+          isMaintaining = true;
+          constant.HttpCode.error == data.Code && this.showMaintainingToast(data.StrCode);
+        } else {
+          this.onGameRecover(data.Data);
+          dataLogic.setReqRecoverState(false);
+          dataLogic.setDeskId(data.Data.deskId);
+          dataLogic.setMsgId(data.Data.msgId);
+        }
+      },
+      showMaintainingToast: function showMaintainingToast() {
+        var hintTxt = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "\u7cfb\u7edf\u9700\u8981\u51e0\u5206\u949f\u5347\u7ea7\u4e00\u4e0b\uff0c\u8bf7\u7a0d\u7b49";
+        if (this.getToast(constant.ToastType.Hint, 4)) return;
+        var arg = {
+          type: constant.ToastType.Hint,
+          extend: {
+            contentTxt: hintTxt,
+            btnEventName: [ null, "exitRoom" ],
+            btnTxt: [ null, "\u597d\u7684" ]
+          }
+        };
+        kf.getObj(constant.PoolId.ToastHint, this.toastLayer[4], this.pfToastHint, arg);
       },
       tryExitGame: function tryExitGame() {
-        -1 != this.gameState || this.selfSendBagNum ? this.showExitGameToast("\u6e38\u620f\u4e2d\u4e0d\u80fd\u9000\u51fa\u54e6\uff0c\u8bf7\u7b49\u5f85\u6e38\u620f\u7ed3\u675f\u518d\u9000\u51fa") : this.exitRoom();
+        if (-1 != this.gameState || this.selfSendBagNum) this.showExitGameToast("\u6e38\u620f\u4e2d\u4e0d\u80fd\u9000\u51fa\u54e6\uff0c\u8bf7\u7b49\u5f85\u6e38\u620f\u7ed3\u675f\u518d\u9000\u51fa"); else if (this.isAutoGrap) {
+          giftMoneyConstant.PostCancelAutoGrap.roomId = constant.GameId.GiftMoney + dataLogic.curRoomKey;
+          http.post(giftMoneyConstant.PostCancelAutoGrap, "openCb", [ "cancelAutoPlay", "leaveRoom" ]);
+        } else this.exitRoom();
       },
       exitRoom: function exitRoom() {
         this.unscheduleAllCallbacks();
@@ -24724,10 +24829,10 @@ window.__require = function e(t, n, r) {
           this.autoGrapAni.play();
           this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2\u4e2d......";
           giftMoneyConstant.PostAutoGrap.roomId = constant.GameId.GiftMoney + dataLogic.curRoomKey;
-          http.post(giftMoneyConstant.PostAutoGrap, "openCb", "autoPlay");
+          http.post(giftMoneyConstant.PostAutoGrap, "openCb", [ "autoPlay" ]);
         } else {
           giftMoneyConstant.PostCancelAutoGrap.roomId = constant.GameId.GiftMoney + dataLogic.curRoomKey;
-          http.post(giftMoneyConstant.PostCancelAutoGrap, "openCb", "cancelAutoPlay");
+          http.post(giftMoneyConstant.PostCancelAutoGrap, "openCb", [ "cancelAutoPlay" ]);
           this.autoGrapAni.stop();
           this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2";
         }
@@ -24736,8 +24841,10 @@ window.__require = function e(t, n, r) {
         audioMgr.playEffect(this.audioBtn);
         for (var i = 0; i < this.moneyBtnArr.length; i++) {
           var btn = this.moneyBtnArr[i];
-          btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[0];
-          btn.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 128, 117, 1);
+          if (this.moneyBtnArr[i].getComponent(cc.Button).interactable) {
+            btn.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[0];
+            btn.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 128, 117, 1);
+          }
         }
         event.target.getChildByName("Background").getComponent(cc.Sprite).spriteFrame = this.btnBg[1];
         event.target.getChildByName("Background").getChildByName("txt").color = new cc.Color(217, 86, 73, 1);
@@ -24788,12 +24895,14 @@ window.__require = function e(t, n, r) {
         if (1 == data.Code) {
           this.showLayerTip("\u6210\u529f\u53d1\u51fa\u7ea2\u5305");
           this.sendGiftMoneyPanel.active = false;
-          this.resetGiftMoneyPanel();
+          var balance = +dataLogic.userBalance - this.curGiftMoney;
+          this.setPlayerBalance(balance);
+          dataLogic.setUserBalance(balance);
           this.gameState = 1;
           this.selfSendBagNum += 1;
-          return;
-        }
-        1 == data.Code && 4 == data.Data ? this.showLayerTip("\u6392\u961f\u7ea2\u5305\u5df2\u6ee1\uff0c\u8bf7\u7a0d\u540e\u518d\u53d1") : this.showLayerTip("\u53d1\u9001\u5931\u8d25\uff0c\u8bf7\u91cd\u65b0\u53d1\u9001");
+          this.resetGiftMoneyPanel();
+          this.checkUserBalanceIsEnoughToSendGift();
+        } else 1 == data.Code && 4 == data.Data ? this.showLayerTip("\u6392\u961f\u7ea2\u5305\u5df2\u6ee1\uff0c\u8bf7\u7a0d\u540e\u518d\u53d1") : this.showLayerTip("\u53d1\u9001\u5931\u8d25\uff0c\u8bf7\u91cd\u65b0\u53d1\u9001");
       },
       resetGiftMoneyPanel: function resetGiftMoneyPanel() {
         this.curGiftMoney = this.curSendNumber = this.curBoomNumber = "";
@@ -24831,7 +24940,7 @@ window.__require = function e(t, n, r) {
       matchingCb: function matchingCb(data) {
         if (1 == data.Code) {
           dataLogic.setDeskId(data.Data.deskId);
-          this.setBetBtnConfig(data.Data);
+          this.setBetBtnConfig(data.Data.amount);
         } else {
           if (this.recoverLoad && this.recoverLoad.parent) {
             this.recoverLoad.stopAllActions();
@@ -24847,7 +24956,7 @@ window.__require = function e(t, n, r) {
         }
       },
       setBetBtnConfig: function setBetBtnConfig(data) {
-        giftMoneyDataLogic.setBtnConfig(data.amount);
+        giftMoneyDataLogic.setBtnConfig(data);
         this.renderBetBtn();
       },
       renderBetBtn: function renderBetBtn() {
@@ -24888,6 +24997,15 @@ window.__require = function e(t, n, r) {
           this.showExitGameToast("\u60a8\u643a\u5e26\u7684\u91d1\u989d\u4e0d\u8db3\uff0c\u5df2\u505c\u6b62\u81ea\u52a8\u62a2\u529f\u80fd");
         } else this.showExitGameToast("\u643a\u5e26\u7684\u91d1\u989d\u4e0d\u8db3\u4ee5\u8d54\u4ed8\uff0c\u8bf7\u5145\u503c");
       },
+      checkUserBalanceIsEnoughToSendGift: function checkUserBalanceIsEnoughToSendGift() {
+        if (dataLogic.userBalance < Number(dataLogic.selectRoomConfig[dataLogic.curRoomKey - 1].joinAmount)) {
+          this.sendGiftMoneyBtn.getComponent(cc.Sprite).spriteFrame = this.sendGiftMoneyBtnBg[1];
+          this.sendGiftMoneyBtn.getComponent(cc.Button).interactable = false;
+        } else {
+          this.sendGiftMoneyBtn.getComponent(cc.Sprite).spriteFrame = this.sendGiftMoneyBtnBg[0];
+          this.sendGiftMoneyBtn.getComponent(cc.Button).interactable = true;
+        }
+      },
       checkBalanceIsEnoughToLose: function checkBalanceIsEnoughToLose() {
         return dataLogic.userBalance - this.curRoundLossMoney;
       },
@@ -24920,18 +25038,20 @@ window.__require = function e(t, n, r) {
         }
       },
       openCb: function openCb(data, flag) {
-        if ("autoPlay" == flag) {
+        if (flag && "autoPlay" == flag[0]) {
           if (1 != data.Code) {
             this.showLayerTip(data.StrCode ? data.StrCode : "\u53d1\u8d77\u81ea\u52a8\u62a2\u5931\u8d25");
             this.isAutoGrap = false;
             this.autoGrapAni.stop();
+            this.gameState = -1;
             this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2";
           }
-        } else if ("cancelAutoPlay" == flag) if (1 == data.Code) {
+        } else if (flag && "cancelAutoPlay" == flag[0]) if (1 == data.Code) {
           this.isAutoGrap = false;
           this.autoGrapAni.stop();
           this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2";
-        } else this.showLayerTip(data.StrCode ? data.StrCode : "\u53d6\u6d88\u5931\u8d25"); else this.grabCbData = data;
+          "leaveRoom" == flag[1] && this.exitRoom();
+        } else flag[1] ? this.showLayerTip("\u8bf7\u5148\u53d6\u6d88\u81ea\u52a8\u62a2\u7ea2\u5305\u529f\u80fd") : this.showLayerTip(data.StrCode ? data.StrCode : "\u53d6\u6d88\u5931\u8d25"); else this.grabCbData = data;
       },
       onPush: function onPush(data) {
         if (!this.hasRedPanel.active) {
@@ -24941,15 +25061,10 @@ window.__require = function e(t, n, r) {
           this.openBtn.active = true;
           this.setGrapEffect(false);
         }
-        var obj = {
-          avatar: data.avartar,
-          nickName: data.nickName,
-          userId: data.userId
-        };
-        this.sendPlayerArr.push(obj);
-        if (this.sendPlayerArr.length < 3) {
-          var sp = this.waitPlayer[data.totalCount - 1].getComponent(cc.Sprite);
-          this.setPlayerHead(obj.avatar, sp);
+        this.sendPlayerArr.push(data);
+        if (this.sendPlayerArr.length <= 3) {
+          var sp = this.waitPlayer[this.sendPlayerArr.length - 1].getComponent(cc.Sprite);
+          this.setPlayerHead(data.avartar, sp);
           1 == data.totalCount && (this.curBagOwner.string = data.nickName);
         }
       },
@@ -24962,12 +25077,19 @@ window.__require = function e(t, n, r) {
         this.timer.getComponent(cc.Animation).stop();
         this.timer.getChildByName("sl_00007").active = false;
         this.countDown();
+        this.waitDot.opacity = this.sendPlayerArr.length - 1 >= this.startIndex + 2 ? 255 : 0;
         for (var i = 0; i < 3; i++) {
           var sp = this.waitPlayer[i].getComponent(cc.Sprite);
           if (0 == i) {
             this.setPlayerHead(data.avartar, sp);
             this.curBagOwner.string = data.nickName;
-          } else this.sendPlayerArr[this.startIndex + i - 1].avartar && this.setPlayerHead(this.sendPlayerArr[this.startIndex + i - 1].avartar, sp);
+          } else {
+            cc.log(this.sendPlayerArr, this.startIndex + i);
+            if (this.sendPlayerArr.length - 1 >= this.startIndex + i && this.sendPlayerArr[this.startIndex + i].avartar) {
+              this.setPlayerHead(this.sendPlayerArr[this.startIndex + i].avartar, sp);
+              this.waitPlayer[i].opacity = 255;
+            } else this.waitPlayer[i].opacity = 0;
+          }
         }
         this.startIndex += 1;
         this.curLeftNumber.string = "\u5269\u4f59\uff1a" + data.count;
@@ -24982,7 +25104,11 @@ window.__require = function e(t, n, r) {
         isOpenAniFinished = false;
         this.resetBankerAndSelfBorderState();
         this.curRoundLossMoney = data.amount * (5 == data.count ? 2 : 7 == data.count ? 1.5 : 1);
-        data.userId == dataLogic.userId && this.selfSendBagNum--;
+        if (data.userId == dataLogic.userId) {
+          this.selfSendBagNum--;
+          this.curRoundSelfBagMoney = data.amount;
+          this.curRoundSelfBagNum = data.count;
+        }
       },
       resetBoomState: function resetBoomState() {
         this.boom.opacity = 0;
@@ -25009,7 +25135,6 @@ window.__require = function e(t, n, r) {
       },
       onGrab: function onGrab(data) {
         var _this = this;
-        audioMgr.playEffect(this.grapMoneyAudio);
         var playerInfo = {
           nickName: data.nickName
         };
@@ -25031,7 +25156,7 @@ window.__require = function e(t, n, r) {
           this.selfBorder.x = this.playerArr[index].x - (index % 2 == 0 ? 5 : -5);
           this.selfBorder.scaleX = index % 2 == 0 ? -1 : 1;
           this.playerArr[index].getComponent(cc.Sprite).spriteFrame = this.playerBg[1];
-          this.curRoundSeatIndex = index;
+          this.gameState = 1;
           if (!this.curState.active) {
             var kai_no = this.openBtn.getChildByName("kai_no");
             var kai_ing = this.openBtn.getChildByName("kai_ing");
@@ -25046,11 +25171,6 @@ window.__require = function e(t, n, r) {
               _this.curState.getChildByName("txt").getComponent(cc.Label).string = "\uffe5" + data.amount;
             }, this);
           }
-        }
-        if (data.isHit) {
-          var x = this.playerArr[index].x + (index % 2 == 0 ? 210 : -210);
-          var y = this.playerArr[index].y + 10;
-          this.boom.position = cc.v2(x, y);
         }
       },
       setBagLeftNumber: function setBagLeftNumber(count) {
@@ -25075,17 +25195,29 @@ window.__require = function e(t, n, r) {
             awardMoney.string = gameResult[i].reward.toFixed(2);
             grapMoney.string = gameResult[i].grabAmount.toFixed(2);
           }
-          if (null !== this.curRoundSeatIndex && this.curRoundSeatIndex == i) {
+          if (gameResult[i].userId == dataLogic.userId) {
             var balance = +dataLogic.userBalance + +gameResult[i].reward;
             this.setPlayerBalance(balance);
             dataLogic.setUserBalance(balance);
+            gameResult[i].isHit ? audioMgr.playEffect(this.boomAudio) : audioMgr.playEffect(this.grapMoneyAudio);
+          }
+          if (gameResult[i].isHit) {
+            this.boom.opacity = 255;
+            var x = this.playerArr[i].x + (i % 2 == 0 ? 210 : -210);
+            var y = this.playerArr[i].y + 10;
+            this.boom.position = cc.v2(x, y);
           }
         }
-        -1e4 != this.boom.x && (this.boom.opacity = 255);
-        if (dataLogic.userBalance < Number(dataLogic.selectRoomConfig[dataLogic.curRoomKey - 1].joinAmount)) {
-          this.sendGiftMoneyBtn.getComponent(cc.Sprite).spriteFrame = this.sendGiftMoneyBtnBg[1];
-          this.sendGiftMoneyBtn.getComponent(cc.Button).interactable = false;
+        if (this.curRoundSelfBagMoney && this.curRoundSelfBagNum && gameResult.length != this.curRoundSelfBagNum) {
+          var totalGrapMoney = 0;
+          var leftMoney = 0;
+          for (var _i3 = 0; _i3 < gameResult.length; _i3++) totalGrapMoney += gameResult[_i3].grabAmount;
+          leftMoney = this.curRoundSelfBagMoney - totalGrapMoney;
+          var balance = +dataLogic.userBalance + leftMoney;
+          this.setPlayerBalance(balance);
+          dataLogic.setUserBalance(balance);
         }
+        this.checkBalanceIsEnoughToLose();
         this.gameState = -1;
       },
       onNoAlive: function onNoAlive(data) {
@@ -25114,6 +25246,7 @@ window.__require = function e(t, n, r) {
       }
       var state = data.state;
       this.setPlayId(data.playId);
+      this.setBetBtnConfig(data.betAmount);
       if (0 == state) {
         this.hasRedPanel.active = false;
         this.waitRedPanel.active = true;
@@ -25137,16 +25270,16 @@ window.__require = function e(t, n, r) {
         }
       }
       if (data.playerInfo && data.playerInfo.length) {
-        for (var _i3 = 0; _i3 < data.playerInfo.length; _i3++) {
-          var avatarBox = this.playerArr[_i3].getChildByName("avatarBox");
-          var sp = this.playerArr[_i3].getChildByName("avatarBox").getChildByName("avatar").getComponent(cc.Sprite);
-          var playerNameNode = this.playerArr[_i3].getChildByName("playerName");
-          var stateNode = this.playerArr[_i3].getChildByName("grapState");
+        for (var _i4 = 0; _i4 < data.playerInfo.length; _i4++) {
+          var avatarBox = this.playerArr[_i4].getChildByName("avatarBox");
+          var sp = this.playerArr[_i4].getChildByName("avatarBox").getChildByName("avatar").getComponent(cc.Sprite);
+          var playerNameNode = this.playerArr[_i4].getChildByName("playerName");
+          var stateNode = this.playerArr[_i4].getChildByName("grapState");
           playerNameNode.opacity = 255;
           stateNode.opacity = 255;
           avatarBox.opacity = 255;
-          this.setPlayerHead(data.playerInfo[_i3].headUrl, sp);
-          playerNameNode.getComponent(cc.Label).string = data.playerInfo[_i3].nickName;
+          this.setPlayerHead(data.playerInfo[_i4].avatar, sp);
+          playerNameNode.getComponent(cc.Label).string = data.playerInfo[_i4].nickName || "\u4fdd\u5bc6";
         }
         giftMoneyDataLogic.grabPlayerInfo = data.playerInfo;
       }
@@ -25158,16 +25291,27 @@ window.__require = function e(t, n, r) {
         this.autoGrapAni.play();
         this.autoGrapAni.node.getChildByName("txt").getComponent(cc.Label).string = "\u81ea\u52a8\u62a2\u4e2d......";
       }
-      data.gameResult && data.gameResult.length;
+      data.userPushCount && (this.selfSendBagNum = data.userPushCount);
+      data.gameResult && data.gameResult.length && this.onSettle(data);
+      if (data.endTime) {
+        this.timer.getComponent(cc.Animation).stop();
+        this.timer.getChildByName("sl_00007").active = false;
+        this.countDown(data.endTime);
+      }
     }), _defineProperty(_cc$Class, "onGameStart", function onGameStart(data) {
       dataLogic.setDeskId(data.deskId);
       this.setPlayId(data.playId);
       giftMoneyDataLogic.grabPlayerInfo = data.playerInfo;
     }), _defineProperty(_cc$Class, "setPlayId", function setPlayId(playId) {
       this.playIdTxt.string = "\u724c\u5c40\u7f16\u53f7\uff1a" + playId;
-    }), _defineProperty(_cc$Class, "countDown", function countDown() {
+    }), _defineProperty(_cc$Class, "countDown", function countDown(endTime) {
       this.unschedule(this.callback);
-      var remainingTime = 7;
+      var remainingTime = void 0;
+      if (endTime) {
+        var setTimeResult = dataLogic.setTimerData(endTime);
+        if (!setTimeResult) return;
+        remainingTime = Math.floor((dataLogic.timerEndTimestamp - new Date().getTime()) / 1e3);
+      } else remainingTime = 7;
       this.countDownTxt.node.opacity = 255;
       this.countDownTxt.string = remainingTime;
       this.callback = function() {
@@ -28198,24 +28342,43 @@ window.__require = function e(t, n, r) {
     var _isDownloading = false;
     var _downloadingModule = "";
     var _subModuleVersionList = {};
+    var _mainModuleVersion = "";
     hotUpdateMgr.init = function() {
       this.delegate = null;
+      var url = jsb.reflection ? jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "getUrl", "()Ljava/lang/String;") : null;
+      this.url = "http://jack.kfcs123.com/" == url ? "http://192.168.10.154/" : url;
+      this.url || (this.url = "http://192.168.10.154/");
       var json = cc.sys.localStorage.getItem("subPackVersionList");
-      if (json) _subModuleVersionList = JSON.parse(json); else {
+      var mainPackVersion = cc.sys.localStorage.getItem("mainPackVersion");
+      cc.log("mainPackVersion", mainPackVersion);
+      mainPackVersion && (_mainModuleVersion = '"' == mainPackVersion[0] ? JSON.parse(mainPackVersion) : mainPackVersion);
+      cc.log("_mainModuleVersion", _mainModuleVersion);
+      json && (_subModuleVersionList = JSON.parse(json));
+      if (!json || !_mainModuleVersion) {
         window._game_res_version || (window._game_res_version = "2.0");
         var path = jsb.fileUtils.getWritablePath() + window._game_res_version;
-        var url = path + "/main_project.manifest";
-        var _setSubPackVersionList = function _setSubPackVersionList() {
-          var str = jsb.fileUtils.getStringFromFile(url);
-          _subModuleVersionList = JSON.parse(str).subPackVersionList;
-          cc.sys.localStorage.setItem("subPackVersionList", JSON.stringify(_subModuleVersionList));
+        var _url = path + "/main_project.manifest";
+        var _setVersion = function _setVersion() {
+          var str = jsb.fileUtils.getStringFromFile(_url);
+          var data = JSON.parse(str);
+          if (!json) {
+            _subModuleVersionList = data.subPackVersionList;
+            cc.sys.localStorage.setItem("subPackVersionList", JSON.stringify(_subModuleVersionList));
+          }
+          if (!_mainModuleVersion) {
+            _mainModuleVersion = data.version;
+            cc.sys.localStorage.setItem("mainPackVersion", _mainModuleVersion);
+          }
         };
-        cc.loader.md5Pipe && (url = cc.loader.md5Pipe.transformURL(url));
-        cc.log("main_project.manifest", url);
-        if (jsb.fileUtils.isFileExist(url)) _setSubPackVersionList(); else {
-          url = "main_project.manifest";
-          cc.loader.md5Pipe && (url = cc.loader.md5Pipe.transformURL(url));
-          jsb.fileUtils.isFileExist(url) ? _setSubPackVersionList() : cc.error("\u627e\u4e0d\u5230main_project.manifest", url);
+        cc.loader.md5Pipe && (_url = cc.loader.md5Pipe.transformURL(_url));
+        cc.log("main_project.manifest", _url);
+        if (jsb.fileUtils.isFileExist(_url)) _setVersion(); else {
+          _url = "main_project.manifest";
+          cc.loader.md5Pipe && (_url = cc.loader.md5Pipe.transformURL(_url));
+          if (jsb.fileUtils.isFileExist(_url)) _setVersion(); else {
+            _mainModuleVersion = "1.0.0";
+            cc.error(_mainModuleVersion, "\u627e\u4e0d\u5230main_project.manifest", _url);
+          }
         }
       }
     };
@@ -28230,6 +28393,9 @@ window.__require = function e(t, n, r) {
     };
     hotUpdateMgr.getDownloadingModule = function() {
       return _downloadingModule;
+    };
+    hotUpdateMgr.getMainModuleVersion = function() {
+      return _mainModuleVersion;
     };
     hotUpdateMgr.getSubModuleVersion = function(module) {
       return _subModuleVersionList[module] || "1.0.1";
@@ -28285,7 +28451,7 @@ window.__require = function e(t, n, r) {
       };
       this.hotup = new (require("hotUpdate"))();
       this.hotup.init(d);
-      this.hotup.check_update("http://jack.kfcs123.com/Images/hot/", this.updir);
+      this.hotup.check_update(this.url, this.updir);
     };
     hotUpdateMgr.check_before = function(module) {
       this.setDownloadingModule(module);
@@ -28333,7 +28499,10 @@ window.__require = function e(t, n, r) {
         cc.log("project file exist");
         var _str = jsb.fileUtils.getStringFromFile(file);
         var obj = JSON.parse(_str);
-        if ("main" == obj.module) cc.sys.localStorage.setItem("subPackVersionList", JSON.stringify(obj.subPackVersionList)); else {
+        if ("main" == obj.module) {
+          cc.sys.localStorage.setItem("subPackVersionList", JSON.stringify(obj.subPackVersionList));
+          cc.sys.localStorage.setItem("mainPackVersion", JSON.stringify(obj.version));
+        } else {
           this.updateUnionSetManifest(obj.assets);
           cc.sys.localStorage.setItem(obj.module + "ModuleVersion", obj.version);
         }
@@ -28487,6 +28656,14 @@ window.__require = function e(t, n, r) {
         }
         jsb.fileUtils.writeStringToFile(JSON.stringify(data), url);
       },
+      replaceManifestUrl: function replaceManifestUrl(fileDir, newUrl, module) {
+        var data = JSON.parse(jsb.fileUtils.getStringFromFile(fileDir));
+        data.packageUrl = newUrl + "remote-assets/";
+        data.remoteManifestUrl = newUrl + "remote-assets/" + module + "_project.manifest";
+        data.remoteVersionUrl = newUrl + "remote-assets/" + module + "_version.manifest";
+        jsb.fileUtils.writeStringToFile(JSON.stringify(data), fileDir);
+        cc.log("\u4fee\u6539\u540e\u7684Manifest", data);
+      },
       check_update: function check_update(upurl, dir) {
         var _this2 = this;
         var path = jsb.fileUtils.getWritablePath() + dir;
@@ -28529,17 +28706,23 @@ window.__require = function e(t, n, r) {
             });
             return new jsb.Manifest(str, path);
           };
-          if ("main" == this._module) if (jsb.fileUtils.isFileExist(url)) this._am.loadLocalManifest(url); else {
+          if ("main" == this._module) if (jsb.fileUtils.isFileExist(url)) {
+            this.replaceManifestUrl(url, hotUpdateMgr.url, this._module);
+            this._am.loadLocalManifest(url);
+          } else {
             url = this.file_project;
             cc.loader.md5Pipe && (url = cc.loader.md5Pipe.transformURL(url));
-            jsb.fileUtils.isFileExist(url) ? this._am.loadLocalManifest(url) : this._am.loadLocalManifest(createManifest(), path);
+            if (jsb.fileUtils.isFileExist(url)) {
+              var assets = JSON.parse(jsb.fileUtils.getStringFromFile(url)).assets;
+              this._am.loadLocalManifest(createManifest(assets), path);
+            } else this._am.loadLocalManifest(createManifest(), path);
           } else {
             var getExistAssets = function getExistAssets() {
               var assets = {}, assetsUrl = path + "/" + _this2.file_module + "_assets.manifest";
               cc.log("assetsUrl", assetsUrl);
               if (!jsb.fileUtils.isFileExist(assetsUrl)) {
                 assetsUrl = _this2.file_module + "_assets.manifest";
-                cc.log("assetsUrl=", assetsUrl);
+                cc.log("assetsUrl=", assetsUrl, "\u662f\u5426\u5b58\u5728:", jsb.fileUtils.isFileExist(assetsUrl));
                 if (!jsb.fileUtils.isFileExist(assetsUrl)) return assets;
               }
               var moduleAllAssets = JSON.parse(jsb.fileUtils.getStringFromFile(assetsUrl));
@@ -28549,10 +28732,11 @@ window.__require = function e(t, n, r) {
             };
             if (jsb.fileUtils.isFileExist(unionSetManifestUrl)) if (jsb.fileUtils.isFileExist(url)) {
               this.updateManifestFromUnionSet(url, unionSetManifestUrl);
+              this.replaceManifestUrl(url, hotUpdateMgr.url, this._module);
               this._am.loadLocalManifest(url);
             } else {
-              var assets = getExistAssets();
-              this._am.loadLocalManifest(createManifest(assets), path);
+              var _assets = getExistAssets();
+              this._am.loadLocalManifest(createManifest(_assets), path);
             } else this._am.loadLocalManifest(createManifest(), path);
           }
         }
@@ -28590,13 +28774,14 @@ window.__require = function e(t, n, r) {
     var _xhrList = [];
     var _key = 0;
     var _cookie = !!cc.sys.isNative && cc.sys.localStorage.getItem("_pokerGameCookie");
-    var _domainName = "http://jack.kfcs123.com";
+    var _domainName = jsb.reflection ? jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "getUrl", "()Ljava/lang/String;") : "http://jack.kfcs123.com/";
+    _domainName || (_domainName = "http://jack.kfcs123.com/");
     window.http = {
       init: function init() {
-        _url = _domainName + "/gameApi/";
+        _url = _domainName + "gameApi/";
       },
       setDomainName: function setDomainName(domainName) {
-        _url = domainName + "/gameApi/";
+        _url = domainName + "gameApi/";
         return _domainName = domainName;
       },
       getDomainName: function getDomainName() {
@@ -28974,7 +29159,6 @@ window.__require = function e(t, n, r) {
     kingConstant.TotalRollingTime = 4;
     kingConstant.Columns = 5;
     kingConstant.Row = 3;
-    kingConstant.GameScene = {};
     kingConstant.ToastName = {
       InfoToast: "infoToast"
     };
@@ -32603,25 +32787,44 @@ window.__require = function e(t, n, r) {
         }
       },
       registerEvent: function registerEvent() {
-        this.registerHandler = [ [ "reqSelectRoomConfigCb", this.reqSelectRoomConfigCb.bind(this) ], [ "getInitDataCb", this.getInitDataCb.bind(this) ], [ "checkRecoverCb", this.checkRecoverCb.bind(this) ], [ "visitorRegisterCb", this.visitorRegisterCb.bind(this) ], [ "visitorLoginCb", this.visitorLoginCb.bind(this) ], [ "reqCheckCodeCb", this.reqCheckCodeCb.bind(this) ] ];
+        this.registerHandler = [ [ "reqSelectRoomConfigCb", this.reqSelectRoomConfigCb.bind(this) ], [ "getInitDataCb", this.getInitDataCb.bind(this) ], [ "checkRecoverCb", this.checkRecoverCb.bind(this) ], [ "visitorRegisterCb", this.visitorRegisterCb.bind(this) ], [ "visitorLoginCb", this.visitorLoginCb.bind(this) ], [ "reqCheckCodeCb", this.reqCheckCodeCb.bind(this) ], [ "reqMainModuleVersionCb", this.reqMainModuleVersionCb.bind(this) ] ];
         for (var i = 0; i < this.registerHandler.length; i++) {
           var handler = this.registerHandler[i];
           clientEvent.registerEvent(handler[0], handler[1]);
         }
       },
       onLoad: function onLoad() {
-        audioMgr.setFalseAudioClip(this.falseBtnAudio);
         window.retryUpdate = this.retryUpdate.bind(this);
         _updateLoadProgress = this.updateLoadProgress.bind(this);
+        dataLogic.addPlayedGameIdList(constant.GameId.Login);
+        dataLogic.setCurGameId(constant.GameId.Login);
+        this.setStorageData(dataLogic.CacheArr);
+        this.sceneName = constant.SceneName.Login;
+        this.initSceneBase();
+        this.registerEvent();
         for (var i in constant.GameId) cc.sys.localStorage.setItem(constant.GameId[i] + "ModuleVersion", "");
         cc.sys.localStorage.setItem("subPackVersionList", "");
-        if (cc.sys.isNative && !_resLoadDone) {
+        if (_resLoadDone) this.init(); else {
           cc.log("\u68c0\u67e5\u66f4\u65b0");
-          hotUpdateMgr.check_update(this, "main");
-        } else this.init();
+          http.post({
+            Action: "GetLatestVersion",
+            reqExtendArg: {
+              timeoutRefresh: false
+            }
+          }, "reqMainModuleVersionCb");
+        }
       },
-      retryUpdate: function retryUpdate() {
-        hotUpdateMgr.check_update(this, "main");
+      reqMainModuleVersionCb: function reqMainModuleVersionCb(msg) {
+        cc.log("!!!!!!!!!!!!", msg.Data, hotUpdateMgr.getMainModuleVersion(), kf.compareVersion(msg.Data, hotUpdateMgr.getMainModuleVersion()));
+        constant.HttpCode.Succeed == msg.Code ? kf.compareVersion(msg.Data, hotUpdateMgr.getMainModuleVersion()) > 0 ? hotUpdateMgr.check_update(this, "main") : this.init() : jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "showUpdateFailedDialog", "(Ljava/lang/String;)V", "port");
+      },
+      retryUpdate: function retryUpdate(problem) {
+        "port" == problem ? http.post({
+          Action: "GetLatestVersion",
+          reqExtendArg: {
+            timeoutRefresh: false
+          }
+        }, "reqMainModuleVersionCb") : hotUpdateMgr.check_update(this, "main");
       },
       checkUpgrade: function checkUpgrade(module, cb) {
         cc.log("\u68c0\u67e5\u6062\u590d\u7684\u5b50\u6e38\u620f\u662f\u5426\u9700\u8981\u66f4\u65b0", module);
@@ -32643,12 +32846,6 @@ window.__require = function e(t, n, r) {
       },
       init: function init() {
         var _this = this;
-        dataLogic.addPlayedGameIdList(constant.GameId.Login);
-        dataLogic.setCurGameId(constant.GameId.Login);
-        this.setStorageData(dataLogic.CacheArr);
-        this.sceneName = constant.SceneName.Login;
-        this.initSceneBase();
-        this.registerEvent();
         dataLogic.setCheckRecoverState(false);
         this.downloadBtn.active = !_App;
         if (_resLoadDone) {
@@ -32784,6 +32981,7 @@ window.__require = function e(t, n, r) {
         }
       },
       getInitDataCb: function getInitDataCb(data) {
+        cc.log("getInitDataCb===", data);
         _getInitDataDone = true;
         _checkRecoverDone && this.hideLoadView();
         if (1 == data.Code) {
@@ -32883,6 +33081,7 @@ window.__require = function e(t, n, r) {
       testEvent: function testEvent() {},
       btnEvent: function btnEvent(eventTouch, eventName) {
         cc.log("btnEvent", eventName);
+        audioMgr.playEffect(this.audioBtn);
         switch (eventName) {
          case "stopAudio":
           cc.audioEngine.stopMusic();
@@ -32948,7 +33147,6 @@ window.__require = function e(t, n, r) {
           break;
 
          default:
-          audioMgr.playEffect(this.audioBtn);
           cc.log("\u672a\u77e5\u7684\u6309\u94ae\u4e8b\u4ef6\u540d:", eventName);
         }
       },
@@ -33077,7 +33275,7 @@ window.__require = function e(t, n, r) {
           break;
 
          case jsb.EventAssetsManager.UPDATE_FAILED:
-          if ("main" == module) jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "showUpdateFailedDialog", "()V"); else {
+          if ("main" == module) jsb.reflection.callStaticMethod("org/cocos2dx/javascript/AppActivity", "showUpdateFailedDialog", "(Ljava/lang/String;)V", "file"); else {
             kf.killObj(this.loadToast);
             this.loadToast = null;
             this.showLayerToast({
@@ -37752,6 +37950,7 @@ window.__require = function e(t, n, r) {
           return;
         }
         _Register.VerifyCode = this.ebCheckCode.string;
+        cc.log("window._spCode", window._spCode);
         window._spCode ? _Register.InvitationCode = window._spCode || "" : cc.sys.isNative || (_Register.InvitationCode = kf.getUrlArg("spreadCode") || "");
         this.reqDateAndShowLoadView(_Register, "registerCb", null, true);
       },
@@ -38460,6 +38659,7 @@ window.__require = function e(t, n, r) {
       this.bgTexture = null;
       this.tableTexture = null;
       this.gameNameTexture = null;
+      this.resList = {};
     };
     resMgr.loadRes = function(resList, loadedCb, timeLimit, loadTimeoutCb, loadErrorCb, loadProcessCb) {
       var _this = this;
@@ -38504,20 +38704,20 @@ window.__require = function e(t, n, r) {
           loadedCb && loadedCb();
         }
       };
-      var completeCb = function completeCb(path, err, assets) {
+      var completeCb = function completeCb(path, resType, err, assets) {
         if (err) {
           cc.error("\u52a0\u8f7d\u8d44\u6e90\u9519\u8bef", err);
           loadErrorCb && loadErrorCb();
           return;
         }
         if (isTimeOut) return;
-        cc.log("\u52a0\u8f7d\u8d44\u6e90", path, assets.length, new Date().getTime() - time);
+        "dir" == resType || (this.resList[path] = assets);
         loadDoneFun(assets, path);
         time = new Date().getTime();
       };
       for (var i = 0; i < resList.length; i++) {
         data = resList[i];
-        "dir" == data.resType ? cc.loader.loadResDir(data.path, completeCb.bind(this, resList[i].path)) : cc.loader.loadRes(data.path, completeCb.bind(this, resList[i].path));
+        "dir" == data.resType ? cc.loader.loadResDir(data.path, completeCb.bind(this, resList[i].path, data.resType)) : cc.loader.loadRes(data.path, completeCb.bind(this, resList[i].path, data.resType));
       }
     };
     resMgr.loadSingleRes = function(path, loadedCb, resType, timeLimit, loadTimeoutCb, loadErrorCb) {
@@ -40215,13 +40415,6 @@ window.__require = function e(t, n, r) {
     } : function(obj) {
       return obj && "function" === typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
-    function _toConsumableArray(arr) {
-      if (Array.isArray(arr)) {
-        for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-        return arr2;
-      }
-      return Array.from(arr);
-    }
     var clientEvent = kf.require("basic.clientEvent");
     var nextScene = null;
     var loadTimeout = true;
@@ -40477,14 +40670,7 @@ window.__require = function e(t, n, r) {
         this.loadToast && this.loadToast.parent && (this.loadToast.getChildByName("txt").getComponent(cc.Label).string = "\u52aa\u529b\u52a0\u8f7d\u8d44\u6e90\u4e2d...1%");
         null == gameId && (gameId = dataLogic.getGameIdBySceneName(sceneName));
         sceneName != constant.SceneName.BaseGame && sceneName != constant.SceneName.BonusGame || (gameId = constant.GameId.King);
-        var gameRes = constant.GameRes[gameId];
-        var resList = [];
-        for (var i = 0; i < gameRes.length; i++) gameRes[i].useScene == sceneName && (null == gameRes[i].noneUndoneGameDelayLoad || dataLogic.needRecover) && resList.push(gameRes[i]);
-        dataLogic.isFriendRoom && resList.push({
-          path: "friendRoom",
-          resType: "dir"
-        });
-        dataLogic.isNewRegister && (dataLogic.userPhoneNum && dataLogic.userBalance > 0 ? resList.push.apply(resList, _toConsumableArray(constant.RegisterCashGiftRes)) : dataLogic.userPhoneNum || resList.push.apply(resList, _toConsumableArray(constant.HintRegisterRes)));
+        var resList = gameMgr.getSceneResList(sceneName, gameId);
         var isPreloadScene = false;
         var resDoneCb = null;
         var _allLoadDoneFunc = null;
@@ -42764,7 +42950,8 @@ window.__require = function e(t, n, r) {
       },
       btnIntoGameEvent: function btnIntoGameEvent(key) {
         var sceneName = dataLogic.getGameSceneNameByGameId(dataLogic.curGameId);
-        this.loadSceneRelevantRes(sceneName, null, false, dataLogic.curGameId);
+        var resList = gameMgr.getSceneResList(sceneName, dataLogic.curGameId);
+        resMgr.loadRes(resList);
         cc.sys.localStorage.setItem(this.hallName, this.roomListContent.x);
         var arg = {
           type: constant.ToastType.Loading
@@ -42789,22 +42976,18 @@ window.__require = function e(t, n, r) {
           sceneName: gameSceneName,
           gameId: dataLogic.curGameId
         };
-        cc.log(gameSceneName, nextSceneInfo, Json, "6565666756666666");
         if (null == Json) {
-          cc.log("777777777777777777");
           dataLogic.reqSelectRoomConfig(dataLogic.curGameId, nextSceneInfo);
           return;
         }
         var data = JSON.parse(Json);
         if (null == data || data.BackData != msg.BackData) {
-          cc.log(data, "8888888888888888888");
           dataLogic.reqSelectRoomConfig(dataLogic.curGameId, nextSceneInfo);
           return;
         }
         dataLogic.setCurRoomKey(roomKey);
         this.txtBalance.string = msg.Data.balance.toFixed(2);
         dataLogic.setUserBalance(Number(this.txtBalance.string));
-        cc.log(roomKey, "==================99999999999999");
         this.tryIntoGame(roomKey);
       },
       reqSelectRoomConfigCb: function reqSelectRoomConfigCb(msg) {
@@ -42817,7 +43000,6 @@ window.__require = function e(t, n, r) {
         }
         this.initRoomCard();
         cc.sys.localStorage.setItem("gameSelectRoomConfig" + this.sceneName, JSON.stringify(msg));
-        cc.log(dataLogic.curRoomKey, "5555555555555555555555555555");
         this.tryIntoGame(dataLogic.curRoomKey);
       },
       goBackHall: function goBackHall() {
@@ -42842,7 +43024,7 @@ window.__require = function e(t, n, r) {
         if ("dzpkHall" == dataLogic.getCurSceneName()) {
           kf.killObj(this.loadToast);
           this.loadToast = null;
-          var setCarryChipNumPanelPfb = kf.getObj(constant.PoolId.SetCarryChipNumPanel, this.setCarryChipNumPanel, this.setCarryChipNumPanelPfb);
+          kf.getObj(constant.PoolId.SetCarryChipNumPanel, this.setCarryChipNumPanel, this.setCarryChipNumPanelPfb);
         } else {
           var gameSceneName = dataLogic.getGameSceneNameByGameId(dataLogic.curGameId);
           this.loadScene(gameSceneName, dataLogic.curGameId);
@@ -42908,7 +43090,6 @@ window.__require = function e(t, n, r) {
       },
       btnEvent: function btnEvent(event, key) {
         audioMgr.playEffect(this.clickAudio);
-        cc.log("this.roomKey", this.roomKey);
         clientEvent.dispatchEvent("btnIntoGameEvent", this.roomKey);
       }
     });
@@ -45589,4 +45770,4 @@ window.__require = function e(t, n, r) {
     });
     cc._RF.pop();
   }, {} ]
-}, {}, [ "clientEvent", "eventListener", "TTQRcode", "engineAdapter", "miniCommon", "hotUpdate", "hotUpdateMgr", "http", "network", "socket", "socketIO", "activityCenter", "activityRule", "addBankCard", "agentReport_item", "alterPassword", "bindAndCheckPhoneNum", "checkBankCard", "checkCode", "createRoom", "createRoomItem", "deposit", "editPersonalInfo", "fastRecharge", "firstRechargeGift", "forgetPassword", "guideWatchPlayerCard", "hintBindPhone", "hotUpdateDialog", "informAward", "inputRoomNumber", "joinRoomTip", "levelRule", "loginOut", "loginView", "mailCentre", "mailDetails", "mailInfoItem", "payCenter", "personalCenter", "phoneLogin", "phoneRegister", "playerCard", "rankingList", "rankingListItem", "rechargeRecord", "register", "registerCashGift", "resetPassword", "setPassword", "signIn", "systemNotice", "tradingRecordItem", "transferConfirm", "yinShangItem", "dialogBase", "dialogCommonLayer", "dialogExtend", "gameEntrance", "gameRecord", "kingHelp", "kingRecord", "kingRecordItem", "layerMsg", "newHelp", "notice", "record", "recordItem", "setting", "toast", "BRCattleConstant", "LongHuConstant", "audioMgr", "baiJiaLeConstant", "bcbmConstant", "cattleConstant", "constant", "diceConstant", "dzpkConstant", "ebgConstant", "giftMoneyConstant", "goldenFraudConstant", "kingConstant", "landlordsConstant", "paiGowConstant", "resMgr", "sanGongConstant", "BRCattleDataLogic", "LongHuDataLogic", "baiJiaLeDataLogic", "bcbmDataLogic", "cattleDataLogic", "dataLogic", "diceLogic", "dzDataLogic", "ebgDataLogic", "giftMoneyDataLogic", "goldenFraudDataLogic", "kingDataLogic", "landlordsDataLogic", "paiGowDataLogic", "sanGongDataLogic", "BRCattle", "BRCattleHall", "bcbm", "bcbmHall", "LongHu", "LongHuHall", "baiJiaLe", "baiJiaLeHall", "bank", "buttonScaler", "cattleHall", "cattleScene", "closePop", "callDiceRecord", "callDiceRecordItem", "diceHall", "diceMain", "dzpkHall", "dzpkMain", "pfbCommon", "erBaGang", "erBaGangHall", "fastZJH", "fastZJHHall", "gameSceneBase", "giftMoney", "giftMoneyHall", "chip", "goldenFraud", "goldenFraudHall", "hall", "baseGame", "bonusGame", "landlords", "landlordsHall", "login", "offerPK", "paiGow", "paiGowHall", "sanGong", "sanGongHall", "sceneBase", "seeThreeCattle", "seeThreeCattleHall", "selectRoom", "selectRoomSceneBase", "slider", "spreadInfo", "tongBiCattle", "tongBiCattleHall" ]);
+}, {}, [ "clientEvent", "eventListener", "TTQRcode", "engineAdapter", "miniCommon", "hotUpdate", "hotUpdateMgr", "http", "network", "socket", "socketIO", "activityCenter", "activityRule", "addBankCard", "agentReport_item", "alterPassword", "bindAndCheckPhoneNum", "checkBankCard", "checkCode", "createRoom", "createRoomItem", "deposit", "editPersonalInfo", "fastRecharge", "firstRechargeGift", "forgetPassword", "guideWatchPlayerCard", "hintBindPhone", "hotUpdateDialog", "informAward", "inputRoomNumber", "joinRoomTip", "levelRule", "loginOut", "loginView", "mailCentre", "mailDetails", "mailInfoItem", "payCenter", "personalCenter", "phoneLogin", "phoneRegister", "playerCard", "rankingList", "rankingListItem", "rechargeRecord", "register", "registerCashGift", "resetPassword", "setPassword", "signIn", "systemNotice", "tradingRecordItem", "transferConfirm", "yinShangItem", "dialogBase", "dialogCommonLayer", "dialogExtend", "gameEntrance", "gameRecord", "kingHelp", "kingRecord", "kingRecordItem", "layerMsg", "newHelp", "notice", "record", "recordItem", "setting", "toast", "BRCattleConstant", "LongHuConstant", "audioMgr", "baiJiaLeConstant", "bcbmConstant", "cattleConstant", "constant", "diceConstant", "dzpkConstant", "ebgConstant", "gameMgr", "giftMoneyConstant", "goldenFraudConstant", "kingConstant", "landlordsConstant", "paiGowConstant", "resMgr", "sanGongConstant", "BRCattleDataLogic", "LongHuDataLogic", "baiJiaLeDataLogic", "bcbmDataLogic", "cattleDataLogic", "dataLogic", "diceLogic", "dzDataLogic", "ebgDataLogic", "giftMoneyDataLogic", "goldenFraudDataLogic", "kingDataLogic", "landlordsDataLogic", "paiGowDataLogic", "sanGongDataLogic", "BRCattle", "BRCattleHall", "bcbm", "bcbmHall", "LongHu", "LongHuHall", "baiJiaLe", "baiJiaLeHall", "bank", "buttonScaler", "cattleHall", "cattleScene", "closePop", "callDiceRecord", "callDiceRecordItem", "diceHall", "diceMain", "dzpkHall", "dzpkMain", "pfbCommon", "erBaGang", "erBaGangHall", "fastZJH", "fastZJHHall", "gameSceneBase", "giftMoney", "giftMoneyHall", "chip", "goldenFraud", "goldenFraudHall", "hall", "baseGame", "bonusGame", "landlords", "landlordsHall", "login", "offerPK", "paiGow", "paiGowHall", "sanGong", "sanGongHall", "sceneBase", "seeThreeCattle", "seeThreeCattleHall", "selectRoom", "selectRoomSceneBase", "slider", "spreadInfo", "tongBiCattle", "tongBiCattleHall" ]);

@@ -10,11 +10,12 @@
         android:layout_height="264dp"
         android:background="@mipmap/dilogbg">
         <TextView
+            android:textColor="#66493D"
+            android:fontFamily="@font/reg"
             android:id="@+id/text"
             android:layout_above="@+id/btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="123456"
             android:layout_marginBottom="50dp"
             android:layout_centerInParent="true"
             android:textSize="20dp"

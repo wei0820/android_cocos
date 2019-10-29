@@ -5,7 +5,7 @@
     "scene": {
       "__id__": 1
     },
-    "asyncLoadAssets": {}
+    "asyncLoadAssets": null
   },
   {
     "__type__": "cc.Scene",
@@ -21,8 +21,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.6888888888888889,
-      "y": 0.6888888888888889,
+      "x": 0.44098883648514553,
+      "y": 0.44098883648514553,
       "z": 1
     },
     "autoReleaseAssets": false

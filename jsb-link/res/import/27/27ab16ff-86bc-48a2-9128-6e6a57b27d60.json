@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "level_button",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
       938,
-      563,
+      564,
       160,
       47
     ],

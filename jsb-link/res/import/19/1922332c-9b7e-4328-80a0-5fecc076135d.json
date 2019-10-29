@@ -4,18 +4,18 @@
     "name": "hongbao",
     "texture": "c58suMEx9P0JDvbAS4ERm1",
     "rect": [
+      2,
       3,
-      3,
-      488,
-      380
+      427,
+      445
     ],
     "offset": [
-      0.5,
-      0
+      -0.5,
+      -0.5
     ],
     "originalSize": [
-      493,
-      386
+      432,
+      450
     ],
     "capInsets": [
       0,

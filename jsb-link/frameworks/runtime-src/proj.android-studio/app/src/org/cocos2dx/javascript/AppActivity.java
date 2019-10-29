@@ -30,7 +30,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -59,8 +58,10 @@ import com.fm.openinstall.OpenInstall;
 import com.fm.openinstall.listener.AppInstallAdapter;
 import com.fm.openinstall.listener.AppWakeUpAdapter;
 import com.fm.openinstall.model.AppData;
+import com.google.gson.Gson;
 import com.mcxiaoke.bus.Bus;
 import com.mcxiaoke.bus.annotation.BusReceiver;
+
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
@@ -85,7 +86,7 @@ public class AppActivity extends Cocos2dxActivity {
     private static View loadPage;
     private static TextView textView;
     private static com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar roundCornerProgressBar;
-    public  static  final String Url = "http://jack.kfcs123.com/";
+    public static final String Url = "http://jack.kfcs123.com/";
     private static String[] array = new String[]{
             "赢了不吱声，说明城府深；输了不投降，竞争意识强",
             "看准下重注，超越拆迁户",
@@ -95,6 +96,7 @@ public class AppActivity extends Cocos2dxActivity {
             "打牌打得好，说明有头脑",
             "打牌不怕炸，说明胆子大",
             "打牌打得精，说明思路清"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,8 +135,8 @@ public class AppActivity extends Cocos2dxActivity {
         mClipboardManager = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
         LayoutInflater inflater = getLayoutInflater();
         mViewStartPage = inflater.inflate(R.layout.activity_start_page, null);
-        mLayout =  mViewStartPage.findViewById(R.id.box_start_page);
-        mImgStartPage  = mViewStartPage.findViewById(R.id.img_start_page);
+        mLayout = mViewStartPage.findViewById(R.id.box_start_page);
+        mImgStartPage = mViewStartPage.findViewById(R.id.img_start_page);
         mBtnCountTime = mViewStartPage.findViewById(R.id.box_count_time);
         mTvCount = mViewStartPage.findViewById(R.id.tv_count);
         textView = mViewStartPage.findViewById(R.id.text);
@@ -159,25 +161,28 @@ public class AppActivity extends Cocos2dxActivity {
             }
         });
         checkPermission();
-        OpenInstall.getWakeUp(getIntent(),wakeUpAdapter);
+        OpenInstall.getWakeUp(getIntent(), wakeUpAdapter);
         OpenInstall.reportRegister();
         textView.setText("正在检查版本");
         String s = "正在检查版本";
-        Log.d(TAG, "onCreate: "+"window.retryUpdate("+s+")");
+
+        setDilog();
     }
+
     AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {
         @Override
         public void onWakeUp(AppData appData) {
             //获取渠道数据
-            String channelCode = appData.getChannel();
-            Log.d(TAG, "wakeUpAdapter : wakeUpAdapter = " + channelCode);
             //获取绑定数据
             String bindData = appData.getData();
-            Log.d(TAG, "wakeUpAdapter : wakeUpAdapter = " + appData.toString());
+            SpreadCodeData spreadCodeData = new Gson().fromJson(bindData, SpreadCodeData.class);
+            if (spreadCodeData != null && spreadCodeData.spreadCode != null) {
+                MySharedPrefernces.saveIsToken(getContext(), spreadCodeData.spreadCode);
 
-
+            }
         }
     };
+
     @Override
     public Cocos2dxGLSurfaceView onCreateView() {
         mGLSurfaceView = new Cocos2dxGLSurfaceView(this);
@@ -384,9 +389,7 @@ public class AppActivity extends Cocos2dxActivity {
         mBtnCountTime.setVisibility(View.GONE);
     }
 
-
-
-    private void getOpneData(){
+    private void getOpneData() {
         // 一定要等到数据界面已经刷新采取做处理。
         // 获取OpenInstall安装数据
         OpenInstall.getInstall(new AppInstallAdapter() {
@@ -394,18 +397,13 @@ public class AppActivity extends Cocos2dxActivity {
             public void onInstall(AppData appData) {
                 //获取渠道数据
                 String channelCode = appData.getChannel();
-                Log.d(TAG, "getOpneData = " + channelCode);
                 //获取自定义数据
                 String bindData = appData.getData();
-                Log.d(TAG, "getOpneData = " + appData.toString());
-                app.runOnGLThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("window._spCode ="+ bindData);
-                        Log.d(TAG, "getOpneData =!! " + bindData.toString());
+                SpreadCodeData spreadCodeData = new Gson().fromJson(bindData, SpreadCodeData.class);
+                if (spreadCodeData != null && spreadCodeData.spreadCode != null) {
+                    MySharedPrefernces.saveIsToken(getContext(), spreadCodeData.spreadCode);
+                }
 
-                    }
-                });
             }
         });
     }
@@ -516,6 +514,8 @@ public class AppActivity extends Cocos2dxActivity {
                 // 設定模組與 Dialog 的風格
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress() >= 1.0) {
+                    mArrayHandler.removeCallbacks(mRunnableArraryString);
+                    textView.setText("正在加载资源");
                     mViewStartPage.setVisibility(View.GONE);
                 }
             }
@@ -524,6 +524,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     // 热跟新进度控制
     public static void getUpdateProgressRate(float f) {
+
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -537,8 +538,12 @@ public class AppActivity extends Cocos2dxActivity {
         });
     }
 
-    public static String getUrl(){
+    public static String getUrl() {
         return Url;
+    }
+
+    public static String getSpreadCode() {
+        return MySharedPrefernces.getIsToken(getContext());
     }
 
 
@@ -547,32 +552,37 @@ public class AppActivity extends Cocos2dxActivity {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Dialog dialog = new Dialog(getContext(), R.style.selectorDialog);
-                dialog.setContentView(R.layout.layout_alertdialog);
-                ImageButton button = dialog.findViewById(R.id.btn);
-                TextView textView = dialog.findViewById(R.id.text);
-                textView.setText("更新失败！请检查网络后重试。");
-                button.setOnClickListener(new View.OnClickListener() {
+
+
+        }
+        });
+    }
+    private static void setDilog(){
+        Dialog dialog = new Dialog(getContext(), R.style.selectorDialog);
+        dialog.setContentView(R.layout.layout_alertdialog);
+        ImageButton button = dialog.findViewById(R.id.btn);
+        TextView textView = dialog.findViewById(R.id.text);
+        textView.setText("更新失败！请检查网络后重试。");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                app.runOnGLThread(new Runnable() {
                     @Override
-                    public void onClick(View view) {
-                        app.runOnGLThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate("+s+")");
-                                dialog.dismiss();
-                            }
-                        });
+                    public void run() {
+                        Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate(" + 11111 + ")");
+                        dialog.dismiss();
                     }
                 });
-                // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
-                WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-                lp.dimAmount = 0.2f;
-                dialog.getWindow().setAttributes(lp);
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
-
             }
         });
+        // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.dimAmount = 0.2f;
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height =  WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(lp);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 }
 

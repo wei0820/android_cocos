@@ -154,7 +154,7 @@ dependencies {
     implementation project(':libcocos2dx')
     implementation files('libs/VerifySDK.jar')
     implementation 'com.android.support:appcompat-v7:23.4.0'
-    implementation files('libs/bugly_crash_release.jar')
+//    implementation files('libs/bugly_crash_release.jar')
     implementation files('libs/glide-full-4.7.0.jar')
     implementation 'com.android.support:design:27.1.0'
     implementation 'com.mcxiaoke.xbus:bus:1.0.2'
@@ -162,4 +162,9 @@ dependencies {
     implementation 'com.liulishuo.magicprogresswidget:library:1.1.1'
     compile 'com.akexorcist:RoundCornerProgressBar:2.0.3'
     implementation files('libs/OpenInstall_v2.3.0.jar')
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+    compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新版本号，也可以指定明确的版本号
+
 }

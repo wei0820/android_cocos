@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Build;
 
 import com.fm.openinstall.OpenInstall;
+import com.tencent.bugly.Bugly;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import java.lang.reflect.Constructor;
@@ -17,7 +18,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        CrashReport.initCrashReport(getApplicationContext(), "85ecfaea36", false);
+//        CrashReport.initCrashReport(getApplicationContext(), "85ecfaea36", false);
+        Bugly.init(getApplicationContext(), "85ecfaea36", true);
+
         closeAndroidPDialog();
         if (isMainProcess()) {
             OpenInstall.init(this);

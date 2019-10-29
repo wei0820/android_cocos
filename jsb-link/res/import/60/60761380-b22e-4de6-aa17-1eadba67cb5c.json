@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "lightBg",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
-      132,
-      683,
+      803,
+      420,
       36,
       30
     ],

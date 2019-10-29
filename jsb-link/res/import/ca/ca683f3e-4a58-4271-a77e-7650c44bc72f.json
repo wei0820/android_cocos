@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "copyAccount",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
       668,
-      279,
+      242,
       24,
       25
     ],

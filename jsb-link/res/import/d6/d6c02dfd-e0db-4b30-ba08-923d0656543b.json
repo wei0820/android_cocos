@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "leastBetBg",
-    "texture": "12939da53",
+    "texture": "12efe362d",
     "rect": [
-      858,
-      274,
+      959,
+      253,
       123,
       38
     ],

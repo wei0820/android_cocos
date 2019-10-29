@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "level_bottom_bg",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
-      419,
-      310,
+      203,
+      641,
       48,
       54
     ],
@@ -17,7 +17,6 @@
       48,
       54
     ],
-    "rotated": 1,
     "capInsets": [
       8,
       10,

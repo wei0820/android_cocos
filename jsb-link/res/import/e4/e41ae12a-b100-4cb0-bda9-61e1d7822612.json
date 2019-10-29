@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "level_table_header",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
-      974,
-      503,
+      227,
+      552,
       45,
       52
     ],

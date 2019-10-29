@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "lock",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
-      353,
-      332,
+      976,
+      506,
       42,
       50
     ],
@@ -17,7 +17,6 @@
       42,
       50
     ],
-    "rotated": 1,
     "capInsets": [
       0,
       0,

@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "female",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
       668,
-      346,
+      304,
       19,
       26
     ],
@@ -17,6 +17,7 @@
       19,
       26
     ],
+    "rotated": 1,
     "capInsets": [
       0,
       0,

@@ -18,7 +18,7 @@
     <uses-permission android:name="com.qiku.widget3d.permission.WIDGET_ADVERT" />
     <uses-permission android:name="com.android.launcher.permission.RECEIVE_LAUNCH_BROADCASTS" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-    
+
     <application
         android:name="org.cocos2dx.javascript.App"
         android:allowBackup="true"
@@ -35,6 +35,8 @@
         <meta-data
             android:name="com.openinstall.APP_KEY"
             android:value="ihjwn8" />
+
+
         <activity
             android:name="org.cocos2dx.javascript.AppActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -72,6 +74,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
 
 </manifest>

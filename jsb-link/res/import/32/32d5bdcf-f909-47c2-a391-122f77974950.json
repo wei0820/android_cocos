@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "score_icon",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
       668,
-      311,
+      274,
       22,
       27
     ],
@@ -17,6 +17,7 @@
       22,
       27
     ],
+    "rotated": 1,
     "capInsets": [
       0,
       0,

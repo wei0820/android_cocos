@@ -2,10 +2,10 @@
   "__type__": "cc.SpriteFrame",
   "content": {
     "name": "3",
-    "texture": "164c1e618",
+    "texture": "1e134cb25",
     "rect": [
-      144,
-      432,
+      4,
+      310,
       132,
       111
     ],

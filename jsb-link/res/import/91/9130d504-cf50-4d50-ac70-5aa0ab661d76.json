@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "playerInfoBgBox",
+    "texture": "12efe362d",
+    "rect": [
+      711,
+      2,
+      140,
+      188
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      140,
+      188
+    ],
+    "rotated": 1,
+    "capInsets": [
+      19,
+      20,
+      20,
+      20
+    ]
+  }
+}
