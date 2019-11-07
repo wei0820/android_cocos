@@ -1,0 +1,83 @@
+
+kansizhang.png
+size: 446,276
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bj
+  rotate: true
+  xy: 2, 14
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+honglj
+  rotate: false
+  xy: 364, 17
+  size: 31, 32
+  orig: 31, 32
+  offset: 0, 0
+  index: -1
+jb
+  rotate: true
+  xy: 371, 51
+  size: 41, 45
+  orig: 41, 45
+  offset: 0, 0
+  index: -1
+st
+  rotate: true
+  xy: 335, 131
+  size: 90, 91
+  orig: 90, 91
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 218, 92
+  size: 115, 129
+  orig: 115, 129
+  offset: 0, 0
+  index: -1
+toufa
+  rotate: true
+  xy: 305, 14
+  size: 76, 57
+  orig: 76, 57
+  offset: 0, 0
+  index: -1
+youer
+  rotate: true
+  xy: 335, 92
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1
+youshou
+  rotate: false
+  xy: 418, 63
+  size: 26, 29
+  orig: 26, 29
+  offset: 0, 0
+  index: -1
+zi
+  rotate: false
+  xy: 218, 223
+  size: 201, 51
+  orig: 201, 51
+  offset: 0, 0
+  index: -1
+zuoer
+  rotate: false
+  xy: 371, 94
+  size: 46, 35
+  orig: 46, 35
+  offset: 0, 0
+  index: -1
+zuoshou
+  rotate: true
+  xy: 218, 2
+  size: 88, 85
+  orig: 88, 85
+  offset: 0, 0
+  index: -1

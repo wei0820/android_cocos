@@ -1,0 +1,139 @@
+
+qiangzhuangniuniu.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bj
+  rotate: false
+  xy: 2, 294
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+erduo1
+  rotate: false
+  xy: 236, 273
+  size: 24, 19
+  orig: 24, 19
+  offset: 0, 0
+  index: -1
+erduo2
+  rotate: false
+  xy: 481, 467
+  size: 21, 22
+  orig: 21, 22
+  offset: 0, 0
+  index: -1
+hudiejie
+  rotate: false
+  xy: 264, 344
+  size: 98, 57
+  orig: 98, 57
+  offset: 0, 0
+  index: -1
+j
+  rotate: false
+  xy: 167, 237
+  size: 67, 55
+  orig: 67, 55
+  offset: 0, 0
+  index: -1
+jiao1
+  rotate: true
+  xy: 379, 408
+  size: 14, 21
+  orig: 14, 21
+  offset: 0, 0
+  index: -1
+jiao2
+  rotate: true
+  xy: 481, 491
+  size: 17, 29
+  orig: 17, 29
+  offset: 0, 0
+  index: -1
+k
+  rotate: false
+  xy: 2, 116
+  size: 66, 54
+  orig: 66, 54
+  offset: 0, 0
+  index: -1
+lingdang_you
+  rotate: false
+  xy: 329, 294
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+lingdao_zuo
+  rotate: false
+  xy: 2, 20
+  size: 48, 49
+  orig: 48, 49
+  offset: 0, 0
+  index: -1
+mutou
+  rotate: false
+  xy: 2, 224
+  size: 163, 68
+  orig: 163, 68
+  offset: 0, 0
+  index: -1
+q
+  rotate: false
+  xy: 264, 296
+  size: 63, 46
+  orig: 63, 46
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: false
+  xy: 379, 463
+  size: 100, 45
+  orig: 100, 45
+  offset: 0, 0
+  index: -1
+sidai1
+  rotate: false
+  xy: 2, 71
+  size: 62, 43
+  orig: 62, 43
+  offset: 0, 0
+  index: -1
+sidai2
+  rotate: false
+  xy: 70, 135
+  size: 65, 35
+  orig: 65, 35
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 264, 403
+  size: 113, 105
+  orig: 113, 105
+  offset: 0, 0
+  index: -1
+yanjing
+  rotate: false
+  xy: 379, 424
+  size: 72, 37
+  orig: 72, 37
+  offset: 0, 0
+  index: -1
+zi
+  rotate: false
+  xy: 2, 172
+  size: 148, 50
+  orig: 148, 50
+  offset: 0, 0
+  index: -1
+zui
+  rotate: false
+  xy: 453, 427
+  size: 57, 34
+  orig: 57, 34
+  offset: 0, 0
+  index: -1

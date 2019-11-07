@@ -1,0 +1,68 @@
+2019-11-01T09:13:43.536Z - normal: Load ~/.CocosCreator/settings.json
+2019-11-01T09:13:44.723Z - normal: Initializing Asset Database
+2019-11-01T09:13:44.729Z - normal: checking language setting...
+2019-11-01T09:13:44.730Z - normal: Language: zh
+2019-11-01T09:13:45.360Z - success: preview server running at http://localhost:7456
+2019-11-01T09:13:45.363Z - success: protocol editor-framework registered
+2019-11-01T09:13:45.363Z - success: protocol app registered
+2019-11-01T09:13:45.363Z - success: protocol theme registered
+2019-11-01T09:13:45.363Z - success: protocol packages registered
+2019-11-01T09:13:45.364Z - success: protocol uuid registerred
+2019-11-01T09:13:45.364Z - success: protocol db registerred
+2019-11-01T09:13:45.364Z - success: protocol thumbnail registerred
+2019-11-01T09:13:45.364Z - success: protocol unpack registerred
+2019-11-01T09:13:45.364Z - success: protocol disable-commonjs registerred
+2019-11-01T09:13:45.503Z - normal: connected!
+2019-11-01T09:13:45.504Z - normal: Check project C:\Users\Administrator\Documents\android_cocos\jsb-link
+2019-11-01T09:13:45.505Z - normal: Initializing project C:\Users\Administrator\Documents\android_cocos\jsb-link
+2019-11-01T09:13:45.919Z - normal: Initializing Cocos2d
+2019-11-01T09:13:46.662Z - normal: Initializing engine extends
+2019-11-01T09:13:46.679Z - success: asset-db-debugger loaded
+2019-11-01T09:13:46.680Z - success: baidu-adapter loaded
+2019-11-01T09:13:46.680Z - success: color-picker loaded
+2019-11-01T09:13:46.758Z - success: fb-audience-network loaded
+2019-11-01T09:13:46.806Z - success: fb-live-stream loaded
+2019-11-01T09:13:46.810Z - success: google-play-instant loaded
+2019-11-01T09:13:46.816Z - success: huawei-runtime loaded
+2019-11-01T09:13:47.039Z - success: cpk-publish loaded
+2019-11-01T09:13:47.040Z - success: jsb-adapter loaded
+2019-11-01T09:13:47.045Z - success: oppo-runtime loaded
+2019-11-01T09:13:47.048Z - success: package-manager loaded
+2019-11-01T09:13:47.150Z - success: qqplay-adapter loaded
+2019-11-01T09:13:47.151Z - success: runtime-dev-tools loaded
+2019-11-01T09:13:47.154Z - success: sdkbox loaded
+2019-11-01T09:13:47.156Z - success: tester loaded
+2019-11-01T09:13:47.158Z - success: ui-grid loaded
+2019-11-01T09:13:47.159Z - success: ui-kit-preview-extra loaded
+2019-11-01T09:13:47.161Z - success: ui-kit-preview loaded
+2019-11-01T09:13:47.162Z - success: ui-kit loaded
+2019-11-01T09:13:47.168Z - success: ui-tree loaded
+2019-11-01T09:13:47.172Z - success: vivo-runtime loaded
+2019-11-01T09:13:47.172Z - success: weapp-adapter loaded
+2019-11-01T09:13:47.173Z - success: xiaomi-adapter loaded
+2019-11-01T09:13:47.215Z - success: assets loaded
+2019-11-01T09:13:47.216Z - success: builder loaded
+2019-11-01T09:13:47.457Z - success: cocos-services loaded
+2019-11-01T09:13:47.462Z - success: console loaded
+2019-11-01T09:13:47.492Z - success: fb-instant-games loaded
+2019-11-01T09:13:47.493Z - success: google-instant-games loaded
+2019-11-01T09:13:47.496Z - success: hierarchy loaded
+2019-11-01T09:13:47.498Z - success: inspector loaded
+2019-11-01T09:13:47.499Z - success: keystore loaded
+2019-11-01T09:13:47.502Z - success: node-library loaded
+2019-11-01T09:13:47.503Z - success: package-asset loaded
+2019-11-01T09:13:47.505Z - success: preferences loaded
+2019-11-01T09:13:47.506Z - success: project-exporter loaded
+2019-11-01T09:13:47.509Z - success: project-importer loaded
+2019-11-01T09:13:47.511Z - success: project-settings loaded
+2019-11-01T09:13:47.513Z - success: scene loaded
+2019-11-01T09:13:47.515Z - success: simulator-debugger loaded
+2019-11-01T09:13:47.515Z - success: sprite-editor loaded
+2019-11-01T09:13:47.518Z - success: store loaded
+2019-11-01T09:13:47.520Z - success: timeline loaded
+2019-11-01T09:13:47.525Z - success: xiaomi-runtime loaded
+2019-11-01T09:13:48.072Z - normal: Loading packages
+2019-11-01T09:13:48.076Z - normal: Watching packages
+2019-11-01T09:13:48.467Z - normal: Run Application
+2019-11-01T09:13:48.963Z - info: Cocos Services load base data!
+2019-11-01T09:15:53.217Z - info: shutdown preview server

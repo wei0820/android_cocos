@@ -1,0 +1,104 @@
+
+dahuatou.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+01
+  rotate: true
+  xy: 264, 273
+  size: 28, 30
+  orig: 28, 30
+  offset: 0, 0
+  index: -1
+02
+  rotate: false
+  xy: 407, 411
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+03
+  rotate: false
+  xy: 352, 354
+  size: 26, 28
+  orig: 26, 28
+  offset: 0, 0
+  index: -1
+04
+  rotate: false
+  xy: 260, 241
+  size: 28, 30
+  orig: 28, 30
+  offset: 0, 0
+  index: -1
+05
+  rotate: false
+  xy: 260, 241
+  size: 28, 30
+  orig: 28, 30
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 135, 176
+  size: 31, 32
+  orig: 31, 32
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 2, 2
+  size: 44, 50
+  orig: 44, 50
+  offset: 0, 0
+  index: -1
+bao_li_zi_green1
+  rotate: false
+  xy: 264, 303
+  size: 86, 79
+  orig: 88, 88
+  offset: 2, 4
+  index: -1
+bj
+  rotate: false
+  xy: 2, 273
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+dizuo
+  rotate: false
+  xy: 264, 384
+  size: 141, 103
+  orig: 141, 103
+  offset: 0, 0
+  index: -1
+dizuo2
+  rotate: false
+  xy: 2, 54
+  size: 128, 74
+  orig: 128, 74
+  offset: 0, 0
+  index: -1
+gaizi1
+  rotate: false
+  xy: 2, 130
+  size: 131, 141
+  orig: 131, 141
+  offset: 0, 0
+  index: -1
+guang
+  rotate: false
+  xy: 407, 437
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+zi
+  rotate: false
+  xy: 135, 210
+  size: 123, 61
+  orig: 123, 61
+  offset: 0, 0
+  index: -1

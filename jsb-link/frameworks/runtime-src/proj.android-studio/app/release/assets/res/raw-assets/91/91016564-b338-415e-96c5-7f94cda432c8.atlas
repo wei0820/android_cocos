@@ -1,0 +1,90 @@
+
+baijiale.png
+size: 605,267
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+10
+  rotate: false
+  xy: 514, 91
+  size: 60, 51
+  orig: 60, 51
+  offset: 0, 0
+  index: -1
+25
+  rotate: false
+  xy: 558, 216
+  size: 45, 49
+  orig: 45, 49
+  offset: 0, 0
+  index: -1
+50
+  rotate: false
+  xy: 540, 23
+  size: 59, 66
+  orig: 59, 66
+  offset: 0, 0
+  index: -1
+9
+  rotate: false
+  xy: 218, 85
+  size: 152, 180
+  orig: 152, 180
+  offset: 0, 0
+  index: -1
+bj
+  rotate: true
+  xy: 2, 5
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+k
+  rotate: false
+  xy: 372, 89
+  size: 140, 176
+  orig: 140, 176
+  offset: 0, 0
+  index: -1
+wenzi
+  rotate: false
+  xy: 438, 2
+  size: 118, 14
+  orig: 118, 14
+  offset: 0, 0
+  index: -1
+xian
+  rotate: false
+  xy: 332, 8
+  size: 104, 75
+  orig: 104, 75
+  offset: 0, 0
+  index: -1
+xx1
+  rotate: true
+  xy: 488, 20
+  size: 67, 50
+  orig: 67, 50
+  offset: 0, 0
+  index: -1
+xx2
+  rotate: true
+  xy: 438, 18
+  size: 69, 48
+  orig: 69, 48
+  offset: 0, 0
+  index: -1
+zhuang
+  rotate: false
+  xy: 218, 7
+  size: 112, 76
+  orig: 112, 76
+  offset: 0, 0
+  index: -1
+zi
+  rotate: true
+  xy: 514, 144
+  size: 121, 42
+  orig: 121, 42
+  offset: 0, 0
+  index: -1

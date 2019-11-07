@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -37,7 +38,8 @@ public class VerifyPopupActivity extends Activity {
         @Override
         public void onVerifySucc(String ticket, String randstr) {
             isSuccess = true;
-
+            Log.d(TAG, "onVerifySucc: "+ticket);
+            Log.d(TAG, "onVerifySucc: "+randstr);
             Bus.getDefault().post(new EventCaptcha(true, ticket, randstr));
 
             finish();

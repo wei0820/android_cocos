@@ -24,9 +24,9 @@
 
     <style name="selectorDialog" parent="@android:style/Theme.Dialog">
         <!-- 邊框 -->
+            <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="android:windowFrame">@null</item>
         <!-- 是否浮现在activity之上 -->
-        <item name="android:windowIsFloating">true</item>
         <!-- 整個 layout 半透明 -->
         <item name="android:windowIsTranslucent">true</item>
         <!-- 拿掉標題 -->
@@ -37,5 +37,7 @@
         <item name="android:backgroundDimEnabled">true</item>
         <!-- 亮度從 0 到 1.0 -->
         <item name="android:backgroundDimAmount">0.2</item>
+
+
     </style>
 </resources>

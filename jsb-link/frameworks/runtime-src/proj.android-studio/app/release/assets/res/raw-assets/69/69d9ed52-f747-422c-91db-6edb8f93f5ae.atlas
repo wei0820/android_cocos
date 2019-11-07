@@ -1,0 +1,83 @@
+
+shibei.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bj
+  rotate: false
+  xy: 2, 294
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+jinbi
+  rotate: false
+  xy: 395, 434
+  size: 67, 74
+  orig: 67, 74
+  offset: 0, 0
+  index: -1
+lingjie
+  rotate: false
+  xy: 2, 46
+  size: 68, 62
+  orig: 68, 62
+  offset: 0, 0
+  index: -1
+niu
+  rotate: false
+  xy: 2, 110
+  size: 124, 123
+  orig: 124, 123
+  offset: 0, 0
+  index: -1
+pai
+  rotate: false
+  xy: 223, 237
+  size: 64, 55
+  orig: 64, 55
+  offset: 0, 0
+  index: -1
+shaizi
+  rotate: false
+  xy: 128, 182
+  size: 47, 51
+  orig: 47, 51
+  offset: 0, 0
+  index: -1
+shaozi
+  rotate: false
+  xy: 464, 469
+  size: 46, 39
+  orig: 46, 39
+  offset: 0, 0
+  index: -1
+shibei
+  rotate: true
+  xy: 264, 294
+  size: 82, 97
+  orig: 82, 97
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 264, 378
+  size: 129, 130
+  orig: 129, 130
+  offset: 0, 0
+  index: -1
+xu
+  rotate: false
+  xy: 363, 335
+  size: 25, 41
+  orig: 25, 41
+  offset: 0, 0
+  index: -1
+zi
+  rotate: false
+  xy: 2, 235
+  size: 219, 57
+  orig: 219, 57
+  offset: 0, 0
+  index: -1

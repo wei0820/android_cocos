@@ -8,13 +8,13 @@ android {
 
     defaultConfig {
         applicationId "org.cocos2d.HappyGame"
-        minSdkVersion 23
+        minSdkVersion PROP_MIN_SDK_VERSION
         targetSdkVersion PROP_TARGET_SDK_VERSION
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
         ndk {
             // 设置支持的SO库架构
-            abiFilters 'armeabi' , 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
         externalNativeBuild {
             ndkBuild {
@@ -28,13 +28,12 @@ android {
                                         project.file("C:/CocosCreator_2.0.10/resources/cocos2d-x/external")]
                     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
-                    }
-                    else {
+                    } else {
                         arguments 'NDK_MODULE_PATH=' + module_paths.join(':')
                     }
 
                     arguments '-j' + Runtime.runtime.availableProcessors()
-                    abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
+                    abiFilters.addAll(PROP_APP_ABI.split(':').collect { it as String })
                 }
             }
         }
@@ -59,112 +58,128 @@ android {
 
     signingConfigs {
 
-       release {
+        release {
             if (project.hasProperty("RELEASE_STORE_FILE")) {
                 storeFile file(RELEASE_STORE_FILE)
                 storePassword RELEASE_STORE_PASSWORD
                 keyAlias RELEASE_KEY_ALIAS
                 keyPassword RELEASE_KEY_PASSWORD
             }
+//        }
+//        release {
+//            storeFile file('C:\\Users\\Administrator\\Desktop\\app.keystore')
+//            storePassword 'a123123'
+//            keyAlias 'HappyGame'
+//            keyPassword 'a123123'
+//        }
         }
-    }
 
-    buildTypes {
-        release {
-            debuggable false
-            jniDebuggable false
-            renderscriptDebuggable false
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            if (project.hasProperty("RELEASE_STORE_FILE")) {
-                signingConfig signingConfigs.release
+        buildTypes {
+            release {
+                debuggable false
+                jniDebuggable false
+                renderscriptDebuggable false
+                minifyEnabled true
+                shrinkResources true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                if (project.hasProperty("RELEASE_STORE_FILE")) {
+                    signingConfig signingConfigs.release
+                }
+
+                externalNativeBuild {
+                    ndkBuild {
+                        arguments 'NDK_DEBUG=0'
+                    }
+                }
             }
 
-            externalNativeBuild {
-                ndkBuild {
-                    arguments 'NDK_DEBUG=0'
+            debug {
+                debuggable true
+                jniDebuggable true
+                renderscriptDebuggable true
+                externalNativeBuild {
+                    ndkBuild {
+                        arguments 'NDK_DEBUG=1'
+                    }
                 }
             }
         }
-
-        debug {
-            debuggable true
-            jniDebuggable true
-            renderscriptDebuggable true
-            externalNativeBuild {
-                ndkBuild {
-                    arguments 'NDK_DEBUG=1'
-                }
-            }
+        compileOptions {
+            sourceCompatibility = 1.8
+            targetCompatibility = 1.8
         }
     }
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
-}
 
-android.applicationVariants.all { variant ->
-    // delete previous files first
-    delete "${buildDir}/intermediates/merged_assets/${variant.dirName}"
+    android.applicationVariants.all { variant ->
+        // delete previous files first
+        delete "${buildDir}/intermediates/merged_assets/${variant.dirName}"
 
-    variant.mergeAssets.doLast {
-        def sourceDir = "${buildDir}/../../../../.."
+        variant.mergeAssets.doLast {
+            def sourceDir = "${buildDir}/../../../../.."
 
-        copy {
-            from "${sourceDir}/res"
-            into "${outputDir}/res"
+            copy {
+                from "${sourceDir}/res"
+                into "${outputDir}/res"
+            }
+
+            copy {
+                from "${sourceDir}/subpackages"
+                into "${outputDir}/subpackages"
+            }
+
+            copy {
+                from "${sourceDir}/src"
+                into "${outputDir}/src"
+            }
+
+            copy {
+                from "${sourceDir}/jsb-adapter"
+                into "${outputDir}/jsb-adapter"
+            }
+
+            copy {
+                from "${sourceDir}/main.js"
+                from "${sourceDir}/project.json"
+                into outputDir
+            }
+
+            copy {
+                from "${sourceDir}"
+                //from "${sourceDir}/main_project.manifest"
+                //from "${sourceDir}/main_version.manifest"
+                into outputDir
+                include "**/*.manifest"
+            }
         }
+    }
+    dependencies {
+        implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+        implementation fileTree(include: ['*.jar'], dir: 'C:/CocosCreator_2.0.10/resources/cocos2d-x/cocos/platform/android/java/libs')
+        implementation project(':libcocos2dx')
+        implementation files('libs/VerifySDK.jar')
+        implementation 'com.android.support:appcompat-v7:23.4.0'
+//    implementation files('libs/bugly_crash_release.jar')
+        implementation files('libs/glide-full-4.7.0.jar')
+        implementation 'com.android.support:design:27.1.0'
+//        implementation 'com.mcxiaoke.xbus:bus:1.0.2'
+        implementation 'com.android.support:support-compat:23.4.0'
+        implementation 'com.liulishuo.magicprogresswidget:library:1.1.1'
+        compile 'com.akexorcist:RoundCornerProgressBar:2.0.3'
+        implementation files('libs/OpenInstall_v2.3.0.jar')
+        implementation 'com.google.code.gson:gson:2.8.2'
 
-        copy {
-            from "${sourceDir}/subpackages"
-            into "${outputDir}/subpackages"
-        }
+        compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+        compile 'com.tencent.bugly:nativecrashreport:latest.release'
+        //其中latest.release指代最新版本号，也可以指定明确的版本号
 
-        copy {
-            from "${sourceDir}/src"
-            into "${outputDir}/src"
-        }
-
-        copy {
-            from "${sourceDir}/jsb-adapter"
-            into "${outputDir}/jsb-adapter"
-        }
-
-        copy {
-            from "${sourceDir}/main.js"
-            from "${sourceDir}/project.json"
-            into outputDir
-        }
-
-        copy {
-            from "${sourceDir}"
-            //from "${sourceDir}/main_project.manifest"
-            //from "${sourceDir}/main_version.manifest"
-            into outputDir
-            include "**/*.manifest"
-        }
     }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
-    implementation fileTree(include: ['*.jar'], dir: 'C:/CocosCreator_2.0.10/resources/cocos2d-x/cocos/platform/android/java/libs')
-    implementation project(':libcocos2dx')
-    implementation files('libs/VerifySDK.jar')
-    implementation 'com.android.support:appcompat-v7:23.4.0'
-//    implementation files('libs/bugly_crash_release.jar')
-    implementation files('libs/glide-full-4.7.0.jar')
-    implementation 'com.android.support:design:27.1.0'
-    implementation 'com.mcxiaoke.xbus:bus:1.0.2'
-    implementation 'com.android.support:support-compat:23.4.0'
-    implementation 'com.liulishuo.magicprogresswidget:library:1.1.1'
-    compile 'com.akexorcist:RoundCornerProgressBar:2.0.3'
-    implementation files('libs/OpenInstall_v2.3.0.jar')
-    implementation 'com.google.code.gson:gson:2.8.2'
-
-    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
-    compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新版本号，也可以指定明确的版本号
-
+    implementation 'com.android.support.constraint:constraint-layout:+'
 }

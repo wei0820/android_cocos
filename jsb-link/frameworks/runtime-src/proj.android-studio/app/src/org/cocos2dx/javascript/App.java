@@ -19,7 +19,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 //        CrashReport.initCrashReport(getApplicationContext(), "85ecfaea36", false);
-        Bugly.init(getApplicationContext(), "85ecfaea36", true);
+        Bugly.init(getApplicationContext(), "85ecfaea36", false);
 
         closeAndroidPDialog();
         if (isMainProcess()) {

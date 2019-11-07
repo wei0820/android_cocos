@@ -1,0 +1,90 @@
+
+doudizhu.png
+size: 562,221
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2
+  rotate: true
+  xy: 264, 48
+  size: 171, 87
+  orig: 171, 87
+  offset: 0, 0
+  index: -1
+bj
+  rotate: false
+  xy: 2, 5
+  size: 260, 214
+  orig: 260, 214
+  offset: 0, 0
+  index: -1
+pai2
+  rotate: false
+  xy: 367, 2
+  size: 108, 51
+  orig: 108, 51
+  offset: 0, 0
+  index: -1
+shenti
+  rotate: false
+  xy: 477, 10
+  size: 68, 45
+  orig: 68, 45
+  offset: 0, 0
+  index: -1
+shenti2
+  rotate: false
+  xy: 264, 6
+  size: 45, 40
+  orig: 45, 40
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 353, 114
+  size: 104, 105
+  orig: 104, 105
+  offset: 0, 0
+  index: -1
+tou2
+  rotate: false
+  xy: 476, 57
+  size: 72, 65
+  orig: 72, 65
+  offset: 0, 0
+  index: -1
+youjiao
+  rotate: true
+  xy: 547, 25
+  size: 30, 13
+  orig: 30, 13
+  offset: 0, 0
+  index: -1
+youshou
+  rotate: false
+  xy: 459, 155
+  size: 93, 64
+  orig: 93, 64
+  offset: 0, 0
+  index: -1
+zi
+  rotate: false
+  xy: 353, 55
+  size: 121, 57
+  orig: 121, 57
+  offset: 0, 0
+  index: -1
+zuojiao
+  rotate: true
+  xy: 459, 124
+  size: 29, 20
+  orig: 29, 20
+  offset: 0, 0
+  index: -1
+zuoshou
+  rotate: false
+  xy: 311, 16
+  size: 54, 30
+  orig: 54, 30
+  offset: 0, 0
+  index: -1

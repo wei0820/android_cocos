@@ -30,6 +30,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -43,10 +44,16 @@ import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.Layout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -54,6 +61,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.app.game.v0812.R;
+import com.bumptech.glide.Glide;
 import com.fm.openinstall.OpenInstall;
 import com.fm.openinstall.listener.AppInstallAdapter;
 import com.fm.openinstall.listener.AppWakeUpAdapter;
@@ -62,7 +70,9 @@ import com.google.gson.Gson;
 import com.mcxiaoke.bus.Bus;
 import com.mcxiaoke.bus.annotation.BusReceiver;
 
+import org.cocos2dx.javascript.service.AlertMAnager;
 import org.cocos2dx.lib.Cocos2dxActivity;
+import org.cocos2dx.lib.Cocos2dxEditBox;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 import org.cocos2dx.lib.Cocos2dxJavascriptJavaBridge;
 
@@ -111,15 +121,8 @@ public class AppActivity extends Cocos2dxActivity {
         }
         // DO OTHER INITIALIZATION BELOW
         SDKWrapper.getInstance().init(this);
-        mRunnableArraryString = new Runnable() {
-            @Override
-            public void run() {
-                textView.setText(array[i]);
-                mArrayHandler.postDelayed(mRunnableArraryString, 1500);
-                i = (int) (Math.random() * array.length);
 
-            }
-        };
+
         mRunnableCountTime = new Runnable() {
             @Override
             public void run() {
@@ -145,15 +148,24 @@ public class AppActivity extends Cocos2dxActivity {
         roundCornerProgressBar.setVisibility(View.GONE);
         mFrameLayout.addView(mViewStartPage);
         // 添加加载图
-        /*ImageView imageView = new ImageView(getContext());
-        RelativeLayout.LayoutParams paramsImage = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        paramsImage.addRule(RelativeLayout.CENTER_IN_PARENT);
-        Glide.with(getContext())
-                .load(R.mipmap.giphy)
-                .into(imageView);
-        mFrameLayout.addView(imageView);*/
+//        ImageView imageView = new ImageView(getContext());
+//        RelativeLayout.LayoutParams paramsImage = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//        paramsImage.addRule(RelativeLayout.CENTER_IN_PARENT);
+//        Glide.with(getContext())
+//                .load("")
+//                .into(imageView);
+//        mFrameLayout.addView(imageView);
         mHandler.post(mRunnableCountTime);
-        mArrayHandler.post(mRunnableArraryString);
+
+        mRunnableArraryString = new Runnable() {
+            @Override
+            public void run() {
+                textView.setText(array[i]);
+                mArrayHandler.postDelayed(mRunnableArraryString, 1500);
+                i = (int) (Math.random() * array.length);
+
+            }
+        };
         mBtnCountTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,10 +175,10 @@ public class AppActivity extends Cocos2dxActivity {
         checkPermission();
         OpenInstall.getWakeUp(getIntent(), wakeUpAdapter);
         OpenInstall.reportRegister();
-        textView.setText("正在检查版本");
         String s = "正在检查版本";
+        textView.setText(s);
 
-        setDilog();
+        textView.setText("正在加载资源");
     }
 
     AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {
@@ -276,8 +288,8 @@ public class AppActivity extends Cocos2dxActivity {
     @Override
     protected void onStart() {
         SDKWrapper.getInstance().onStart();
-        super.onStart();
         Bus.getDefault().register(this);
+        super.onStart();
 
     }
 
@@ -441,9 +453,11 @@ public class AppActivity extends Cocos2dxActivity {
 
     @BusReceiver
     public void onSomeEvent(EventCaptcha event) {
+
         boolean success = event.isSuccess();
         String ticket = event.getTicket();
         String randstr = event.getRandstr();
+
         String msg;
         String status = "0";
         if (success) {
@@ -457,7 +471,7 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
     public void sendJSCaptcha(final String status, final String ticket) {
-        runOnGLThread(new Runnable() {
+        app.runOnGLThread(new Runnable() {
             @Override
             public void run() {
                 // js 脚本语句句
@@ -507,15 +521,16 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
     // 加载资源进度控制
-    public static void getLoadngingProgressRate(float f) {
+    public static void setLoadingProgressRate(float f) {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 // 設定模組與 Dialog 的風格
+                mArrayHandler.post(mRunnableArraryString);
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress() >= 1.0) {
                     mArrayHandler.removeCallbacks(mRunnableArraryString);
-                    textView.setText("正在加载资源");
+                    textView.setText("更新完毕，将为您重启应用，祝您游戏愉快");
                     mViewStartPage.setVisibility(View.GONE);
                 }
             }
@@ -523,12 +538,13 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
     // 热跟新进度控制
-    public static void getUpdateProgressRate(float f) {
+    public static void setUpdateProgressRate(float f) {
 
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 // 設定模組與 Dialog 的風格
+                mArrayHandler.post(mRunnableArraryString);
                 roundCornerProgressBar.setProgress(f);
                 if (roundCornerProgressBar.getProgress() >= 1.0) {
                     mArrayHandler.removeCallbacks(mRunnableArraryString);
@@ -552,12 +568,13 @@ public class AppActivity extends Cocos2dxActivity {
         app.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                setDilog(s);
 
 
         }
         });
     }
-    private static void setDilog(){
+    private static void setDilog(String s){
         Dialog dialog = new Dialog(getContext(), R.style.selectorDialog);
         dialog.setContentView(R.layout.layout_alertdialog);
         ImageButton button = dialog.findViewById(R.id.btn);
@@ -569,7 +586,8 @@ public class AppActivity extends Cocos2dxActivity {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("window.retryUpdate(" + 11111 + ")");
+                        String js = "window.retryUpdate(\"" + s + "\")";
+                        Cocos2dxJavascriptJavaBridge.evalString(js);
                         dialog.dismiss();
                     }
                 });
@@ -582,6 +600,166 @@ public class AppActivity extends Cocos2dxActivity {
         lp.height =  WindowManager.LayoutParams.MATCH_PARENT;
         dialog.getWindow().setAttributes(lp);
         dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    //显示图像验证码
+    public static void showImgCheckCode(String str){
+        Log.d(TAG, "showImgCheckCode: "+str);
+        app.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                setDilog(getContext(),str);
+
+            }
+        });
+
+    }
+
+    //验证码错误，str提示内容，前端自动请求新的验证码，请求后会通过“showImgCheckCode” function 传给原生
+    public static void checkCodeError(String str){
+        Log.d(TAG, "showImgCheckCode: "+str);
+        app.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getContext(),str,Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+    //关闭图像验证码弹窗
+    public static void hideImgCheckCode(){
+        app.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "hideImgCheckCode: "+"");
+                dialog.dismiss();
+            }
+        });
+
+    }
+    static Dialog dialog = null;
+    static RelativeLayout relativeLayout= null;
+    static ImageView img = null;
+    static ImageView reload= null;
+    static  ImageButton imageButton = null;
+    static ImageButton imageButton1 =null;
+    static EditText editText = null;
+    public static void setDilog(Context context, String s){
+        if (dialog == null){
+
+            dialog = new Dialog(context, R.style.selectorDialog);
+            dialog.setContentView(R.layout.layout_photo);
+            relativeLayout = dialog.findViewById(R.id.lay);
+            img = dialog.findViewById(R.id.img);
+            reload = dialog.findViewById(R.id.reload);
+            imageButton = dialog.findViewById(R.id.btn);
+            imageButton1 = dialog.findViewById(R.id.close);
+            editText = dialog.findViewById(R.id.edt);
+        }
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                app.runOnGLThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String js = "window.nativeBridge.confirmCheckCode(\"" + editText.getText().toString() + "\")";
+                        Cocos2dxJavascriptJavaBridge.evalString(js);
+
+                    }
+                });
+            }
+        });
+
+
+        Glide.with(context)
+                .load(s)
+                .into(img);
+        imageButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                app.runOnGLThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Cocos2dxJavascriptJavaBridge.evalString("window.nativeBridge.closeCheckCode()");
+                        dialog.dismiss();
+
+                    }
+                });
+            }
+        });
+
+        imageButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        imageButton.setScaleY((float)0.9);
+                        imageButton.setScaleX((float)0.9);
+
+                        break;
+
+
+                    case MotionEvent.ACTION_UP:
+                        imageButton.setScaleY(1);
+                        imageButton.setScaleX(1);
+
+                        break;
+                }
+
+
+                return false;
+            }
+        });
+        imageButton1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        imageButton1.setScaleY((float)0.9);
+                        imageButton1.setScaleX((float)0.9);
+
+                        break;
+
+
+                    case MotionEvent.ACTION_UP:
+                        imageButton1.setScaleY(1);
+                        imageButton1.setScaleX(1);
+
+                        break;
+                }
+
+
+                return false;
+            }
+        });
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                app.runOnGLThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        reload.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim));
+                        Cocos2dxJavascriptJavaBridge.evalString("window.nativeBridge.updateCheckCode()");
+                    }
+                });
+            }
+        });
+        // 圖片配置動畫
+
+        // 動畫開始
+
+        // 由程式設定 Dialog 視窗外的明暗程度, 亮度從 0f 到 1f
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.dimAmount = 0.2f;
+        lp.width =  WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height =  WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(lp);
+        dialog.setCanceledOnTouchOutside(false);
+
         dialog.show();
     }
 }
